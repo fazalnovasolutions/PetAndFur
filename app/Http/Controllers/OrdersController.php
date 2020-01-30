@@ -7,6 +7,7 @@ use App\Customer;
 use App\Order;
 use App\OrderProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use OhMyBrew\ShopifyApp\ShopifyApp;
 
 class OrdersController extends Controller
@@ -19,10 +20,43 @@ class OrdersController extends Controller
         $this->helper = new HelperController();
     }
 
+    public function filter_orders(Request $request){
+        $query = Order::where('shop_id',$this->helper->getShop()->id)->newQuery();
+        if($request->input('search')){
+            $query->where('name','LIKE','%'.$request->input('search').'%');
+            $query->orWhere('email','LIKE','%'.$request->input('search').'%');
+            $query->orWhere('bill_first_name','LIKE','%'.$request->input('search').'%');
+            $query->orWhere('ship_first_name','LIKE','%'.$request->input('search').'%');
+        }
+        if($request->input('product')){
+            $query->whereHas('has_products',function ($product_query) use ($request){
+                $product_query->where('title',$request->input('product'));
+            });
+        }
+        $orders = $query->paginate(50);
+        $products = DB::table('order_products')
+            ->select('title')
+            ->where('shop_id',$this->helper->getShop()->id)
+            ->groupBy('title')
+            ->get();
+        return  view('admin.order')->with([
+            'orders' => $orders,
+            'products' => $products,
+        ])->render();
+
+
+    }
+
     public function Orders(){
         $orders = Order::where('shop_id', $this->helper->getShop()->id)->orderBy('name', 'DESC')->paginate(50);
+        $products = DB::table('order_products')
+            ->select('title')
+            ->where('shop_id',$this->helper->getShop()->id)
+            ->groupBy('title')
+            ->get();
         return view('admin.order')->with([
-            'orders' => $orders
+            'orders' => $orders,
+            'products' => $products,
         ]);
     }
 
@@ -38,7 +72,7 @@ class OrdersController extends Controller
     public function GetShopifyOrders(){
         $request = $this->helper->getShop()->api()->rest('GET', '/admin/orders.json');
         foreach ($request->body->orders as $order){
-           $this->CreateOrder($order, $this->helper->getShop()->shopify_domain);
+            $this->CreateOrder($order, $this->helper->getShop()->shopify_domain);
 //            dd($order);
         }
     }

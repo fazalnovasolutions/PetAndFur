@@ -24,10 +24,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.shop']], function(){
 
     Route::post('designer/save','DesignerController@Designer_Save')->name('admin.designer.save');
     Route::get('designer/dashboard','DesignerController@Dashboard')->name('admin.designer.dashboard');
+    /*Filter Orders*/
+    Route::get('orders/filter','OrdersController@filter_orders')->name('admin.orders.filter');
 
 });
 
-//Route::get('admin/orders','OrderController@getOrders')->name('admin.orders');
+Route::get('/sync/orders','OrdersController@GetShopifyOrders')->name('orders.sync');
 //Route::get('admin/background','OrderController@getBackground')->name('admin.background');
 Route::get('admin/login','OrderController@ManagementLogin')->name('admin.login');
 //Route::get('admin/dashboard','OrderController@getDashboard')->name('management.dashboard');

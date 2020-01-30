@@ -14,69 +14,91 @@ $(document).ready(function(){
 
     ///////////////////filter order status///////////////
 
-    $('.order_status').click(function () {
+    // $('.order_status').click(function () {
+    $('body').on('click','.order_status',function () {
         var value=$(this).text();
+        $('.order_status_button').text(value);
         value= value.split(" ");
 
-        $("#myTable tr td .dropdown span").filter(function() {
+       if($(this).text() !== 'All Orders'){
+           $("#myTable tr td .dropdown span").filter(function() {
+               var dropdown=$(this).parent();
+               var td=$(dropdown).parent();
+               $($(td).parent()).toggle($(this).text().toLowerCase().indexOf(value[0].toLowerCase()) > -1)
+           });
+       }
+       else{
+           $("#myTable tr").each(function() {
+               $(this).show();
+           });
+       }
 
-            var dropdown=$(this).parent();
-            var td=$(dropdown).parent();
-            $($(td).parent()).toggle($(this).text().toLowerCase().indexOf(value[0].toLowerCase()) > -1)
-        });
 
+    });
+    ///////////change order status//////////////////
+
+
+    // $(".change_status").click(function () {
+    $('body').on('click','.change_status',function () {
+        var text=$(this).text();
+        text=text.split(" ");
+
+        var drop_menu=$(this).parent();
+        drop_menu=$(drop_menu).parent();
+        var td =$(drop_menu).parent();
+
+        drop_menu=$(drop_menu)[0].children
+        var span =$(drop_menu)[0];
+
+        if(text[0] == "New"){
+            $(span).text(text[0])
+            td.css("background","#0066CC");
+            td.closest('tr').css("background","#FFFFFF");
+            td.closest('tr').css("color","#67757c")
+
+        }else if (text[0] == "In-process") {
+            $(span).text(text[0])
+            td.css("background","#a53838");
+            td.closest('tr').css("background","#FFFFFF");
+            td.closest('tr').css("color","#67757c")
+
+        }else if(text[0] == "Completed" ){
+            $(span).text(text[0])
+            td.css("background","#449d44");
+            td.closest('tr').css("background","#c8bfdf");
+            td.closest('tr').css("color","White")
+        }
     })
-
-        ///////////change order status//////////////////
-
-
-        $(".change_status").click(function () {
-            var text=$(this).text();
-            text=text.split(" ");
-
-            var drop_menu=$(this).parent();
-            drop_menu=$(drop_menu).parent();
-            var td =$(drop_menu).parent();
-
-            drop_menu=$(drop_menu)[0].children
-            var span =$(drop_menu)[0];
-
-            if(text[0] == "New"){
-                $(span).text(text[0])
-                td.css("background","#0066CC");
-
-            }else if (text[0] == "In-process") {
-                $(span).text(text[0])
-                td.css("background","#a53838");
-
-
-            }else if(text[0] == "Completed" ){
-                $(span).text(text[0])
-                td.css("background","#449d44");
-
-
-            }
-        })
 
 
     ////////filter designer//////////////
 
-    $(".change_designer").click(function () {
-
+    // $(".change_designer").click(function () {
+    $('body').on('click','.change_designer',function () {
         var value=$(this).text();
+        $('.designer-text').text(value);
+        if(value !== 'All Designers'){
+            $("#myTable tr td .designer").filter(function() {
+                var td=$(this).parent();
+                $($(td).parent()).toggle($(this).text().toLowerCase().indexOf(value.toLowerCase()) > -1)
+            });
+        }
+        else{
+            $("#myTable tr").each(function() {
+               $(this).show();
+            });
 
-        $("#myTable tr td .designer").filter(function() {
+        }
 
-            var td=$(this).parent();
-            $($(td).parent()).toggle($(this).text().toLowerCase().indexOf(value.toLowerCase()) > -1)
-        });
     });
 
 
     ////////////filter of columns////////////
 
 
-    $('.icon_down').click(function () {
+    // $('.icon_down').click(function () {
+    $('body').on('click','.icon_down',function () {
+
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         table = document.getElementById("order_table");
         if($(this).hasClass('mdi-menu-down')){
@@ -147,33 +169,35 @@ $(document).ready(function(){
     /////////////mark orders all //////////////////
     $('.actionbox').hide();
 
-        $('#check-all').click(function () {
-            if (this.checked) {
-                $(".checkSingle").each(function() {
-                    this.checked=true;
+    // $('#check-all').click(function () {
+    $('body').on('click','#check-all',function () {
+        if (this.checked) {
+            $(".checkSingle").each(function() {
+                this.checked=true;
 
-                });
+            });
 
-                var countchecked = $("table input[type=checkbox]:checked").length;
-                countchecked = countchecked - 1;
-                $('.actionbox').show();
-                // $('#selecteditems').text(countchecked +' Items Selected');
+            var countchecked = $("table input[type=checkbox]:checked").length;
+            countchecked = countchecked - 1;
+            $('.actionbox').show();
+            // $('#selecteditems').text(countchecked +' Items Selected');
 
-            } else {
-                // $('#selecteditems').text('');
+        } else {
+            // $('#selecteditems').text('');
 
-                $(".checkSingle").each(function() {
-                    this.checked=false;
-                    $('.actionbox').hide();
+            $(".checkSingle").each(function() {
+                this.checked=false;
+                $('.actionbox').hide();
 
-                });
-            }
-            
-        })
+            });
+        }
+
+    })
 
     ///////////////single order check///////////
 
-    $(".checkSingle").click(function () {
+    // $(".checkSingle").click(function () {
+    $('body').on('click','.checkSingle',function () {
         if ($(this).is(":checked")) {
             var isAllChecked = 0;
 
@@ -194,10 +218,48 @@ $(document).ready(function(){
         }
     });
 
+    /*Filter Orders*/
+    $('body').on('keyup','.filter-search',function () {
 
+        $.ajax({
+            url: $(this).data('route'),
+            method: 'GET',
+            data:{
+                search : $(this).val(),
+            },
+            success:function (response){
+                $('#order_table').find('#myTable').empty();
+                $('#order_table').find('#myTable').html($(response).find('#myTable').html());
+            },
+        });
 
+    });
+    $('body').on('click','.change_product',function () {
+        $('.product-filter-button').text($(this).text());
+        if($(this).text() === 'All Products'){
+            var $product = null;
+        }
+        else{
+            var $product = $(this).text();
+        }
 
+        $.ajax({
+            url: $(this).data('route'),
+            method: 'GET',
+            data:{
+                product : $product,
+            },
+            success:function (response){
+                $('#order_table').find('#myTable').empty();
+                $('#order_table').find('#myTable').html($(response).find('#myTable').html());
+            },
+        });
+    });
 
+    /*Filter Asc Desc Column*/
+    // $('body').on('click','.th-table',function () {
+    //
+    // });
 
 
 });
