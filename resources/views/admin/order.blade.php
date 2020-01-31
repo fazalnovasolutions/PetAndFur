@@ -31,9 +31,9 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item order_status">All Orders</a>
-                                    <a class="dropdown-item order_status">New Order</a>
-                                    <a class="dropdown-item order_status" >In-Process </a>
-                                    <a class="dropdown-item order_status">Complete Order</a>
+                                    @foreach($statuses as $s)
+                                        <a class="dropdown-item order_status">{{$s->name}}</a>
+                                    @endforeach
 
                                 </div>
                             </div>
@@ -45,12 +45,9 @@
                                 </button>
                                 <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item change_designer">All Designers</a>
-                                    <a class="dropdown-item change_designer" >Chesce</a>
-                                    <a class="dropdown-item change_designer" >Maria</a>
-                                    <a class="dropdown-item change_designer" >Asaf</a>
-                                    <a class="dropdown-item change_designer" >Ihsan</a>
-                                    <a class="dropdown-item change_designer">Dhy</a>
-
+                                    @foreach($designers as $d)
+                                        <a class="dropdown-item change_designer" >{{$d->name}}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -62,8 +59,8 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item change_product" data-route="{{route('admin.orders.filter')}}">All Products</a>
                                     @foreach($products as $product)
-                                    <a class="dropdown-item change_product" data-route="{{route('admin.orders.filter')}}">{{$product->title}}</a>
-                                        @endforeach
+                                        <a class="dropdown-item change_product" data-route="{{route('admin.orders.filter')}}">{{$product->title}}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -125,57 +122,89 @@
                             </thead>
                             <tbody id="myTable">
                             @foreach($orders as $order)
-                            <tr>
-                                <td>
-                                    <div class="checkbox">
-                                        <input type="checkbox" class="checkSingle" id="check-1" >
-                                        <label for="check-1"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="{{route('order.detail', $order->id)}}">{{ $order->name }}</a>
-                                </td>
-                                <td>2020-01-10</td>
-                                <td>{{ $order->email }}</td>
-                                <td>
-                                    <div class="button-group">
-                                        <a href="" class="btn waves-effect waves-light btn-rounded btn-xs btn-info send_email">
-                                            Send
-                                        </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    2020-01-20
-                                </td>
-                                <td>
-                                    <span class="badge badge-pill bdg-success designer">Chesce</span>
-                                </td>
-                                <td align="center">
-                                   <div class="setting_div">
-                                       <span class="mdi mdi-settings text-white display-6"></span>
-                                   </div>
-                                    <h6 class="text-dark"><b>In Progress</b></h6>
-                                </td>
+                                <tr>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="checkSingle" id="check-1" >
+                                            <label for="check-1"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="{{route('order.detail', $order->id)}}">{{ $order->name }}</a>
+                                    </td>
+                                    <td>2020-01-10</td>
+                                    <td>{{ $order->email }}</td>
+                                    <td>
+                                        <div class="button-group">
+                                            <a href="" class="btn waves-effect waves-light btn-rounded btn-xs btn-info send_email">
+                                                Send
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        2020-01-20
+                                    </td>
+                                    <td>
+                                        @if($order->has_designer != null)
+                                            <span class="badge badge-pill designer" style="color: {{$order->has_designer->color}}; background: {{$order->has_designer->background_color}}">{{$order->has_designer->name}} </span>
+                                        @endif
+                                    </td>
+                                    <td align="center">
+                                        @if($order->has_design_details != null)
+                                            @if($order->has_design_details->status_id == 4)
+                                                <div class="setting_div">
+                                                    <span class="mdi mdi-settings text-white display-6"></span>
+                                                </div>
+                                                <h6 class="text-dark"><b>{{$order->has_design_details->status}}</b></h6>
+                                            @elseif($order->has_design_details->status_id == 7)
+                                                <div class="approved_div">
+                                                    <span class="mdi mdi-check-circle-outline check_mark"></span>
+                                                </div>
+                                                <h6 class="text_active"><b>{{$order->has_design_details->status}}</b></h6>
+                                            @elseif($order->has_design_details->status_id == 9)
+                                                <div class="cir">
+                                                    <span class="rec"></span>
+                                                </div>
+                                                <h6 class="not_completed"><b>{{$order->has_design_details->status}}</b></h6>
+                                            @elseif($order->has_design_details->status_id == 8)
+                                                <div class="update_div">
+                                                    <span class="update_icon">!</span>
+                                                </div>
+                                                <h6 class="updating"><b>{{$order->has_design_details->status}}</b></h6>
+                                            @endif
 
-                                <td align="center">
-                                    <div>
-                                        <span class="mdi mdi-camera photo"></span>
-                                    </div>
-                                    <h6 class="photo_text"><b>NEW PHOTO</b></h6>
-                                </td>
+                                        @else
+                                            <div class="cir">
+                                                <span class="rec"></span>
+                                            </div>
+                                            <h6 class="not_completed"><b>No Design</b></h6>
+                                        @endif
 
-                                <td style="background: #0066CC;color:#ffff">
+                                    </td>
+
+                                    <td align="center">
+                                        <div>
+                                            <span class="mdi mdi-camera photo"></span>
+                                        </div>
+                                        <h6 class="photo_text"><b>NEW PHOTO</b></h6>
+                                    </td>
+                                    @if($order->has_additional_details != null)
+                                    <input type="hidden" class="order-status-value" value="{{$order->has_additional_details->status}}">
+                                    @endif
+                                    <td class="order-status-td" style="background: #0066CC;color:#ffff">
                                         <div class="dropdown">
                                             <span style="cursor: pointer" class="pr-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">New </span>
 
                                             <div  class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item text-primary change_status" >New Order</a>
-                                                <a class="dropdown-item text-danger change_status" >In-process Order</a>
-                                                <a class="dropdown-item text-success change_status" >Completed Order</a>
+                                                @foreach($statuses as $s)
+                                                        <a class="dropdown-item text-primary change_status" data-id="{{$order->id}}" data-route="{{route('admin.orders.change_status')}}" data-method="GET" data-status-id="{{$s->id}}">{{$s->name}}</a>
+                                                @endforeach
+
+
                                             </div>
                                         </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>
@@ -190,4 +219,4 @@
         </div>
     </div>
 
-    @endsection
+@endsection

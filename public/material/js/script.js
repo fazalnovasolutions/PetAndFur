@@ -35,13 +35,45 @@ $(document).ready(function(){
 
 
     });
+    /*Design Uplaod*/
+
+    $('body').on('click','.upload-design-button',function () {
+       $(this).parent().next().find('.design-file').trigger('click');
+    });
+    $('body').on('change','.design-file',function () {
+       $(this).closest('form').submit();
+    });
+
+    /*Style Change*/
+    $('body').on('change','.style-change',function () {
+        $(this).parent().next().find('.category_input').val($(this).val());
+        $(this).parent().next().submit();
+    });
     ///////////change order status//////////////////
 
+    if($('.order-status-value').length > 0){
+        $('.order-status-value').each(function () {
+          var value = $(this).val();
+            if(value === "New Order"){
+                $(this).next().css("background","#0066CC");
+                $(this).next().find('.dropdown').find('.pr-5').text(value);
+
+            }else if (value === "In-Processing") {
+                $(this).next().css("background","#a53838");
+                $(this).next().find('.dropdown').find('.pr-5').text(value);
+            }else if(value === "Completed" ){
+                $(this).next().css("background","#449d44");
+                $(this).next().find('.dropdown').find('.pr-5').text(value);
+                $(this).next().closest('tr').css("background","#c8bfdf");
+                $(this).next().closest('tr').css("color","White")
+            }
+        });
+    }
 
     // $(".change_status").click(function () {
     $('body').on('click','.change_status',function () {
         var text=$(this).text();
-        text=text.split(" ");
+        // text=text.split(" ");
 
         var drop_menu=$(this).parent();
         drop_menu=$(drop_menu).parent();
@@ -50,24 +82,38 @@ $(document).ready(function(){
         drop_menu=$(drop_menu)[0].children
         var span =$(drop_menu)[0];
 
-        if(text[0] == "New"){
-            $(span).text(text[0])
+        if(text === "New Order"){
+            $(span).text(text)
             td.css("background","#0066CC");
             td.closest('tr').css("background","#FFFFFF");
             td.closest('tr').css("color","#67757c")
 
-        }else if (text[0] == "In-process") {
-            $(span).text(text[0])
+        }else if (text === "In-Processing") {
+            $(span).text(text)
             td.css("background","#a53838");
             td.closest('tr').css("background","#FFFFFF");
             td.closest('tr').css("color","#67757c")
 
-        }else if(text[0] == "Completed" ){
-            $(span).text(text[0])
+        }else if(text === "Completed" ){
+            $(span).text(text)
             td.css("background","#449d44");
             td.closest('tr').css("background","#c8bfdf");
             td.closest('tr').css("color","White")
         }
+        $.ajax({
+            url:$(this).data('route'),
+            method:$(this).data('method'),
+            data:{
+                id:$(this).data('id'),
+                status:$(this).data('status-id'),
+            },
+            success:function (response) {
+                alertify.success('Status Changed Successfully!');
+            },
+            error:function () {
+                alertify.success('Internal Server Error!');
+            },
+        })
     })
 
 

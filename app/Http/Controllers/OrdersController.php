@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\BackgroundCategory;
 use App\Customer;
+use App\Designer;
+use App\DesignerStack;
+use App\DesignStyle;
 use App\Order;
+use App\OrderAdditionalDetails;
 use App\OrderProduct;
+use App\OrderProductAdditionalDetails;
+use App\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use OhMyBrew\ShopifyApp\ShopifyApp;
 
 class OrdersController extends Controller
@@ -42,9 +49,18 @@ class OrdersController extends Controller
         return  view('admin.order')->with([
             'orders' => $orders,
             'products' => $products,
+            'designers' => $this->getDesigners(),
+            'statuses' => $this->getStatuses('order')
         ])->render();
 
 
+    }
+
+    public function getDesigners(){
+        return Designer::where('shop_id',$this->helper->getShop()->id)->get();
+    }
+    public function getStatuses($type){
+        return Status::where('type',$type)->get();
     }
 
     public function Orders(){
@@ -57,6 +73,9 @@ class OrdersController extends Controller
         return view('admin.order')->with([
             'orders' => $orders,
             'products' => $products,
+            'designers' => $this->getDesigners(),
+            'statuses' => $this->getStatuses('order')
+
         ]);
     }
 
@@ -70,11 +89,14 @@ class OrdersController extends Controller
     }
 
     public function GetShopifyOrders(){
+
         $request = $this->helper->getShop()->api()->rest('GET', '/admin/orders.json');
         foreach ($request->body->orders as $order){
             $this->CreateOrder($order, $this->helper->getShop()->shopify_domain);
 //            dd($order);
         }
+        $this->AssignStatus($this->helper->getShop()->shopify_domain);
+        $this->DesignerPicker($this->helper->getShop()->shopify_domain);
     }
 
 
@@ -143,6 +165,7 @@ class OrdersController extends Controller
         foreach ($order->line_items as $item){
             $this->OrderLineItems($order_add, $item, $shop);
         }
+
     }
 
     public function OrderLineItems($order, $item, $shop){
@@ -176,5 +199,134 @@ class OrdersController extends Controller
         $line_item->shop_id = $this->helper->getShopDomain($shop)->id;
 
         $line_item->save();
+    }
+
+    public function AssignStatus($shop){
+        $orderQuery =  Order::where('shop_id',$this->helper->getShopDomain($shop)->id)->newQuery();
+        $orderQuery->whereDoesntHave('has_additional_details',function ($product_query){
+        });
+        $orders = $orderQuery->get();
+        $status = Status::where('name','New Order')->where('type','order')->first();
+        if($status == null){
+            $status_name = 'New Order';
+            $status_id = '1';
+        }
+        else{
+            $status_name = $status->name;
+            $status_id = $status->id;
+        }
+        foreach ($orders as $index =>  $order){
+            OrderAdditionalDetails::create([
+                'status' => $status_name,
+                'order_id' => $order->id,
+                'status_id' => $status_id,
+                'shop_id' => $this->helper->getShopDomain($shop)->id,
+            ]);
+        }
+    }
+
+    public function DesignerPicker($shop){
+        /*Getting Orders that are new and has no designers*/
+        $orderQuery =  Order::where('shop_id',$this->helper->getShopDomain($shop)->id)->newQuery();
+        $orderQuery->whereHas('has_additional_details',function ($query){
+            $query->where('status','New Order');
+        });
+        $orderQuery->whereDoesntHave('has_designer',function ($query){
+        });
+        $orders = $orderQuery->get();
+        /*Getting Designers and Sorting them to desc order on the basis of their orders count*/
+        $designers = Designer::where('shop_id',$this->helper->getShopDomain($shop)->id)
+            ->where('status',1)->get();
+        $designers =  $designers->sort(function ($a, $b) {
+            $count_order_a = count($a->has_orders);
+            $count_order_b = count($b->has_orders);
+
+            if ($count_order_a == $count_order_b) {
+                return 0;
+            }
+            return ($count_order_a < $count_order_b) ? -1 : 1;
+        });
+        /*Initializing a Designer Stack*/
+        $designers_stack = new DesignerStack(count($designers));
+        foreach ($designers as $designer){
+            $designers_stack->push($designer->id);
+        }
+//        dd($designers_stack);
+        /*Assigning Orders to Designer*/
+        foreach ($orders as $order){
+            $designer = $designers_stack->pop();
+            $order->designer_id = $designer;
+            $order->save();
+            $order->has_additional_details->designer_id = $designer;
+            $order->has_additional_details->save();
+            foreach ($order->has_products as $item){
+                $design = new OrderProductAdditionalDetails();
+                $design->status = 'No Design';
+                $design->status_id = '9';
+                $design->order_id = $order->id;
+                $design->order_product_id = $item->id;
+                $design->shop_id = $this->helper->getShopDomain($shop)->id;
+                $design->save();
+            }
+            $designers_stack->push($designer);
+        }
+    }
+
+    public function change_order_status(Request $request){
+        $order = Order::where('id',$request->input('id'))
+            ->where('shop_id',$this->helper->getShop()->id)
+            ->first();
+        $status = Status::find($request->input('status'));
+        if($order->has_additional_details != null && $status  != null){
+            $order->has_additional_details->status = $status->name;
+            $order->has_additional_details->status_id = $status->id;
+            $order->has_additional_details->save();
+            return http_response_code(200);
+        }
+        else{
+            return http_response_code(500);
+        }
+    }
+
+    public function design_upload(Request $request){
+//        dd($request);
+       $target =  OrderProductAdditionalDetails::where('order_id',$request->input('order_id'))
+            ->where('order_product_id',$request->input('product_id'))->first();
+       if($target != null){
+           if ($request->hasFile('design')) {
+               $file = $request->file('design');
+               $name = Str::slug($file->getClientOriginalName());
+               $design = date("mmYhisa_") . $name;
+               $file->move(public_path() . '/designs/', $design);
+           } else {
+               $design = '';
+           }
+           $target->design = $design;
+           $target->status ='In-Processing';
+           $target->status_id = 4;
+           $target->save();
+           return redirect()->back();
+       }
+       else{
+           return redirect()->back();
+       }
+    }
+
+    public function change_style(Request $request){
+//        dd($request);
+        $category = BackgroundCategory::find($request->input('category'));
+        if($category != null){
+            DesignStyle::updateOrCreate([
+               'order_product_id' => $request->input('product_id')
+            ],[
+                'style' => $category->name,
+                'color' =>$category->color,
+                'category_id' => $category->id
+            ]);
+            return redirect()->back();
+        }
+        else{
+            return redirect()->back();
+        }
     }
 }

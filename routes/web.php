@@ -26,6 +26,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.shop']], function(){
     Route::get('designer/dashboard','DesignerController@Dashboard')->name('admin.designer.dashboard');
     /*Filter Orders*/
     Route::get('orders/filter','OrdersController@filter_orders')->name('admin.orders.filter');
+    Route::get('order/status','OrdersController@change_order_status')->name('admin.orders.change_status');
+    Route::post('order/line-item/design-upload','OrdersController@design_upload')->name('admin.order.line-item.design.upload');
+    Route::post('order/line-item/style-change','OrdersController@change_style')->name('admin.order.line-item.change.style');
 
 });
 
@@ -35,7 +38,6 @@ Route::get('admin/login','OrderController@ManagementLogin')->name('admin.login')
 //Route::get('admin/dashboard','OrderController@getDashboard')->name('management.dashboard');
 
 
-//Route::get('/login','CustomerController@getLogin')->name('customer.login');
+Route::get('/support','CustomerController@getLogin')->name('customer.login');
 Route::get('/overview','CustomerController@getOrderOverview')->name('order.overview');
-
 Route::get('/change/background','CustomerController@ChangeBackground')->name('choose.background');

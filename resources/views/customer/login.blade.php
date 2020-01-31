@@ -54,8 +54,6 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-
-
                         <form class="form-horizontal m-t-20">
                            @csrf
                             <div class="input-group mb-3">

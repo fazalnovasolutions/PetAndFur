@@ -9,6 +9,10 @@ class CustomerController extends Controller
     public  function  getLogin(){
         return view('customer.login');
     }
+    public function checkOrder(Request $request){
+
+    }
+
 
     public function getOrderOverview( Request $request){
 
@@ -20,4 +24,6 @@ class CustomerController extends Controller
         return view('customer.change-background');
 
     }
+
+
 }

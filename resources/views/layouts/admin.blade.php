@@ -23,6 +23,9 @@
     <link href="{{asset('material/assets/plugins/c3-master/c3.min.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{asset('material/css/style.css')}}" rel="stylesheet">
+
+    <link href="{{asset('material/assets/plugins/alertify/css/alertify.css')}}" rel="stylesheet">
+
     <!-- You can change the theme colors from here -->
     <link href="{{asset('material/css/colors/blue.css')}}" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -183,6 +186,8 @@
 <!--Custom JavaScript -->
 <script src="{{asset('material/js/custom.min.js')}}"></script>
 <script src="{{asset('material/js/script.js')}}"></script>
+<script src="{{asset('material/assets/plugins/alertify/js/alertify.js')}}"></script>
+
 
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <!-- ============================================================== -->
