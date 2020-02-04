@@ -116,9 +116,9 @@
                     <li> <a href="javascript:void(0)" class="waves-effect waves-dark"   data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="mdi mdi-inbox-arrow-down"></i><span class="hide-menu">Orders</span></a>
                         <ul class="collapse" id="collapseExample">
                             <li><a href="{{route('admin.orders')}}">All Orders</a></li>
-                            <li><a href="#"><span class="dot dot-warning"></span>  In Process Orders</a></li>
-                            <li><a href="#"><span class="dot dot-alert"></span>  New Orders</a></li>
-                            <li><a href="#"><span class="dot dot-primary"></span>  Completed Orders</a></li>
+                            <li><a href="{{route('admin.orders')}}?type=2"><span class="dot dot-warning"></span>  In Process Orders</a></li>
+                            <li><a href="{{route('admin.orders')}}?type=1"><span class="dot dot-alert"></span>  New Orders</a></li>
+                            <li><a href="{{route('admin.orders')}}?type=3"><span class="dot dot-primary"></span>  Completed Orders</a></li>
 
                         </ul>
                     </li>
@@ -186,6 +186,7 @@
 <!--Custom JavaScript -->
 <script src="{{asset('material/js/custom.min.js')}}"></script>
 <script src="{{asset('material/js/script.js')}}"></script>
+
 <script src="{{asset('material/assets/plugins/alertify/js/alertify.js')}}"></script>
 
 

@@ -24,6 +24,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.shop']], function(){
 
     Route::post('designer/save','DesignerController@Designer_Save')->name('admin.designer.save');
     Route::get('designer/dashboard','DesignerController@Dashboard')->name('admin.designer.dashboard');
+    Route::post('/manaul-picker','DesignerController@ManualDesignPicker')->name('admin.manual-picker');
+    Route::get('designer/status','DesignerController@SetStatus')->name('admin.designer.status');
+
+
     /*Filter Orders*/
     Route::get('orders/filter','OrdersController@filter_orders')->name('admin.orders.filter');
     Route::get('order/status','OrdersController@change_order_status')->name('admin.orders.change_status');
@@ -38,6 +42,14 @@ Route::get('admin/login','OrderController@ManagementLogin')->name('admin.login')
 //Route::get('admin/dashboard','OrderController@getDashboard')->name('management.dashboard');
 
 
-Route::get('/support','CustomerController@getLogin')->name('customer.login');
-Route::get('/overview','CustomerController@getOrderOverview')->name('order.overview');
-Route::get('/change/background','CustomerController@ChangeBackground')->name('choose.background');
+Route::get('/customer','CustomerController@getLogin')->name('customer.login');
+Route::get('/customer/logout','CustomerController@Logout')->name('customer.logout');
+
+Route::get('/customer/order/overview','CustomerController@checkOrder')->name('customer.check');
+Route::post('/customer/order/new_photo','CustomerController@NewPhoto')->name('customer.order.new_photo');
+Route::post('/customer/order/request','CustomerController@RequestFix')->name('customer.order.request');
+Route::get('/customer/order/{product}/background','CustomerController@ChangeBackground')->name('choose.background');
+Route::post('/customer/order/background-save','CustomerController@SaveBackground')->name('order.save.background');
+Route::get('/customer/order/save','CustomerController@SaveApproved')->name('order.save.status');
+Route::post('/customer/order/review','CustomerController@SaveReview')->name('order.save.review');
+

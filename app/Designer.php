@@ -10,4 +10,7 @@ class Designer extends Model
    {
        return $this->hasMany('App\Order','designer_id');
    }
+   public function has_reviews(){
+       return $this->hasMany('App\ReviewRating','designer_id');
+   }
 }

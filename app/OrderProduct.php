@@ -20,4 +20,12 @@ class OrderProduct extends Model
     {
         return $this->hasOne('App\DesignStyle','order_product_id');
     }
+    public function has_request_fixes()
+    {
+        return $this->hasMany('App\RequestFix','order_product_id');
+    }
+    public function has_background()
+    {
+        return $this->belongsTo('App\Background','background_id');
+    }
 }

@@ -110,7 +110,7 @@
                                 <i class="fa fa-home m-r-5 m-l-5"></i>Store
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{{route('customer.logout')}}">
                                 <i class="fa fa-power-off m-r-5 m-l-5"></i>Logout</a>
                         </div>
                     </li>

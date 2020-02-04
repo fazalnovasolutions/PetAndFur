@@ -15,121 +15,13 @@
     </div>
     <div class="row mt-5">
         <div id="back-slider" class="pl-5 " >
-
             <!-- The slideshow -->
             <div class="custom-slider">
-
-
-                <div data-ids="187" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="-6" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0011_Babe Pink.jpg"    alt="Babe Pink">
-                </div><div data-ids="188" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="-5" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0010_Fuchsia Pink.jpg"    alt="Fuchsia Pink">
-                </div><div data-ids="189" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="-4" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0009_Light Purple.jpg"    alt="Light Purple">
-                </div><div data-ids="190" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="-3" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0008_Neon Purple.jpg"    alt="Neon Purple">
-                </div><div data-ids="191" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="-2" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0007_Purple.jpg"    alt="Purple">
-                </div><div data-ids="192" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="-1" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0006_Eggplant Purple.jpg"    alt="Eggplant Purple">
-                </div><div data-ids="169" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="0" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0022_Sky Blue.jpg"    alt="Sky Blue">
-                </div><div data-ids="170" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="1" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0021_Royal Blue.jpg"    alt="Royal Blue">
-                </div><div data-ids="171" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="2" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0020_Navy Blue.jpg"    alt="Navy Blue">
-                </div><div data-ids="172" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="3" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0023_Baby Blue.jpg"    alt="Baby Blue">
-                </div><div data-ids="173" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="4" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0024_Neon Teal.jpg"    alt="Neon Teal">
-                </div><div data-ids="174" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="5" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0018_Neon Green.jpg"    alt="Neon Green">
-                </div><div data-ids="175" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="6" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0016_Lime Green.jpg"    alt="Lime Green">
-                </div><div data-ids="176" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="7" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0017_Kelly Green.jpg"    alt="Kelly Green">
-                </div><div data-ids="177" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="8" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0019_Light Green.jpg"    alt="Light Green">
-                </div><div data-ids="178" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="9" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0005_Neon Yellow.jpg"    alt="Neon Yellow">
-                </div><div data-ids="179" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="10" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0004_Yellow.jpg"    alt="Yellow">
-                </div><div data-ids="180" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="11" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0003_Gold.jpg"    alt="Gold">
-                </div><div data-ids="181" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="12" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0014_Light Orange.jpg"    alt="Light Orange">
-                </div><div data-ids="182" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="13" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0013_Bright Orange.jpg"    alt="Bright Orange">
-                </div><div data-ids="183" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="14" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0012_Dark Orange.jpg"    alt="Dark Orange">
-                </div><div data-ids="184" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="15" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0002_Red.jpg"    alt="Red">
-                </div><div data-ids="185" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="16" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0001_Maroon.jpg"    alt="Maroon">
-                </div><div data-ids="186" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="17" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0000_Coral.jpg"    alt="Coral">
-                </div><div data-ids="187" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="18" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0011_Babe Pink.jpg"    alt="Babe Pink">
-                </div><div data-ids="188" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="19" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0010_Fuchsia Pink.jpg"    alt="Fuchsia Pink">
-                </div><div data-ids="189" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="20" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0009_Light Purple.jpg"    alt="Light Purple">
-                </div><div data-ids="190" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="21" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0008_Neon Purple.jpg"    alt="Neon Purple">
-                </div><div data-ids="191" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="22" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0007_Purple.jpg"    alt="Purple">
-                </div><div data-ids="192" data-type="9" style="margin: 0px 20px; width: 117px;" class="  slick-current  " data-slick-index="23" aria-hidden="false" tabindex="0">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0006_Eggplant Purple.jpg"    alt="Eggplant Purple">
-                </div><div data-ids="169" data-type="9" style="margin: 0px 20px; width: 117px;" class="   " data-slick-index="24" aria-hidden="false" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0022_Sky Blue.jpg"    alt="Sky Blue">
-                </div><div data-ids="170" data-type="9" style="margin: 0px 20px; width: 117px;" class="   " data-slick-index="25" aria-hidden="false" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0021_Royal Blue.jpg"    alt="Royal Blue">
-                </div><div data-ids="171" data-type="9" style="margin: 0px 20px; width: 117px;" class="   " data-slick-index="26" aria-hidden="false" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0020_Navy Blue.jpg"    alt="Navy Blue">
-                </div><div data-ids="172" data-type="9" style="margin: 0px 20px; width: 117px;" class="   " data-slick-index="27" aria-hidden="false" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0023_Baby Blue.jpg"    alt="Baby Blue">
-                </div><div data-ids="173" data-type="9" style="margin: 0px 20px; width: 117px;" class="   " data-slick-index="28" aria-hidden="false" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0024_Neon Teal.jpg"    alt="Neon Teal">
-                </div><div data-ids="174" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="29" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0018_Neon Green.jpg"    alt="Neon Green">
-                </div><div data-ids="175" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="30" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0016_Lime Green.jpg"    alt="Lime Green">
-                </div><div data-ids="176" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="31" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0017_Kelly Green.jpg"    alt="Kelly Green">
-                </div><div data-ids="177" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="32" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0019_Light Green.jpg"    alt="Light Green">
-                </div><div data-ids="178" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="33" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0005_Neon Yellow.jpg"    alt="Neon Yellow">
-                </div><div data-ids="179" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="34" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0004_Yellow.jpg"    alt="Yellow">
-                </div><div data-ids="180" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="35" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0003_Gold.jpg"    alt="Gold">
-                </div><div data-ids="181" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="36" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0014_Light Orange.jpg"    alt="Light Orange">
-                </div><div data-ids="182" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="37" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0013_Bright Orange.jpg"    alt="Bright Orange">
-                </div><div data-ids="183" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="38" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0012_Dark Orange.jpg"    alt="Dark Orange">
-                </div><div data-ids="184" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="39" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0002_Red.jpg"    alt="Red">
-                </div><div data-ids="185" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="40" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0001_Maroon.jpg"    alt="Maroon">
-                </div><div data-ids="186" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="41" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0000_Coral.jpg"    alt="Coral">
-                </div><div data-ids="187" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="42" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0011_Babe Pink.jpg"    alt="Babe Pink">
-                </div><div data-ids="188" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="43" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0010_Fuchsia Pink.jpg"    alt="Fuchsia Pink">
-                </div><div data-ids="189" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="44" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0009_Light Purple.jpg"    alt="Light Purple">
-                </div><div data-ids="190" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="45" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0008_Neon Purple.jpg"    alt="Neon Purple">
-                </div><div data-ids="191" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="46" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0007_Purple.jpg"    alt="Purple">
-                </div><div data-ids="192" data-type="9" style="margin: 0px 20px; width: 117px;" class=" " data-slick-index="47" aria-hidden="true" tabindex="-1">
-                    <img src="http://support.boompup.com/patterns/Theme backgrounds_0000s_0000s_0006_Eggplant Purple.jpg"    alt="Eggplant Purple">
+                @foreach($category->has_backgrounds as $b)
+                <div style="margin: 0px 20px; width: 117px;cursor: pointer" class="background-div">
+                    <img data-id="{{$b->id}}" src="{{asset($b->image)}}"  alt="Babe Pink">
                 </div>
-
+                    @endforeach
             </div>
             <div class="background_title">Colorful Dots</div>
 
@@ -139,8 +31,7 @@
     <div class="row justify-content-center " >
        <div class="col-md-10  border-bottom-b-1 b-t-1">
            <div class=" p-3" align="center">
-
-               <button class="btn btn-rounded btn-danger p-3"  data-toggle="modal" data-target="#confirm-background"> Choose Your Background</button>
+               <button class="btn btn-rounded btn-danger p-3 "  data-toggle="modal" data-target="#confirm-background"> Save Background</button>
            </div>
        </div>
     </div>
@@ -151,12 +42,17 @@
                     <div class="row justify-content-center mt-4">
                         <div class="">
                             <h6><b>Are you sure you want to approve the design?</b></h6>
+                            <form id="background_save_form" action="{{route('order.save.background')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="product" value="{{$product->id}}">
+                                <input type="hidden" id="background-category" name="category" value="{{$product->background_id}}">
+                            </form>
                         </div>
                     </div>
                     <div class="row justify-content-center ">
                         <div class="mail-buttons">
-                            <button class="btn btn-success m-3" data-toggle="modal" data-target="#review-background" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-check font-bold" ></i> Confirm</button>
-                            <button class="btn btn-danger m-3" class="close" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-close"></i> Close</button>
+                            <button class="btn btn-success m-3 set-approved" data-id="{{$product->id}}"  data-target="#review-background" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-check-circle font-bold" ></i> Confirm </button>
+                            <button class="btn btn-warning background_save_button m-3" ><i class="mdi mdi-check"></i> No, Just Save The Background</button>
 
                         </div>
                     </div>
@@ -180,31 +76,65 @@
                         <h6><b>Rate Your Designer: </b></h6>
                     </div>
                     <div class="row justify-content-center">
-                        <span class="fa fa-star fa-b checked"></span>
-                        <span class="fa fa-star fa-b checked"></span>
-                        <span class="fa fa-star  fa-b checked"></span>
-                        <span class="fa fa-star fa-b checked"></span>
-                        <span class="fa fa-star fa-b "></span>
-                    </div>
-                    <form>
-                        <div class=" p-3" align="center">
-                            <textarea class="form-control"  rows="5"> </textarea>
-                        </div>
-                        <div class="row justify-content-center">
-                            <button type="button" class="btn btn-light m-2"> No Thansks</button>
-                            <button type="submit" class="btn btn-primary m-2"> Submit Review</button>
+                        <div class='rating-stars '>
+                            <ul id='stars' style="margin-bottom: 5px">
+                                <li class='star' title='Poor' data-value='1'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Fair' data-value='2'>
+                                    <i class='fa fa-star fa-fw '></i>
+                                </li>
+                                <li class='star' title='Good' data-value='3'>
+                                    <i class='fa fa-star fa-fw '></i>
+                                </li>
+                                <li class='star' title='Excellent' data-value='4'>
+                                    <i class='fa fa-star fa-fw '></i>
+                                </li>
+                                <li class='star' title='WOW!!!' data-value='5'>
+                                    <i class='fa fa-star fa-fw '></i>
+                                </li>
+                            </ul>
 
                         </div>
+                    </div>
+                    <form id="review_form" action="{{route('order.save.review')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="product" value="{{$product->id}}">
+                        <input type="hidden" name="rating" id="rating_input" value="">
+                        <div class=" p-3" align="center">
+                            <textarea class="form-control" name="review" rows="5"> </textarea>
+                        </div>
                     </form>
+                        <div class="row justify-content-center">
+                            <button  class="btn btn-light close m-2" data-dismiss="modal" aria-label="Close"> No Thanks</button>
+                            <button  class="btn btn-primary review-submit m-2"> Submit Review</button>
+                        </div>
+
 
                 </div>
             </div>
         </div>
     </div>
     <div class="row justify-content-center mt-3">
+
         <div class="col-md-6" align="center">
-            <img id="design_background" src="{{asset('material/background-images/Colorful.jpg')}}">
-            <img id="design_image" src="{{asset('material/background-images/sketch1.png')}}">
+            @if($product->has_background != null)
+                <img id="design_background" src="{{asset($product->has_background->image)}}">
+                @else
+                <img id="design_background" src="{{asset('material/background-images/Colorful.jpg')}}">
+                @endif
+
+            @if($product->latest_photo == null)
+                @if(count(json_decode($product->properties)) > 0)
+                    @foreach(json_decode($product->properties) as $property)
+                        @if($property->name == '_io_uploads')
+                            <img id="design_image" src="{{$property->value}}" >
+                        @endif
+                    @endforeach
+                @endif
+            @else
+                <img id="design_image" src="{{asset('new_photos/'.$product->latest_photo)}}">
+            @endif
 
         </div>
 

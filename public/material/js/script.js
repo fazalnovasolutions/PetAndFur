@@ -10,6 +10,36 @@ $(document).ready(function(){
         });
     });
 
+    var switchStatus = 0;
+    var text = '';
+    $("body").on('change','#togBtn', function() {
+        if ($(this).is(':checked')) {
+            switchStatus = 1;
+            text = 'Active';
+            $(this).parents('.col-md-3').next().find('.status').text(text);
+            $(this).parents('.col-md-3').next().find('.status').removeClass('text-danger');
+            $(this).parents('.col-md-3').next().find('.status').addClass('text_active');
+        }
+        else {
+            switchStatus = 0;
+             text = 'Disabled';
+            $(this).parents('.col-md-3').next().find('.status').text(text);
+            $(this).parents('.col-md-3').next().find('.status').removeClass('text_active');
+            $(this).parents('.col-md-3').next().find('.status').addClass('text-danger');
+        }
+
+        $.ajax({
+            url: $(this).data('route'),
+            method: $(this).data('method'),
+            data:{
+              designer: $(this).data('designer'),
+              status: switchStatus,
+            },
+            success:function () {
+                alertify.success('Designer '+text+' Changed!')
+            }
+        });
+    });
 
 
     ///////////////////filter order status///////////////
@@ -43,6 +73,29 @@ $(document).ready(function(){
     $('body').on('change','.design-file',function () {
        $(this).closest('form').submit();
     });
+
+    $('body').on('click','.modal_button',function () {
+
+        var modal = $(this).data('target');
+        if($(modal).length > 0){
+            $(modal).modal({
+                show: true,
+                focus:true
+            });
+        }
+    });
+
+    /*Fill Rating Stars*/
+    if($('body').find('.input_rating').length > 0) {
+        $('.input_rating').each(function () {
+            var rating = $(this).val();
+            $(this).next().find('.star').each(function (index) {
+                if (index < rating) {
+                    $(this).addClass('selected');
+                }
+            })
+        });
+    }
 
     /*Style Change*/
     $('body').on('change','.style-change',function () {

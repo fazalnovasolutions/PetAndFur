@@ -24,4 +24,14 @@ class Order extends Model
     {
         return $this->belongsTo('App\Designer','designer_id');
     }
+    public function has_new_photo()
+    {
+        return $this->hasMany('App\NewPhoto','order_id');
+    }
+
+    public function has_request_fixes()
+    {
+        return $this->hasMany('App\RequestFix','order_id');
+    }
+
 }

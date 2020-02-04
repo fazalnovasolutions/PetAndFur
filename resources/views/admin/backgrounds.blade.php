@@ -72,7 +72,7 @@
 
                         <div class="col-md-4 ">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="opacity: 0">
                                     <div class="dropdown ">
                                         <button class="btn btn-secondary dropdown-toggle form-control text-left" type="button" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Category

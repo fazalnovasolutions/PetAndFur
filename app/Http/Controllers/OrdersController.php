@@ -40,7 +40,7 @@ class OrdersController extends Controller
                 $product_query->where('title',$request->input('product'));
             });
         }
-        $orders = $query->paginate(50);
+        $orders = $query->paginate(30);
         $products = DB::table('order_products')
             ->select('title')
             ->where('shop_id',$this->helper->getShop()->id)
@@ -63,8 +63,18 @@ class OrdersController extends Controller
         return Status::where('type',$type)->get();
     }
 
-    public function Orders(){
-        $orders = Order::where('shop_id', $this->helper->getShop()->id)->orderBy('name', 'DESC')->paginate(50);
+    public function Orders(Request $request){
+        if($request->has('type')){
+            $query = Order::where('shop_id', $this->helper->getShop()->id)->newQuery();
+            $query->whereHas('has_additional_details',function ($q) use ($request){
+                $q->where('status_id',$request->input('type'));
+            });
+          $orders = $query->orderBy('name', 'DESC')->paginate(30);
+        }
+        else{
+            $orders = Order::where('shop_id', $this->helper->getShop()->id)->orderBy('name', 'DESC')->paginate(30);
+        }
+
         $products = DB::table('order_products')
             ->select('title')
             ->where('shop_id',$this->helper->getShop()->id)

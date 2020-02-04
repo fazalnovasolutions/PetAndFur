@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Designer;
+use App\Order;
 use Illuminate\Http\Request;
 
 class DesignerController extends Controller
@@ -16,9 +17,33 @@ class DesignerController extends Controller
 
     public function Dashboard(){
         $designers = Designer::where('shop_id', $this->helper->getShop()->id)->get();
+        $query =  Order::where('shop_id',$this->helper->getShop()->id)->newQuery();
+        $query->whereHas('has_additional_details',function ($q){
+            $q->where('status_id','!=',3);
+        });
+       $orders = $query->get();
         return view('admin.dashboard')->with([
-            'designers' => $designers
+            'designers' => $designers,
+            'orders' => $orders
         ]);
+    }
+    public function ManualDesignPicker(Request $request){
+        $order = Order::find($request->input('order'));
+        if($order != null){
+            if( $order->has_additional_details != null){
+                $order->has_additional_details->designer_id = $request->input('designer');
+                $order->has_additional_details->save();
+                $order->designer_id = $request->input('designer');
+                $order->save();
+                return redirect()->back()->with('success', 'Designer Assigned Successfully');
+            }
+            else{
+                return redirect()->back()->with('success', 'Designer Not Assigned');
+            }
+        }
+        else{
+            return redirect()->back()->with('success', 'Order Not Found');
+        }
     }
 
     public function Designer_Save(Request $request){
@@ -30,4 +55,11 @@ class DesignerController extends Controller
         $designer->save();
         return redirect()->back()->with('success', 'Designer Added Successfully');
     }
+    public function SetStatus(Request $request){
+        $designer = Designer::find($request->input('designer'));
+        $designer->status = $request->input('status');
+        $designer->save();
+        return redirect()->back()->with('success', 'Designer Status Changed Successfully');
+    }
+
 }

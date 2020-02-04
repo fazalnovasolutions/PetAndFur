@@ -3,10 +3,12 @@
     <div class="row page-titles">
         <div class="col-md-5 col-8 align-self-center">
             <h3><strong>Orders</strong></h3>
-
         </div>
-
+        <div class="col-md-7 text-right">
+            <a class="btn btn-warning" href="{{route('orders.sync')}}"> Sync New Orders </a>
+        </div>
     </div>
+
 
     <div class="row">
         <div class="col-md-12 pr-0  ">
@@ -183,13 +185,22 @@
                                     </td>
 
                                     <td align="center">
-                                        <div>
-                                            <span class="mdi mdi-camera photo"></span>
-                                        </div>
-                                        <h6 class="photo_text"><b>NEW PHOTO</b></h6>
+                                        @if(count($order->has_new_photo) > 0)
+                                            <div>
+                                                <span class="mdi mdi-camera photo"></span>
+                                            </div>
+                                            <h6 class="photo_text"><b>NEW PHOTO</b></h6>
+                                        @endif
+                                        @if(count($order->has_request_fixes) > 0)
+                                            <div>
+                                                <span class="mdi mdi-file-check fix_request"></span>
+                                            </div>
+                                            <h6 class="fix_text"><b>FIX REQUEST</b></h6>
+                                        @endif
                                     </td>
+
                                     @if($order->has_additional_details != null)
-                                    <input type="hidden" class="order-status-value" value="{{$order->has_additional_details->status}}">
+                                        <input type="hidden" class="order-status-value" value="{{$order->has_additional_details->status}}">
                                     @endif
                                     <td class="order-status-td" style="background: #0066CC;color:#ffff">
                                         <div class="dropdown">
@@ -197,7 +208,7 @@
 
                                             <div  class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                                 @foreach($statuses as $s)
-                                                        <a class="dropdown-item text-primary change_status" data-id="{{$order->id}}" data-route="{{route('admin.orders.change_status')}}" data-method="GET" data-status-id="{{$s->id}}">{{$s->name}}</a>
+                                                    <a class="dropdown-item text-primary change_status" data-id="{{$order->id}}" data-route="{{route('admin.orders.change_status')}}" data-method="GET" data-status-id="{{$s->id}}">{{$s->name}}</a>
                                                 @endforeach
 
 
@@ -210,7 +221,7 @@
                         </table>
                     </div>
 
-                    <div class="text-center">
+                    <div class="text-center" style="display: flex;justify-content: center;align-items: center;margin: 10px;">
                         {{ $orders->links() }}
                     </div>
                 </div>

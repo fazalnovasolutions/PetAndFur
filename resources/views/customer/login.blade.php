@@ -52,21 +52,28 @@
                     </span>
 
                 </div>
+                @if(session()->has('msg'))
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger" role="alert" style="margin: 0">{{session('msg')}}</div>
+                        </div>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-12">
-                        <form class="form-horizontal m-t-20">
-                           @csrf
+                        <form action="{{route('customer.check')}}" method="get" class="form-horizontal m-t-20">
+{{--                           @csrf--}}
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control form-control-lg" placeholder="Enter your Order ID" name="order_name">
+                                <input type="text" required class="form-control form-control-lg" placeholder="Enter your Order ID" name="order_name">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon2"><i class="ti-pencil"></i></span>
                                 </div>
-                                <input type="email" class="form-control form-control-lg" placeholder="Enter Your Email Address" name="email">
+                                <input type="email" required class="form-control form-control-lg" placeholder="Enter Your Email Address" name="email">
                             </div>
 
                             <div class="form-group text-center">

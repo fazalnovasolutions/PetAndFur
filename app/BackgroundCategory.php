@@ -9,6 +9,6 @@ class BackgroundCategory extends Model
 
     public function has_backgrounds()
     {
-        return $this->hasMany('App\Background');
+        return $this->hasMany('App\Background','category_id');
     }
 }
