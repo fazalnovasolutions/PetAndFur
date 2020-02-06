@@ -107,6 +107,7 @@ class OrdersController extends Controller
         }
         $this->AssignStatus($this->helper->getShop()->shopify_domain);
         $this->DesignerPicker($this->helper->getShop()->shopify_domain);
+        return redirect()->back();
     }
 
 
@@ -247,39 +248,42 @@ class OrdersController extends Controller
         /*Getting Designers and Sorting them to desc order on the basis of their orders count*/
         $designers = Designer::where('shop_id',$this->helper->getShopDomain($shop)->id)
             ->where('status',1)->get();
-        $designers =  $designers->sort(function ($a, $b) {
-            $count_order_a = count($a->has_orders);
-            $count_order_b = count($b->has_orders);
+        if(count($designers) > 0){
+            $designers =  $designers->sort(function ($a, $b) {
+                $count_order_a = count($a->has_orders);
+                $count_order_b = count($b->has_orders);
 
-            if ($count_order_a == $count_order_b) {
-                return 0;
+                if ($count_order_a == $count_order_b) {
+                    return 0;
+                }
+                return ($count_order_a < $count_order_b) ? -1 : 1;
+            });
+            /*Initializing a Designer Stack*/
+            $designers_stack = new DesignerStack(count($designers));
+            foreach ($designers as $designer){
+                $designers_stack->push($designer->id);
             }
-            return ($count_order_a < $count_order_b) ? -1 : 1;
-        });
-        /*Initializing a Designer Stack*/
-        $designers_stack = new DesignerStack(count($designers));
-        foreach ($designers as $designer){
-            $designers_stack->push($designer->id);
-        }
 //        dd($designers_stack);
-        /*Assigning Orders to Designer*/
-        foreach ($orders as $order){
-            $designer = $designers_stack->pop();
-            $order->designer_id = $designer;
-            $order->save();
-            $order->has_additional_details->designer_id = $designer;
-            $order->has_additional_details->save();
-            foreach ($order->has_products as $item){
-                $design = new OrderProductAdditionalDetails();
-                $design->status = 'No Design';
-                $design->status_id = '9';
-                $design->order_id = $order->id;
-                $design->order_product_id = $item->id;
-                $design->shop_id = $this->helper->getShopDomain($shop)->id;
-                $design->save();
+            /*Assigning Orders to Designer*/
+            foreach ($orders as $order){
+                $designer = $designers_stack->pop();
+                $order->designer_id = $designer;
+                $order->save();
+                $order->has_additional_details->designer_id = $designer;
+                $order->has_additional_details->save();
+                foreach ($order->has_products as $item){
+                    $design = new OrderProductAdditionalDetails();
+                    $design->status = 'No Design';
+                    $design->status_id = '9';
+                    $design->order_id = $order->id;
+                    $design->order_product_id = $item->id;
+                    $design->shop_id = $this->helper->getShopDomain($shop)->id;
+                    $design->save();
+                }
+                $designers_stack->push($designer);
             }
-            $designers_stack->push($designer);
         }
+
     }
 
     public function change_order_status(Request $request){
