@@ -12,7 +12,7 @@
                 <div class="card-block edit-block">
                     <h6 class="card-title"><strong>TOTAL NEW ORDERS</strong></h6>
                     <div class="material-icon-list-demo demo-inner">
-                        <h4 class=""><strong>110</strong></h4>
+                        <h4 class=""><strong>{{$new_orders}}</strong></h4>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 <div class="card-block edit-block">
                     <h6 class="card-title"><strong>TOTAL NEW DESIGN</strong></h6>
                     <div class="material-icon-list-demo demo-inner">
-                        <h4 class=""><strong>110</strong></h4>
+                        <h4 class=""><strong>{{$designs}}</strong></h4>
                     </div>
                 </div>
 
@@ -36,7 +36,7 @@
                 <div class="card-block edit-block">
                     <h6 class="card-title"><strong>TOTAL DREQUESTS DESIGN</strong></h6>
                     <div class="material-icon-list-demo demo-inner">
-                        <h4 class=""><strong>110</strong></h4>
+                        <h4 class=""><strong>{{$requested}}</strong></h4>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                 <div class="card-block edit-block">
                     <h6 class="card-title"><strong>TOTAL APPROVED ORDERS</strong></h6>
                     <div class="material-icon-list-demo demo-inner">
-                        <h4 class=""><strong>110</strong></h4>
+                        <h4 class=""><strong>{{$approved}}</strong></h4>
                     </div>
                 </div>
 

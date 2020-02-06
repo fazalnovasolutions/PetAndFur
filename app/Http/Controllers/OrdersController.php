@@ -111,6 +111,7 @@ class OrdersController extends Controller
     }
 
 
+
     public function CreateOrder($order, $shop){
         if (Order::where('shopify_id', '=', $order->id)->exists()) {
             $order_add = Order::where('shopify_id', '=', $order->id)->first();
@@ -342,5 +343,15 @@ class OrdersController extends Controller
         else{
             return redirect()->back();
         }
+    }
+
+    public function update_notes(Request $request){
+       $order = Order::find($request->input('order_id'));
+       if($order != null){
+           $order->note = $request->input('notes');
+           $order->save();
+       }
+           return redirect()->back();
+
     }
 }

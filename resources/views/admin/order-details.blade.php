@@ -36,7 +36,7 @@
                             <h6><b>Notes</b></h6>
                         </div>
                         <div class="col-md-2">
-                            <a href="">Edit</a>
+                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_notes">Edit</button>
                         </div>
                     </div>
                     <div class="flexing ">
@@ -279,6 +279,29 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="edit_notes" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row justify-content-center mt-4">
+                                <form action="{{route('order.notes.update')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="order_id" value="{{$order->id}}">
+                                    <label for="Notes">Notes</label>
+                                    <textarea id="Notes" required placeholder="Notes for Order {{$order->name}}" name="notes" class="form-control" cols="30" rows="4">{{$order->note}}</textarea>
+                                    <input type="submit" class="btn btn-success" value="Save">
+                                </form>
+                            </div>
+                            <div class="row justify-content-center ">
+                                <div class="mail-buttons">
+                                    <button class="btn btn-danger m-3" class="close" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-close"></i> Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection

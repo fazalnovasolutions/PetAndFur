@@ -22,9 +22,15 @@ class DesignerController extends Controller
             $q->where('status_id','!=',3);
         });
        $orders = $query->get();
+       $ratings = [];
+       foreach ($designers as $designer){
+           array_push($ratings, $designer->has_reviews->avg('rating'));
+       }
+//       dd($ratings);
         return view('admin.dashboard')->with([
             'designers' => $designers,
-            'orders' => $orders
+            'orders' => $orders,
+            'ratings' => $ratings
         ]);
     }
     public function ManualDesignPicker(Request $request){

@@ -3,6 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DesignerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DesignerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/order-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/order-details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -200,7 +207,8 @@
       <workItem from="1580478271614" duration="1511000" />
       <workItem from="1580707263636" duration="25476000" />
       <workItem from="1580800478810" duration="10971000" />
-      <workItem from="1580968441235" duration="2361000" />
+      <workItem from="1580968441235" duration="3785000" />
+      <workItem from="1580976506953" duration="4386000" />
     </task>
     <task id="LOCAL-00001" summary="30012020Fazal">
       <created>1580395207355</created>

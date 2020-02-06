@@ -16,6 +16,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.shop']], function(){
     Route::get('/', 'OrderController@getHome')->name('home');
     Route::get('orders', 'OrdersController@Orders')->name('admin.orders');
     Route::get('order/{id}/detail','OrdersController@OrderDetails')->name('order.detail');
+    Route::post('order/note','OrdersController@update_notes')->name('order.notes.update');
 
     Route::get('backgrounds','BackgroundController@Backgrounds')->name('admin.background');
     Route::post('backgrounds/category/save','BackgroundController@Background_Categories_Save')->name('admin.background.categories.save');
