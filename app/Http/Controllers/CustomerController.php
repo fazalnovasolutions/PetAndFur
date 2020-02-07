@@ -63,7 +63,7 @@ class CustomerController extends Controller
         if(session('order_name') != null){
             $product = OrderProduct::where('id',$request->product)->first();
             if($product != null){
-                if($product->has_design->status_id != 7 && $product->has_design->status_id != 9){
+                if($product->has_design->status_id != 6 && $product->has_design->status_id != 8){
                     $properties = json_decode($product->properties);
                     $style = '';
                     foreach ($properties as $p){
@@ -109,7 +109,7 @@ class CustomerController extends Controller
         $target =  OrderProductAdditionalDetails::where('order_id',$request->input('order'))
             ->where('order_product_id',$request->input('product'))->first();
 
-        if($target != null){
+        if($target != null ){
             if ($request->hasFile('new_photo')) {
                 $file = $request->file('new_photo');
                 $name = Str::slug($file->getClientOriginalName());
@@ -119,6 +119,11 @@ class CustomerController extends Controller
                 $new_photo = '';
             }
             if($new_photo != ''){
+                if($target->design != null){
+                    $target->status = 'Update';
+                    $target->status_id = '7';
+                    $target->save();
+                }
                 $photo =  new NewPhoto();
                 $photo->new_photo = $new_photo;
                 $photo->order_id = $request->input('order');
@@ -127,6 +132,7 @@ class CustomerController extends Controller
                 $product = OrderProduct::find($request->input('product'));
                 $product->latest_photo = $new_photo;
                 $product->save();
+
                 return redirect()->back();
             }
             else{
@@ -142,7 +148,11 @@ class CustomerController extends Controller
             ->where('order_product_id',$request->input('product'))->first();
 
         if($target != null){
-
+            if($target->design != null){
+                $target->status = 'Update';
+                $target->status_id = '7';
+                $target->save();
+            }
             $r =  new RequestFix();
             $r->msg = $request->input('request_fix');
             $r->order_id = $request->input('order');
@@ -159,9 +169,16 @@ class CustomerController extends Controller
 
     }
     public function SaveBackground(Request $request){
+//        dd($request);
         $product = OrderProduct::find($request->input('product'));
         if($product != null){
             $product->background_id = $request->input('category');
+            if($product->has_design != null){
+                $target = $product->has_design;
+                $target->status = 'Update';
+                $target->status_id = '7';
+                $target->save();
+            }
             $product->save();
             if(!$request->ajax()){
                 return redirect()->back();
@@ -176,7 +193,7 @@ class CustomerController extends Controller
         $product = OrderProduct::find($request->input('product'));
         if($product != null){
             $product->has_design->status ='Approved';
-            $product->has_design->status_id = 7;
+            $product->has_design->status_id = 6;
             $product->has_design->save();
             return response()->json([
                 'status' => 'approved'

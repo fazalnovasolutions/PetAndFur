@@ -50,34 +50,34 @@
 
                                 <div class="row p-1 border-bottom-b-2">
                                     <h5 class="pt-3"> <b>Status :</b> </h5>
-                                    @if($order->has_design_details != null)
-                                        @if($order->has_design_details->status_id == 4)
+                                    @if($product->has_design != null)
+                                        @if($product->has_design->status_id == 3)
                                             <div class="mr-1" style="margin-left: 20px;">
                                                 <div class="setting_div">
                                                     <span class="mdi mdi-settings text-white display-6"></span>
                                                 </div>
-                                                <h6 class="text-dark"><b>{{$order->has_design_details->status}}</b></h6>
+                                                <h6 class="text-dark"><b>{{$product->has_design->status}}</b></h6>
                                             </div>
-                                        @elseif($order->has_design_details->status_id == 7)
+                                        @elseif($product->has_design->status_id == 6)
                                             <div class="mr-1" style="margin-left: 20px;">
                                                 <div class="approved_div">
                                                     <span class="mdi mdi-check-circle-outline check_mark"></span>
                                                 </div>
-                                                <h6 class="text_active"><b>{{$order->has_design_details->status}}</b></h6>
+                                                <h6 class="text_active"><b>{{$product->has_design->status}}</b></h6>
                                             </div>
-                                        @elseif($order->has_design_details->status_id == 9)
+                                        @elseif($product->has_design->status_id == 8)
                                             <div class="mr-1" style="margin-left: 20px;">
                                                 <div class="cir">
                                                     <span class="rec"></span>
                                                 </div>
-                                                <h6 class="not_completed"><b>{{$order->has_design_details->status}}</b></h6>
+                                                <h6 class="not_completed"><b>{{$product->has_design->status}}</b></h6>
                                             </div>
-                                        @elseif($order->has_design_details->status_id == 8)
+                                        @elseif($product->has_design->status_id == 7)
                                             <div class="mr-1" style="margin-left: 20px;">
                                                 <div class="update_div">
                                                     <span class="update_icon">!</span>
                                                 </div>
-                                                <h6 class="updating"><b>{{$order->has_design_details->status}}</b></h6>
+                                                <h6 class="updating"><b>{{$product->has_design->status}}</b></h6>
                                             </div>
                                         @endif
 
@@ -93,22 +93,22 @@
 
                                 <div class="row p-1 border-bottom-b-2">
                                     <div class="col-md-6">
-                                        @if($product->latest_photo == null)
+{{--                                        @if($product->latest_photo == null)--}}
                                             @if(count(json_decode($product->properties)) > 0)
                                                 @foreach(json_decode($product->properties) as $property)
                                                     @if($property->name == '_io_uploads')
-                                                        <img src="{{$property->value}}" height="200px" width="200px">
+                                                        <img src="{{$property->value}}" height="auto" width="100%">
                                                     @endif
                                                 @endforeach
                                             @endif
-                                        @else
-                                            <img src="{{asset('new_photos/'.$product->latest_photo)}}" height="200px" width="200px">
-                                        @endif
+{{--                                        @else--}}
+{{--                                            <img src="{{asset('new_photos/'.$product->latest_photo)}}" height="200px" width="200px">--}}
+{{--                                        @endif--}}
                                     </div>
                                     <div class="col-md-6">
                                         @if($product->has_design != null)
                                             @if($product->has_design->design != null)
-                                                <img src="{{asset('designs/'.$product->has_design->design)}}" height="200px" width="200px">
+                                                <img src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">
                                             @endif
                                         @endif
                                     </div>
@@ -119,11 +119,11 @@
                                         <button class="btn btn-danger m-2 new_photo_modal_button"  data-product="{{$product->id}}" data-target="#new_photo_upload">New Photo</button>
                                     @endif
                                     @if($product->has_design->status != 'Approved')
-                                        <button class="btn btn-warning m-2 new_photo_modal_button" data-product="{{$product->id}}"  data-target="#fix_request_modal"> Request Fix</button>
+                                        <button class="btn btn-warning m-2 new_photo_modal_button" data-product="{{$product->id}}"  data-target="#fix_request_modal{{$index}}"> Request Fix</button>
                                     @endif
                                 </div>
 
-                                @if($product->has_design->status == 'In-Processing' && $product->has_design->status != 'Approved')
+                                @if(($product->has_design->status == 'In-Processing'|| $product->has_design->status == 'Update')  && $product->has_design->status != 'Approved')
                                     <div class=" row p-1 justify-content-center">
                                         <a href="{{route('choose.background',$product->id)}}" class="btn btn-success"> Choose Background</a>
                                     </div>
@@ -135,7 +135,47 @@
                                 @endif
 
                             </div>
-
+                        </div>
+                        <div class="modal fade" id="fix_request_modal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
+                            <div class="modal-dialog " role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="row justify-content-center mt-4">
+                                            <div class="col-md-12">
+                                                <form id="fix_request_form" action="{{route('customer.order.request')}}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input type="hidden" name="order" value="{{$order->id}}">
+                                                    <input type="hidden" name="product" value="" class="order_product_id">
+                                                    <div class="requests">
+                                                        @foreach($product->has_request_fixes as $request)
+                                                            <div class="container-msg">
+                                                                <p>{{$request->msg}}</p>
+                                                                <div class="text-right">{{date_create($request->created_at)->format('Y-m-d H:i a')}}</div>
+                                                            </div>
+                                                        @endforeach
+                                                        <hr>
+                                                        @foreach($product->has_new_photos as $photo)
+                                                            <div class="container-msg">
+                                                                <img src="{{ asset('new_photos/'.$photo->new_photo) }}" width="100%" height="auto" style="margin-bottom: 5px">
+                                                                <div class="text-right">{{date_create($photo->created_at)->format('Y-m-d H:i a')}}</div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="textarea-container">
+                                                        <textarea required style="width: 100%;" class="form-control request_fix" name="request_fix" id="" placeholder="Write Your Fix Request"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center ">
+                                            <div class="mail-buttons">
+                                                <button class="btn btn-success m-3 request_upload_button"><i class="mdi mdi-check font-bold" ></i> Send </button>
+                                                <button class="btn btn-danger m-3" class="close" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-close"></i> Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     @endforeach
                 </div>
@@ -175,39 +215,6 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="fix_request_modal" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
-            <div class="modal-dialog " role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="row justify-content-center mt-4">
-                            <div class="col-md-12">
-                                <form id="fix_request_form" action="{{route('customer.order.request')}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="hidden" name="order" value="{{$order->id}}">
-                                    <input type="hidden" name="product" value="" class="order_product_id">
-                                    <div class="requests">
-                                        @foreach($product->has_request_fixes as $request)
-                                        <div class="container-msg">
-                                            <p>{{$request->msg}}</p>
-                                            <div class="text-right">{{date_create($request->created_at)->format('Y-m-d H:i a')}}</div>
-                                        </div>
-                                            @endforeach
-                                    </div>
-                                    <div class="textarea-container">
-                                        <textarea required style="width: 100%;" class="form-control request_fix" name="request_fix" id="" placeholder="Write Your Fix Request"></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center ">
-                            <div class="mail-buttons">
-                                <button class="btn btn-success m-3 request_upload_button"><i class="mdi mdi-check font-bold" ></i> Send </button>
-                                <button class="btn btn-danger m-3" class="close" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-close"></i> Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 @endsection

@@ -13,15 +13,8 @@ class StatusesTableSeeder extends Seeder
     {
         DB::table('statuses')->truncate();
 
-
         DB::table('statuses')->insert([
-            'name'=>'New Order',
-            'type' => 'order',
-            'color' => '#0066CC',
-
-        ]);
-        DB::table('statuses')->insert([
-            'name'=>'In-Processing',
+            'name'=>'Not Completed',
             'type' => 'order',
             'color' => '#a53838',
         ]);

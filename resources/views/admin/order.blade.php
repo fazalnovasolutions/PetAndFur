@@ -4,16 +4,16 @@
         <div class="col-md-5 col-8 align-self-center">
             <h3><strong>Orders</strong></h3>
         </div>
-        <div class="col-md-7 text-right">
-            <a class="btn btn-warning" href="{{route('orders.sync')}}"> Sync New Orders </a>
-        </div>
+{{--        <div class="col-md-7 text-right">--}}
+{{--            <a class="btn btn-warning" href="{{route('orders.sync')}}"> Sync New Orders </a>--}}
+{{--        </div>--}}
     </div>
 
 
     <div class="row">
         <div class="col-md-12 pr-0  ">
             <div class="row p-0 m-2  "  >
-                <div class=" col-md-5 col-sm-6 bg-white">
+                <div class=" col-md-6 col-sm-6 bg-white">
                     <div class="row">
                         <div class="col-md-1 col-sm-3 pr-1 pt-2">
                             <i class="ti-search "></i>
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7 col-sm-6 bg-white">
+                <div class="col-md-6 col-sm-6 bg-white">
                     <div class="row justify-content-end" >
                         <div class=" dropdowns">
                             <div class="dropdown">
@@ -152,29 +152,33 @@
                                         @endif
                                     </td>
                                     <td align="center">
-                                        @if($order->has_design_details != null)
-                                            @if($order->has_design_details->status_id == 4)
-                                                <div class="setting_div">
-                                                    <span class="mdi mdi-settings text-white display-6"></span>
-                                                </div>
-                                                <h6 class="text-dark"><b>{{$order->has_design_details->status}}</b></h6>
-                                            @elseif($order->has_design_details->status_id == 7)
-                                                <div class="approved_div">
-                                                    <span class="mdi mdi-check-circle-outline check_mark"></span>
-                                                </div>
-                                                <h6 class="text_active"><b>{{$order->has_design_details->status}}</b></h6>
-                                            @elseif($order->has_design_details->status_id == 9)
-                                                <div class="cir">
-                                                    <span class="rec"></span>
-                                                </div>
-                                                <h6 class="not_completed"><b>{{$order->has_design_details->status}}</b></h6>
-                                            @elseif($order->has_design_details->status_id == 8)
-                                                <div class="update_div">
-                                                    <span class="update_icon">!</span>
-                                                </div>
-                                                <h6 class="updating"><b>{{$order->has_design_details->status}}</b></h6>
-                                            @endif
+                                        @if(count($order->has_products) >  0)
+                                            @foreach($order->has_products as $index => $product)
+                                                @if($product->has_design != null)
+                                                    @if($product->has_design->status_id == 3)
+                                                        <div class="setting_div">
+                                                            <span class="mdi mdi-settings text-white display-6"></span>
+                                                        </div>
+                                                        <h6 class="text-dark"><b>{{$product->has_design->status}}</b></h6>
+                                                    @elseif($product->has_design->status_id == 6)
+                                                        <div class="approved_div">
+                                                            <span class="mdi mdi-check-circle-outline check_mark"></span>
+                                                        </div>
+                                                        <h6 class="text_active"><b>{{$product->has_design->status}}</b></h6>
+                                                    @elseif($product->has_design->status_id == 8)
+                                                        <div class="cir">
+                                                            <span class="rec"></span>
+                                                        </div>
+                                                        <h6 class="not_completed"><b>{{$product->has_design->status}}</b></h6>
+                                                    @elseif($product->has_design->status_id == 7)
+                                                        <div class="update_div">
+                                                            <span class="update_icon">!</span>
+                                                        </div>
+                                                        <h6 class="updating"><b>{{$product->has_design->status}}</b></h6>
+                                                    @endif
+                                                @endif
 
+                                            @endforeach
                                         @else
                                             <div class="cir">
                                                 <span class="rec"></span>

@@ -11,18 +11,28 @@
     </div>
     <div class="row pl-5">
         <div class="col-sm-2 col-md-1">
-            <h6 class="pt-1"><b>Order </b></h6>
+            <h3 ><b>Order </b></h3>
         </div>
-        <div class=" col-sm-4 col-md-2 row">
-            <h6 class="pt-1"><b>{{ $order->name }}</b></h6>
-            <div>
-                <span class="badge badge-pill bdg-success designer ml-4">Chesce</span>
-            </div>
+        <div class=" col-sm-4 col-md-3 row">
+            <h3 ><b>{{ $order->name }}</b></h3>
+            @if($order->has_designer != null)
+                <div>
+                    <span class="badge badge-pill ml-4" style="background: {{$order->has_designer->background_color}}; color: {{$order->has_designer->color}}">{{$order->has_designer->name}}</span>
+                </div>
+            @endif
         </div>
         <div class=" col-sm-4 col-md-2">
-            <div class="status" align="center">
-                <h5 class="pt-1 pb-1 alerting">Not Completed</h5>
-            </div>
+            @if($order->has_additional_details != null)
+                @if($order->has_additional_details->status_id == 1)
+                    <div class="status" align="center">
+                        <h5 class="pt-1 pb-1 alerting">Not Completed</h5>
+                    </div>
+                @else
+                    <div class="status" align="center">
+                        <h5 class="pt-1 pb-1" style="background: green;color: white">Completed</h5>
+                    </div>
+                @endif
+            @endif
         </div>
     </div>
 
@@ -84,10 +94,10 @@
         <div class="col-md-12">
             <div class="card p-3">
 
-                @foreach($order->has_products as $product)
+                @foreach($order->has_products as $index => $product)
                     <div class="row p-3">
                         <div class="col-sm-6 col-md-6 p-0 card">
-                            <div class="card-header bg-lite" style="padding-bottom: 26px"> <b>Design: {{ $order->name }}_1</b></div>
+                            <div class="card-header bg-lite" style="padding-bottom: 26px"> <b>Design: {{ $order->name }}_{{$index+1}}</b></div>
                             <div class="row">
                                 <div class="col-sm-6 col-md-7 border-right">
                                     <div class="tittle p-3">
@@ -138,25 +148,18 @@
                                     @endif
 
                                 </div>
-                                @if($product->latest_photo == null)
-                                    @if($properties)
-                                        @foreach($properties as $property)
-                                            @if($property['name'] == '_io_uploads')
-                                                <div class=" col-sm-6 col-md-5" align="center">
-                                                    <div class="mt-4 pr-2">
-                                                        <img src="{{ $property['value'] }}" width="100px" height="150px">
-                                                    </div>
+                                {{--                                @if($product->latest_photo == null)--}}
+                                @if($properties)
+                                    @foreach($properties as $property)
+                                        @if($property['name'] == '_io_uploads')
+                                            <div class=" col-sm-6 col-md-5" align="center">
+                                                <div class="mt-4 pr-2">
+                                                    <img src="{{ $property['value'] }}" width="100%" height="auto" style="margin-bottom: 15px">
                                                 </div>
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                    @else
-                                    <div class=" col-sm-6 col-md-5" align="center">
-                                        <div class="mt-4 pr-2">
-                                            <img src="{{ asset('new_photos/'.$product->latest_photo) }}" width="100px" height="150px">
-                                        </div>
-                                    </div>
-                                    @endif
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
 
                             </div>
 
@@ -200,7 +203,33 @@
                                     <div class="mt-4 pb-3">
                                         @if($product->has_design != null)
                                             @if($product->has_design->design != null)
-                                                <img src="{{asset('designs/'.$product->has_design->design)}}" width="120px" height="150px">
+                                                <i style="float: right;cursor: pointer" onclick="window.location.href='{{route('admin.order.product.delete.design')}}?order={{$order->id}}&&product={{$product->id}}'" class=" delete-design mdi mdi-close-circle"></i>
+                                                @if($product->has_background != null)
+                                                    <img  id="design_background" src="{{asset($product->has_background->image)}}" width="100%" height="auto">
+                                                    <img id="design_image" style="bottom: 16px !important;" src="{{asset('designs/'.$product->has_design->design)}}" width="100%" height="auto">
+
+                                                @else
+                                                    @if($properties)
+                                                        @php
+                                                            $style = '';
+                                                            foreach ($properties as $property){
+                                                            if($property['name'] == 'Style'){
+                                                            $style = $property['value'];
+                                                            }
+                                                            }
+                                                        @endphp
+                                                        @foreach($categories as $cat)
+                                                            @if($cat->name == $style)
+                                                                @foreach($cat->has_backgrounds as $index => $b)
+                                                                    @if($index == 0)
+                                                                        <img  id="design_background" src="{{asset($b->image)}}" width="100%" height="auto">
+                                                                        <img id="design_image" style="bottom: 16px !important;" src="{{asset('designs/'.$product->has_design->design)}}" width="100%" height="auto">
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endif
                                             @endif
                                         @endif
                                     </div>
@@ -208,26 +237,26 @@
                                 <div class="col-md-6">
                                     <div class="text-center mt-5">
                                         @if($product->has_design != null)
-                                            @if($product->has_design->status_id == 4)
+                                            @if($product->has_design->status_id == 3)
                                                 <div class="setting_div">
                                                     <span class="mdi mdi-settings text-white display-6"></span>
                                                 </div>
-                                                <h6 class="text-dark"><b>{{$order->has_design_details->status}}</b></h6>
-                                            @elseif($product->has_design->status_id == 7)
+                                                <h6 class="text-dark"><b>{{$product->has_design->status}}</b></h6>
+                                            @elseif($product->has_design->status_id == 6)
                                                 <div class="approved_div">
                                                     <span class="mdi mdi-check-circle-outline check_mark"></span>
                                                 </div>
-                                                <h6 class="text_active"><b>{{$order->has_design_details->status}}</b></h6>
-                                            @elseif($product->has_design->status_id == 9)
+                                                <h6 class="text_active"><b>{{$product->has_design->status}}</b></h6>
+                                            @elseif($product->has_design->status_id == 8)
                                                 <div class="cir">
                                                     <span class="rec"></span>
                                                 </div>
-                                                <h6 class="not_completed"><b>{{$order->has_design_details->status}}</b></h6>
-                                            @elseif($product->has_design->status_id == 8)
+                                                <h6 class="not_completed"><b>{{$product->has_design->status}}</b></h6>
+                                            @elseif($product->has_design->status_id == 7)
                                                 <div class="update_div">
                                                     <span class="update_icon">!</span>
                                                 </div>
-                                                <h6 class="updating"><b>{{$order->has_design_details->status}}</b></h6>
+                                                <h6 class="updating"><b>{{$product->has_design->status}}</b></h6>
                                             @endif
 
                                         @else
@@ -237,14 +266,23 @@
                                             <h6 class="not_completed"><b>No Design</b></h6>
                                         @endif
 
-                                            @if(count($order->has_request_fixes) > 0)
-                                                <div class="modal_button" data-target="#fix_request_modal">
-                                                    <div>
-                                                        <span class="mdi mdi-file-check fix_request modal_button" data-target="#fix_request_modal"></span>
-                                                    </div>
-                                                    <h6 class="fix_text modal_button" data-target="#fix_request_modal"><b>FIX REQUEST</b></h6>
+                                        @if(count($product->has_request_fixes) > 0)
+                                            <div class="modal_button" data-target="#fix_request_modal{{$index}}">
+                                                <div>
+                                                    <span class="mdi mdi-file-check fix_request modal_button" data-target="#fix_request_modal{{$index}}"></span>
                                                 </div>
-                                            @endif
+                                                <h6 class="fix_text modal_button" data-target="#fix_request_modal{{$index}}"><b>FIX REQUEST</b></h6>
+                                            </div>
+                                        @endif
+
+                                        @if(count($product->has_new_photos) > 0)
+                                            <div class="modal_button" data-target="#fix_request_modal{{$index}}">
+                                                <div>
+                                                    <span class="mdi mdi-camera photo modal_button" data-target="#fix_request_modal{{$index}}"></span>
+                                                </div>
+                                                <h6 class="photo_text modal_button" data-target="#fix_request_modal{{$index}}"><b>New Photo</b></h6>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -252,32 +290,40 @@
 
                         </div>
                     </div>
-                @endforeach
-            </div>
-            <div class="modal fade" id="fix_request_modal" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
-                <div class="modal-dialog " role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="row justify-content-center mt-4">
-                                <div class="col-md-12">
-                                        <div class="requests">
-                                            @foreach($product->has_request_fixes as $request)
-                                                <div class="container-msg">
-                                                    <p>{{$request->msg}}</p>
-                                                    <div class="text-right">{{date_create($request->created_at)->format('Y-m-d H:i a')}}</div>
-                                                </div>
-                                            @endforeach
+                    <div class="modal fade" id="fix_request_modal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
+                        <div class="modal-dialog " role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="row justify-content-center mt-4">
+                                        <div class="col-md-12">
+                                            <div class="requests">
+                                                @foreach($product->has_request_fixes as $request)
+                                                    <div class="container-msg">
+                                                        <p>{{$request->msg}}</p>
+                                                        <div class="text-right">{{date_create($request->created_at)->format('Y-m-d H:i a')}}</div>
+                                                    </div>
+                                                @endforeach
+                                                <hr>
+                                                @foreach($product->has_new_photos as $photo)
+                                                    <div class="container-msg">
+                                                        <img src="{{ asset('new_photos/'.$photo->new_photo) }}" width="100%" height="auto" style="margin-bottom: 5px">
+                                                        <div class="text-right">{{date_create($photo->created_at)->format('Y-m-d H:i a')}}</div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
                                         </div>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center ">
-                                <div class="mail-buttons">
-                                    <button class="btn btn-danger m-3" class="close" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-close"></i> Close</button>
+                                    </div>
+                                    <div class="row justify-content-center ">
+                                        <div class="mail-buttons">
+                                            <button class="btn btn-danger m-3" class="close" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-close"></i> Close</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                @endforeach
             </div>
             <div class="modal fade" id="edit_notes" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
                 <div class="modal-dialog " role="document">

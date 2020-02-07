@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('material/assets/images/favicon.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('BoomPup.png')}}">
     <title>Dashboard</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('material/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -62,7 +62,7 @@
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 
                         <!-- Light Logo icon -->
-                        <img src="http://support.boompup.com/images/support.png" alt="homepage" height="50px" width="50px" class="light-logo" />
+                        <img src="{{asset('BoomPup.png')}}" alt="homepage" height="50px" width="50px" class="light-logo" style="background: white" />
                     </b>
                     <!--End Logo icon -->
                     <!-- Logo text --><span>
@@ -113,16 +113,16 @@
                 <ul id="sidebarnav">
                     <li> <a class="waves-effect waves-dark" href="{{route('home')}}" aria-expanded="false"><i class="mdi mdi-home-variant"></i><span class="hide-menu">Home</span></a>
                     </li>
-                    <li> <a href="javascript:void(0)" class="waves-effect waves-dark"   data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="mdi mdi-inbox-arrow-down"></i><span class="hide-menu">Orders</span></a>
-                        <ul class="collapse" id="collapseExample">
+                    <li> <a class="waves-effect waves-dark"   data-toggle="collapsed" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="mdi mdi-inbox-arrow-down"></i><span class="hide-menu">Orders</span></a>
+                        <ul class="collapsed" id="collapseExample">
                             <li><a href="{{route('admin.orders')}}">All Orders</a></li>
-                            <li><a href="{{route('admin.orders')}}?type=2"><span class="dot dot-warning"></span>  In Process Orders</a></li>
-                            <li><a href="{{route('admin.orders')}}?type=1"><span class="dot dot-alert"></span>  New Orders</a></li>
-                            <li><a href="{{route('admin.orders')}}?type=3"><span class="dot dot-primary"></span>  Completed Orders</a></li>
+                            <li><a href="{{route('admin.orders')}}?type=1"><span class="dot dot-warning"></span>  Not Completed Orders</a></li>
+                            <li><a href="{{route('orders.new')}}"><span class="dot dot-alert"></span>  New Orders</a></li>
+                            <li><a href="{{route('admin.orders')}}?type=2"><span class="dot dot-primary"></span>  Completed Orders</a></li>
 
                         </ul>
                     </li>
-                    <li> <a href="javascript:void(0)" class="waves-effect waves-dark"   data-toggle="collapse" data-target="#collapsing" aria-expanded="false" aria-controls="collapsing"><i class="mdi mdi-account"></i><span class="hide-menu">Managment</span></a>
+                    <li> <a  class="waves-effect waves-dark"   data-toggle="collapse" data-target="#collapsing" aria-expanded="false" aria-controls="collapsing"><i class="mdi mdi-account"></i><span class="hide-menu">Managment</span></a>
                         <ul class="collapse" id="collapsing">
                             <li><a href="{{route('admin.designer.dashboard')}}">Dashboard</a></li>
                             <li><a href="{{route('admin.background')}}"> Background</a></li>
@@ -188,9 +188,10 @@
 <script src="{{asset('material/js/script.js')}}"></script>
 
 <script src="{{asset('material/assets/plugins/alertify/js/alertify.js')}}"></script>
-
-
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+
 <!-- ============================================================== -->
 <!-- This page plugins -->
 <!-- ============================================================== -->

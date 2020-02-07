@@ -28,4 +28,9 @@ class OrderProduct extends Model
     {
         return $this->belongsTo('App\Background','background_id');
     }
+
+    public function has_new_photos()
+    {
+        return $this->hasMany('App\NewPhoto','order_product_id');
+    }
 }

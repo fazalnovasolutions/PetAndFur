@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Designer;
 use App\Order;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DesignerController extends Controller
@@ -19,7 +20,8 @@ class DesignerController extends Controller
         $designers = Designer::where('shop_id', $this->helper->getShop()->id)->get();
         $query =  Order::where('shop_id',$this->helper->getShop()->id)->newQuery();
         $query->whereHas('has_additional_details',function ($q){
-            $q->where('status_id','!=',3);
+            $q->where('status_id','!=',2);
+
         });
        $orders = $query->get();
        $ratings = [];

@@ -1,4 +1,41 @@
+
 $(document).ready(function(){
+
+    if($('.select_ajax_reload').length > 0) {
+        if ($('.select_ajax_reload').val().length > 0) {
+            $('.drag-table tbody').addClass('Selected');
+        } else {
+            $('.drag-table tbody').removeClass('Selected');
+        }
+    }
+
+    if($('.Selected').length > 0){
+        $('.drag-table tbody').sortable({
+            update: function(event, ui) {
+                var backgrounds = [];
+                $('.Selected tr').each(function () {
+                    backgrounds.push($(this).data('id'));
+                });
+                console.log(backgrounds);
+                $.ajax({
+                   url: $('.Selected').data('route'),
+                   method:'get',
+                    data:{
+                       backgrounds: backgrounds,
+                        category: $('.select_ajax_reload').val(),
+                    },
+                    success:function () {
+                        alertify.success('Background Position Changed Successfully!');
+                    },
+                    error:function(){
+                       alertify.error('Internal Servor Errror!');
+                    }
+                });
+            }
+        });
+    }
+
+   ;
 
     /////////////////Search order Feild/////////////
 
@@ -104,14 +141,14 @@ $(document).ready(function(){
     });
     ///////////change order status//////////////////
 
-    if($('.order-status-value').length > 0){
+    function order_status(){
         $('.order-status-value').each(function () {
-          var value = $(this).val();
+            var value = $(this).val();
             if(value === "New Order"){
                 $(this).next().css("background","#0066CC");
                 $(this).next().find('.dropdown').find('.pr-5').text(value);
 
-            }else if (value === "In-Processing") {
+            }else if (value === "Not Completed") {
                 $(this).next().css("background","#a53838");
                 $(this).next().find('.dropdown').find('.pr-5').text(value);
             }else if(value === "Completed" ){
@@ -121,6 +158,10 @@ $(document).ready(function(){
                 $(this).next().closest('tr').css("color","White")
             }
         });
+    }
+
+    if($('.order-status-value').length > 0){
+        order_status();
     }
 
     // $(".change_status").click(function () {
@@ -141,7 +182,7 @@ $(document).ready(function(){
             td.closest('tr').css("background","#FFFFFF");
             td.closest('tr').css("color","#67757c")
 
-        }else if (text === "In-Processing") {
+        }else if (text === "Not Completed") {
             $(span).text(text)
             td.css("background","#a53838");
             td.closest('tr').css("background","#FFFFFF");
@@ -316,6 +357,16 @@ $(document).ready(function(){
             // $('#actionbox').hide();
         }
     });
+    /*Delete Category With Its Background*/
+    $('body').on('click','.delete-category-btn',function () {
+        var value =$(this).parents('.row').find('select[name=category]').val();
+        if(value !== ""){
+            window.location.href = $(this).data('route')+'?category='+value;
+        }
+        else{
+            alertify.error('Select Category First!')
+        }
+    });
 
     /*Filter Orders*/
     $('body').on('keyup','.filter-search',function () {
@@ -329,7 +380,8 @@ $(document).ready(function(){
             success:function (response){
                 $('#order_table').find('#myTable').empty();
                 $('#order_table').find('#myTable').html($(response).find('#myTable').html());
-            },
+                order_status();
+                },
         });
 
     });

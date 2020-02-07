@@ -3,12 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BackgroundController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BackgroundController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DesignerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DesignerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/OrderProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/OrderProduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/StatusesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/StatusesTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/material/js/cs-script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/material/js/cs-script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/material/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/material/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/backgrounds.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/backgrounds.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/order-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/order-details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/order.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/order.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/order-overview.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/order-overview.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -140,11 +149,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -208,7 +217,9 @@
       <workItem from="1580707263636" duration="25476000" />
       <workItem from="1580800478810" duration="10971000" />
       <workItem from="1580968441235" duration="3785000" />
-      <workItem from="1580976506953" duration="4386000" />
+      <workItem from="1580976506953" duration="5154000" />
+      <workItem from="1581052997447" duration="1692000" />
+      <workItem from="1581054984567" duration="24104000" />
     </task>
     <task id="LOCAL-00001" summary="30012020Fazal">
       <created>1580395207355</created>
@@ -224,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580480312512</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="06022020Fazal">
+      <created>1580984282197</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580984282198</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +266,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="30012020Fazal" />
     <MESSAGE value="31012020Fazal" />
-    <option name="LAST_COMMIT_MESSAGE" value="31012020Fazal" />
+    <MESSAGE value="06022020Fazal" />
+    <option name="LAST_COMMIT_MESSAGE" value="06022020Fazal" />
   </component>
   <component name="WindowStateProjectService">
     <state x="413" y="127" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579589114403">

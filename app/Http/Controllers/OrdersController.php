@@ -30,17 +30,21 @@ class OrdersController extends Controller
     public function filter_orders(Request $request){
         $query = Order::where('shop_id',$this->helper->getShop()->id)->newQuery();
         if($request->input('search')){
-            $query->where('name','LIKE','%'.$request->input('search').'%');
+            $order_names = explode(',',$request->input('search'));
+            $query->whereIn('name',$order_names);
             $query->orWhere('email','LIKE','%'.$request->input('search').'%');
-            $query->orWhere('bill_first_name','LIKE','%'.$request->input('search').'%');
-            $query->orWhere('ship_first_name','LIKE','%'.$request->input('search').'%');
+            $array = explode(' ',$request->input('search'));
+            $query->orWhereIn('bill_first_name',$array);
+            $query->orWhereIn('bill_last_name',$array);
+            $query->orWhereIn('ship_first_name',$array);
+            $query->orWhereIn('ship_last_name',$array);
         }
         if($request->input('product')){
             $query->whereHas('has_products',function ($product_query) use ($request){
                 $product_query->where('title',$request->input('product'));
             });
         }
-        $orders = $query->paginate(30);
+        $orders = $query->orderBy('name', 'DESC')->paginate(30);
         $products = DB::table('order_products')
             ->select('title')
             ->where('shop_id',$this->helper->getShop()->id)
@@ -62,7 +66,6 @@ class OrdersController extends Controller
     public function getStatuses($type){
         return Status::where('type',$type)->get();
     }
-
     public function Orders(Request $request){
         if($request->has('type')){
             $query = Order::where('shop_id', $this->helper->getShop()->id)->newQuery();
@@ -88,19 +91,42 @@ class OrdersController extends Controller
 
         ]);
     }
-
     public function OrderDetails($id){
         $order = Order::find($id);
         $categories = BackgroundCategory::where('shop_id', $this->helper->getShop()->id)->get();
+
         return view('admin.order-details')->with([
             'order' => $order,
             'categories' => $categories
         ]);
     }
 
-    public function GetShopifyOrders(){
+    public function new_orders(Request $request){
+        if(!$request->has('page')){
+            $page = 1;
+        }
+        else{
+            $page = $request->input('page');
+        }
+        $req = $this->helper->getShop()->api()->rest('GET', '/admin/orders.json',['page'=>$page]);
+        foreach ($req->body->orders as $order){
+            if(Order::where('shopify_id',$order->id)->exists()){
+                $order->sync = 'yes';
+            }
+            else{
+                $order->sync = 'no';
+            }
+        }
+        return view('admin.new-orders')->with([
+            'orders'=>$req->body->orders,
+            'page' => $page
+        ]);
+    }
 
+
+    public function GetShopifyOrders(){
         $request = $this->helper->getShop()->api()->rest('GET', '/admin/orders.json');
+//        dd($request);
         foreach ($request->body->orders as $order){
             $this->CreateOrder($order, $this->helper->getShop()->shopify_domain);
 //            dd($order);
@@ -218,9 +244,9 @@ class OrdersController extends Controller
         $orderQuery->whereDoesntHave('has_additional_details',function ($product_query){
         });
         $orders = $orderQuery->get();
-        $status = Status::where('name','New Order')->where('type','order')->first();
+        $status = Status::where('name','Not Completed')->where('type','order')->first();
         if($status == null){
-            $status_name = 'New Order';
+            $status_name = 'Not Completed';
             $status_id = '1';
         }
         else{
@@ -241,7 +267,7 @@ class OrdersController extends Controller
         /*Getting Orders that are new and has no designers*/
         $orderQuery =  Order::where('shop_id',$this->helper->getShopDomain($shop)->id)->newQuery();
         $orderQuery->whereHas('has_additional_details',function ($query){
-            $query->where('status','New Order');
+            $query->where('status','Not Completed');
         });
         $orderQuery->whereDoesntHave('has_designer',function ($query){
         });
@@ -275,7 +301,7 @@ class OrdersController extends Controller
                 foreach ($order->has_products as $item){
                     $design = new OrderProductAdditionalDetails();
                     $design->status = 'No Design';
-                    $design->status_id = '9';
+                    $design->status_id = '8';
                     $design->order_id = $order->id;
                     $design->order_product_id = $item->id;
                     $design->shop_id = $this->helper->getShopDomain($shop)->id;
@@ -318,13 +344,28 @@ class OrdersController extends Controller
            }
            $target->design = $design;
            $target->status ='In-Processing';
-           $target->status_id = 4;
+           $target->status_id = 3;
            $target->save();
            return redirect()->back();
        }
        else{
            return redirect()->back();
        }
+    }
+
+    public function design_delete(Request $request){
+        $target =  OrderProductAdditionalDetails::where('order_id',$request->input('order'))
+            ->where('order_product_id',$request->input('product'))->first();
+        if($target != null){
+            $target->design = null;
+            $target->status ='No Design';
+            $target->status_id = 8;
+            $target->save();
+            return redirect()->back();
+        }
+        else{
+            return redirect()->back();
+        }
     }
 
     public function change_style(Request $request){
@@ -353,5 +394,13 @@ class OrdersController extends Controller
        }
            return redirect()->back();
 
+    }
+
+    public function sync_order(Request $request){
+        $req = $this->helper->getShop()->api()->rest('GET', '/admin/orders/'.$request->id.'.json');
+        $this->CreateOrder($req->body->order, $this->helper->getShop()->shopify_domain);
+        $this->AssignStatus($this->helper->getShop()->shopify_domain);
+        $this->DesignerPicker($this->helper->getShop()->shopify_domain);
+        return redirect()->back();
     }
 }

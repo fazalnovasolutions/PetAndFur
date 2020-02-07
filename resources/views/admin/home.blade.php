@@ -34,7 +34,7 @@
         <div class="col-md-5 pl-5 pr-5">
             <div class="card">
                 <div class="card-block edit-block">
-                    <h6 class="card-title"><strong>TOTAL DREQUESTS DESIGN</strong></h6>
+                    <h6 class="card-title"><strong>TOTAL REQUESTS DESIGN</strong></h6>
                     <div class="material-icon-list-demo demo-inner">
                         <h4 class=""><strong>{{$requested}}</strong></h4>
                     </div>

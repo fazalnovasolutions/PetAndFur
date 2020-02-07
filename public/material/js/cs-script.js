@@ -37,16 +37,15 @@ $(document).ready(function() {
 
 
     $('body').on('click','.request_upload_button',function () {
-        if($(".request_fix").val().length > 0){
-            $('#fix_request_form').submit();
+        if($(this).parents('.modal').find(".request_fix").val().length > 0){
+            $(this).parents('.modal').find('#fix_request_form').submit();
         }
     });
 
     $('body').on('click','.background-div',function () {
         $('#design_background').attr('src',$(this).find('img').attr('src'));
-        if($('#background-category').val() == ''){
-            $('#background-category').val($(this).find('img').data('id'));
-        }
+        $('#background-category').val($(this).find('img').attr('data-id'));
+
 
     });
 

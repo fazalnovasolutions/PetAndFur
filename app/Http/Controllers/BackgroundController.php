@@ -31,7 +31,13 @@ class BackgroundController extends Controller
         if($request->input('category')){
             $bg_query->where('category_id', $request->input('category'));
         }
-        $backgrounds = $bg_query->paginate(30);
+        if($request->has('category')){
+            $backgrounds = $bg_query->orderBy('position','ASC')->paginate(30);
+        }
+        else{
+            $backgrounds = $bg_query->paginate(30);
+        }
+
         return view('admin.backgrounds')->with([
             'categories' => BackgroundCategory::all(),
             'backgrounds' => $backgrounds,
@@ -63,6 +69,37 @@ class BackgroundController extends Controller
         $design =Background::find($id);
         $design->delete();
         return redirect()->back()->with('success', 'Background Deleted Successfully');
+    }
+
+    public function Background_Category_Delete(Request $request){
+        $category = BackgroundCategory::find($request->input('category'));
+        if($category != null){
+            if(count($category->has_backgrounds) > 0){
+                $category->has_backgrounds()->delete();
+                return redirect()->route('admin.background')->with('success', 'Category and Its Background Deleted Successfully!');
+
+            }
+            else{
+                $category->delete();
+                return redirect()->route('admin.background')->with('success', 'Category Deleted Successfully!');
+            }
+        }
+        else{
+            return redirect()->back()->with('success', 'Category Not Found!');
+
+        }
+    }
+    public function BackgroundPositionUpdate(Request $request){
+        $backgrounds = $request->input('backgrounds');
+        $category = $request->input('category');
+        foreach ($backgrounds as $index => $background){
+            $b = Background::where('category_id',$category)
+                ->where('id',$background)->first();
+            if($b != null){
+                $b->position = $index;
+                $b->save();
+            }
+        }
     }
 
 }

@@ -21,7 +21,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.shop']], function(){
     Route::get('backgrounds','BackgroundController@Backgrounds')->name('admin.background');
     Route::post('backgrounds/category/save','BackgroundController@Background_Categories_Save')->name('admin.background.categories.save');
     Route::post('backgrounds/save','BackgroundController@Background_Save')->name('admin.background.save');
+    Route::get('background/positions','BackgroundController@BackgroundPositionUpdate')->name('admin.background.postion.update');
     Route::get('backgrounds/{id}/delete','BackgroundController@Background_Delete')->name('admin.background.delete');
+    Route::get('category/delete','BackgroundController@Background_Category_Delete')->name('admin.category.delete');
 
     Route::post('designer/save','DesignerController@Designer_Save')->name('admin.designer.save');
     Route::get('designer/dashboard','DesignerController@Dashboard')->name('admin.designer.dashboard');
@@ -33,11 +35,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth.shop']], function(){
     Route::get('orders/filter','OrdersController@filter_orders')->name('admin.orders.filter');
     Route::get('order/status','OrdersController@change_order_status')->name('admin.orders.change_status');
     Route::post('order/line-item/design-upload','OrdersController@design_upload')->name('admin.order.line-item.design.upload');
+    Route::get('order/line-item/design-delete','OrdersController@design_delete')->name('admin.order.product.delete.design');
     Route::post('order/line-item/style-change','OrdersController@change_style')->name('admin.order.line-item.change.style');
 
 });
 
 Route::get('/sync/orders','OrdersController@GetShopifyOrders')->name('orders.sync');
+Route::get('/new/orders','OrdersController@new_orders')->name('orders.new');
+Route::get('/sync/order/{id}','OrdersController@sync_order')->name('orders.sync.order');
+
 //Route::get('admin/background','OrderController@getBackground')->name('admin.background');
 Route::get('admin/login','OrderController@ManagementLogin')->name('admin.login');
 //Route::get('admin/dashboard','OrderController@getDashboard')->name('management.dashboard');
