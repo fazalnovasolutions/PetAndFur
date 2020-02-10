@@ -184,6 +184,7 @@
 <script src="{{asset('material/assets/plugins/c3-master/c3.min.js')}}"></script>
 <!-- Chart JS -->
 <script src="{{asset('material/js/dashboard1.js')}}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 </body>
 
 </html>

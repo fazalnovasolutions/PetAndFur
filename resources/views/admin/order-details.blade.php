@@ -65,7 +65,7 @@
                 <button class="btn btn-rounded btn-green">Send SMS</button>
 
                 <button class="btn btn-rounded btn-success" type="button" id=""> Send Email Update</button>
-                <button class="btn btn-rounded btn-blue">Customer Chat</button>
+{{--                <button class="btn btn-rounded btn-blue">Customer Chat</button>--}}
             </div>
 
             <button style="display: none" type="button" id="" data-toggle="modal" data-target="#send-mail"> </button>
@@ -169,6 +169,9 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6">
                                         <button class="btn upload-design-button btn-rounded btn-success">Add Design</button>
+                                        <div style="display: none">{{$order->name}}_{{$index+1}}</div>
+                                        <button style="float: right" class="btn btn-rounded btn-blue btn-chat-open" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" data-product="{{$product->id}}" data-target="#chat_modal"> <b class="text-white">Chat</b></button>
+
                                     </div>
                                     <form style="display: none" class="upload-design" action="{{route('admin.order.line-item.design.upload')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
@@ -341,6 +344,24 @@
                             <div class="row justify-content-center ">
                                 <div class="mail-buttons">
                                     <button class="btn btn-danger m-3" class="close" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-close"></i> Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="chat_modal" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title">
+
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row justify-content-center">
+                                <div class="col-md-12 content-drop">
+
                                 </div>
                             </div>
                         </div>

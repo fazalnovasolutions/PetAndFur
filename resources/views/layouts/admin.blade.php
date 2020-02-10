@@ -119,7 +119,7 @@
                     <li> <a class="waves-effect waves-dark"   data-toggle="collapsed" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="mdi mdi-inbox-arrow-down"></i><span class="hide-menu">Orders</span></a>
                         <ul class="collapsed" id="collapseExample">
                             <li><a href="{{route('admin.orders')}}">All Orders</a></li>
-                            <li><a href="{{route('admin.orders')}}?type=1"><span class="dot dot-warning"></span>  Not Completed Orders</a></li>
+                            <li><a href="{{route('admin.orders')}}?type=1"><span class="dot dot-warning"></span> In-Processing Orders</a></li>
                             <li><a href="{{route('orders.new')}}"><span class="dot dot-alert"></span>  New Orders</a></li>
                             <li><a href="{{route('admin.orders')}}?type=2"><span class="dot dot-primary"></span>  Completed Orders</a></li>
 
@@ -208,9 +208,12 @@
 <!--c3 JavaScript -->
 <script src="{{asset('material/assets/plugins/d3/d3.min.js')}}"></script>
 <script src="{{asset('material/assets/plugins/c3-master/c3.min.js')}}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 <!-- Chart JS -->
 <script src="{{asset('material/js/dashboard1.js')}}"></script>
 <script src="{{asset('js/script.js')}}"></script>
+
+
 </body>
 
 </html>

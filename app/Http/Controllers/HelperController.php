@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 use OhMyBrew\ShopifyApp\Facades\ShopifyApp;
 use OhMyBrew\ShopifyApp\Models\Shop;
@@ -43,5 +45,14 @@ class HelperController extends Controller
     public function getShopDomain($domain){
         $this->shop = Shop::where('shopify_domain',$domain)->first();
         return $this->shop;
+    }
+
+    public function CheckDesigner(Order $order, User $current){
+        if($order->designer_id !== $current->is_designer->id){
+            $order->designer_id = $current->is_designer->id;
+            $order->has_additional_details->designer_id = $current->is_designer->id;
+            $order->save();
+            $order->has_additional_details->save();
+        }
     }
 }

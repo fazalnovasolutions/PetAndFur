@@ -6,7 +6,7 @@
             <div class="row justify-content-center mt-3" >
                 <div class="" >
                     <button class="btn btn-rounded btn-green"> <b class="text-white">Get updates by SMS</b></button>
-                    <button class="btn btn-rounded btn-blue"> <b class="text-white">Chat with your designer</b></button>
+
 
                 </div>
             </div>
@@ -21,7 +21,10 @@
                 <div class="col-md-8">
                     @foreach($order->has_products as $index => $product)
                         <div class="card p-2">
-                            <div class="card-header bg-lite"> <h5><b>Design: {{$order->name}}_{{$index+1}} </b></h5></div>
+                            <div class="card-header bg-lite d-inline-block">
+                                <h5 class="d-inline-block" style="vertical-align: sub"><b>Design: {{$order->name}}_{{$index+1}} </b></h5>
+                                <button style="float: right" class="btn btn-rounded btn-blue btn-chat-open" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" data-product="{{$product->id}}" data-target="#chat_modal"> <b class="text-white">Chat</b></button>
+                            </div>
                             <div class="card-block">
                                 <div class="row">
                                     <h5> {{$product->title}} - {{$product->variant_title}}</h5>
@@ -215,6 +218,26 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="chat_modal" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">
+
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12 content-drop">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 @endsection

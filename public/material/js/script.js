@@ -35,10 +35,122 @@ $(document).ready(function(){
         });
     }
 
-   ;
+    //////////////c///Search order Feild/////////////
 
-    /////////////////Search order Feild/////////////
 
+    /*Chat JS*/
+    $('body').on('click','.btn-chat-open',function () {
+        var current = $(this);
+        $.ajax({
+            url:$(this).data('route'),
+            method: 'get',
+            data:{
+                order_product_id:$(this).data('product'),
+                apply: 'Designer',
+                order : $(this).data('order_id'),
+            },
+            success:function (response) {
+                var modal = $(current).data('target');
+                $(modal).find('.modal-title').text(current.prev().text());
+                $(modal).find('.content-drop').empty();
+                $(modal).find('.content-drop').append(response.html);
+                $(modal).modal({
+                    show: true,
+                    focus:true
+                });
+
+            }
+        });
+    });
+
+    $('body').on('click','.delete-msg',function () {
+        var current = $(this);
+       $.ajax({
+           url : $(this).data('route'),
+           method: 'get',
+           data:{
+             id : $(this).data('id'),
+           },
+           success:function (data) {
+               if(data.status === 'deleted'){
+                   current.parent().remove();
+               }
+           }
+       }) ;
+    });
+
+    $('body').on('click','.send_btn',function(){
+        var $msg = $('.write_msg').val();
+
+        if($msg.length > 0){
+            $('.write_msg').val('');
+            $('.msg_history').append('<div class="outgoing_msg">\n' +
+                '                        <div class="sent_msg">\n' +
+                '                            <p>'+$msg+'</p>\n' +
+                '                            <span class="time_date"> '+moment().format('kk:mm a')+' | '+moment().format('MMM  DD,YYYY')+' </span></div>\n' +
+                '                    </div>');
+            $(".msg_history").scrollTop(1000);
+        }
+        $.ajax({
+
+            url: $(this).data('route'),
+            method: 'get',
+            data:{
+                name : $(this).data('name'),
+                type : $(this).data('type'),
+                content : $msg,
+                order_id : $(this).data('order'),
+                order_product_id : $(this).data('product'),
+            },
+            success:function (response) {
+                console.log('sent');
+            }
+        });
+    });
+    $('body').on('click','.send_btn_image',function () {
+        $('.image_send').trigger('click');
+    });
+    $('body').on('change','.image_send',function () {
+        var current = $(this);
+        var input = this;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.msg_history').append('<div class="outgoing_msg">\n' +
+                    '                        <div class="sent_msg">\n' +
+                    '                                <p>\n' +
+                    '                                    <img class="image" src="'+e.target.result+'" >\n' +
+                    '                                </p>\n' +
+                    '                            <span class="time_date"> '+moment().format('kk:mm a')+' | '+moment().format('MMM  DD,YYYY')+' </span></div>\n' +
+                    '                    </div>');
+                $(".msg_history").scrollTop(1000);
+            };
+            reader.readAsDataURL(input.files[0]);
+            var form = current.parent();
+            form.submit();
+        }
+    });
+
+    $('body').on('submit','.image-form',function (evt) {
+        evt.preventDefault();
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                console.log('send');
+            },
+            error: function(data) {
+                console.log('error');
+            }
+        });
+    });
 
     $(".search_field").on("keyup", function() {
         var value = $(this).val().toLowerCase();

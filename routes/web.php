@@ -14,23 +14,23 @@
 Route::group(['middleware' => ['auth']], function(){
     Route::group(['prefix' => 'admin', 'middleware' => ['auth.shop']], function(){
         /*ADMIN AND DESIGNER*/
-            Route::get('/', 'OrderController@getHome')->name('home');
-            Route::get('orders', 'OrdersController@Orders')->name('admin.orders');
-            Route::get('order/{id}/detail','OrdersController@OrderDetails')->name('order.detail');
-            Route::post('order/note','OrdersController@update_notes')->name('order.notes.update');
-            Route::get('/new/orders','OrdersController@new_orders')->name('orders.new');
-            /*Sync Single Order*/
-            Route::get('/sync/order/{id}','OrdersController@sync_order')->name('orders.sync.order');
-            /*Sync All Orders*/
-            Route::get('/sync/orders','OrdersController@GetShopifyOrders')->name('orders.sync');
+        Route::get('/', 'OrderController@getHome')->name('home');
+        Route::get('orders', 'OrdersController@Orders')->name('admin.orders');
+        Route::get('order/{id}/detail','OrdersController@OrderDetails')->name('order.detail');
+        Route::post('order/note','OrdersController@update_notes')->name('order.notes.update');
+        Route::get('/new/orders','OrdersController@new_orders')->name('orders.new');
+        /*Sync Single Order*/
+        Route::get('/sync/order/{id}','OrdersController@sync_order')->name('orders.sync.order');
+        /*Sync All Orders*/
+        Route::get('/sync/orders','OrdersController@GetShopifyOrders')->name('orders.sync');
 
-            /*Filter Orders*/
-            Route::get('orders/filter','OrdersController@filter_orders')->name('admin.orders.filter');
-            Route::get('order/status','OrdersController@change_order_status')->name('admin.orders.change_status');
-            Route::post('order/line-item/design-upload','OrdersController@design_upload')->name('admin.order.line-item.design.upload');
-            Route::get('order/line-item/design-delete','OrdersController@design_delete')->name('admin.order.product.delete.design');
-            Route::post('order/line-item/style-change','OrdersController@change_style')->name('admin.order.line-item.change.style');
-
+        /*Filter Orders*/
+        Route::get('orders/filter','OrdersController@filter_orders')->name('admin.orders.filter');
+        Route::get('order/status','OrdersController@change_order_status')->name('admin.orders.change_status');
+        Route::post('order/line-item/design-upload','OrdersController@design_upload')->name('admin.order.line-item.design.upload');
+        Route::get('order/line-item/design-delete','OrdersController@design_delete')->name('admin.order.product.delete.design');
+        Route::post('order/line-item/style-change','OrdersController@change_style')->name('admin.order.line-item.change.style');
+        /*JUST FOR SUPER ADMIN*/
         Route::group(['middleware' => ['role:super-admin']], function () {
             Route::get('backgrounds','BackgroundController@Backgrounds')->name('admin.background');
             Route::post('backgrounds/category/save','BackgroundController@Background_Categories_Save')->name('admin.background.categories.save');
@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth']], function(){
             Route::post('/manaul-picker','DesignerController@ManualDesignPicker')->name('admin.manual-picker');
             Route::get('designer/status','DesignerController@SetStatus')->name('admin.designer.status');
         });
-        /*JUST FOR SUPER ADMIN*/
+
     });
 });
 
@@ -63,6 +63,12 @@ Route::get('/customer/order/{product}/background','CustomerController@ChangeBack
 Route::post('/customer/order/background-save','CustomerController@SaveBackground')->name('order.save.background');
 Route::get('/customer/order/save','CustomerController@SaveApproved')->name('order.save.status');
 Route::post('/customer/order/review','CustomerController@SaveReview')->name('order.save.review');
+
+/*Chat Route*/
+Route::get('/getChat','ChatController@getChat')->name('chat.get');
+Route::any('/saveChat','ChatController@saveChat')->name('chat.save');
+Route::any('/deleteMsg','ChatController@delete_msg')->name('chat.delete');
+
 
 
 Auth::routes(['register' => false]);

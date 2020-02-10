@@ -65,8 +65,9 @@ class DesignerController extends Controller
         $designer->save();
         $user =  User::create([
             'name' => $designer->name,
-            'email' => $designer->name.'@boompup.com',
-            'password' => Hash::make($designer->name.'@1234'),
+            'email' => str_replace(' ', '', $designer->name).'@boompup.com',
+            'password' => Hash::make(str_replace(' ', '', $designer->name).'@1234'),
+            'designer_id' => $designer->id,
         ]);
         $user->assignRole('designer');
         return redirect()->back()->with('success', 'Designer Added Successfully');

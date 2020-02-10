@@ -12,7 +12,9 @@ use App\OrderAdditionalDetails;
 use App\OrderProduct;
 use App\OrderProductAdditionalDetails;
 use App\Status;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use OhMyBrew\ShopifyApp\ShopifyApp;
@@ -66,6 +68,7 @@ class OrdersController extends Controller
     public function getStatuses($type){
         return Status::where('type',$type)->get();
     }
+
     public function Orders(Request $request){
         if($request->has('type')){
             $query = Order::where('shop_id', $this->helper->getShop()->id)->newQuery();
@@ -123,7 +126,6 @@ class OrdersController extends Controller
         ]);
     }
 
-
     public function GetShopifyOrders(){
         $request = $this->helper->getShop()->api()->rest('GET', '/admin/orders.json');
 //        dd($request);
@@ -135,9 +137,6 @@ class OrdersController extends Controller
         $this->DesignerPicker($this->helper->getShop()->shopify_domain);
         return redirect()->back();
     }
-
-
-
     public function CreateOrder($order, $shop){
         if (Order::where('shopify_id', '=', $order->id)->exists()) {
             $order_add = Order::where('shopify_id', '=', $order->id)->first();
@@ -346,6 +345,9 @@ class OrdersController extends Controller
            $target->status ='In-Processing';
            $target->status_id = 3;
            $target->save();
+           $order = Order::find($request->input('order_id'));
+           $user = \App\User::find(Auth::id());
+           $this->helper->CheckDesigner($order,$user);
            return redirect()->back();
        }
        else{
@@ -361,6 +363,9 @@ class OrdersController extends Controller
             $target->status ='No Design';
             $target->status_id = 8;
             $target->save();
+            $order = Order::find($request->input('order'));
+            $user = \App\User::find(Auth::id());
+            $this->helper->CheckDesigner($order,$user);
             return redirect()->back();
         }
         else{
@@ -379,6 +384,10 @@ class OrdersController extends Controller
                 'color' =>$category->color,
                 'category_id' => $category->id
             ]);
+            $line_item = OrderProduct::find($request->input('product_id'));
+            $order = Order::find($line_item->order_id);
+            $user = \App\User::find(Auth::id());
+            $this->helper->CheckDesigner($order,$user);
             return redirect()->back();
         }
         else{
@@ -388,6 +397,8 @@ class OrdersController extends Controller
 
     public function update_notes(Request $request){
        $order = Order::find($request->input('order_id'));
+        $user = \App\User::find(Auth::id());
+        $this->helper->CheckDesigner($order,$user);
        if($order != null){
            $order->note = $request->input('notes');
            $order->save();
