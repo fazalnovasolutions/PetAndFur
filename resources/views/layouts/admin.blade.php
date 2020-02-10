@@ -92,7 +92,10 @@
                     <!-- Profile -->
                     <!-- ============================================================== -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-power"></i>Logout</a>
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" onclick="document.getElementById('logout-form').submit();" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-power"></i>Logout</a>
+                        <form id="logout-form" action="{{route('logout')}}" method="POST">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -122,6 +125,7 @@
 
                         </ul>
                     </li>
+                    @hasrole('super-admin')
                     <li> <a  class="waves-effect waves-dark"   data-toggle="collapse" data-target="#collapsing" aria-expanded="false" aria-controls="collapsing"><i class="mdi mdi-account"></i><span class="hide-menu">Managment</span></a>
                         <ul class="collapse" id="collapsing">
                             <li><a href="{{route('admin.designer.dashboard')}}">Dashboard</a></li>
@@ -129,6 +133,9 @@
 
                         </ul>
                     </li>
+                    @endhasrole
+
+
                     {{--<li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Managment</span></a>--}}
                     {{--</li>--}}
 

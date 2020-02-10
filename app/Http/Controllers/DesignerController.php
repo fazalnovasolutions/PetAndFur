@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Designer;
 use App\Order;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DesignerController extends Controller
 {
@@ -61,6 +63,12 @@ class DesignerController extends Controller
         $designer->background_color = $request->input('background_color');
         $designer->shop_id = $this->helper->getShop()->id;
         $designer->save();
+        $user =  User::create([
+            'name' => $designer->name,
+            'email' => $designer->name.'@boompup.com',
+            'password' => Hash::make($designer->name.'@1234'),
+        ]);
+        $user->assignRole('designer');
         return redirect()->back()->with('success', 'Designer Added Successfully');
     }
     public function SetStatus(Request $request){

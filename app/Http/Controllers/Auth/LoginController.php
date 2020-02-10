@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/install?shop=egoodbuy.myshopify.com';
 
     /**
      * Create a new controller instance.
