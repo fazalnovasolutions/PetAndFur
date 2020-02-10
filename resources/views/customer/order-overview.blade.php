@@ -42,8 +42,8 @@
                                             @else
                                                 <div class="row p-1 ">
                                                     <h5 class="pt-1"> <b>Style :</b> </h5>
-                                                    <div class="pt-1 ml-2" style="background: {{$product->has_changed_style->color}};color: white">
-                                                        <h6 class="pr-2 pl-2 pt-1"><b>{{$product->has_changed_style->style}}</b> </h6>
+                                                    <div class="pt-1 ml-2" style="background: {{$product->has_changed_style->color}};">
+                                                        <h6 class="pr-2 pl-2 pt-1" style="color: white !important;"><b>{{$product->has_changed_style->style}}</b> </h6>
                                                     </div>
                                                 </div>
                                             @endif
@@ -133,7 +133,63 @@
                                 @endif
                                 @if($product->has_design->status != 'Approved' && $product->has_design->status != 'No Design')
                                     <div class=" row p-1 justify-content-center">
-                                        <button class="btn btn-green text-white">Approved Your Design </button>
+                                        {{--                            <button class="btn btn-success m-3 set-approved" data-id="{{$product->id}}"  data-target="#review-background" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-check-circle font-bold" ></i> Confirm </button>--}}
+                                        <button class="btn @if($product->background_id != null) btn-green set-approved @endif text-white" @if($product->background_id == null) disabled @else data-id="{{$product->id}}"  data-target="#review-background{{$index}}" @endif>Approved Your Design </button>
+                                    </div>
+                                    <div class="modal fade" id="review-background{{$index}}" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
+                                        <div class="modal-dialog " role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+
+                                                    <div align="center">
+                                                        <div class="approved_div" >
+                                                            <span class="mdi mdi-check-circle-outline check_mark"></span>
+                                                        </div>
+                                                        <h6 class="text_active"><b>Approved!</b></h6>
+
+                                                    </div>
+                                                    <div class="mt-2" align="center">
+                                                        <h6><b>Rate Your Designer: </b></h6>
+                                                    </div>
+                                                    <div class="row justify-content-center">
+                                                        <div class='rating-stars '>
+                                                            <ul id='stars' style="margin-bottom: 5px">
+                                                                <li class='star' title='Poor' data-value='1'>
+                                                                    <i class='fa fa-star fa-fw'></i>
+                                                                </li>
+                                                                <li class='star' title='Fair' data-value='2'>
+                                                                    <i class='fa fa-star fa-fw '></i>
+                                                                </li>
+                                                                <li class='star' title='Good' data-value='3'>
+                                                                    <i class='fa fa-star fa-fw '></i>
+                                                                </li>
+                                                                <li class='star' title='Excellent' data-value='4'>
+                                                                    <i class='fa fa-star fa-fw '></i>
+                                                                </li>
+                                                                <li class='star' title='WOW!!!' data-value='5'>
+                                                                    <i class='fa fa-star fa-fw '></i>
+                                                                </li>
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                    <form id="review_form" action="{{route('order.save.review')}}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="product" value="{{$product->id}}">
+                                                        <input type="hidden" name="rating" id="rating_input" value="">
+                                                        <div class=" p-3" align="center">
+                                                            <textarea class="form-control" name="review" rows="5"> </textarea>
+                                                        </div>
+                                                    </form>
+                                                    <div class="row justify-content-center">
+                                                        <button  class="btn btn-light close m-2" data-dismiss="modal" aria-label="Close"> No Thanks</button>
+                                                        <button  class="btn btn-primary review-submit m-2"> Submit Review</button>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endif
 
@@ -180,6 +236,7 @@
                                 </div>
                             </div>
                         </div>
+
                     @endforeach
                 </div>
 

@@ -64,19 +64,26 @@ class CustomerController extends Controller
             $product = OrderProduct::where('id',$request->product)->first();
             if($product != null){
                 if($product->has_design->status_id != 6 && $product->has_design->status_id != 8){
-                    $properties = json_decode($product->properties);
-                    $style = '';
-                    foreach ($properties as $p){
-                        if($p->name == 'Style'){
-                            $style = $p->value;
+                    if($product->has_changed_style == null){
+                        $properties = json_decode($product->properties);
+                        $style = '';
+                        foreach ($properties as $p){
+                            if($p->name == 'Style'){
+                                $style = $p->value;
+                            }
                         }
                     }
+                    else{
+                        $style =  $product->has_changed_style->style;
+                    }
+
                     if($style != null){
                         $category =  BackgroundCategory::where('name',$style)->first();
                         if($category != null){
                             return view('customer.change-background')->with([
                                 'product' => $product,
                                 'category' => $category,
+                                'style' => $style
                             ]);
                         }
                         else{
@@ -181,7 +188,7 @@ class CustomerController extends Controller
             }
             $product->save();
             if(!$request->ajax()){
-                return redirect()->back();
+                return redirect()->route('customer.check');
             }
 
         }

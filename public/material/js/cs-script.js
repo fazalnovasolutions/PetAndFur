@@ -4,7 +4,7 @@ $(document).ready(function() {
     $(".custom-slider").slick({
         infinite: true,
         centerMode: true,
-        slidesToShow: 3,
+        slidesToShow: 1,
         slidesToScroll: 3,
         // arrows: true
     });
@@ -219,37 +219,38 @@ $(document).ready(function() {
 
     $('body').on('click','.set-approved',function(){
         var current = $(this);
-        var form = $('#background_save_form');
+        // var form = $('#background_save_form');
         $.ajax({
-            url: form.attr('action'),
-            method: form.attr('method'),
-            data: form.serialize(),
-            success:function (response) {
-                $.ajax({
-                    url:'/customer/order/save',
-                    method:'get',
-                    data:{
-                        product : current.data('id'),
-                    },
-                    success:function (response) {
-                        if(response.status !== 'error'){
-                            var modal = current.data('target');
-                            if($(modal).length > 0){
-                                $(modal).modal({
-                                    show: true,
-                                    focus:true
-                                });
-                            }
-
-                        }
-                        else{
-                            alert(response.status);
-                        }
-                    },
-
-                });
+            url:'/customer/order/save',
+            method:'get',
+            data:{
+                product : current.data('id'),
             },
+            success:function (response) {
+                if(response.status !== 'error'){
+                    var modal = current.data('target');
+                    if($(modal).length > 0){
+                        $(modal).modal({
+                            show: true,
+                            focus:true
+                        });
+                    }
+
+                }
+                else{
+                    alert(response.status);
+                }
+            },
+
         });
+        // $.ajax({
+        //     url: form.attr('action'),
+        //     method: form.attr('method'),
+        //     data: form.serialize(),
+        //     success:function (response) {
+        //
+        //     },
+        // });
 
 
     });
