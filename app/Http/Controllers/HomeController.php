@@ -59,7 +59,7 @@ class HomeController extends Controller
         User::truncate();
         DB::table('model_has_roles')->truncate();
         $this->SuperAdminCreate();
-        return redirect()->back();
+        return redirect()->route('login');
     }
 
 }
