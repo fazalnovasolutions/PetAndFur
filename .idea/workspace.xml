@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="10022020F">
-      <change beforePath="$PROJECT_DIR$/.idea/asana_template.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/asana_template.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="10022020F" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,13 +139,13 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\asana_template\resources\views\admin" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\BoomPupVersion2\public" />
       <recent name="C:\xampp\htdocs\BoomPupVersion2" />
       <recent name="C:\xampp\htdocs\BoomPupVersion2\public\material\assets\plugins" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\asana_template\resources\views\admin" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -208,7 +204,7 @@
       <workItem from="1580976506953" duration="5154000" />
       <workItem from="1581052997447" duration="1692000" />
       <workItem from="1581054984567" duration="24846000" />
-      <workItem from="1581311664780" duration="5249000" />
+      <workItem from="1581311664780" duration="5634000" />
     </task>
     <task id="LOCAL-00001" summary="30012020Fazal">
       <created>1580395207355</created>
