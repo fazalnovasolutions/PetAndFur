@@ -1,6 +1,7 @@
 @extends('layouts.customer')
 @section('content')
     <p class="h3 text-center" style="margin-top: 30px;">Order <u>{{$order->name}}</u> Overview</p>
+    <button id="chat-notify" style="display: none" data-notification="{{route('chat.notifications')}}" data-order_id="{{$order->id}}"></button>
     <div class="row">
         <div class="col-md-8  m-t-20" style="margin-left: auto;margin-right: auto;">
             <div class="row justify-content-center mt-3" >
@@ -18,12 +19,13 @@
                 </div>
             @endif
             <div class="row justify-content-center mt-2">
-                <div class="col-md-8">
+
+                    <div class="col-md-8">
                     @foreach($order->has_products as $index => $product)
                         <div class="card p-2">
                             <div class="card-header bg-lite d-inline-block">
                                 <h5 class="d-inline-block" style="vertical-align: sub"><b>Design: {{$order->name}}_{{$index+1}} </b></h5>
-                                <button style="float: right" class="btn btn-rounded btn-blue btn-chat-open" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" data-product="{{$product->id}}" data-target="#chat_modal"> <b class="text-white">Chat</b></button>
+                                <button style="float: right" class="btn btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" data-product="{{$product->id}}" data-target="#chat_modal"> <b class="text-white">Chat</b></button>
                             </div>
                             <div class="card-block">
                                 <div class="row">

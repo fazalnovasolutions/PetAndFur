@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Chat;
+use App\ChatNotification;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,12 +51,19 @@ class ChatController extends Controller
         else{
             $new->content = $request->input('content');
         }
-
         $new->order_id = $request->input('order_id');
         $new->order_product_id = $request->input('order_product_id');
         $new->setCreatedAt(now());
         $new->setUpdatedAt(now());
         $new->save();
+        /*Generating Notifications*/
+        $notification = new ChatNotification();
+        $notification->name = $new->name;
+        $notification->order_id = $new->order_id;
+        $notification->order_product_id = $new->order_product_id;
+        $notification->chat_id = $new->id;
+        $notification->status = 'unseen';
+        $notification->save();
 
         $user = \App\User::find(Auth::id());
         if($user != null){
@@ -74,5 +82,42 @@ class ChatController extends Controller
         return response()->json([
             'status' => 'deleted',
         ]);
+    }
+
+    public function getNotifications(Request $request){
+        $order = Order::find($request->input('order'));
+        if($order != null){
+            if(count($order->has_products) > 0){
+                $count = [];
+                foreach ($order->has_products as $p){
+                    $new_msg =  ChatNotification::where('order_product_id',$p->id)->where('name',$request->input('target'))->where('status','unseen')->get();
+                    if(count($new_msg) > 0){
+                        array_push($count,count($new_msg));
+                    }
+                    else{
+                        array_push($count,0);
+                    }
+                }
+
+            }
+            else{
+                $count = -1;
+            }
+        }
+        else{
+            $count = -1;
+        }
+
+        return response()->json([
+            'count' => $count,
+        ]);
+    }
+    public function seenNotifications(Request $request)
+    {
+        $new_msgs = ChatNotification::where('order_product_id', $request->input('product'))->where('name', $request->input('target'))->where('status','unseen')->get();
+        foreach ($new_msgs as $new_msg){
+            $new_msg->status = 'seen';
+            $new_msg->save();
+        }
     }
 }

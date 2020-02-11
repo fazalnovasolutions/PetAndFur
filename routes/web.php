@@ -68,6 +68,9 @@ Route::post('/customer/order/review','CustomerController@SaveReview')->name('ord
 Route::get('/getChat','ChatController@getChat')->name('chat.get');
 Route::any('/saveChat','ChatController@saveChat')->name('chat.save');
 Route::any('/deleteMsg','ChatController@delete_msg')->name('chat.delete');
+Route::any('/getNotifications','ChatController@getNotifications')->name('chat.notifications');
+Route::any('/seenNotifications','ChatController@seenNotifications')->name('chat.seen');
+
 
 
 

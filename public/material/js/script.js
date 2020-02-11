@@ -41,6 +41,20 @@ $(document).ready(function(){
     /*Chat JS*/
     $('body').on('click','.btn-chat-open',function () {
         var current = $(this);
+        /*Set Notifications to seen*/
+        $.ajax({
+            url:'/seenNotifications',
+            method: 'get',
+            data:{
+                product:$(this).data('product'),
+                target: 'Customer',
+            },
+            success:function (response) {
+                current.text('Chat');
+                current.removeClass('btn-danger text-white animated bounce slower');
+                current.addClass('btn-blue text-white');
+            }
+        });
         $.ajax({
             url:$(this).data('route'),
             method: 'get',
@@ -62,7 +76,6 @@ $(document).ready(function(){
             }
         });
     });
-
     $('body').on('click','.delete-msg',function () {
         var current = $(this);
        $.ajax({
@@ -78,7 +91,6 @@ $(document).ready(function(){
            }
        }) ;
     });
-
     $('body').on('click','.send_btn',function(){
         var $msg = $('.write_msg').val();
 
@@ -130,7 +142,6 @@ $(document).ready(function(){
             form.submit();
         }
     });
-
     $('body').on('submit','.image-form',function (evt) {
         evt.preventDefault();
 
@@ -151,6 +162,48 @@ $(document).ready(function(){
             }
         });
     });
+
+    setInterval(getNotifications, 5000);
+    function getNotifications(){
+        $button = $('#chat-notify');
+        if($button.length > 0) {
+            $.ajax({
+                url: $button.data('notification'),
+                method: 'get',
+                data: {
+                    order: $button.data('order_id'),
+                    target: 'Customer'
+                },
+                success:
+                    function (data) {
+                        if (data.count !== -1) {
+                            var target = $('.btn-chat-open');
+                            $.each(data.count, function( array_index, value ) {
+                                target.each(function( index ) {
+                                    if(array_index === index){
+                                        if(value > 0){
+                                            $(this).text('New');
+                                            $(this).addClass('btn-danger text-white animated bounce ');
+                                            $(this).removeClass('btn-blue');
+                                            // alertify.error('You Have New Message');
+                                        }
+                                        else {
+                                            $(this).text('Chat');
+                                            $(this).removeClass('btn-danger text-white animated bounce ');
+                                            $(this).addClass('btn-blue text-white');
+                                        }
+                                    }
+                                });
+                            });
+
+                        }
+                        else{
+                            // alertify.error('Internal Server Erroorrr');
+                        }
+                    },
+            });
+        }
+    }
 
     $(".search_field").on("keyup", function() {
         var value = $(this).val().toLowerCase();

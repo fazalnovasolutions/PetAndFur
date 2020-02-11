@@ -89,11 +89,11 @@
         </div>
 
     </div>
+    <button id="chat-notify" style="display: none" data-notification="{{route('chat.notifications')}}" data-order_id="{{$order->id}}"></button>
 
     <div class="row">
         <div class="col-md-12">
             <div class="card p-3">
-
                 @foreach($order->has_products as $index => $product)
                     <div class="row p-3">
                         <div class="col-sm-6 col-md-6 p-0 card">
@@ -170,7 +170,7 @@
                                     <div class="col-sm-6 col-md-6">
                                         <button class="btn upload-design-button btn-rounded btn-success">Add Design</button>
                                         <div style="display: none">{{$order->name}}_{{$index+1}}</div>
-                                        <button style="float: right" class="btn btn-rounded btn-blue btn-chat-open" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" data-product="{{$product->id}}" data-target="#chat_modal"> <b class="text-white">Chat</b></button>
+                                        <button style="float: right" class="btn btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" data-product="{{$product->id}}" data-target="#chat_modal"> <b class="text-white">Chat</b></button>
 
                                     </div>
                                     <form style="display: none" class="upload-design" action="{{route('admin.order.line-item.design.upload')}}" method="POST" enctype="multipart/form-data">
@@ -371,4 +371,5 @@
 
         </div>
     </div>
+
 @endsection
