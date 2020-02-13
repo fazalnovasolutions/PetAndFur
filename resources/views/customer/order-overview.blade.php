@@ -7,8 +7,7 @@
             <div class="row justify-content-center mt-3" >
                 <div class="" >
                     <button class="btn btn-rounded btn-green"> <b class="text-white">Get updates by SMS</b></button>
-
-
+                    <button class="btn btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" {{--data-product="{{$product->id}}"--}} data-target="#chat_modal"> <b class="text-white">Chat</b></button>
                 </div>
             </div>
             @if(session()->has('msg'))
@@ -18,14 +17,18 @@
                     </div>
                 </div>
             @endif
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="{{asset('material/login-images/works.jpg')}}" alt="logo" style="max-width: 722px;">
+                </div>
+            </div>
             <div class="row justify-content-center mt-2">
-
-                    <div class="col-md-8">
+                <div class="col-md-12">
                     @foreach($order->has_products as $index => $product)
+                        <?php $product_index = $index ?>
                         <div class="card p-2">
                             <div class="card-header bg-lite d-inline-block">
-                                <h5 class="d-inline-block" style="vertical-align: sub"><b>Design: {{$order->name}}_{{$index+1}} </b></h5>
-                                <button style="float: right" class="btn btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" data-product="{{$product->id}}" data-target="#chat_modal"> <b class="text-white">Chat</b></button>
+                                <h5 class="d-inline-block" style="vertical-align: sub"><b>Design: {{$order->name}}_{{$index+1}}/#1 </b></h5>
                             </div>
                             <div class="card-block">
                                 <div class="row">
@@ -69,6 +72,7 @@
                                                     <span class="mdi mdi-check-circle-outline check_mark"></span>
                                                 </div>
                                                 <h6 class="text_active"><b>{{$product->has_design->status}}</b></h6>
+                                                <h6 class="text_active"><b>{{date_create($product->approved_date)->format('Y-m-d')}}</b></h6>
                                             </div>
                                         @elseif($product->has_design->status_id == 8)
                                             <div class="mr-1" style="margin-left: 20px;">
@@ -98,24 +102,88 @@
 
                                 <div class="row p-1 border-bottom-b-2">
                                     <div class="col-md-6">
-{{--                                        @if($product->latest_photo == null)--}}
-                                            @if(count(json_decode($product->properties)) > 0)
-                                                @foreach(json_decode($product->properties) as $property)
-                                                    @if($property->name == '_io_uploads')
-                                                        <img src="{{$property->value}}" height="auto" width="100%">
-                                                    @endif
-                                                @endforeach
-                                            @endif
-{{--                                        @else--}}
-{{--                                            <img src="{{asset('new_photos/'.$product->latest_photo)}}" height="200px" width="200px">--}}
-{{--                                        @endif--}}
+                                        {{--                                        @if($product->latest_photo == null)--}}
+                                        @if(count(json_decode($product->properties)) > 0)
+                                            @foreach(json_decode($product->properties) as $property)
+                                                @if($property->name == '_io_uploads')
+                                                    <img src="{{$property->value}}" height="auto" width="100%">
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                        {{--                                        @else--}}
+                                        {{--                                            <img src="{{asset('new_photos/'.$product->latest_photo)}}" height="200px" width="200px">--}}
+                                        {{--                                        @endif--}}
                                     </div>
                                     <div class="col-md-6">
+                                        <?php
+                                        $properties = json_decode($product->properties, true);
+
+                                        ?>
                                         @if($product->has_design != null)
                                             @if($product->has_design->design != null)
-                                                <img src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">
+                                                @if($product->has_background != null)
+                                                        <div class="image-contain" style="@if($product->has_background != null)
+                                                            background-image: url({{asset($product->has_background->image)}});
+                                                        @else
+                                                            background-image: url({{asset('material/background-images/Colorful.jpg')}});
+                                                        @endif
+                                                            background-repeat: no-repeat;
+                                                            background-size: cover;
+                                                            text-align: center
+                                                            " >
+                                                            @if($product->has_design != null)
+                                                                @if($product->has_design->design != null)
+                                                                    <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="80%">
+                                                                @endif
+                                                            @endif
+                                                        </div>
+{{--                                                        <div style="position: relative">--}}
+{{--                                                    <img  id="design_background" src="{{asset($product->has_background->image)}}" width="100%" height="auto">--}}
+{{--                                                    <img id="design_image" style="width: 87%; " src="{{asset('designs/'.$product->has_design->design)}}" width="100%" height="auto">--}}
+{{--                                                        </div>--}}
+                                                @else
+                                                    @if($properties)
+                                                        @php
+                                                            $style = '';
+                                                            foreach ($properties as $property){
+                                                            if($property['name'] == 'Style'){
+                                                            $style = $property['value'];
+                                                            }
+                                                            }
+                                                        @endphp
+                                                        @foreach($categories as $cat)
+                                                            @if($cat->name == $style)
+                                                                @foreach($cat->has_backgrounds as $index => $b)
+                                                                    @if($index == 0)
+                                                                            <div class="image-contain" style="
+                                                                                background-image: url({{asset($b->image)}});
+                                                                                background-repeat: no-repeat;
+                                                                                background-size: cover;
+                                                                                text-align: center
+                                                                                " >
+                                                                                @if($product->has_design != null)
+                                                                                    @if($product->has_design->design != null)
+                                                                                        <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="80%">
+                                                                                    @endif
+                                                                                @endif
+                                                                            </div>
+{{--                                                                            <div style="position: relative">--}}
+{{--                                                                        <img  id="design_background" src="{{asset($b->image)}}" width="100%" height="auto">--}}
+{{--                                                                        <img id="design_image" style="width: 87%;" src="{{asset('designs/'.$product->has_design->design)}}" width="100%" height="auto">--}}
+{{--                                                                            </div>--}}
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endif
                                             @endif
                                         @endif
+                                        {{--                                        @if($product->has_design != null)--}}
+                                        {{--                                            @if($product->has_design->design != null)--}}
+                                        {{--                                                <img src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">--}}
+                                        {{--                                            @endif--}}
+                                        {{--                                        @endif--}}
                                     </div>
                                 </div>
 
@@ -238,6 +306,122 @@
                                 </div>
                             </div>
                         </div>
+                        @if($product->design_count > 1)
+                            @foreach($product->has_many_designs()->where('design','!=',$product->has_design->design)->get() as $index=> $design)
+                                    <div class="card p-2">
+                                        <div class="card-header bg-lite d-inline-block">
+                                            <h5 class="d-inline-block" style="vertical-align: sub"><b>Design: {{$order->name}}_{{$product_index+1}}/#{{$index+2}} </b></h5>
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="row">
+                                                <h5> {{$product->title}} - {{$product->variant_title}}</h5>
+                                            </div>
+                                            @if(count(json_decode($product->properties)) > 0)
+                                                @foreach(json_decode($product->properties) as $property)
+                                                    @if($property->name != '_io_uploads')
+                                                        @if($product->has_changed_style == null)
+                                                            <div class="row p-1 ">
+                                                                <h5 class="pt-1"> <b>{{$property->name}} :</b> </h5>
+                                                                <div class="pt-1 ml-2 btn-blue ">
+                                                                    <h6 class="pr-2 pl-2 pt-1"><b>{{$property->value}}</b> </h6>
+                                                                </div>
+                                                            </div>
+                                                        @else
+                                                            <div class="row p-1 ">
+                                                                <h5 class="pt-1"> <b>Style :</b> </h5>
+                                                                <div class="pt-1 ml-2" style="background: {{$product->has_changed_style->color}};">
+                                                                    <h6 class="pr-2 pl-2 pt-1" style="color: white !important;"><b>{{$product->has_changed_style->style}}</b> </h6>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
+
+
+                                            <div class="row p-1 border-bottom-b-2">
+                                                <div class="col-md-6">
+                                                    {{--                                        @if($product->latest_photo == null)--}}
+                                                    @if(count(json_decode($product->properties)) > 0)
+                                                        @foreach(json_decode($product->properties) as $property)
+                                                            @if($property->name == '_io_uploads')
+                                                                <img src="{{$property->value}}" height="auto" width="100%">
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <?php
+                                                    $properties = json_decode($product->properties, true);
+
+                                                    ?>
+                                                    @if($product->has_design != null)
+                                                        @if($product->has_design->design != null)
+                                                            @if($product->has_background != null)
+                                                                    <div class="image-contain" style="@if($product->has_background != null)
+                                                                        background-image: url({{asset($product->has_background->image)}});
+                                                                    @else
+                                                                        background-image: url({{asset('material/background-images/Colorful.jpg')}});
+                                                                    @endif
+                                                                        background-repeat: no-repeat;
+                                                                        background-size: cover;
+                                                                        text-align: center
+                                                                        " >
+                                                                        @if($product->has_design != null)
+                                                                            @if($product->has_design->design != null)
+                                                                                <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
+                                                                            @endif
+                                                                        @endif
+                                                                    </div>
+{{--                                                                    <div style="position: relative">--}}
+{{--                                                                <img  id="design_background" src="{{asset($product->has_background->image)}}" width="100%" height="auto">--}}
+{{--                                                                <img id="design_image" style="width: 87%; " src="{{asset('designs/'.$design->design)}}" width="100%" height="auto">--}}
+{{--                                                                    </div>--}}
+                                                            @else
+                                                                @if($properties)
+                                                                    @php
+                                                                        $style = '';
+                                                                        foreach ($properties as $property){
+                                                                        if($property['name'] == 'Style'){
+                                                                        $style = $property['value'];
+                                                                        }
+                                                                        }
+                                                                    @endphp
+                                                                    @foreach($categories as $cat)
+                                                                        @if($cat->name == $style)
+                                                                            @foreach($cat->has_backgrounds as $index => $b)
+                                                                                @if($index == 0)
+                                                                                        <div class="image-contain" style="
+                                                                                            background-image: url({{asset($b->image)}});
+                                                                                            background-repeat: no-repeat;
+                                                                                            background-size: cover;
+                                                                                            text-align: center
+                                                                                            " >
+                                                                                            @if($product->has_design != null)
+                                                                                                @if($product->has_design->design != null)
+                                                                                                    <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="80%">
+                                                                                                @endif
+                                                                                            @endif
+                                                                                        </div>
+{{--                                                                                        <div style="position: relative">--}}
+{{--                                                                                    <img  id="design_background" src="{{asset($b->image)}}" width="100%" height="auto">--}}
+{{--                                                                                    <img id="design_image" style="width: 87%; " src="{{asset('designs/'.$design->design)}}" width="100%" height="auto">--}}
+{{--                                                                                        </div>--}}
+                                                                                @endif
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                        @endif
+
 
                     @endforeach
                 </div>
@@ -277,7 +461,6 @@
                 </div>
             </div>
         </div>
-
         <div class="modal fade" id="chat_modal" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content">

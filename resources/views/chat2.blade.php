@@ -226,11 +226,11 @@
                 <input type="hidden" name="name" value="{{$apply}}">
                 <input type="hidden" name="type" value="image">
                 <input type="hidden" name="order_id" value="{{$order}}">
-{{--                <input type="hidden" name="order_product_id" value="{{$product}}">--}}
+                <input type="hidden" name="order_product_id" value="{{$product}}">
             </form>
 
-            <button class="msg_send_btn send_btn" data-route="{{route('chat.save')}}" data-name="{{$apply}}" {{--data-product="{{$product}}"--}} data-type="text" data-order="{{$order}}" ><i class="fa fa-paper-plane"></i></button>
-            <button style="right: 40px" class="msg_send_btn send_btn_image" data-route="{{route('chat.save')}}" data-name="{{$apply}}" {{--data-product="{{$product}}"--}} data-type="image" data-order="{{$order}}"><i class="fa fa-file"></i></button>
+            <button class="msg_send_btn send_btn" data-route="{{route('chat.save')}}" data-name="{{$apply}}" data-product="{{$product}}" data-type="text" data-order="{{$order}}" ><i class="fa fa-paper-plane"></i></button>
+            <button style="right: 40px" class="msg_send_btn send_btn_image" data-route="{{route('chat.save')}}" data-name="{{$apply}}" data-product="{{$product}}" data-type="image" data-order="{{$order}}"><i class="fa fa-file"></i></button>
         </div>
     </div>
 </div>

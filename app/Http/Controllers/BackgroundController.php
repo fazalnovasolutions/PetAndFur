@@ -76,6 +76,7 @@ class BackgroundController extends Controller
         if($category != null){
             if(count($category->has_backgrounds) > 0){
                 $category->has_backgrounds()->delete();
+                $category->delete();
                 return redirect()->route('admin.background')->with('success', 'Category and Its Background Deleted Successfully!');
 
             }

@@ -100,13 +100,13 @@
                         <div class="dropdown-menu dropdown-menu-right user-dd flipInY">
                             <a class="dropdown-item" href="">
                                 <i class="ti-user m-r-5 m-l-5"></i> My Info</a>
-                            <a class="dropdown-item" href="" target="_blank">
-                                <i class="ti-email m-r-5 m-l-5"></i>Photo Guides</a>
-                            <a class="dropdown-item" href="" target="_blank">
+                            <a class="dropdown-item" href="https://www.boompup.com/pages/photo-guide " target="_blank">
+                                <i class="ti-camera m-r-5 m-l-5"></i>Photo Guides</a>
+                            <a class="dropdown-item" href="https://boompup.aftership.com/" target="_blank">
                                 <i class="ti-settings m-r-5 m-l-5"></i>Track Order
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="" target="_blank">
+                            <a class="dropdown-item" href="https://www.boompup.com/" target="_blank">
                                 <i class="fa fa-home m-r-5 m-l-5"></i>Store
                             </a>
                             <div class="dropdown-divider"></div>

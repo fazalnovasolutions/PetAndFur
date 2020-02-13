@@ -43,8 +43,10 @@ class CustomerController extends Controller
         }
 
         if($check != null){
+            $categories = BackgroundCategory::all();
             return view('customer.order-overview')->with([
-                'order' => $check
+                'order' => $check,
+                'categories' => $categories
             ]);
         }
         else{
@@ -61,6 +63,7 @@ class CustomerController extends Controller
     public function ChangeBackground(Request $request){
 
         if(session('order_name') != null){
+//            dd($request->product);
             $product = OrderProduct::where('id',$request->product)->first();
             if($product != null){
                 if($product->has_design->status_id != 6 && $product->has_design->status_id != 8){
@@ -70,11 +73,13 @@ class CustomerController extends Controller
                         foreach ($properties as $p){
                             if($p->name == 'Style'){
                                 $style = $p->value;
+                                $style_color = '#00ccff';
                             }
                         }
                     }
                     else{
                         $style =  $product->has_changed_style->style;
+                        $style_color = $product->has_changed_style->color;
                     }
 
                     if($style != null){
@@ -83,7 +88,8 @@ class CustomerController extends Controller
                             return view('customer.change-background')->with([
                                 'product' => $product,
                                 'category' => $category,
-                                'style' => $style
+                                'style' => $style,
+                                'style_color' => $style_color
                             ]);
                         }
                         else{
@@ -202,6 +208,8 @@ class CustomerController extends Controller
             $product->has_design->status ='Approved';
             $product->has_design->status_id = 6;
             $product->has_design->save();
+            $product->approved_date = now();
+            $product->save();
             return response()->json([
                 'status' => 'approved'
             ]);

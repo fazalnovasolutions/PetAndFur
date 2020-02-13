@@ -3,51 +3,12 @@ $(document).ready(function() {
 
     $(".custom-slider").slick({
         infinite: true,
-        // centerMode: true,
-        slidesToShow: 3,
+        centerMode: true,
+        slidesToShow: 1,
         slidesToScroll: 3,
         // arrows: true
     });
 /*Chat JQuery*/
-
-
-    $('body').on('click','.btn-chat-open',function () {
-        var current = $(this);
-        /*Set Notifications to seen*/
-        $.ajax({
-            url:'/seenNotifications',
-            method: 'get',
-            data:{
-                order_id:$(this).data('order_id'),
-                target: 'Designer',
-            },
-            success:function (response) {
-                current.text('Chat');
-                current.removeClass('btn-red text-white animated bounce slower');
-                current.addClass('btn-blue text-white');
-            }
-        });
-        $.ajax({
-            url:$(this).data('route'),
-            method: 'get',
-            data:{
-                // order_product_id:$(this).data('product'),
-                apply: 'Customer',
-                order : $(this).data('order_id'),
-            },
-            success:function (response) {
-                var modal = $(current).data('target');
-                $(modal).find('.modal-title').text(current.prev().text());
-                $(modal).find('.content-drop').empty();
-                $(modal).find('.content-drop').append(response.html);
-                $(modal).modal({
-                    show: true,
-                    focus:true
-                });
-
-            }
-        });
-    });
     $('body').on('click','.send_btn',function(){
         var $msg = $('.write_msg').val();
 
@@ -69,7 +30,7 @@ $(document).ready(function() {
                 type : $(this).data('type'),
                 content : $msg,
                 order_id : $(this).data('order'),
-                // order_product_id : $(this).data('product'),
+                order_product_id : $(this).data('product'),
             },
             success:function (response) {
                 console.log('sent');
@@ -99,27 +60,6 @@ $(document).ready(function() {
             form.submit();
         }
     });
-
-    $('body').on('submit','.image-form',function (evt) {
-        evt.preventDefault();
-
-        var formData = new FormData(this);
-
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'),
-            data:formData,
-            cache:false,
-            contentType: false,
-            processData: false,
-            success: function(data) {
-                console.log('send');
-            },
-            error: function(data) {
-                console.log('error');
-            }
-        });
-    });
     $('body').on('click','.delete-msg',function () {
         var current = $(this);
         $.ajax({
@@ -135,6 +75,64 @@ $(document).ready(function() {
             }
         }) ;
     });
+    $('body').on('submit','.image-form',function (evt) {
+        evt.preventDefault();
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+               console.log('send');
+            },
+            error: function(data) {
+                console.log('error');
+            }
+        });
+    });
+    $('body').on('click','.btn-chat-open',function () {
+        var current = $(this);
+        /*Set Notifications to seen*/
+        $.ajax({
+            url:'/seenNotifications',
+            method: 'get',
+            data:{
+                product:$(this).data('product'),
+                target: 'Designer',
+            },
+            success:function (response) {
+                current.text('Chat');
+                current.removeClass('btn-danger text-white animated bounce slower');
+                current.addClass('btn-blue text-white');
+            }
+        });
+        $.ajax({
+            url:$(this).data('route'),
+            method: 'get',
+            data:{
+                order_product_id:$(this).data('product'),
+                apply: 'Customer',
+                order : $(this).data('order_id'),
+            },
+            success:function (response) {
+                var modal = $(current).data('target');
+                $(modal).find('.modal-title').text(current.prev().text());
+                $(modal).find('.content-drop').empty();
+                $(modal).find('.content-drop').append(response.html);
+                $(modal).modal({
+                    show: true,
+                    focus:true
+                });
+
+            }
+        });
+    });
+
     setInterval(getNotifications, 5000);
     function getNotifications(){
         $button = $('#chat-notify');
@@ -154,14 +152,14 @@ $(document).ready(function() {
                                 target.each(function( index ) {
                                     if(array_index === index){
                                         if(value > 0){
-                                            $(this).text('You Have New Messages');
-                                            $(this).addClass('btn-red text-white animated  bounce slower');
+                                            $(this).text('New Messages');
+                                            $(this).addClass('btn-danger text-white animated  bounce slower');
                                             $(this).removeClass('btn-blue');
                                             // alertify.error('You Have New Message');
                                         }
                                         else {
                                             $(this).text('Chat');
-                                            $(this).removeClass('btn-red text-white animated bounce  slower');
+                                            $(this).removeClass('btn-danger text-white animated bounce  slower');
                                             $(this).addClass('btn-blue text-white');
                                         }
                                     }
@@ -213,9 +211,7 @@ $(document).ready(function() {
     });
 
     $('body').on('click','.background-div',function () {
-        var value =$(this).find('img').attr('src');
-        value = 'url('+value+')';
-        $('.image-contain').css('background-image',value);
+        $('#design_background').attr('src',$(this).find('img').attr('src'));
         $('#background-category').val($(this).find('img').attr('data-id'));
 
 

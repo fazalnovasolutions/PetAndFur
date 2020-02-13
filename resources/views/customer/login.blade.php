@@ -48,7 +48,7 @@
             <div id="loginform">
                 <div class="logo">
                     <span class="db">
-                        <img src="{{asset('material/login-images/support.png')}}" alt="logo" style="max-width: 400px;">
+                        <img src="{{asset('material/login-images/support2.png')}}" alt="logo" style="max-width: 400px;">
                     </span>
 
                 </div>

@@ -33,4 +33,8 @@ class OrderProduct extends Model
     {
         return $this->hasMany('App\NewPhoto','order_product_id');
     }
+
+    public function has_many_designs(){
+        return $this->hasMany('App\ProductDesign','order_product_id');
+    }
 }

@@ -82,8 +82,16 @@
                                     </select>
                                 </div>
                                 <div class="select-orders">
-                                    <select required class="form-control" name="order" >
-                                        <option value="">Select Order</option>
+                                    <select required class="form-control" name="start-order" >
+                                        <option value="">Start Order</option>
+                                        @foreach($orders as $o)
+                                            <option value="{{$o->id}}">{{$o->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="select-orders">
+                                    <select required class="form-control" name="end-order" >
+                                        <option value="">End Order</option>
                                         @foreach($orders as $o)
                                             <option value="{{$o->id}}">{{$o->name}}</option>
                                         @endforeach
@@ -98,26 +106,30 @@
 
                     </div>
                 </div>
-                <div class="col-md-6 pl-0" style="opacity: 0">
+                <div class="col-md-6" >
                     <div class="row">
-                        <div class="col-md-4 pl-0">
-                            <div class="form-group">
+                        <div class="col-md-12 d-inline-block pt-1">
+                            <form action="{{route('admin.designer.dashboard')}}" method="get">
+                            <div class="form-group d-inline-block" style="width: 38%">
                                 <label><b>Starting</b></label>
-                                <input class="form-control" type="date">
+                                <input required name="start" value="{{$start}}" class="form-control" type="date">
                             </div>
-                        </div>
-                        <div class="col-md-4 pr-0">
-                            <div class="form-group">
+                            <div class="form-group d-inline-block" style="width: 38%">
                                 <label><b>Ending</b></label>
-                                <input class="form-control" type="date">
+                                <input name="end" value="{{$end}}" required class="form-control" type="date">
                             </div>
+                            <div class="form-group d-inline-block" style="width: 18%">
+                                <input class=" form-control btn btn-sm text-white btn-purple btn-rounded" type="submit" value="Filter">
+                            </div>
+                            </form>
+                        </div>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-    </div>
+
 
     @foreach($designers as $index => $designer)
         <div class="pl-5">
@@ -183,7 +195,16 @@
                                         </button>
                                         @if(count($designer->has_reviews) > 0)
                                             <div class="dropdown-menu edit_menu" aria-labelledby="dropdownMenuButton">
-                                                @foreach($designer->has_reviews as $r)
+                                                <?php
+                                                if($start != null && $end != null){
+
+                                                    $reviews =  $designer->has_reviews()->where('created_at','>=',$start)->where('created_at','<=',$end)->get();
+                                                }
+                                                else{
+                                                    $reviews = $designer->has_reviews;
+                                                }
+                                                ?>
+                                                @foreach($reviews as $r)
                                                     <div class="row" style="padding: 10px">
                                                         <div class="col-md-12">
                                                             <div class="row">
@@ -240,7 +261,22 @@
                         <h5 class="card-header"><b>Designs</b></h5>
                         <div class="card-block ">
                             <div class="design-orders" align="center">
-                                <h3><b>{{count($designer->has_orders)}} Orders</b></h3>
+                                <?php
+                                if($start != null && $end != null){
+                                    $count = 0;
+                                    $orders  =  $designer->has_orders()->newQuery();
+                                    $orders->whereHas('has_products',function ($q) use ($start,$end){
+                                        $q->where('approved_date','>=',$start);
+                                        $q->where('approved_date','<=',$end);
+                                    });
+                                    $count = count($orders->get());
+
+                                }
+                                else{
+                                $count = count($designer->has_orders);
+                                }
+                                ?>
+                                <h3><b>{{$count}} Orders</b></h3>
                             </div>
                         </div>
                     </div>

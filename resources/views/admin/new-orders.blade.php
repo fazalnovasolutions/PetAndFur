@@ -4,9 +4,9 @@
         <div class="col-md-5 col-8 align-self-center">
             <h3><strong>New Orders</strong></h3>
         </div>
-                <div class="col-md-7 text-right">
-                    <a class="btn btn-warning" href="{{route('orders.sync')}}"> Sync All New Orders </a>
-                </div>
+        {{--                <div class="col-md-7 text-right">--}}
+        {{--                    <a class="btn btn-warning" href="{{route('orders.sync')}}"> Sync All New Orders </a>--}}
+        {{--                </div>--}}
     </div>
     <div class="row">
         <div class="col-md-2 pl-0">
@@ -35,7 +35,7 @@
                                 <th class="border-top-0" style="text-align: left !important;">ID</th>
                                 <th class="border-top-0" style="text-align: left !important;">Date</th>
                                 <th class="border-top-0" style="text-align: left !important;">Email</th>
-                                <th class="border-top-0" style="text-align: left !important;">Amount</th>
+                                <th class="border-top-0" style="text-align: left !important;">Designer</th>
                                 <th class="border-top-0">Action</th>
                                 <th class="border-top-0">Order Status</th>
                             </tr>
@@ -43,33 +43,59 @@
                             </thead>
                             <tbody id="myTable">
                             @foreach($orders as $order)
+                                @if($order->sync == 'no')
                                 <tr>
                                     <td>
-                                        {{ $order->name }}
+                                        @if($order->sync == 'no')
+                                            @if($order->designer_id != null)
+                                            <a href="{{route('orders.sync.order.detail',[
+                                                'id' =>$order->id,
+                                                'designer_id'=>$order->designer_id
+                                                ])}}">
+                                                {{ $order->name }}
+                                            </a>
+                                                @else
+                                                {{ $order->name }}
+                                            @endif
+                                        @else
+                                            {{ $order->name }}
+                                        @endif
+
                                     </td>
                                     <td> {{ date_create($order->created_at)->format('Y-m-d H:i a') }}</td>
                                     <td >{{ $order->email }}</td>
-                                    <td> {{$order->total_price}} {{$order->currency}}</td>
+                                    <td>
+                                        <span class="badge badge-pill designer" style="color: {{$order->designer_color}}; background: {{$order->designer_background}}">{{$order->designer}} </span>
+                                    </td>
                                     <td align="center">
                                         @if($order->sync == 'no')
-                                            <button onclick="window.location.href='{{route('orders.sync.order',$order->id)}}'" class="btn btn-sm btn-warning "><i class="text-white font-16 mdi mdi-sync"></i></button>
+                                            @if($order->designer_id != null)
+                                                <button onclick="window.location.href='{{route('orders.sync.order',[
+                                                'id' =>$order->id,
+                                                'designer_id'=>$order->designer_id
+                                                ])}}'" class="btn btn-sm btn-warning "><i class="text-white font-16 mdi mdi-sync"></i></button>
+                                            @endif
                                         @endif
                                     </td>
                                     @if($order->sync == 'yes')
-                                    <td align="center" class="order-status-td" style="background: green;color:#ffff">
-                                        <div class="dropdown">
-                                            <span style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Synchronised </span>
-                                        </div>
-                                    </td>
+                                        <td align="center" class="order-status-td" style="background: green;color:#ffff">
+                                            <div class="dropdown">
+                                                <span style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Synchronised </span>
+                                            </div>
+                                        </td>
                                     @else
                                         <td align="center" class="order-status-td not-synced" style="background: red;color:#ffff">
                                             <div class="dropdown">
-                                                <span onclick="window.location.href='{{route('orders.sync.order',$order->id)}}'" style="cursor: pointer;float: right" class="pr-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Need Synchronisation </span>
+                                                <span @if($order->designer_id != null) onclick="window.location.href='{{route('orders.sync.order',[
+                                                'id' =>$order->id,
+                                                'designer_id'=>$order->designer_id
+                                                ])}}'" @endif style="cursor: pointer;float: right" class="pr-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> @if($order->designer_id != null) Need Synchronisation @else Cant Sync @endif </span>
                                             </div>
 
                                         </td>
                                     @endif
                                 </tr>
+                                @endif
                             @endforeach
                             </tbody>
                         </table>

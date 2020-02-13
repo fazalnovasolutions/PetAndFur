@@ -18,42 +18,60 @@ class DesignerController extends Controller
         $this->helper = new HelperController();
     }
 
-    public function Dashboard(){
+    public function Dashboard(Request $request){
         $designers = Designer::where('shop_id', $this->helper->getShop()->id)->get();
         $query =  Order::where('shop_id',$this->helper->getShop()->id)->newQuery();
         $query->whereHas('has_additional_details',function ($q){
             $q->where('status_id','!=',2);
-
         });
-       $orders = $query->get();
-       $ratings = [];
-       foreach ($designers as $designer){
-           array_push($ratings, $designer->has_reviews->avg('rating'));
-       }
-//       dd($ratings);
+        $orders = $query->get();
+        $ratings = [];
+        $counts = [];
+        foreach ($designers as $designer){
+            array_push($ratings, $designer->has_reviews->avg('rating'));
+
+        }
+        if($request->has('start') && $request->has('end'))
+        {
+            $start = $request->input('start');
+            $end =  $request->input('end');
+        }
+        else{
+            $start = null;
+            $end = null;
+        }
+        ;
         return view('admin.dashboard')->with([
             'designers' => $designers,
             'orders' => $orders,
-            'ratings' => $ratings
+            'ratings' => $ratings,
+            'start' => $start,
+            'end' => $end,
         ]);
     }
     public function ManualDesignPicker(Request $request){
-        $order = Order::find($request->input('order'));
-        if($order != null){
-            if( $order->has_additional_details != null){
-                $order->has_additional_details->designer_id = $request->input('designer');
-                $order->has_additional_details->save();
-                $order->designer_id = $request->input('designer');
-                $order->save();
-                return redirect()->back()->with('success', 'Designer Assigned Successfully');
-            }
-            else{
-                return redirect()->back()->with('success', 'Designer Not Assigned');
-            }
+//        dd($request);
+        if($request->input('start-order') < $request->input('end-order')){
+            $start = $request->input('start-order');
+            $end =$request->input('end-order');
         }
         else{
-            return redirect()->back()->with('success', 'Order Not Found');
+            $end = $request->input('start-order');
+            $start =$request->input('end-order');
         }
+        for($i =$start; $i<=$end ;$i++){
+            $order = Order::find($i);
+            if($order != null){
+                if( $order->has_additional_details != null){
+                    $order->has_additional_details->designer_id = $request->input('designer');
+                    $order->has_additional_details->save();
+                    $order->designer_id = $request->input('designer');
+                    $order->save();
+                }
+            }
+        }
+        return redirect()->back()->with('success', 'Designer Assigned Successfully');
+
     }
 
     public function Designer_Save(Request $request){

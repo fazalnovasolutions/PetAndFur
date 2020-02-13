@@ -6,8 +6,8 @@
         <div class="col-md-4 ml-5">
             <div class="row justify-content-center">
                 <h5 class="pt-1"> <b>Style :</b> </h5>
-                <div class="pt-1 ml-2" style="background: {{$category->color}}">
-                    <h6 class="pr-2 pl-2 pt-1 text-white"><b>{{$style}}</b> </h6>
+                <div class="pt-1 ml-2" style="background: {{$style_color}}">
+                    <h6 class="pr-2 pl-2 pt-1 @if($product->has_changed_style != null) text-white @endif "><b>{{$style}}</b> </h6>
                 </div>
             </div>
         </div>
@@ -67,11 +67,26 @@
     <div class="row justify-content-center mt-3">
 
         <div class="col-md-6" align="center">
-            @if($product->has_background != null)
-                <img id="design_background" src="{{asset($product->has_background->image)}}">
-                @else
-                <img id="design_background" src="{{asset('material/background-images/Colorful.jpg')}}">
+            <div class="image-contain" style="@if($product->has_background != null)
+                background-image: url({{asset($product->has_background->image)}});
+            @else
+                background-image: url({{asset('material/background-images/Colorful.jpg')}});
+            @endif
+                background-repeat: no-repeat;
+                background-size: cover;
+                text-align: center
+                " >
+                @if($product->has_design != null)
+                    @if($product->has_design->design != null)
+                        <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="80%">
+                    @endif
                 @endif
+            </div>
+{{--            @if($product->has_background != null)--}}
+{{--                <img id="design_background" src="{{asset($product->has_background->image)}}" width="945px">--}}
+{{--                @else--}}
+{{--                <img id="design_background" src="{{asset('material/background-images/Colorful.jpg')}}" width="945px">--}}
+{{--                @endif--}}
 
 {{--            @if($product->latest_photo == null)--}}
 {{--                @if(count(json_decode($product->properties)) > 0)--}}
@@ -82,11 +97,7 @@
 {{--                    @endforeach--}}
 {{--                @endif--}}
 {{--            @else--}}
-                @if($product->has_design != null)
-                    @if($product->has_design->design != null)
-                        <img id="design_image" src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">
-                    @endif
-                @endif
+
 {{--                <img  src="{{asset('new_photos/'.$product->latest_photo)}}">--}}
 {{--            @endif--}}
 

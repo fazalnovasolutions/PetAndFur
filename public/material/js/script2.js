@@ -35,7 +35,7 @@ $(document).ready(function(){
         });
     }
 
-
+    //////////////c///Search order Feild/////////////
 
 
     /*Chat JS*/
@@ -46,12 +46,12 @@ $(document).ready(function(){
             url:'/seenNotifications',
             method: 'get',
             data:{
-                order_id:$(this).data('order_id'),
+                product:$(this).data('product'),
                 target: 'Customer',
             },
             success:function (response) {
                 current.text('Chat');
-                current.removeClass('btn-red text-white animated bounce slower');
+                current.removeClass('btn-danger text-white animated bounce slower');
                 current.addClass('btn-blue text-white');
             }
         });
@@ -59,7 +59,7 @@ $(document).ready(function(){
             url:$(this).data('route'),
             method: 'get',
             data:{
-                // order_product_id:$(this).data('product'),
+                order_product_id:$(this).data('product'),
                 apply: 'Designer',
                 order : $(this).data('order_id'),
             },
@@ -75,6 +75,21 @@ $(document).ready(function(){
 
             }
         });
+    });
+    $('body').on('click','.delete-msg',function () {
+        var current = $(this);
+       $.ajax({
+           url : $(this).data('route'),
+           method: 'get',
+           data:{
+             id : $(this).data('id'),
+           },
+           success:function (data) {
+               if(data.status === 'deleted'){
+                   current.parent().remove();
+               }
+           }
+       }) ;
     });
     $('body').on('click','.send_btn',function(){
         var $msg = $('.write_msg').val();
@@ -97,7 +112,7 @@ $(document).ready(function(){
                 type : $(this).data('type'),
                 content : $msg,
                 order_id : $(this).data('order'),
-                // order_product_id : $(this).data('product'),
+                order_product_id : $(this).data('product'),
             },
             success:function (response) {
                 console.log('sent');
@@ -147,21 +162,7 @@ $(document).ready(function(){
             }
         });
     });
-    $('body').on('click','.delete-msg',function () {
-        var current = $(this);
-        $.ajax({
-            url : $(this).data('route'),
-            method: 'get',
-            data:{
-                id : $(this).data('id'),
-            },
-            success:function (data) {
-                if(data.status === 'deleted'){
-                    current.parent().remove();
-                }
-            }
-        }) ;
-    });
+
     setInterval(getNotifications, 5000);
     function getNotifications(){
         $button = $('#chat-notify');
@@ -181,14 +182,14 @@ $(document).ready(function(){
                                 target.each(function( index ) {
                                     if(array_index === index){
                                         if(value > 0){
-                                            $(this).text('You Have New Messages');
-                                            $(this).addClass('btn-red text-white animated  bounce slower');
+                                            $(this).text('New');
+                                            $(this).addClass('btn-danger text-white animated bounce ');
                                             $(this).removeClass('btn-blue');
                                             // alertify.error('You Have New Message');
                                         }
                                         else {
-                                            $(this).text('Customer Chat');
-                                            $(this).removeClass('btn-red text-white animated bounce  slower');
+                                            $(this).text('Chat');
+                                            $(this).removeClass('btn-danger text-white animated bounce ');
                                             $(this).addClass('btn-blue text-white');
                                         }
                                     }
@@ -247,26 +248,15 @@ $(document).ready(function(){
 
     // $('.order_status').click(function () {
     $('body').on('click','.order_status',function () {
-        $("#myTable tr").each(function() {
-            $(this).show();
-        });
         var value=$(this).text();
-        console.log(value);
         $('.order_status_button').text(value);
+        value= value.split(" ");
 
-
-       if($(this).text() !== 'All Statuses'){
-           $("#myTable tr .design-status h6").filter(function() {
-               if($(this).data('text') !== value){
-                   $(this).parents('tr').hide();
-               }
-               else{
-                   $(this).parents('tr').show() ;
-               }
-
-               // var dropdown=$(this).parent();
-               // var td=$(dropdown).parent();
-               // $($(td).parent()).toggle($(this).text().toLowerCase().indexOf(value[0].toLowerCase()) > -1)
+       if($(this).text() !== 'All Orders'){
+           $("#myTable tr td .dropdown span").filter(function() {
+               var dropdown=$(this).parent();
+               var td=$(dropdown).parent();
+               $($(td).parent()).toggle($(this).text().toLowerCase().indexOf(value[0].toLowerCase()) > -1)
            });
        }
        else{
@@ -341,8 +331,6 @@ $(document).ready(function(){
 
     // $(".change_status").click(function () {
     $('body').on('click','.change_status',function () {
-
-        var current = $(this);
         var text=$(this).text();
         // text=text.split(" ");
 
@@ -352,41 +340,25 @@ $(document).ready(function(){
 
         drop_menu=$(drop_menu)[0].children
         var span =$(drop_menu)[0];
-        if($(this).data('type') === 'order-inner'){
-            if (text === "Not Completed") {
-               var h6 = current.parents('.dropdown').find('h5');
-                h6.text(text)
-                h6.append('<i class=" m-l-5 fa fa-chevron-down"></i>');
-                h6.css("background","#a53838");
 
-            }else if(text === "Completed" ){
-                var h6 = current.parents('.dropdown').find('h5');
-                h6.text(text)
-                h6.append('<i class=" m-l-5 fa fa-chevron-down"></i>');
-                h6.css("background","#449d44");
-            }
-        }else{
-            if(text === "New Order"){
-                $(span).text(text)
-                td.css("background","#0066CC");
-                td.closest('tr').css("background","#FFFFFF");
-                td.closest('tr').css("color","#67757c")
+        if(text === "New Order"){
+            $(span).text(text)
+            td.css("background","#0066CC");
+            td.closest('tr').css("background","#FFFFFF");
+            td.closest('tr').css("color","#67757c")
 
-            }else if (text === "Not Completed") {
-                $(span).text(text)
-                td.css("background","#a53838");
-                td.closest('tr').css("background","#FFFFFF");
-                td.closest('tr').css("color","#67757c")
+        }else if (text === "Not Completed") {
+            $(span).text(text)
+            td.css("background","#a53838");
+            td.closest('tr').css("background","#FFFFFF");
+            td.closest('tr').css("color","#67757c")
 
-            }else if(text === "Completed" ){
-                $(span).text(text)
-                td.css("background","#449d44");
-                td.closest('tr').css("background","#c8bfdf");
-                td.closest('tr').css("color","White")
-            }
+        }else if(text === "Completed" ){
+            $(span).text(text)
+            td.css("background","#449d44");
+            td.closest('tr').css("background","#c8bfdf");
+            td.closest('tr').css("color","White")
         }
-
-
         $.ajax({
             url:$(this).data('route'),
             method:$(this).data('method'),
@@ -496,29 +468,34 @@ $(document).ready(function(){
     })
 
 
+
+
+
     /////////////mark orders all //////////////////
     $('.actionbox').hide();
 
     // $('#check-all').click(function () {
     $('body').on('click','#check-all',function () {
-
         if (this.checked) {
             $(".checkSingle").each(function() {
                 this.checked=true;
-            });
-            // var countchecked = $("table input[type=checkbox]:checked").length;
-            // countchecked = countchecked - 1;
-            $('.actionbox').show();
 
+            });
+
+            var countchecked = $("table input[type=checkbox]:checked").length;
+            countchecked = countchecked - 1;
+            $('.actionbox').show();
+            // $('#selecteditems').text(countchecked +' Items Selected');
 
         } else {
+            // $('#selecteditems').text('');
 
             $(".checkSingle").each(function() {
                 this.checked=false;
                 $('.actionbox').hide();
+
             });
         }
-        selectedOrders();
 
     })
 
@@ -526,8 +503,6 @@ $(document).ready(function(){
 
     // $(".checkSingle").click(function () {
     $('body').on('click','.checkSingle',function () {
-
-        selectedOrders();
         if ($(this).is(":checked")) {
             var isAllChecked = 0;
 
@@ -539,6 +514,7 @@ $(document).ready(function(){
 
             if (isAllChecked == 0) {
                 $("#check-all").prop("checked", true);
+
             }
         }
         else {
@@ -546,25 +522,6 @@ $(document).ready(function(){
             // $('#actionbox').hide();
         }
     });
-
-    $('body').on('click','.set-to-complete-orders',function () {
-       $(this).next().submit();
-    });
-
-    function selectedOrders(){
-        var orders_array =[];
-        $(".checkSingle").each(function() {
-            if (this.checked)
-            {
-                orders_array.push($(this).data('order_id'));
-            }
-
-        });
-        // console.log(orders_array);
-        $('#orders_array').val(orders_array);
-        console.log($('#orders_array').val());;
-    }
-
     /*Delete Category With Its Background*/
     $('body').on('click','.delete-category-btn',function () {
         var value =$(this).parents('.row').find('select[name=category]').val();

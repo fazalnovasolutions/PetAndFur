@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Chat;
+use App\ChatNotification;
 use App\Designer;
 use App\DesignStyle;
 use App\NewPhoto;
@@ -10,6 +11,7 @@ use App\Order;
 use App\OrderAdditionalDetails;
 use App\OrderProduct;
 use App\OrderProductAdditionalDetails;
+use App\ProductDesign;
 use App\RequestFix;
 use App\ReviewRating;
 use App\User;
@@ -57,10 +59,12 @@ class HomeController extends Controller
         OrderAdditionalDetails::truncate();
         OrderProduct::truncate();
         OrderProductAdditionalDetails::truncate();
+        ProductDesign::truncate();
         Designer::truncate();
         Chat::truncate();
         User::truncate();
         ReviewRating::truncate();
+        ChatNotification::truncate();
         DB::table('model_has_roles')->truncate();
         $this->SuperAdminCreate();
         return redirect()->route('login');

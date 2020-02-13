@@ -34,4 +34,8 @@ class Order extends Model
         return $this->hasMany('App\RequestFix','order_id');
     }
 
+    public function has_customer_new_messages(){
+        return $this->hasMany('App\ChatNotification','order_id');
+    }
+
 }

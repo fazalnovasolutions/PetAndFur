@@ -11,8 +11,8 @@ use App\Order;
 use App\OrderAdditionalDetails;
 use App\OrderProduct;
 use App\OrderProductAdditionalDetails;
+use App\ProductDesign;
 use App\Status;
-use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -32,8 +32,15 @@ class OrdersController extends Controller
     public function filter_orders(Request $request){
         $query = Order::where('shop_id',$this->helper->getShop()->id)->newQuery();
         if($request->input('search')){
-            $order_names = explode(',',$request->input('search'));
+            if (strpos($request->input('search'), ',')) {
+                $order_names = explode(',',$request->input('search'));
+            }
+            else{
+                $order_names = explode('、',$request->input('search'));
+            }
+
             $query->whereIn('name',$order_names);
+
             $query->orWhere('email','LIKE','%'.$request->input('search').'%');
             $array = explode(' ',$request->input('search'));
             $query->orWhereIn('bill_first_name',$array);
@@ -75,7 +82,7 @@ class OrdersController extends Controller
             $query->whereHas('has_additional_details',function ($q) use ($request){
                 $q->where('status_id',$request->input('type'));
             });
-          $orders = $query->orderBy('name', 'DESC')->paginate(30);
+            $orders = $query->orderBy('name', 'DESC')->paginate(30);
         }
         else{
             $orders = Order::where('shop_id', $this->helper->getShop()->id)->orderBy('name', 'DESC')->paginate(30);
@@ -112,14 +119,60 @@ class OrdersController extends Controller
             $page = $request->input('page');
         }
         $req = $this->helper->getShop()->api()->rest('GET', '/admin/orders.json',['page'=>$page]);
+        $designers = Designer::where('shop_id',$this->helper->getShop()->id)
+            ->where('status',1)->get();
+        if(count($designers) > 0) {
+            $designers = $designers->sort(function ($a, $b) {
+                $count_order_a = count($a->has_orders);
+                $count_order_b = count($b->has_orders);
+
+                if ($count_order_a == $count_order_b) {
+                    return 0;
+                }
+                return ($count_order_a < $count_order_b) ? -1 : 1;
+            });
+            /*Initializing a Designer Stack*/
+            $designers_stack = new DesignerStack(count($designers));
+            foreach ($designers as $designer) {
+                $designers_stack->push($designer->id);
+            }
+        }
+        else{
+            $designers_stack = new DesignerStack(count($designers));
+        }
         foreach ($req->body->orders as $order){
             if(Order::where('shopify_id',$order->id)->exists()){
+
                 $order->sync = 'yes';
+                $exist =  Order::where('shopify_id',$order->id)->first();
+                $order->designer_id = $exist->designer_id;
+                $order->designer = $exist->has_designer->name;
+                $order->designer_color = $exist->has_designer->color;
+                $order->designer_background = $exist->has_designer->background_color;
+
             }
             else{
                 $order->sync = 'no';
+                if(!$designers_stack->isEmpty()){
+                    $designer = $designers_stack->pop();
+                    $order->designer_id = $designer;
+                    $exist = Designer::find($designer);
+                    $order->designer = $exist->name;
+                    $order->designer_color = $exist->color;
+                    $order->designer_background = $exist->background_color;
+                    $designers_stack->push($designer);
+                }
+                else{
+                    $order->designer_id = null;
+                    $order->designer = 'no designer';
+                    $order->designer_color = '#ffffff';
+                    $order->designer_background = "#ff0000";
+                }
+
             }
         }
+
+
         return view('admin.new-orders')->with([
             'orders'=>$req->body->orders,
             'page' => $page
@@ -135,8 +188,9 @@ class OrdersController extends Controller
         }
         $this->AssignStatus($this->helper->getShop()->shopify_domain);
         $this->DesignerPicker($this->helper->getShop()->shopify_domain);
-        return redirect()->back();
+//        return redirect()->back();
     }
+
     public function CreateOrder($order, $shop){
         if (Order::where('shopify_id', '=', $order->id)->exists()) {
             $order_add = Order::where('shopify_id', '=', $order->id)->first();
@@ -234,6 +288,7 @@ class OrdersController extends Controller
         $line_item->product_id = $item->product_id;
         $line_item->order_id = $order->id;
         $line_item->shop_id = $this->helper->getShopDomain($shop)->id;
+        $line_item->design_count = 0;
 
         $line_item->save();
     }
@@ -330,29 +385,44 @@ class OrdersController extends Controller
 
     public function design_upload(Request $request){
 //        dd($request);
-       $target =  OrderProductAdditionalDetails::where('order_id',$request->input('order_id'))
+        $target =  OrderProductAdditionalDetails::where('order_id',$request->input('order_id'))
             ->where('order_product_id',$request->input('product_id'))->first();
-       if($target != null){
-           if ($request->hasFile('design')) {
-               $file = $request->file('design');
-               $name = Str::slug($file->getClientOriginalName());
-               $design = date("mmYhisa_") . $name;
-               $file->move(public_path() . '/designs/', $design);
-           } else {
-               $design = '';
-           }
-           $target->design = $design;
-           $target->status ='In-Processing';
-           $target->status_id = 3;
-           $target->save();
-           $order = Order::find($request->input('order_id'));
-           $user = \App\User::find(Auth::id());
-           $this->helper->CheckDesigner($order,$user);
-           return redirect()->back();
-       }
-       else{
-           return redirect()->back();
-       }
+        if($target != null){
+            if ($request->hasFile('design')) {
+                $file = $request->file('design');
+                $name = Str::slug($file->getClientOriginalName());
+                $design = date("mmYhisa_") . $name;
+                $file->move(public_path() . '/designs/', $design);
+            } else {
+                $design = '';
+            }
+
+            $target->design = $design;
+            $target->status ='In-Processing';
+            $target->status_id = 3;
+            $target->save();
+            /*Product Design*/
+            $product_design = new ProductDesign();
+            $product_design->design = $target->design;
+            $product_design->order_product_id = $target->order_product_id;
+            $product_design->order_id = $target->order_id;
+            $product_design->setUpdatedAt(now());
+            $product_design->setCreatedAt(now());
+            $product_design->save();
+            /*incrementing count*/
+            $product = OrderProduct::find($target->order_product_id);
+            $product->design_count = $product->design_count+1;
+            $product->save();
+
+            $order = Order::find($request->input('order_id'));
+            /*Check Designer*/
+            $user = \App\User::find(Auth::id());
+            $this->helper->CheckDesigner($order,$user);
+            return redirect()->back();
+        }
+        else{
+            return redirect()->back();
+        }
     }
 
     public function design_delete(Request $request){
@@ -363,6 +433,10 @@ class OrdersController extends Controller
             $target->status ='No Design';
             $target->status_id = 8;
             $target->save();
+            $product =OrderProduct::find($target->order_product_id);
+            $product->design_count = $product->design_count-1;
+            $product->save();
+
             $order = Order::find($request->input('order'));
             $user = \App\User::find(Auth::id());
             $this->helper->CheckDesigner($order,$user);
@@ -378,7 +452,7 @@ class OrdersController extends Controller
         $category = BackgroundCategory::find($request->input('category'));
         if($category != null){
             DesignStyle::updateOrCreate([
-               'order_product_id' => $request->input('product_id')
+                'order_product_id' => $request->input('product_id')
             ],[
                 'style' => $category->name,
                 'color' =>$category->color,
@@ -396,22 +470,73 @@ class OrdersController extends Controller
     }
 
     public function update_notes(Request $request){
-       $order = Order::find($request->input('order_id'));
+        $order = Order::find($request->input('order_id'));
         $user = \App\User::find(Auth::id());
         $this->helper->CheckDesigner($order,$user);
-       if($order != null){
-           $order->note = $request->input('notes');
-           $order->save();
-       }
-           return redirect()->back();
+        if($order != null){
+            $order->note = $request->input('notes');
+            $order->save();
+        }
+        return redirect()->back();
 
     }
 
     public function sync_order(Request $request){
+//        dd($request->designer_id);
         $req = $this->helper->getShop()->api()->rest('GET', '/admin/orders/'.$request->id.'.json');
         $this->CreateOrder($req->body->order, $this->helper->getShop()->shopify_domain);
         $this->AssignStatus($this->helper->getShop()->shopify_domain);
-        $this->DesignerPicker($this->helper->getShop()->shopify_domain);
+        /*Assign Designer*/
+        $order =  Order::where('shopify_id',$request->id)->first();
+        $order->designer_id = $request->designer_id;
+        $order->save();
+        $order->has_additional_details->designer_id = $request->designer_id;
+        $order->has_additional_details->save();
+        foreach ($order->has_products as $item){
+            $design = new OrderProductAdditionalDetails();
+            $design->status = 'No Design';
+            $design->status_id = '8';
+            $design->order_id = $order->id;
+            $design->order_product_id = $item->id;
+            $design->shop_id = $this->helper->getShop()->id;
+            $design->save();
+        }
+//        $this->DesignerPicker($this->helper->getShop()->shopify_domain);
+        return redirect()->route('orders.new');
+    }
+    public function new_order_detail(Request $request){
+        $req = $this->helper->getShop()->api()->rest('GET', '/admin/orders/'.$request->id.'.json');
+        $designer = Designer::find($request->designer_id);
+//        dd($req->body->order);
+        return view('admin.new-order-detail')->with([
+            'order'=>$req->body->order,
+            'designer' => $designer
+        ]);
+    }
+
+    public function extra_design_delete(Request $request){
+        $extra_design = ProductDesign::find($request->id);
+        $product =OrderProduct::find($extra_design->order_product_id);
+        $product->design_count = $product->design_count-1;
+        $product->save();
+        $extra_design->delete();
         return redirect()->back();
+    }
+    public function bulk_order_completed(Request $request){
+       $orders = explode(',',$request->input('orders'));
+       if(count($orders) > 0){
+           foreach ($orders as $order){
+               $exist = Order::find($order);
+               if($exist->has_additional_details != null ){
+                   $exist->has_additional_details->status = 'Completed';
+                   $exist->has_additional_details->status_id = '2';
+                   $exist->has_additional_details->save();
+               }
+           }
+           return redirect()->back();
+       }
+       else{
+           return redirect()->back();
+       }
     }
 }

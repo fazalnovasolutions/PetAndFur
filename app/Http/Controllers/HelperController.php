@@ -48,11 +48,14 @@ class HelperController extends Controller
     }
 
     public function CheckDesigner(Order $order, User $current){
-        if($order->designer_id !== $current->is_designer->id){
-            $order->designer_id = $current->is_designer->id;
-            $order->has_additional_details->designer_id = $current->is_designer->id;
-            $order->save();
-            $order->has_additional_details->save();
+        if($current->hasRole('designer')){
+            if($order->designer_id !== $current->is_designer->id){
+                $order->designer_id = $current->is_designer->id;
+                $order->has_additional_details->designer_id = $current->is_designer->id;
+                $order->save();
+                $order->has_additional_details->save();
+            }
         }
+
     }
 }

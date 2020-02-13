@@ -23,11 +23,11 @@ class ChatController extends Controller
     }
 
     public function getChat(Request $request){
-       $msgs =  Chat::where('order_id',$request->input('order'))->get();
+       $msgs =  Chat::where('order_product_id',$request->input('order_product_id'))->get();
        $html = view('chat',[
            'msgs' => $msgs,
            'apply' => $request->input('apply'),
-//           'product' => $request->input('order_product_id'),
+           'product' => $request->input('order_product_id'),
            'order' => $request->input('order')
        ])->render();
        return response()->json([
@@ -53,7 +53,7 @@ class ChatController extends Controller
             $new->content = $request->input('content');
         }
         $new->order_id = $request->input('order_id');
-//        $new->order_product_id = $request->input('order_product_id');
+        $new->order_product_id = $request->input('order_product_id');
         $new->setCreatedAt(now());
         $new->setUpdatedAt(now());
         $new->save();
@@ -61,30 +61,30 @@ class ChatController extends Controller
         $notification = new ChatNotification();
         $notification->name = $new->name;
         $notification->order_id = $new->order_id;
-//        $notification->order_product_id = $new->order_product_id;
+        $notification->order_product_id = $new->order_product_id;
         $notification->chat_id = $new->id;
         $notification->status = 'unseen';
         $notification->save();
 
-        $targets =  OrderProductAdditionalDetails::where('order_id',$request->input('order_id'))
-           ->get();
-        foreach ($targets as $target){
-            if($target != null){
-                if($target->status_id != 8 && $target->status_id != 6 ){
-                    if($request->input('name') == 'Customer'){
-                        $target->status ='Update';
-                        $target->status_id = 7;
-                        $target->save();
-                    }
-                    else{
-                        $target->status ='In-Processing';
-                        $target->status_id = 3;
-                        $target->save();
-                    }
+        $target =  OrderProductAdditionalDetails::where('order_id',$request->input('order_id'))
+            ->where('order_product_id',$request->input('order_product_id'))->first();
+        if($target != null){
+            if($target->status_id != 8 && $target->status_id != 6 ){
+                if($request->input('name') == 'Customer'){
+                    $target->status ='Update';
+                    $target->status_id = 7;
+                    $target->save();
                 }
-
+                else{
+                    $target->status ='In-Processing';
+                    $target->status_id = 3;
+                    $target->save();
+                }
             }
+
         }
+
+
         $user = \App\User::find(Auth::id());
         if($user != null){
             $order = Order::find($request->input('order_id'));
@@ -107,13 +107,21 @@ class ChatController extends Controller
     public function getNotifications(Request $request){
         $order = Order::find($request->input('order'));
         if($order != null){
-            $new_msg  =  ChatNotification::where('order_id',$order->id)->where('name',$request->input('target'))->where('status','unseen')->get();
-            $count = [];
-            if(count($new_msg) > 0){
-                array_push($count,count($new_msg));
+            if(count($order->has_products) > 0){
+                $count = [];
+                foreach ($order->has_products as $p){
+                    $new_msg =  ChatNotification::where('order_product_id',$p->id)->where('name',$request->input('target'))->where('status','unseen')->get();
+                    if(count($new_msg) > 0){
+                        array_push($count,count($new_msg));
+                    }
+                    else{
+                        array_push($count,0);
+                    }
+                }
+
             }
             else{
-                array_push($count,0);
+                $count = -1;
             }
         }
         else{
@@ -126,7 +134,7 @@ class ChatController extends Controller
     }
     public function seenNotifications(Request $request)
     {
-        $new_msgs = ChatNotification::where('order_id', $request->input('order_id'))->where('name', $request->input('target'))->where('status','unseen')->get();
+        $new_msgs = ChatNotification::where('order_product_id', $request->input('product'))->where('name', $request->input('target'))->where('status','unseen')->get();
         foreach ($new_msgs as $new_msg){
             $new_msg->status = 'seen';
             $new_msg->save();

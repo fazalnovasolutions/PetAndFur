@@ -2,7 +2,7 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-12 col-12" align="center">
-            <h3 class=""><strong>Have a great design day!</strong></h3>
+            <h3 class=""><strong>Have a great design day, {{\Illuminate\Support\Facades\Auth::user()->name}}! </strong></h3>
         </div>
     </div>
 
