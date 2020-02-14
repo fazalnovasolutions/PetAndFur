@@ -280,16 +280,23 @@ return [
     | Value is for the endpoint to call
     |
     */
-
     'webhooks' => [
-        /*
-            [
-                'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'orders/create'),
-                'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', 'https://some-app.com/webhook/orders-create')
-            ],
-            ...
-        */
+        [
+            'topic' => 'orders/updated',
+            'address' => 'https://phpstack-176572-1152020.cloudwaysapps.com/webhook/orders-update'
+        ]
     ],
+
+//
+//    'webhooks' => [
+//        /*
+//            [
+//                'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'orders/create'),
+//                'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', 'https://some-app.com/webhook/orders-create')
+//            ],
+//            ...
+//        */
+//    ],
 
     /*
     |--------------------------------------------------------------------------
