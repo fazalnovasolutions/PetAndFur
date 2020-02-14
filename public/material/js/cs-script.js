@@ -4,8 +4,8 @@ $(document).ready(function() {
     $(".custom-slider").slick({
         infinite: true,
         // centerMode: true,
-        slidesToShow: 2,
-        slidesToScroll: 2,
+        slidesToShow: 4,
+        slidesToScroll: 4,
         // arrows: true
     });
 /*Chat JQuery*/
