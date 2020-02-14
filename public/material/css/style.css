@@ -8062,12 +8062,12 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
     font-size: 25px;
 }
 .approved {
-    color: #1d643b;
+    color: #00f331 ;
 }
 .approved_div {
     width: 40px;
     height: 40px;
-    background: #00cc00;
+    background: #00f331 ;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -8078,13 +8078,15 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
     color: #fff !important;
     font-size: 32px;
 }
-.settings_icon {
-    color: #1c2260;
+.settings_iicon {
+    color: #015eab;
 }
 .setting_div {
     width: 40px;
     height: 40px;
-    background: #1c2260;
+    /*background: #1c2260;*/
+    background: #015eab;
+
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -8096,12 +8098,12 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
     font-size: 25px;
 }
 .updating {
-    color: #ec971f;
+    color:rgb(255,192,0);
 }
 .update_div {
     width: 40px;
     height: 40px;
-    background: #ec971f;
+    background: rgb(255,192,0);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -8112,7 +8114,7 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
 .cir {
     width: 40px;
     height: 40px;
-    background: red;
+    background: #ff2635;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -8126,15 +8128,15 @@ span.rec {
     border: 2px solid white;
 }
 .not_completed{
-    color: red;
+    color: #ff2635;
 }
 
 .photo {
-    color: #673AB7;
+    color: #7200d5  ;
     font-size: 25px;
 }
 .photo_text {
-    color: #673AB7;
+    color: #7200d5  ;
 }
 .pallete{
     font-size: 25px;
@@ -8146,18 +8148,18 @@ span.rec {
 }
 .fix_request {
     font-size: 25px;
-    color: #00c292;
+    color: #0ddaff ;
 }
 .fix_text {
-    color: #00c292;
+    color: #0ddaff ;
 }
 .message {
     font-size: 25px;
-    color: #2d995b;
+    color: #00ffa6 ;
 }
 
 .message_text{
-    color: #2d995b;
+    color: #00ffa6 ;
 }
 
 .categories{

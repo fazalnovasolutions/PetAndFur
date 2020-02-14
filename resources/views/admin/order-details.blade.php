@@ -97,7 +97,7 @@
                     <?php $product_index = $index ?>
                     <div class="row p-3">
                         <div class="col-sm-6 col-md-6 p-0 card">
-                            <div class="card-header bg-lite" style="padding-bottom: 26px"> <b>Design: {{ $order->name }}_{{$index+1}}/#1</b></div>
+                            <div class="card-header bg-lite" style="padding-bottom: 26px"> <b>Design: {{ $order->name }}_{{$index+1}}</b></div>
                             <div class="row">
                                 <div class="col-sm-6 col-md-7 border-right">
                                     <div class="tittle p-3">
@@ -148,7 +148,6 @@
                                     @endif
 
                                 </div>
-                                {{--                                @if($product->latest_photo == null)--}}
                                 @if($properties)
                                     @foreach($properties as $property)
                                         @if($property['name'] == '_io_uploads')
@@ -169,9 +168,6 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6">
                                         <button class="btn upload-design-button btn-rounded btn-success">Add Design</button>
-{{--                                        <div style="display: none">{{$order->name}}_{{$index+1}}</div>--}}
-{{--                                        <button style="float: right" class="btn btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" data-product="{{$product->id}}" data-target="#chat_modal"> <b class="text-white">Chat</b></button>--}}
-
                                     </div>
                                     <form style="display: none" class="upload-design" action="{{route('admin.order.line-item.design.upload')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
@@ -208,10 +204,6 @@
                                             @if($product->has_design->design != null)
                                                 <i style="float: right;cursor: pointer;position: relative;z-index: 99;" onclick="window.location.href='{{route('admin.order.product.delete.design')}}?order={{$order->id}}&&product={{$product->id}}'" class=" delete-design mdi mdi-close-circle"></i>
                                                 @if($product->has_background != null)
-{{--                                                    <div style="position: relative">--}}
-{{--                                                    <img  id="design_background" src="{{asset($product->has_background->image)}}" width="100%" height="auto">--}}
-{{--                                                    <img id="design_image"  style="width:87% " src="{{asset('designs/'.$product->has_design->design)}}" width="100%" height="auto">--}}
-{{--                                                    </div>--}}
                                                     <div class="image-contain" style="@if($product->has_background != null)
                                                         background-image: url({{asset($product->has_background->image)}});
                                                     @else
@@ -254,10 +246,6 @@
                                                                                 @endif
                                                                             @endif
                                                                         </div>
-{{--                                                                        <div style="position: relative">--}}
-{{--                                                                        <img  id="design_background" src="{{asset($b->image)}}" width="100%" height="auto">--}}
-{{--                                                                        <img id="design_image"  style="width:87% " src="{{asset('designs/'.$product->has_design->design)}}" width="100%" height="auto">--}}
-{{--                                                                        </div>--}}
                                                                     @endif
                                                                 @endforeach
                                                             @endif
@@ -275,13 +263,13 @@
                                                 <div class="setting_div">
                                                     <span class="mdi mdi-settings text-white display-6"></span>
                                                 </div>
-                                                <h6 class="text-dark"><b>{{$product->has_design->status}}</b></h6>
+                                                <h6 class="settings_iicon"><b>{{$product->has_design->status}}</b></h6>
                                             @elseif($product->has_design->status_id == 6)
                                                 <div class="approved_div">
                                                     <span class="mdi mdi-check-circle-outline check_mark"></span>
                                                 </div>
-                                                <h6 class="text_active"><b>{{$product->has_design->status}}</b></h6>
-                                                <h6 class="text_active"><b>{{date_create($product->approved_date)->format('Y-m-d')}}</b></h6>
+                                                <h6 class="approved"><b>{{$product->has_design->status}}</b></h6>
+                                                <h6 class="approved"><b>{{date_create($product->approved_date)->format('Y-m-d')}}</b></h6>
                                             @elseif($product->has_design->status_id == 8)
                                                 <div class="cir">
                                                     <span class="rec"></span>
@@ -328,15 +316,13 @@
                             <div class=" col-sm-6 col-md-6 p-0 card" style="opacity: 0"></div>
 
                                 <div class=" col-sm-6 col-md-6 p-0 card">
-                                    <div class="card-header bg-lite" style="padding-bottom: 26px"> <b>Design: {{ $order->name }}_{{$product_index+1}}/#{{$index+2}}</b>
+                                    <div class="card-header bg-lite" style="padding-bottom: 26px"> <b>Design: {{ $order->name }}_{{$product_index+1}}</b>
                                         <button style="float: right" onclick="window.location.href='{{route('admin.order.product.extra.delete.design',$design->id)}}'" class="btn btn-sm btn-red"><i class="mdi mdi-close-circle"></i> Delete</button>
                                     </div>
                                     <div class="flexing">
                                         <div class="col-md-6">
                                             <div class="mt-4 pb-3">
-                                                @if($product->has_design != null)
-                                                    @if($product->has_design->design != null)
-                                                        @if($product->has_background != null)
+                                                @if($product->has_background != null)
 {{--                                                            <div style="position: relative">--}}
 {{--                                                                <img  id="design_background" src="{{asset($product->has_background->image)}}" width="100%" height="auto">--}}
 {{--                                                                <img id="design_image"  style="width:87% " src="{{asset('designs/'.$design->design)}}" width="100%" height="auto">--}}
@@ -351,15 +337,12 @@
                                                                 background-size: cover;
                                                                 text-align: center
                                                                 " >
-                                                                @if($product->has_design != null)
-                                                                    @if($product->has_design->design != null)
-                                                                        <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
-                                                                    @endif
-                                                                @endif
+                                                                <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
+
                                                             </div>
 
                                                         @else
-                                                            @if($properties)
+                                                    @if($properties)
                                                                 @php
                                                                     $style = '';
                                                                     foreach ($properties as $property){
@@ -378,23 +361,13 @@
                                                                                     background-size: cover;
                                                                                     text-align: center
                                                                                     " >
-                                                                                    @if($product->has_design != null)
-                                                                                        @if($product->has_design->design != null)
-                                                                                            <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="80%">
-                                                                                        @endif
-                                                                                    @endif
+                                                                                    <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
                                                                                 </div>
-{{--                                                                                <div style="position: relative">--}}
-{{--                                                                                <img  id="design_background" src="{{asset($b->image)}}" width="100%" height="auto">--}}
-{{--                                                                                <img id="design_image"  style="width:87% " src="{{asset('designs/'.$design->design)}}" width="100%" height="auto">--}}
-{{--                                                                                </div>--}}
                                                                             @endif
                                                                         @endforeach
                                                                     @endif
                                                                 @endforeach
                                                             @endif
-                                                        @endif
-                                                    @endif
                                                 @endif
                                             </div>
                                         </div>

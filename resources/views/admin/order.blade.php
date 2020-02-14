@@ -161,13 +161,13 @@
                                                         <div class="setting_div">
                                                             <span class="mdi mdi-settings text-white display-6"></span>
                                                         </div>
-                                                        <h6 class="text-dark" data-text="{{$product->has_design->status}}"><b>{{$product->has_design->status}}</b></h6>
+                                                        <h6 class="settings_iicon" data-text="{{$product->has_design->status}}"><b>{{$product->has_design->status}}</b></h6>
                                                     @elseif($product->has_design->status_id == 6)
                                                         <div class="approved_div">
                                                             <span class="mdi mdi-check-circle-outline check_mark"></span>
                                                         </div>
-                                                        <h6 class="text_active" data-text="{{$product->has_design->status}}"><b>{{$product->has_design->status}}</b></h6>
-                                                        <span style="white-space: nowrap" class="text_active"><b>{{date_create($product->approved_date)->format('Y-m-d')}}</b></span>
+                                                        <h6 class="approved" data-text="{{$product->has_design->status}}"><b>{{$product->has_design->status}}</b></h6>
+                                                        <span style="white-space: nowrap" class="approved"><b>{{date_create($product->approved_date)->format('Y-m-d')}}</b></span>
 
                                                     @elseif($product->has_design->status_id == 8)
                                                         <div class="cir">

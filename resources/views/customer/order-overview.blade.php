@@ -28,7 +28,7 @@
                         <?php $product_index = $index ?>
                         <div class="card p-2">
                             <div class="card-header bg-lite d-inline-block">
-                                <h5 class="d-inline-block" style="vertical-align: sub"><b>Design: {{$order->name}}_{{$index+1}}/#1 </b></h5>
+                                <h5 class="d-inline-block" style="vertical-align: sub"><b>Design: {{$order->name}}_{{$index+1}} </b></h5>
                             </div>
                             <div class="card-block">
                                 <div class="row">
@@ -64,15 +64,15 @@
                                                 <div class="setting_div">
                                                     <span class="mdi mdi-settings text-white display-6"></span>
                                                 </div>
-                                                <h6 class="text-dark"><b>{{$product->has_design->status}}</b></h6>
+                                                <h6 class="settings_iicon"><b>{{$product->has_design->status}}</b></h6>
                                             </div>
                                         @elseif($product->has_design->status_id == 6)
                                             <div class="mr-1" style="margin-left: 20px;">
                                                 <div class="approved_div">
                                                     <span class="mdi mdi-check-circle-outline check_mark"></span>
                                                 </div>
-                                                <h6 class="text_active"><b>{{$product->has_design->status}}</b></h6>
-                                                <h6 class="text_active"><b>{{date_create($product->approved_date)->format('Y-m-d')}}</b></h6>
+                                                <h6 class="approved"><b>{{$product->has_design->status}}</b></h6>
+                                                <h6 class="approved"><b>{{date_create($product->approved_date)->format('Y-m-d')}}</b></h6>
                                             </div>
                                         @elseif($product->has_design->status_id == 8)
                                             <div class="mr-1" style="margin-left: 20px;">
@@ -102,7 +102,7 @@
 
                                 <div class="row p-1 border-bottom-b-2">
                                     <div class="col-md-6">
-                                        {{--                                        @if($product->latest_photo == null)--}}
+
                                         @if(count(json_decode($product->properties)) > 0)
                                             @foreach(json_decode($product->properties) as $property)
                                                 @if($property->name == '_io_uploads')
@@ -110,9 +110,7 @@
                                                 @endif
                                             @endforeach
                                         @endif
-                                        {{--                                        @else--}}
-                                        {{--                                            <img src="{{asset('new_photos/'.$product->latest_photo)}}" height="200px" width="200px">--}}
-                                        {{--                                        @endif--}}
+
                                     </div>
                                     <div class="col-md-6">
                                         <?php
@@ -137,10 +135,7 @@
                                                                 @endif
                                                             @endif
                                                         </div>
-{{--                                                        <div style="position: relative">--}}
-{{--                                                    <img  id="design_background" src="{{asset($product->has_background->image)}}" width="100%" height="auto">--}}
-{{--                                                    <img id="design_image" style="width: 87%; " src="{{asset('designs/'.$product->has_design->design)}}" width="100%" height="auto">--}}
-{{--                                                        </div>--}}
+
                                                 @else
                                                     @if($properties)
                                                         @php
@@ -167,10 +162,6 @@
                                                                                     @endif
                                                                                 @endif
                                                                             </div>
-{{--                                                                            <div style="position: relative">--}}
-{{--                                                                        <img  id="design_background" src="{{asset($b->image)}}" width="100%" height="auto">--}}
-{{--                                                                        <img id="design_image" style="width: 87%;" src="{{asset('designs/'.$product->has_design->design)}}" width="100%" height="auto">--}}
-{{--                                                                            </div>--}}
                                                                     @endif
                                                                 @endforeach
                                                             @endif
@@ -179,11 +170,7 @@
                                                 @endif
                                             @endif
                                         @endif
-                                        {{--                                        @if($product->has_design != null)--}}
-                                        {{--                                            @if($product->has_design->design != null)--}}
-                                        {{--                                                <img src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">--}}
-                                        {{--                                            @endif--}}
-                                        {{--                                        @endif--}}
+
                                     </div>
                                 </div>
 
@@ -310,7 +297,7 @@
                             @foreach($product->has_many_designs()->where('design','!=',$product->has_design->design)->get() as $index=> $design)
                                     <div class="card p-2">
                                         <div class="card-header bg-lite d-inline-block">
-                                            <h5 class="d-inline-block" style="vertical-align: sub"><b>Design: {{$order->name}}_{{$product_index+1}}/#{{$index+2}} </b></h5>
+                                            <h5 class="d-inline-block" style="vertical-align: sub"><b>Design: {{$order->name}}_{{$product_index+1}} </b></h5>
                                         </div>
                                         <div class="card-block">
                                             <div class="row">
@@ -341,7 +328,7 @@
 
                                             <div class="row p-1 border-bottom-b-2">
                                                 <div class="col-md-6">
-                                                    {{--                                        @if($product->latest_photo == null)--}}
+
                                                     @if(count(json_decode($product->properties)) > 0)
                                                         @foreach(json_decode($product->properties) as $property)
                                                             @if($property->name == '_io_uploads')
@@ -353,11 +340,8 @@
                                                 <div class="col-md-6">
                                                     <?php
                                                     $properties = json_decode($product->properties, true);
-
                                                     ?>
-                                                    @if($product->has_design != null)
-                                                        @if($product->has_design->design != null)
-                                                            @if($product->has_background != null)
+                                                    @if($product->has_background != null)
                                                                     <div class="image-contain" style="@if($product->has_background != null)
                                                                         background-image: url({{asset($product->has_background->image)}});
                                                                     @else
@@ -367,18 +351,10 @@
                                                                         background-size: cover;
                                                                         text-align: center
                                                                         " >
-                                                                        @if($product->has_design != null)
-                                                                            @if($product->has_design->design != null)
-                                                                                <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
-                                                                            @endif
-                                                                        @endif
+                                                                        <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
                                                                     </div>
-{{--                                                                    <div style="position: relative">--}}
-{{--                                                                <img  id="design_background" src="{{asset($product->has_background->image)}}" width="100%" height="auto">--}}
-{{--                                                                <img id="design_image" style="width: 87%; " src="{{asset('designs/'.$design->design)}}" width="100%" height="auto">--}}
-{{--                                                                    </div>--}}
                                                             @else
-                                                                @if($properties)
+                                                            @if($properties)
                                                                     @php
                                                                         $style = '';
                                                                         foreach ($properties as $property){
@@ -397,24 +373,16 @@
                                                                                             background-size: cover;
                                                                                             text-align: center
                                                                                             " >
-                                                                                            @if($product->has_design != null)
-                                                                                                @if($product->has_design->design != null)
-                                                                                                    <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="80%">
-                                                                                                @endif
-                                                                                            @endif
+                                                                                            <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
                                                                                         </div>
-{{--                                                                                        <div style="position: relative">--}}
-{{--                                                                                    <img  id="design_background" src="{{asset($b->image)}}" width="100%" height="auto">--}}
-{{--                                                                                    <img id="design_image" style="width: 87%; " src="{{asset('designs/'.$design->design)}}" width="100%" height="auto">--}}
-{{--                                                                                        </div>--}}
                                                                                 @endif
                                                                             @endforeach
                                                                         @endif
                                                                     @endforeach
                                                                 @endif
-                                                            @endif
                                                         @endif
-                                                    @endif
+
+
                                                 </div>
                                             </div>
                                         </div>
