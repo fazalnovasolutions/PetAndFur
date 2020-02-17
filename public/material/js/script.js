@@ -624,6 +624,7 @@ $(document).ready(function(){
     // });
 
     $('body').on('click','.send-email',function () {
+        console.log($(this).data('route'));
         $.ajax({
             url:$(this).data('route'),
             method:'GET',
