@@ -114,12 +114,12 @@ $(document).ready(function(){
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('.msg_history').append('<div class="outgoing_msg">\n' +
-                    '                        <div class="sent_msg">\n' +
-                    '                                <p>\n' +
-                    '                                    <img class="image" src="'+e.target.result+'" >\n' +
-                    '                                </p>\n' +
-                    '                            <span class="time_date"> '+moment().format('kk:mm a')+' | '+moment().format('MMM  DD,YYYY')+' </span></div>\n' +
-                    '                    </div>');
+                    ' <div class="sent_msg">\n' +
+                    '<p>\n' +
+                    '<img class="image" src="'+e.target.result+'" >\n' +
+                    '</p>\n' +
+                    '<span class="time_date"> '+moment().format('kk:mm a')+' | '+moment().format('MMM  DD,YYYY')+' </span></div>\n' +
+                    '</div>');
                 $(".msg_history").scrollTop(1000);
             };
             reader.readAsDataURL(input.files[0]);
@@ -506,8 +506,6 @@ $(document).ready(function(){
             $(".checkSingle").each(function() {
                 this.checked=true;
             });
-            // var countchecked = $("table input[type=checkbox]:checked").length;
-            // countchecked = countchecked - 1;
             $('.actionbox').show();
 
 
@@ -526,24 +524,29 @@ $(document).ready(function(){
 
     // $(".checkSingle").click(function () {
     $('body').on('click','.checkSingle',function () {
-
+        console.log($('.checkSingle:checked').length)
         selectedOrders();
+
+        if($('.checkSingle:checked').length > 0){
+            $('.actionbox').show();
+        }
+        else{
+            $('.actionbox').hide();
+        }
         if ($(this).is(":checked")) {
             var isAllChecked = 0;
 
             $(".checkSingle").each(function() {
                 if (!this.checked)
                     isAllChecked = 1;
-
             });
 
-            if (isAllChecked == 0) {
+            if (isAllChecked === 0) {
                 $("#check-all").prop("checked", true);
             }
         }
         else {
             $("#check-all").prop("checked", false);
-            // $('#actionbox').hide();
         }
     });
 
@@ -620,5 +623,22 @@ $(document).ready(function(){
     //
     // });
 
+    $('body').on('click','.send-email',function () {
+        $.ajax({
+            url:$(this).data('route'),
+            method:'GET',
+            data:{
+                order: $(this).data('id'),
+            },
+            success:function(response){
+                if(response.status === 'error'){
+                    alertify.error(response.message);
+                }
+                else{
+                    alertify.success(response.message);
+                }
+            },
+        })
+    });
 
 });

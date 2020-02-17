@@ -139,38 +139,59 @@
             height: auto;
             overflow-y: auto;
         }
+        .freq{
+            padding: 0px 0px 17px 0px;
+        }
+        .freq-title h4{
+            font-weight: 600;
+        }
+        .frequent_question{
+            background: #01c0c8 ;
+            color: white;
+        }
     </style>
-<div class="container">
-    <div class="card">
-        <div class="card-body">
-            <div class="mesgs">
-                <div class="msg_history">
-                    <div class="incoming_msg">
-                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="mesgs">
+                    <div class="msg_history">
+                        <div class="incoming_msg">
+                            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                            <div class="received_msg">
+                                <div class="received_withd_msg">
+                                    <p>Test which is a new approach to have all
+                                        solutions</p>
+                                    <span class="time_date"> 11:01 AM    |    June 9</span></div>
+                            </div>
+                        </div>
+                        <div class="outgoing_msg">
+                            <div class="sent_msg">
                                 <p>Test which is a new approach to have all
                                     solutions</p>
-                                <span class="time_date"> 11:01 AM    |    June 9</span></div>
+                                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
                         </div>
                     </div>
-                    <div class="outgoing_msg">
-                        <div class="sent_msg">
-                            <p>Test which is a new approach to have all
-                                solutions</p>
-                            <span class="time_date"> 11:01 AM    |    June 9</span> </div>
+                    <div class="type_msg">
+                        <div class="input_msg_write">
+                            <input type="text" class="write_msg" placeholder="Type a message" />
+                            <button class="msg_send_btn" ><i class="fa fa-paper-plane"></i></button>
+                            <button style="right: 40px" class="msg_send_btn"><i class="fa fa-file"></i></button>
+                        </div>
                     </div>
-                </div>
-                <div class="type_msg">
-                    <div class="input_msg_write">
-                        <input type="text" class="write_msg" placeholder="Type a message" />
-                        <button class="msg_send_btn" ><i class="fa fa-paper-plane"></i></button>
-                        <button style="right: 40px" class="msg_send_btn"><i class="fa fa-file"></i></button>
+                    <div class="freq">
+                        <div class="freq-title"><h4>some common questions:</h4></div>
+                        <div class="frequent_question btn btn-sm" data-answer="You can upload some other photos for us to take a look at!
+                        Just click the 'New Photo' button and upload your photos.
+                        We'll email you once your new design is ready for your review😉
+                    ">How can I change my photo?</div>
+                        <div class="frequent_question btn btn-sm" data-answer="That is the fun part😉 Just click the 'Choose Colors/Choos Background' button. Once you've found your favorite, select it and click to confirm. Then, all you need to do is approve your artwork and that's it!">
+                            How can I choose the colors/background?
+                        </div>
+                        <div class="frequent_question btn btn-sm" data-answer="You can definitely change the style of your design! Just let us know the one you want. We'll email you once your new design is ready for your review😉">How can I change the style?</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 @endsection

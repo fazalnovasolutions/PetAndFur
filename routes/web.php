@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth']], function(){
     });
 });
 
+Route::get('/email','OrdersController@sendEmail')->name('email.send');
+
 
 //Route::get('admin/background','OrderController@getBackground')->name('admin.background');
 //Route::get('admin/login','OrderController@ManagementLogin')->name('admin.login');

@@ -39,7 +39,7 @@ class ChatController extends Controller
 
         if ($request->hasFile('content')) {
             $file = $request->file('content');
-            $name = date('his') . '_' . $file->getClientOriginalName();
+            $name = date('his') . '_' .str_replace(' ','',$file->getClientOriginalName()) ;
             $file_name = '/chat-images/' . date("m-m-Y") . '/';
             $file->move(public_path() . '' . $file_name, $name);
         }

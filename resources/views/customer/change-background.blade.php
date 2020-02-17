@@ -14,7 +14,8 @@
 
     </div>
     <div class="row mt-5">
-        <div id="back-slider" class="pl-5 " >
+        <input type="hidden" id="slick-count" value="{{count($category->has_backgrounds)-1}}">
+        <div id="back-slider" class="pl-5 ">
             <!-- The slideshow -->
             <div class="custom-slider">
                 @foreach($category->has_backgrounds as $b)

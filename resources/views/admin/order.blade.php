@@ -136,19 +136,19 @@
                                     <td>
                                         <a href="{{route('order.detail', $order->id)}}">{{ $order->name }}</a>
                                     </td>
-                                    <td style="white-space: nowrap">2020-01-10</td>
-                                    <td>{{ $order->email }}</td>
-                                    <td>
+                                    <td style="white-space: nowrap">{{date_create($order->created_at)->format('Y-m-d')}}</td>
+                                    <td align="center">{{ $order->email }}</td>
+                                    <td align="center">
                                         <div class="button-group">
-                                            <a href="" class="btn waves-effect waves-light btn-rounded btn-xs btn-info send_email">
+                                            <a  data-id="{{$order->id}}" data-route="{{route('email.send')}}" class="send-email btn waves-effect waves-light btn-rounded btn-xs btn-info text-white">
                                                 Send
                                             </a>
                                         </div>
                                     </td>
                                     <td style="white-space: nowrap">
-                                        2020-01-20
+                                        {{$order->last_email_at}}
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         @if($order->has_designer != null)
                                             <span class="badge badge-pill designer" style="color: {{$order->has_designer->color}}; background: {{$order->has_designer->background_color}}">{{$order->has_designer->name}} </span>
                                         @endif

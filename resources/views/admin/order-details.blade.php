@@ -26,11 +26,11 @@
                 @if($order->has_additional_details != null)
                     @if($order->has_additional_details->status_id == 1)   <h5 style="cursor: pointer;padding: 10px;width: max-content" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="pt-1 pb-1 alerting">Not Completed <i class="m-l-5 fa fa-chevron-down"></i></h5> @elseif($order->has_additional_details->status_id == 2)   <h5 style="cursor: pointer ;padding: 10px;background: green;color: white;width:max-content "  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="pt-1 pb-1" >Completed <i class="m-l-5 fa fa-chevron-down"></i></h5> @endif </span>
 
-                <div  class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item text-primary change_status" data-type="order-inner" data-id="{{$order->id}}" data-route="{{route('admin.orders.change_status')}}" data-method="GET" data-status-id="1">Not Completed</a>
-                    <a class="dropdown-item text-primary change_status" data-type="order-inner" data-id="{{$order->id}}" data-route="{{route('admin.orders.change_status')}}" data-method="GET" data-status-id="2">Completed</a>
-                </div>
-                @endif
+                    <div  class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item text-primary change_status" data-type="order-inner" data-id="{{$order->id}}" data-route="{{route('admin.orders.change_status')}}" data-method="GET" data-status-id="1">Not Completed</a>
+                        <a class="dropdown-item text-primary change_status" data-type="order-inner" data-id="{{$order->id}}" data-route="{{route('admin.orders.change_status')}}" data-method="GET" data-status-id="2">Completed</a>
+                    </div>
+                    @endif
             </div>
         </div>
     </div>
@@ -61,9 +61,8 @@
             <div class="align-self-center pb-4"  >
                 <button class="btn btn-rounded btn-green">Send SMS</button>
 
-                <button class="btn btn-rounded text-white" style="background: #673AB7" type="button" id=""> Send Email Update</button>
+                <button class="btn btn-rounded text-white btn-danger" type="button" data-toggle="modal" data-target="#send-mail"> Send Email Update</button>
                 <div style="display: none">{{$order->name}}</div>
-{{--                <button class="btn btn-rounded btn-blue">Customer Chat</button>--}}
             </div>
             <div class="align-self-end pb-4">
                 <button  class="btn btn-md btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" {{--data-product="{{$product->id}}"--}} data-target="#chat_modal"> <b class="text-white">Customer Chat</b></button>
@@ -75,11 +74,11 @@
                     <div class="modal-content">
                         <div class="modal-body">
                             <div class="heading">
-                                <h6><b>Don't forget to send the email update!</b></h6>
+                                <h6><b>Confirmation to send the email update for Order {{$order->name}}!</b></h6>
                             </div>
                             <div class="mail-buttons">
-                                <button class="btn btn-danger m-3">Not Now</button>
-                                <button class="btn btn-primary m-3">Send Email</button>
+                                <button data-dismiss="modal" aria-label="Close" class="btn btn-danger m-3">Not Now</button>
+                                <button class="btn btn-primary m-3 send-email" data-dismiss="modal" aria-label="Close"o data-id="{{$order->id}}" data-route="{{route('email.send')}}">Send Email</button>
                             </div>
                         </div>
                     </div>
@@ -93,7 +92,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card p-3">
-                @foreach($order->has_products as $index => $product)
+                @foreach($order->has_products->reverse() as $index => $product)
                     <?php $product_index = $index ?>
                     <div class="row p-3">
                         <div class="col-sm-6 col-md-6 p-0 card">
@@ -290,20 +289,30 @@
                                         @endif
 
                                         @if(count($product->has_request_fixes) > 0)
-                                            <div class="modal_button" data-target="#fix_request_modal{{$index}}">
+                                            <div class="modal_button" data-target="#fix_request_modal{{$product_index}}">
                                                 <div>
-                                                    <span class="mdi mdi-file-check fix_request modal_button" data-target="#fix_request_modal{{$index}}"></span>
+                                                    <span class="mdi mdi-file-check fix_request modal_button" data-target="#fix_request_modal{{$product_index}}"></span>
                                                 </div>
-                                                <h6 class="fix_text modal_button" data-target="#fix_request_modal{{$index}}"><b>FIX REQUEST</b></h6>
+                                                <h6 class="fix_text modal_button" data-target="#fix_request_modal{{$product_index}}"><b>FIX REQUEST</b></h6>
                                             </div>
                                         @endif
 
                                         @if(count($product->has_new_photos) > 0)
-                                            <div class="modal_button" data-target="#fix_request_modal{{$index}}">
-                                                <div>
-                                                    <span class="mdi mdi-camera photo modal_button" data-target="#fix_request_modal{{$index}}"></span>
+                                            <div class="dropdown">
+                                                <h6 style="cursor: pointer;margin: 0" data-toggle="dropdown">
+                                                    <span class="mdi mdi-camera photo"></span>
+                                                </h6>
+                                                <h6 style="cursor: pointer" class="photo_text" data-toggle="dropdown"><b>New Photo</b></h6>
+                                                <div  class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item text-primary modal_button" data-target="#fix_request_modal{{$product_index}}">Preview</a>
+
+                                                    @foreach($product->has_new_photos()->orderBy('created_at', 'desc')->get() as $index => $photo)
+                                                        @if($index == 0)
+                                                            <a class="dropdown-item text-primary"  target="_blank" href="{{ asset('new_photos/'.$photo->new_photo) }}">Download</a>
+                                                        @endif
+                                                    @endforeach
+
                                                 </div>
-                                                <h6 class="photo_text modal_button" data-target="#fix_request_modal{{$index}}"><b>New Photo</b></h6>
                                             </div>
                                         @endif
                                     </div>
@@ -312,8 +321,8 @@
                             </div>
                         </div>
                         @if($product->design_count > 1)
-                        @foreach($product->has_many_designs()->where('design','!=',$product->has_design->design)->get() as $index=> $design)
-                            <div class=" col-sm-6 col-md-6 p-0 card" style="opacity: 0"></div>
+                            @foreach($product->has_many_designs()->where('design','!=',$product->has_design->design)->get() as $index=> $design)
+                                <div class=" col-sm-6 col-md-6 p-0 card" style="opacity: 0"></div>
 
                                 <div class=" col-sm-6 col-md-6 p-0 card">
                                     <div class="card-header bg-lite" style="padding-bottom: 26px"> <b>Design: {{ $order->name }}_{{$product_index+1}}</b>
@@ -323,51 +332,44 @@
                                         <div class="col-md-6">
                                             <div class="mt-4 pb-3">
                                                 @if($product->has_background != null)
-{{--                                                            <div style="position: relative">--}}
-{{--                                                                <img  id="design_background" src="{{asset($product->has_background->image)}}" width="100%" height="auto">--}}
-{{--                                                                <img id="design_image"  style="width:87% " src="{{asset('designs/'.$design->design)}}" width="100%" height="auto">--}}
-{{--                                                            </div>--}}
-
-                                                            <div class="image-contain" style="@if($product->has_background != null)
-                                                                background-image: url({{asset($product->has_background->image)}});
-                                                            @else
-                                                                background-image: url({{asset('material/background-images/Colorful.jpg')}});
-                                                            @endif
-                                                                background-repeat: no-repeat;
-                                                                background-size: cover;
-                                                                text-align: center
-                                                                " >
-                                                                <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
-
-                                                            </div>
-
-                                                        @else
+                                                    <div class="image-contain" style="@if($product->has_background != null)
+                                                        background-image: url({{asset($product->has_background->image)}});
+                                                    @else
+                                                        background-image: url({{asset('material/background-images/Colorful.jpg')}});
+                                                    @endif
+                                                        background-repeat: no-repeat;
+                                                        background-size: cover;
+                                                        text-align: center
+                                                        " >
+                                                        <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
+                                                    </div>
+                                                @else
                                                     @if($properties)
-                                                                @php
-                                                                    $style = '';
-                                                                    foreach ($properties as $property){
-                                                                    if($property['name'] == 'Style'){
-                                                                    $style = $property['value'];
-                                                                    }
-                                                                    }
-                                                                @endphp
-                                                                @foreach($categories as $cat)
-                                                                    @if($cat->name == $style)
-                                                                        @foreach($cat->has_backgrounds as $index => $b)
-                                                                            @if($index == 0)
-                                                                                <div class="image-contain" style="
-                                                                                    background-image: url({{asset($b->image)}});
-                                                                                    background-repeat: no-repeat;
-                                                                                    background-size: cover;
-                                                                                    text-align: center
-                                                                                    " >
-                                                                                    <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
-                                                                                </div>
-                                                                            @endif
-                                                                        @endforeach
+                                                        @php
+                                                            $style = '';
+                                                            foreach ($properties as $property){
+                                                            if($property['name'] == 'Style'){
+                                                            $style = $property['value'];
+                                                            }
+                                                            }
+                                                        @endphp
+                                                        @foreach($categories as $cat)
+                                                            @if($cat->name == $style)
+                                                                @foreach($cat->has_backgrounds as $index => $b)
+                                                                    @if($index == 0)
+                                                                        <div class="image-contain" style="
+                                                                            background-image: url({{asset($b->image)}});
+                                                                            background-repeat: no-repeat;
+                                                                            background-size: cover;
+                                                                            text-align: center
+                                                                            " >
+                                                                            <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
+                                                                        </div>
                                                                     @endif
                                                                 @endforeach
                                                             @endif
+                                                        @endforeach
+                                                    @endif
                                                 @endif
                                             </div>
                                         </div>
@@ -376,9 +378,9 @@
                                     </div>
                                 </div>
                             @endforeach
-                            @endif
+                        @endif
                     </div>
-                    <div class="modal fade" id="fix_request_modal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
+                    <div class="modal fade" id="fix_request_modal{{$product_index}}" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
                         <div class="modal-dialog " role="document">
                             <div class="modal-content">
                                 <div class="modal-body">

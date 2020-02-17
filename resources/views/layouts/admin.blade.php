@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('BoomPup.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('c.png')}}">
     <title>Dashboard</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('material/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -62,7 +62,7 @@
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 
                         <!-- Light Logo icon -->
-                        <img src="{{asset('BoomPup.png')}}" alt="homepage" height="50px" width="50px" class="light-logo" style="background: white" />
+                        <img src="{{asset('c.png')}}" alt="homepage" height="50px" width="50px" class="light-logo" href="{{route('admin.orders')}}" />
                     </b>
                     <!--End Logo icon -->
                     <!-- Logo text --><span>

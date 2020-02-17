@@ -35,7 +35,7 @@
                                 <th class="border-top-0" style="text-align: left !important;">ID</th>
                                 <th class="border-top-0" style="text-align: left !important;">Date</th>
                                 <th class="border-top-0" style="text-align: left !important;">Email</th>
-                                <th class="border-top-0" style="text-align: left !important;">Designer</th>
+                                <th class="border-top-0" style="text-align: left !important;">Assigned to Designer</th>
                                 <th class="border-top-0">Action</th>
                                 <th class="border-top-0">Order Status</th>
                             </tr>

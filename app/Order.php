@@ -17,7 +17,7 @@ class Order extends Model
     }
     public function has_design_details()
     {
-        return $this->hasOne('App\OrderProductAdditionalDetails','order_id');
+        return $this->hasMany('App\OrderProductAdditionalDetails','order_id');
     }
 
     public function has_designer()

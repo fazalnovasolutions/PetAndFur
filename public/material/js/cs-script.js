@@ -1,15 +1,18 @@
 
 $(document).ready(function() {
+    if($('#slick-count').length > 0){
+        var slick_count = parseInt($('#slick-count').val()) ;
+        console.log(slick_count);
+        $(".custom-slider").slick({
+            infinite: true,
+            // centerMode: true,
+            slidesToShow: slick_count,
+            slidesToScroll: slick_count,
+            // arrows: true
+        });
+    }
 
-    $(".custom-slider").slick({
-        infinite: true,
-        // centerMode: true,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        // arrows: true
-    });
-/*Chat JQuery*/
-
+    /*Chat JQuery*/
 
     $('body').on('click','.btn-chat-open',function () {
         var current = $(this);
@@ -37,7 +40,7 @@ $(document).ready(function() {
             },
             success:function (response) {
                 var modal = $(current).data('target');
-                $(modal).find('.modal-title').text(current.prev().text());
+                // $(modal).find('.modal-title').text(current.prev().text());
                 $(modal).find('.content-drop').empty();
                 $(modal).find('.content-drop').append(response.html);
                 $(modal).modal({
@@ -48,6 +51,26 @@ $(document).ready(function() {
             }
         });
     });
+    $('body').on('click','.frequent_question',function () {
+        var question = $(this).text();
+        var answer = $(this).data('answer');
+
+        $('.msg_history').append('<div class="outgoing_msg">\n' +
+            '<div class="sent_msg">\n' +
+            '<p>'+question+'</p>\n' +
+            '<span class="time_date"> '+moment().format('kk:mm a')+' | '+moment().format('MMM  DD,YYYY')+' </span></div>\n' +
+            '</div>');
+        $('.msg_history').append('<div class="incoming_msg">\n' +
+            '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>\n'+
+            '<div class="received_msg">\n' +
+            '<div class="received_withd_msg">\n'+
+            '<p>'+answer+'</p>\n' +
+            '<span class="time_date"> '+moment().format('kk:mm a')+' | '+moment().format('MMM  DD,YYYY')+' </span></div>\n' +
+            '</div>\n'+
+            '</div>');
+        $(".msg_history").scrollTop(1000);
+    });
+
     $('body').on('click','.send_btn',function(){
         var $msg = $('.write_msg').val();
 

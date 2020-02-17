@@ -49,7 +49,7 @@ class BackgroundController extends Controller
     public function Background_Save(Request $request){
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $name = date('his').'_'.Str::slug($file->getClientOriginalName());
+            $name = date('his').'_'.str_replace(' ','',$file->getClientOriginalName());
             $file_name = '/backgrounds/'.date("m-m-Y").'/';
             $file->move(public_path() .''.$file_name, $name);
 

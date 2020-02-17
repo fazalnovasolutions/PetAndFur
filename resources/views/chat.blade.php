@@ -141,6 +141,17 @@
         height: 350px;
         overflow-y: auto;
     }
+
+    .freq-title h4{
+        font-weight: 600;
+    }
+    .frequent_question{
+        background: #01c0c8 ;
+        color: white;
+        width: max-content;
+        margin-bottom: 5px;
+        display: block;
+    }
 </style>
 <div class="mesgs">
     <div class="msg_history">
@@ -231,6 +242,17 @@
 
             <button class="msg_send_btn send_btn" data-route="{{route('chat.save')}}" data-name="{{$apply}}" {{--data-product="{{$product}}"--}} data-type="text" data-order="{{$order}}" ><i class="fa fa-paper-plane"></i></button>
             <button style="right: 40px" class="msg_send_btn send_btn_image" data-route="{{route('chat.save')}}" data-name="{{$apply}}" {{--data-product="{{$product}}"--}} data-type="image" data-order="{{$order}}"><i class="fa fa-file"></i></button>
+        </div>
+        <div class="freq">
+            <div class="freq-title"><h4>some common questions:</h4></div>
+            <div class="frequent_question btn btn-sm" data-answer="You can upload some other photos for us to take a look at!
+                        Just click the 'New Photo' button and upload your photos.
+                        We'll email you once your new design is ready for your review😉
+                    ">How can I change my photo?</div>
+            <div class="frequent_question btn btn-sm" data-answer="That is the fun part😉 Just click the 'Choose Colors/Choos Background' button. Once you've found your favorite, select it and click to confirm. Then, all you need to do is approve your artwork and that's it!">
+                How can I choose the colors/background?
+            </div>
+            <div class="frequent_question btn btn-sm" data-answer="You can definitely change the style of your design! Just let us know the one you want. We'll email you once your new design is ready for your review😉">How can I change the style?</div>
         </div>
     </div>
 </div>

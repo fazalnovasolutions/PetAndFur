@@ -7,6 +7,7 @@ use App\Customer;
 use App\Designer;
 use App\DesignerStack;
 use App\DesignStyle;
+use App\Mail\UpdateMail;
 use App\Order;
 use App\OrderAdditionalDetails;
 use App\OrderProduct;
@@ -16,6 +17,7 @@ use App\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use OhMyBrew\ShopifyApp\ShopifyApp;
 
@@ -456,7 +458,7 @@ class OrdersController extends Controller
         if($target != null){
             if ($request->hasFile('design')) {
                 $file = $request->file('design');
-                $name = Str::slug($file->getClientOriginalName());
+                $name = str_replace(' ','',$file->getClientOriginalName());
                 $design = date("mmYhisa_") . $name;
                 $file->move(public_path() . '/designs/', $design);
             } else {
@@ -604,5 +606,43 @@ class OrdersController extends Controller
        else{
            return redirect()->back();
        }
+    }
+
+    public function sendEmail(Request $request){
+    $order = Order::find($request->input('order'));
+    if($order != null){
+        $orderQ = $order->has_design_details()->where('order_id',$order->id)->whereIN('status',['In-Processing'])->get();
+        if(count($orderQ) > 0){
+            try{
+                Mail::to($order->email)->send(new UpdateMail($order));
+                $order->last_email_at = now()->format('Y-m-d');
+                $order->save();
+                return response()->json([
+                    'status'=>'success',
+                    'message' => 'Update Email Send Successfully!',
+                ]);
+            }
+            catch (\Exception $e){
+                return response()->json([
+                    'status'=>'error',
+                    'message' => 'Email Sending Failed. Server Issues!',
+                ]);
+            }
+
+        }
+        else{
+            return response()->json([
+                'status'=>'error',
+                'message' => 'Email Cannot Be Sent Because Order status is Approved | Update | No Design',
+            ]);
+        }
+    }
+    else{
+        return response()->json([
+            'status'=>'error',
+            'message' => 'Order Doesnot Exist',
+        ]);
+    }
+
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BackgroundCategory;
+use App\Mail\ApprovedMail;
 use App\NewPhoto;
 use App\Order;
 use App\OrderProduct;
@@ -10,6 +11,7 @@ use App\OrderProductAdditionalDetails;
 use App\RequestFix;
 use App\ReviewRating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class CustomerController extends Controller
@@ -125,7 +127,7 @@ class CustomerController extends Controller
         if($target != null ){
             if ($request->hasFile('new_photo')) {
                 $file = $request->file('new_photo');
-                $name = Str::slug($file->getClientOriginalName());
+                $name = str_replace(' ','',$file->getClientOriginalName());
                 $new_photo = date("mmYhisa_") . $name;
                 $file->move(public_path() . '/new_photos/', $new_photo);
             } else {
@@ -210,6 +212,15 @@ class CustomerController extends Controller
             $product->has_design->save();
             $product->approved_date = now();
             $product->save();
+            $order = Order::find($product->order_id);
+            try{
+                Mail::to($order->email)->send(new ApprovedMail($order));
+                $order->last_email_at = now()->format('Y-m-d');
+                $order->save();
+            }
+            catch (\Exception $e){
+            }
+
             return response()->json([
                 'status' => 'approved'
             ]);
