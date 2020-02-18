@@ -146,7 +146,9 @@ class OrdersController extends Controller
         else{
             $designers_stack = new DesignerStack(count($designers));
         }
-        $designer = $designers_stack->pop();
+        if(!$designers_stack->isEmpty()){
+            $designer = $designers_stack->pop();
+        }
         $count = 1;
         foreach ($req->body->orders as $order){
 
