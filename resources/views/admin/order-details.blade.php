@@ -57,18 +57,29 @@
             </div>
         </div>
 
-        <div class="col-sm-6 col-md-7 row justify-content-center" >
-            <div class="align-self-center pb-4"  >
-                <button class="btn btn-rounded btn-green">Send SMS</button>
-
-                <button class="btn btn-rounded text-white btn-danger" type="button" data-toggle="modal" data-target="#send-mail"> Send Email Update</button>
-                <div style="display: none">{{$order->name}}</div>
+        <div class="col-sm-6 col-md-7" >
+            <div class="row">
+                <div class="col-md-4 offset-8 text-center">
+                    <div class="pb-2">
+                        <button class="btn btn-rounded @if($order->sms_feature == 1) btn-green @else btn-grey @endif">Send SMS</button>
+                    </div>
+                </div>
             </div>
-            <div class="align-self-end pb-4">
-                <button  class="btn btn-md btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" {{--data-product="{{$product->id}}"--}} data-target="#chat_modal"> <b class="text-white">Customer Chat</b></button>
+            <div class="row">
+                <div class="col-md-6 offset-5 text-center">
+                    <div class="pb-2">
+                        <button class="btn btn-rounded text-white btn-danger" type="button" data-toggle="modal" data-target="#send-mail"> Send Email Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 offset-5 text-center">
+                    <div class="pb-2">
+                        <button  class="btn btn-md btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" {{--data-product="{{$product->id}}"--}} data-target="#chat_modal"> <b class="text-white">Customer Chat</b></button>
+                    </div>
+                </div>
             </div>
 
-            <button style="display: none" type="button" id="" data-toggle="modal" data-target="#send-mail"> </button>
             <div class="modal fade" id="send-mail" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content">
@@ -93,7 +104,9 @@
         <div class="col-md-12">
             <div class="card p-3">
                 @foreach($order->has_products->reverse() as $index => $product)
-                    <?php $product_index = $index ?>
+                    <?php $product_index = $index;
+                    $index = count($order->has_products) - $index -1;
+                    ?>
                     <div class="row p-3">
                         <div class="col-sm-6 col-md-6 p-0 card">
                             <div class="card-header bg-lite" style="padding-bottom: 26px"> <b>Design: {{ $order->name }}_{{$index+1}}</b></div>

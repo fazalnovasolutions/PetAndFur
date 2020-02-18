@@ -62,7 +62,9 @@
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 
                         <!-- Light Logo icon -->
-                        <img src="{{asset('c.png')}}" alt="homepage" height="50px" width="50px" class="light-logo" href="{{route('admin.orders')}}" />
+                        <a href="{{route('admin.orders')}}">
+                            <img src="{{asset('c.png')}}" alt="homepage" height="50px" width="50px" class="light-logo"  />
+                        </a>
                     </b>
                     <!--End Logo icon -->
                     <!-- Logo text --><span>

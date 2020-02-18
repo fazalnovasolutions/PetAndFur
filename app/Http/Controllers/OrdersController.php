@@ -127,7 +127,6 @@ class OrdersController extends Controller
             $designers = $designers->sort(function ($a, $b) {
                 $count_order_a = count($a->has_orders);
                 $count_order_b = count($b->has_orders);
-
                 if ($count_order_a == $count_order_b) {
                     return 0;
                 }
@@ -136,33 +135,50 @@ class OrdersController extends Controller
             /*Initializing a Designer Stack*/
             $designers_stack = new DesignerStack(count($designers));
             foreach ($designers as $designer) {
-                $designers_stack->push($designer->id);
+                $designers_stack->push([
+                    "id" => $designer->id,
+                    "count" => count($designer->has_orders),
+                    "assign" => 10 - (count($designer->has_orders)%10),
+                ]);
             }
+//            dd($designers_stack);
         }
         else{
             $designers_stack = new DesignerStack(count($designers));
         }
+        $designer = $designers_stack->pop();
+        $count = 1;
         foreach ($req->body->orders as $order){
-            if(Order::where('shopify_id',$order->id)->exists()){
 
+            if(Order::where('shopify_id',$order->id)->exists()){
                 $order->sync = 'yes';
                 $exist =  Order::where('shopify_id',$order->id)->first();
                 $order->designer_id = $exist->designer_id;
                 $order->designer = $exist->has_designer->name;
                 $order->designer_color = $exist->has_designer->color;
                 $order->designer_background = $exist->has_designer->background_color;
-
             }
+
             else{
                 $order->sync = 'no';
                 if(!$designers_stack->isEmpty()){
-                    $designer = $designers_stack->pop();
-                    $order->designer_id = $designer;
-                    $exist = Designer::find($designer);
+
+                    $order->designer_id = $designer["id"];
+                    $exist = Designer::find($designer["id"]);
                     $order->designer = $exist->name;
                     $order->designer_color = $exist->color;
                     $order->designer_background = $exist->background_color;
-                    $designers_stack->push($designer);
+
+                    if($count == $designer["assign"]){
+                        $designer["count"] = $designer["assign"] + $designer["count"];
+                        $designer["assign"] = 10;
+                        $designers_stack->push($designer);
+                        $designer = $designers_stack->pop();
+                        $count = 1;
+                    }
+                    else{
+                        $count++;
+                    }
                 }
                 else{
                     $order->designer_id = null;
@@ -570,15 +586,20 @@ class OrdersController extends Controller
             $design->save();
         }
 //        $this->DesignerPicker($this->helper->getShop()->shopify_domain);
-        return redirect()->route('orders.new');
+        return redirect()->back();
     }
     public function new_order_detail(Request $request){
         $req = $this->helper->getShop()->api()->rest('GET', '/admin/orders/'.$request->id.'.json');
+        $exist = false;
+        if(Order::where('shopify_id',$request->id)->exists()){
+            $exist = true;
+        }
         $designer = Designer::find($request->designer_id);
 //        dd($req->body->order);
         return view('admin.new-order-detail')->with([
             'order'=>$req->body->order,
-            'designer' => $designer
+            'designer' => $designer,
+            'exist' => $exist
         ]);
     }
 
@@ -644,5 +665,21 @@ class OrdersController extends Controller
         ]);
     }
 
+    }
+
+    public function set_sms_service(Request $request){
+        $order = Order::find($request->input('order'));
+        if($order != null){
+            $order->sms_feature = $request->input('setting');
+            $order->save();
+            return response()->json([
+               'status' => 'success'
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error'
+            ]);
+        }
     }
 }

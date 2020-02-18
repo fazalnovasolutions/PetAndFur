@@ -1,4 +1,5 @@
 
+
 $(document).ready(function() {
     if($('#slick-count').length > 0){
         var slick_count = parseInt($('#slick-count').val()) ;
@@ -11,6 +12,25 @@ $(document).ready(function() {
             // arrows: true
         });
     }
+
+    $('body').on('click','.get-sms-updates',function () {
+        $.ajax({
+            url: $(this).data('url'),
+            method: 'get',
+            data:{
+                order: $(this).data('order'),
+                setting: $(this).data('setting'),
+            },
+            success:function (response) {
+              if(response.status === 'success'){
+                  location.reload();
+              }
+              else{
+                  location.reload();
+              }
+            },
+        })
+    });
 
     /*Chat JQuery*/
 
@@ -25,7 +45,7 @@ $(document).ready(function() {
                 target: 'Designer',
             },
             success:function (response) {
-                current.text('Chat');
+                current.text('Chat With Your Designer');
                 current.removeClass('btn-red text-white animated bounce slower');
                 current.addClass('btn-blue text-white');
             }
@@ -183,7 +203,7 @@ $(document).ready(function() {
                                             // alertify.error('You Have New Message');
                                         }
                                         else {
-                                            $(this).text('Chat');
+                                            $(this).text('Chat With Your Designer');
                                             $(this).removeClass('btn-red text-white animated bounce  slower');
                                             $(this).addClass('btn-blue text-white');
                                         }

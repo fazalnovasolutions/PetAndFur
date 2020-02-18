@@ -117,16 +117,22 @@
 
     .msg_send_btn {
         background: #01c0c8 none repeat scroll 0 0;
-        border:none;
+        border: none;
         border-radius: 50%;
         color: #fff;
         cursor: pointer;
         font-size: 15px;
         height: 33px;
         position: absolute;
-        right: 0;
-        top: 11px;
+        right: 36px;
+        top: 9px;
         width: 33px;
+    }
+
+    .new_pic{
+        position: absolute;
+        right: 1px;
+        top: 54px;
     }
 
     .messaging {
@@ -230,19 +236,19 @@
     </div>
     <div class="type_msg">
         <div class="input_msg_write">
-            <textarea class="write_msg form-control" placeholder="Type a message" style="width: 83%"></textarea>
+            <textarea class="write_msg form-control"  placeholder="Type a message" style="width: 78%; @if($apply == 'Designer') height:200px; @else height:94px; @endif"></textarea>
             <form class="image-form" action="{{route('chat.save')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input name="content" style="display: none" type="file" class="image_send">
                 <input type="hidden" name="name" value="{{$apply}}">
                 <input type="hidden" name="type" value="image">
                 <input type="hidden" name="order_id" value="{{$order}}">
-{{--                <input type="hidden" name="order_product_id" value="{{$product}}">--}}
             </form>
 
-            <button class="msg_send_btn send_btn" data-route="{{route('chat.save')}}" data-name="{{$apply}}" {{--data-product="{{$product}}"--}} data-type="text" data-order="{{$order}}" ><i class="fa fa-paper-plane"></i></button>
-            <button style="right: 40px" class="msg_send_btn send_btn_image" data-route="{{route('chat.save')}}" data-name="{{$apply}}" {{--data-product="{{$product}}"--}} data-type="image" data-order="{{$order}}"><i class="fa fa-file"></i></button>
+            <button class="msg_send_btn send_btn" data-route="{{route('chat.save')}}" data-name="{{$apply}}" data-type="text" data-order="{{$order}}" ><i class="fa fa-paper-plane"></i></button>
+            <button class="btn btn-danger new_pic send_btn_image" data-route="{{route('chat.save')}}" data-name="{{$apply}}" data-type="image" data-order="{{$order}}">New Photo</button>
         </div>
+        @if($apply == 'Customer')
         <div class="freq">
             <div class="freq-title"><h4>some common questions:</h4></div>
             <div class="frequent_question btn btn-sm" data-answer="You can upload some other photos for us to take a look at!
@@ -254,5 +260,6 @@
             </div>
             <div class="frequent_question btn btn-sm" data-answer="You can definitely change the style of your design! Just let us know the one you want. We'll email you once your new design is ready for your review😉">How can I change the style?</div>
         </div>
+            @endif
     </div>
 </div>

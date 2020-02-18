@@ -10,10 +10,20 @@
             <div>
                 <span class="badge badge-pill ml-4" style="background: {{$designer->background_color}}; color: {{$designer->color}}">{{$designer->name}}</span>
             </div>
+            @if($exist == false)
             <button onclick="window.location.href='{{route('orders.sync.order',[
                                                 'id' =>$order->id,
                                                 'designer_id'=>$designer->id
-                                                ])}}'" class="btn btn-sm font-14 text-center justify-content-center btn-warning m-l-20"><i class="text-white font-20 mdi mdi-sync"></i> Sync New Order</button>
+                                                ])}}'"
+                    class="btn btn-sm font-14 text-center justify-content-center btn-warning m-l-20">
+                <i class="text-white font-20 mdi mdi-sync"></i> Sync New Order
+            </button>
+                @else
+                <button class="btn btn-sm font-14 text-center justify-content-center btn-success m-l-20">
+                    <i class="text-white font-20 mdi mdi-checkbox-marked-circle"></i> Synced
+                </button>
+                @endif
+
         </div>
 
 

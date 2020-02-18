@@ -79,7 +79,7 @@ Route::any('/getNotifications','ChatController@getNotifications')->name('chat.no
 Route::any('/seenNotifications','ChatController@seenNotifications')->name('chat.seen');
 
 
-
+Route::any('/set/sms-service','OrdersController@set_sms_service')->name('sms.settings');
 
 Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@Index');
