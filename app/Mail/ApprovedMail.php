@@ -18,10 +18,13 @@ class ApprovedMail extends Mailable
      * @return void
      */
     private $order;
+    private $line_item;
     private $sender = 'support@boompup.com';
-    public function __construct(Order $order)
+    public function __construct(Order $order,$id)
     {
         $this->order = $order;
+        $this->line_item = $id;
+
     }
 
     /**
@@ -31,8 +34,9 @@ class ApprovedMail extends Mailable
      */
     public function build()
     {
-        return $this->from($this->sender,'BoomPup')->subject('<'.$this->order->name.'> Design Approved - BoomPup')->view('approved')->with([
-            "order" =>$this->order
+        return $this->from($this->sender,'BoomPup')->subject('Design Approved - BoomPup')->view('approved')->with([
+            "order" =>$this->order,
+            "line_item" => $this->line_item,
         ]);
     }
 }

@@ -421,7 +421,16 @@
                                                                     <td class="kmTextContent" valign="top"
                                                                         style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;table-layout:fixed;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:1.1;letter-spacing:0;text-align:left;max-width:100%;word-wrap:break-word;padding-top:31px;padding-bottom:9px;padding-left:18px;padding-right:18px;'>
                                                                         <h1 style="color:#222;display:block;font-family:Times New Roman;font-size:40px;font-style:normal;font-weight:normal;line-height:1;letter-spacing:0;margin:0;margin-bottom:20px;text-align:left;color: rgb(34, 34, 34); letter-spacing: 0px; font-family: Asap, sans-serif; font-size: 40px; line-height: 1.1; margin: 0px 0px 6px; text-align: center;">
-                                                                            <span style="font-size:28px;"> Your Order {{$order->name}}'s design has been approved!</span>
+                                                                            <?php
+                                                                            $indexx = null;
+                                                                            foreach($order->has_products->reverse() as $index => $product){
+                                                                                if($product->id == $line_item){
+                                                                                    $indexx = count($order->has_products) - $index -1;
+                                                                                }
+                                                                            }
+
+                                                                            ?>
+                                                                            <span style="font-size:28px;"> Your Design {{$order->name}}_{{$indexx+1}} has been approved!</span>
                                                                         </h1></td>
                                                                 </tr>
                                                                 </tbody>

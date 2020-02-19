@@ -8,6 +8,7 @@ use App\NewPhoto;
 use App\Order;
 use App\OrderProduct;
 use App\OrderProductAdditionalDetails;
+use App\ProductDesign;
 use App\RequestFix;
 use App\ReviewRating;
 use Illuminate\Http\Request;
@@ -105,8 +106,6 @@ class CustomerController extends Controller
                 else{
                     return redirect()->route('customer.check');
                 }
-
-
             }
             else{
                 return redirect()->back();
@@ -116,9 +115,99 @@ class CustomerController extends Controller
         else{
             return redirect()->route('customer.login');
         }
-
-
     }
+    public function SecondaryChangeBackground(Request $request){
+
+        if(session('order_name') != null){
+            $product = OrderProduct::where('id',$request->product)->first();
+            if($product != null){
+                if($product->has_design->status_id != 6 && $product->has_design->status_id != 8){
+                    if($product->has_changed_style == null){
+                        $properties = json_decode($product->properties);
+                        $style = '';
+                        foreach ($properties as $p){
+                            if($p->name == 'Style'){
+                                $style = $p->value;
+                                $style_color = '#00ccff';
+                            }
+                        }
+                    }
+                    else{
+                        $style =  $product->has_changed_style->style;
+                        $style_color = $product->has_changed_style->color;
+                    }
+
+                    if($style != null){
+                        $category =  BackgroundCategory::where('name',$style)->first();
+                        $secondary_design = ProductDesign::find($request->input('secondary_design'));
+                        if($category != null && $secondary_design != null){
+                            return view('customer.secondary-change-background')->with([
+                                'product' => $product,
+                                'category' => $category,
+                                'style' => $style,
+                                'style_color' => $style_color,
+                                'secondary_design' =>$secondary_design
+                            ]);
+                        }
+                        else{
+                            return redirect()->back();
+                        }
+                    }
+                    else{
+                        return redirect()->back();
+                    }
+                }
+                else{
+                    return redirect()->route('customer.check');
+                }
+            }
+            else{
+                return redirect()->back();
+            }
+
+        }
+        else{
+            return redirect()->route('customer.login');
+        }
+    }
+
+    public function SaveBackground(Request $request){
+//        dd($request);
+        $product = OrderProduct::find($request->input('product'));
+        if($product != null){
+            $product->background_id = $request->input('category');
+            if($product->has_design != null){
+                $target = $product->has_design;
+                $target->status = 'Update';
+                $target->status_id = '7';
+                $target->save();
+            }
+            $product->save();
+            if(!$request->ajax()){
+                return redirect()->route('customer.check');
+            }
+
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+    public function SaveSecondaryBackground(Request $request){
+
+        $productDesign = ProductDesign::find($request->input('secondary_design'));
+        if($productDesign != null){
+            $productDesign->background_id = $request->input('category');
+            $productDesign->save();
+            if(!$request->ajax()){
+                return redirect()->route('customer.check');
+            }
+        }
+        else{
+            return redirect()->back();
+        }
+    }
+
+
     public function NewPhoto(Request $request){
 
         $target =  OrderProductAdditionalDetails::where('order_id',$request->input('order'))
@@ -183,27 +272,7 @@ class CustomerController extends Controller
         }
 
     }
-    public function SaveBackground(Request $request){
-//        dd($request);
-        $product = OrderProduct::find($request->input('product'));
-        if($product != null){
-            $product->background_id = $request->input('category');
-            if($product->has_design != null){
-                $target = $product->has_design;
-                $target->status = 'Update';
-                $target->status_id = '7';
-                $target->save();
-            }
-            $product->save();
-            if(!$request->ajax()){
-                return redirect()->route('customer.check');
-            }
 
-        }
-        else{
-            return redirect()->back();
-        }
-    }
     public function SaveApproved(Request $request){
         $product = OrderProduct::find($request->input('product'));
         if($product != null){
@@ -214,7 +283,7 @@ class CustomerController extends Controller
             $product->save();
             $order = Order::find($product->order_id);
             try{
-                Mail::to($order->email)->send(new ApprovedMail($order));
+                Mail::to($order->email)->send(new ApprovedMail($order,$product->id));
                 $order->last_email_at = now()->format('Y-m-d');
                 $order->save();
             }
@@ -231,6 +300,51 @@ class CustomerController extends Controller
             ]);
         }
     }
+
+    public function SaveSecondaryApproved(Request $request){
+
+        $product = OrderProduct::find($request->input('product'));
+        $secondary = ProductDesign::find($request->input('secondary'));
+        if($product != null && $secondary != null){
+//            dd($secondary);
+            $primary_design = $product->has_design->design;
+            $primary_background = $product->background_id;
+            $secondary_design = $secondary->design;
+            $secondary_background = $secondary->background_id;
+
+            $product->has_design->design = $secondary_design;
+            $product->background_id = $secondary_background;
+            $product->has_design->status ='Approved';
+            $product->has_design->status_id = 6;
+            $product->has_design->save();
+            $product->approved_date = now();
+            $product->save();
+
+            $Primarydesign_in_product_design_table = ProductDesign::where('design',$primary_design)->first();
+            if($Primarydesign_in_product_design_table != null){
+                $Primarydesign_in_product_design_table->background_id = $primary_background;
+                $Primarydesign_in_product_design_table->save();
+            }
+            $order = Order::find($product->order_id);
+            try{
+                Mail::to($order->email)->send(new ApprovedMail($order,$product->id));
+                $order->last_email_at = now()->format('Y-m-d');
+                $order->save();
+            }
+            catch (\Exception $e){
+            }
+
+            return response()->json([
+                'status' => 'approved'
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error'
+            ]);
+        }
+    }
+
     public function SaveReview(Request $request)
     {
        $product = OrderProduct::find($request->input('product'));

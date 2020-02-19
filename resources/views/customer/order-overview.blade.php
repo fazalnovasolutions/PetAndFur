@@ -1,9 +1,9 @@
 @extends('layouts.customer')
 @section('content')
-    <p class="h3 text-center" style="margin-top: 30px;">Order <u>{{$order->name}}</u> Overview</p>
+    <p class="h3 text-center order-title" style="margin-top: 30px;">Order <u>{{$order->name}}</u> Overview</p>
     <button id="chat-notify" style="display: none" data-notification="{{route('chat.notifications')}}" data-order_id="{{$order->id}}"></button>
     <div class="row">
-        <div class="col-md-8  m-t-20" style="margin-left: auto;margin-right: auto;">
+        <div class="col-md-12 col-lg-8 col-xs-12 col-sm-12  m-t-20" style="margin-left: auto;margin-right: auto;">
 
             @if(session()->has('msg'))
                 <div class="row">
@@ -14,7 +14,7 @@
             @endif
             <div class="row">
                 <div class="col-md-12">
-                    <img src="{{asset('material/login-images/works.jpg')}}" alt="logo" style="max-width: 722px;">
+                    <img id="how-its-work" src="{{asset('material/login-images/works.jpg')}}" alt="logo">
                 </div>
             </div>
             <div class="row justify-content-center mt-3" >
@@ -341,9 +341,9 @@
                                                 <?php
                                                 $properties = json_decode($product->properties, true);
                                                 ?>
-                                                @if($product->has_background != null)
-                                                    <div class="image-contain" style="@if($product->has_background != null)
-                                                        background-image: url({{asset($product->has_background->image)}});
+                                                @if($design->has_background != null)
+                                                    <div class="image-contain" style="@if($design->has_background != null)
+                                                        background-image: url({{asset($design->has_background->image)}});
                                                     @else
                                                         background-image: url({{asset('material/background-images/Colorful.jpg')}});
                                                     @endif
@@ -385,12 +385,12 @@
                                         </div>
                                         @if(($product->has_design->status == 'In-Processing'|| $product->has_design->status == 'Update')  && $product->has_design->status != 'Approved')
                                             <div class=" row p-1 justify-content-center">
-                                                <a href="{{route('choose.background',$product->id)}}" class="btn btn-success"> Choose Background </a>
+                                                <a href="{{route('choose.secondary.background',$product->id)}}?secondary_design={{$design->id}}" class="btn btn-success"> Choose Background </a>
                                             </div>
                                         @endif
                                         @if($product->has_design->status != 'Approved' && $product->has_design->status != 'No Design')
                                             <div class=" row p-1 justify-content-center">
-                                                <button class="btn @if($product->background_id != null) btn-green set-approved @endif text-white" @if($product->background_id == null) style="background: #777777" disabled @else data-id="{{$product->id}}"  data-target="#review-background{{$index}}" @endif>Approved Your Design </button>
+                                                <button class="btn @if($design->background_id != null) btn-green set-secondary-approved @endif text-white" @if($design->background_id == null) style="background: #777777" disabled @else data-secondary="{{$design->id}}" data-id="{{$product->id}}"  data-target="#review-background{{$index}}" @endif>Approved Your Design </button>
                                             </div>
                                             <div class="modal fade" id="review-background{{$index}}" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
                                                 <div class="modal-dialog " role="document">

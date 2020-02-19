@@ -1,17 +1,38 @@
 
 
 $(document).ready(function() {
-    if($('#slick-count').length > 0){
-        var slick_count = parseInt($('#slick-count').val()) ;
-        console.log(slick_count);
-        $(".custom-slider").slick({
-            infinite: true,
-            // centerMode: true,
-            slidesToShow: slick_count,
-            slidesToScroll: slick_count,
-            // arrows: true
-        });
-    }
+    // if($('#slick-count').length > 0){
+    //     var slick_count = parseInt($('#slick-count').val()) ;
+    //     console.log(slick_count);
+    //     $(".custom-slider").slick({
+    //         infinite: true,
+    //         // centerMode: true,
+    //         slidesToShow: slick_count,
+    //         slidesToScroll: slick_count,
+    //         // arrows: true
+    //     });
+    // }
+    $(".custom-slider").slick({
+        infinite: true,
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        responsive: [{
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                infinite: true
+            }
+        }, {
+            breakpoint: 767,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true
+            }
+        }
+        ]
+    });
 
     $('body').on('click','.get-sms-updates',function () {
         $.ajax({
@@ -260,7 +281,10 @@ $(document).ready(function() {
         value = 'url('+value+')';
         $('.image-contain').css('background-image',value);
         $('#background-category').val($(this).find('img').attr('data-id'));
-
+        $('.background-div').each(function () {
+            $(this).css('border',0);
+        });
+        $(this).css('border','4px solid black');
 
     });
 
@@ -321,7 +345,6 @@ $(document).ready(function() {
 
     $('body').on('click','.set-approved',function(){
         var current = $(this);
-        // var form = $('#background_save_form');
         $.ajax({
             url:'/customer/order/save',
             method:'get',
@@ -345,15 +368,34 @@ $(document).ready(function() {
             },
 
         });
-        // $.ajax({
-        //     url: form.attr('action'),
-        //     method: form.attr('method'),
-        //     data: form.serialize(),
-        //     success:function (response) {
-        //
-        //     },
-        // });
 
+    });
+
+    $('body').on('click','.set-secondary-approved',function(){
+        var current = $(this);
+        $.ajax({
+            url:'/customer/order/secondary-save',
+            method:'get',
+            data:{
+                product : current.data('id'),
+                secondary : current.data('secondary'),
+            },
+            success:function (response) {
+                if(response.status !== 'error'){
+                    var modal = current.data('target');
+                    if($(modal).length > 0){
+                        $(modal).modal({
+                            show: true,
+                            focus:true
+                        });
+                    }
+                }
+                else{
+                    alert(response.status);
+                }
+            },
+
+        });
 
     });
 

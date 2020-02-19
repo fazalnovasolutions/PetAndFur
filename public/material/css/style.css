@@ -6623,7 +6623,7 @@ File: scss
 @media (max-width: 767px) {
   /*Header*/
   .topbar {
-    position: fixed;
+    /*position: fixed;*/
     width: 100%; }
     .topbar .top-navbar {
       padding-right: 15px;
@@ -8396,7 +8396,7 @@ form .input-group {
 }
 .background_title {
     position: absolute;
-    bottom: 30px;
+    bottom: 53px;
     left: 50%;
     font-weight: bold;
     letter-spacing: 1px;
@@ -8406,7 +8406,7 @@ form .input-group {
 .custom-slider {
     width: 90%;
     max-height: 150px;
-    padding-left: 100px;
+    padding-left: 74px;
 }
 .slick-slide {
     margin: 0px 20px;
@@ -8509,4 +8509,81 @@ form .input-group {
 }
 .apply-button{
     display: flex;
+}
+#how-its-work{
+    max-width: 722px;
+}
+
+@media only screen and (max-width: 1200px) {
+    #how-its-work {
+        max-width: 600px;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    #how-its-work {
+        max-width: 522px;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    #how-its-work {
+        max-width: 522px;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .image-contain {
+        margin-top: 10px;
+    }
+    .topbar .top-navbar .navbar-collapse {
+        padding-right: 0px !important;
+    }
+    img.light-logo {
+        padding-left: 14px;
+        width: 100%;
+        height: auto;
+    }
+    #how-its-work {
+        width:100%
+    }
+    .mg-t-10 {
+      margin: 0;
+    }
+    .container{
+        width: 100%;
+    }
+    .topbar .top-navbar .navbar-header {
+         line-height: 0;
+    }
+    .order-title{
+        font-size: 22px;
+    }
+    .custom-slider {
+        width: 90%;
+         max-height: 150px;
+         padding-left: 0;
+    }
+    #back-slider {
+        position: relative;
+        overflow: hidden;
+        height: 240px;
+        padding-left: 0 !important;
+    }
+    .slick-prev {
+        left: 0;
+    }
+}
+@media only screen and (max-width: 375px) {
+.order-title{
+    font-size: 22px;
+}
+    .get-sms-updates b{
+        font-size: 12px;
+    }
+    .btn-chat-open{
+        font-size:12px;
+    }
+    .btn-rounded {
+        border-radius: 60px;
+        padding: 7px 11px !important;
+    }
 }

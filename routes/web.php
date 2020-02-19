@@ -67,8 +67,14 @@ Route::get('/customer/order/overview','CustomerController@checkOrder')->name('cu
 Route::post('/customer/order/new_photo','CustomerController@NewPhoto')->name('customer.order.new_photo');
 Route::post('/customer/order/request','CustomerController@RequestFix')->name('customer.order.request');
 Route::get('/customer/order/{product}/background','CustomerController@ChangeBackground')->name('choose.background');
+Route::get('/customer/order/{product}/secondary-background','CustomerController@SecondaryChangeBackground')->name('choose.secondary.background');
+
 Route::post('/customer/order/background-save','CustomerController@SaveBackground')->name('order.save.background');
+Route::post('/customer/order/secondary-background-save','CustomerController@SaveSecondaryBackground')->name('order.save.secondary.background');
+
 Route::get('/customer/order/save','CustomerController@SaveApproved')->name('order.save.status');
+Route::get('/customer/order/secondary-save','CustomerController@SaveSecondaryApproved')->name('order.save.secondary.status');
+
 Route::post('/customer/order/review','CustomerController@SaveReview')->name('order.save.review');
 
 /*Chat Route*/

@@ -65,14 +65,14 @@
 
                         <!-- Light Logo icon -->
                         <a href="{{route('customer.check')}}">
-                        <img src="{{asset('c.png')}}" alt="homepage" height="50px" width="50px" class="light-logo" />
+                            <img src="{{asset('c.png')}}" alt="homepage" height="50px" width="50px" class="light-logo" />
                         </a>
                     </b>
                     <!--End Logo icon -->
-                    <!-- Logo text --><span>
-
-                         <!-- Light Logo text -->
-                         {{--<img src="{{asset('material/assets/images/logo-light-text.png')}}" class="light-logo" alt="homepage" />--}}</span> </a>
+                    <!-- Logo text -->
+                    <span>
+                    </span>
+                </a>
             </div>
             <!-- ============================================================== -->
             <!-- End Logo -->
@@ -83,8 +83,8 @@
                 <!-- ============================================================== -->
                 <ul class="navbar-nav mr-auto mt-md-0">
                     <!-- This is  -->
-                    {{--<li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>--}}
-                    <!-- ============================================================== -->
+                {{--<li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>--}}
+                <!-- ============================================================== -->
                     <!-- Search -->
                     <!-- ============================================================== -->
                 </ul>

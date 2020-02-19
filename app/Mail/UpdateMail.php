@@ -31,7 +31,7 @@ class UpdateMail extends Mailable
      */
     public function build()
     {
-        return $this->from($this->sender,'BoomPup')->subject('<'.$this->order->name.'> Update - BoomPup')->view('update')->with([
+        return $this->from($this->sender,'BoomPup')->subject('Design Updated - BoomPup')->view('update')->with([
             "order" =>$this->order
         ]);
     }

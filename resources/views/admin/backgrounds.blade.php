@@ -69,7 +69,7 @@
                                             <div class="form-group">
                                                 <label><b>Upload:</b></label>
                                                 <div>
-                                                    <input class="" name="image" type="file" required>
+                                                    <input class="" name="image" accept="image/*" type="file" required>
                                                 </div>
                                             </div>
                                         </div>

@@ -588,7 +588,7 @@ class OrdersController extends Controller
             $design->save();
         }
 //        $this->DesignerPicker($this->helper->getShop()->shopify_domain);
-        return redirect()->back();
+        return redirect()->route('order.detail',$order->id);
     }
     public function new_order_detail(Request $request){
         $req = $this->helper->getShop()->api()->rest('GET', '/admin/orders/'.$request->id.'.json');
