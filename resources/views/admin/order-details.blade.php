@@ -3,9 +3,12 @@
 
     <div class="row page-titles">
         <div class="col-md-5 col-8 align-self-center">
-
-            <span class="mdi mdi-arrow-left display-6" @if($order->id-1 != 0) onclick="window.location.href='{{route('order.detail', $order->id)}}?type=previous'" @endif ></span>
-            <span class="mdi mdi-arrow-right display-6" @if($order->id+1 <= count(\App\Order::all())) onclick="window.location.href='{{route('order.detail', $order->id)}}?type=next'" @endif></span>
+            @if($order->id-1 != 0)
+            <span class="mdi mdi-arrow-left display-6"  onclick="window.location.href='{{route('order.detail', $order->id)}}?type=previous'" ></span>
+            @endif
+                @if($order->id+1 <= count(\App\Order::all()))
+                    <span class="mdi mdi-arrow-right display-6"  onclick="window.location.href='{{route('order.detail', $order->id)}}?type=next'" ></span>
+                @endif
         </div>
 
     </div>
