@@ -4,8 +4,8 @@
     <div class="row page-titles">
         <div class="col-md-5 col-8 align-self-center">
 
-            <span class="mdi mdi-arrow-left display-6"></span>
-            <span class="mdi mdi-arrow-right display-6"></span>
+            <span class="mdi mdi-arrow-left display-6" @if($order->id-1 != 0) onclick="window.location.href='{{route('order.detail', $order->id)}}?type=previous'" @endif ></span>
+            <span class="mdi mdi-arrow-right display-6" @if($order->id+1 <= count(\App\Order::all())) onclick="window.location.href='{{route('order.detail', $order->id)}}?type=next'" @endif></span>
         </div>
 
     </div>
@@ -75,7 +75,7 @@
             <div class="row pt-2">
                 <div class="col-md-5 offset-6">
                     <div class="pb-2">
-                        <button  class="btn btn-md btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" {{--data-product="{{$product->id}}"--}} data-target="#chat_modal"> <b class="text-white">Customer Chat</b></button>
+                        <button style="margin-top: 30px"  class="btn btn-md btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" {{--data-product="{{$product->id}}"--}} data-target="#chat_modal"> <b class="text-white">Customer Chat</b></button>
                     </div>
                 </div>
             </div>
@@ -338,7 +338,7 @@
                                 <div class=" col-sm-6 col-md-6 p-0 card" style="opacity: 0"></div>
 
                                 <div class=" col-sm-6 col-md-6 p-0 card">
-                                    <div class="card-header bg-lite" style="padding-bottom: 26px"> <b>Design: {{ $order->name }}_{{$product_index+1}}</b>
+                                    <div class="card-header bg-lite" style="padding-bottom: 26px"> <b>Design: {{ $order->name }}_{{(count($order->has_products) - $product_index-1)+1}}</b>
                                         <button style="float: right" onclick="window.location.href='{{route('admin.order.product.extra.delete.design',$design->id)}}'" class="btn btn-sm btn-red"><i class="mdi mdi-close-circle"></i> Delete</button>
                                     </div>
                                     <div class="flexing">

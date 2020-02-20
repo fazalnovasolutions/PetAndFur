@@ -19,7 +19,7 @@
             </div>
             <div class="row justify-content-center mt-3" >
                 <div class="">
-                    <button class="btn btn-rounded btn-green get-sms-updates" data-url="{{route('sms.settings')}}" data-order="{{$order->id}}" @if($order->sms_feature == 0) data-setting="1" @else data-setting="0" @endif ><b class="text-white">@if($order->sms_feature == 0) Get updates by SMS @else SMS Service Enabled @endif</b></button>
+                    <button class="btn btn-rounded btn-green get-sms-updates text-white" data-url="{{route('sms.settings')}}" data-order="{{$order->id}}" @if($order->sms_feature == 0) data-setting="1" @else data-setting="0" @endif >@if($order->sms_feature == 0) Get updates by SMS @else SMS Service Enabled @endif</button>
                     <button class="btn btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" {{--data-product="{{$product->id}}"--}} data-target="#chat_modal"> <b class="text-white">Chat With Your Designer</b></button>
                 </div>
             </div>
@@ -493,7 +493,10 @@
         <div class="modal fade" id="chat_modal" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content">
-                    <div class="modal-header" style="background: #01c0c8;color: white;">
+                    <div class="modal-header" style="background: #01c0c8;color: white;display: inline-block">
+                        <div class="close-button">
+                            <span  class="close" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-close-circle"></i></span>
+                        </div>
                         <div class="modal-title" style="font-size: 13px">
                             Please let us know about any requests or questions you might have. Your designer will get back to you as soon as possible with an answer and/or update regarding your requests.
                             For a general question that is not about your personal design process, please contact our <a

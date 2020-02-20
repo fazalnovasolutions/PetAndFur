@@ -6,6 +6,7 @@ use App\Http\Controllers\HelperController;
 use App\Http\Controllers\OrdersController;
 use App\Mail\UpdateMail;
 use App\Order;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
@@ -44,11 +45,9 @@ class SendEmailThreeDays extends Command
     {
         $date = \Carbon\Carbon::today()->subDays(3)->format('Y-m-d');
         $orders = Order::where('last_email_at', '>=', $date)->orWhereNull('last_email_at')->get();
-
-        if (count($orders) > 0) {
-            foreach ($orders as $order) {
-                $orderQ = $order->has_design_details()->where('order_id', $order->id)->whereIN('status', ['In-Processing'])->get();
-                if (count($orderQ) > 0) {
+        foreach ($orders as $order){
+            if($order->has_additional_details != null){
+                if($order->has_additional_details->status_id == 1){
                     try {
                         Mail::to($order->email)->send(new UpdateMail($order));
                         $order->last_email_at = now()->format('Y-m-d');
@@ -60,5 +59,22 @@ class SendEmailThreeDays extends Command
             }
 
         }
+//        $orders = Order::where('last_email_at', '>=', $date)->orWhereNull('last_email_at')->get();
+//
+//        if (count($orders) > 0) {
+//            foreach ($orders as $order) {
+//                $orderQ = $order->has_design_details()->where('order_id', $order->id)->whereIN('status', ['In-Processing'])->get();
+//                if (count($orderQ) > 0) {
+//                    try {
+//                        Mail::to($order->email)->send(new UpdateMail($order));
+//                        $order->last_email_at = now()->format('Y-m-d');
+//                        $order->save();
+//                    } catch (\Exception $e) {
+//
+//                    }
+//                }
+//            }
+//
+//        }
     }
 }

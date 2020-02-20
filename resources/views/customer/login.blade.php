@@ -78,7 +78,7 @@
 
                             <div class="form-group text-center">
                                 <div class="col-xs-12 p-b-20">
-                                    <button style="background: #ff438d;border-radius: 41px;" class="btn btn-block btn-lg btn-danger" type="submit">Submit</button>
+                                    <button style="background: #ff438d;border-radius: 41px;" class="btn customer-login-btn btn-block btn-lg btn-danger" type="submit">Submit</button>
                                 </div>
                             </div>
                         </form>

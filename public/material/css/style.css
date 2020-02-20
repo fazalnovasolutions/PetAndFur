@@ -8514,9 +8514,20 @@ form .input-group {
     max-width: 722px;
 }
 
-@media only screen and (max-width: 1200px) {
-    #how-its-work {
-        max-width: 600px;
+@media only screen and (max-width: 1024px) {
+    .custom-slider {
+        width: 90%;
+        max-height: 150px;
+        padding-left: 0;
+    }
+    #back-slider {
+        position: relative;
+        overflow: hidden;
+        height: 205px;
+        padding-left: 0 !important;
+    }
+    .slick-prev {
+        left: 0;
     }
 }
 @media only screen and (max-width: 1200px) {
@@ -8524,13 +8535,23 @@ form .input-group {
         max-width: 522px;
     }
 }
-@media only screen and (max-width: 1200px) {
-    #how-its-work {
-        max-width: 522px;
+@media only screen and (max-width: 768px) {
+    #back-slider {
+        height: 171px !important;
     }
 }
 
 @media only screen and (max-width: 425px) {
+    .msg_send_btn {
+        right: 15px !important;
+    }
+    .new_pic {
+        right: -6px !important;
+        padding: 5px 5px;
+    }
+    .db img{
+        width:100%
+    }
     .image-contain {
         margin-top: 10px;
     }
@@ -8538,9 +8559,13 @@ form .input-group {
         padding-right: 0px !important;
     }
     img.light-logo {
-        padding-left: 14px;
+        padding-left: 5px;
         width: 100%;
         height: auto;
+    }
+    .mini-sidebar .top-navbar .navbar-header {
+        width: 20%;
+        text-align: center;
     }
     #how-its-work {
         width:100%
@@ -8565,7 +8590,7 @@ form .input-group {
     #back-slider {
         position: relative;
         overflow: hidden;
-        height: 240px;
+        height: 211px !important;
         padding-left: 0 !important;
     }
     .slick-prev {
@@ -8573,10 +8598,38 @@ form .input-group {
     }
 }
 @media only screen and (max-width: 375px) {
+    #back-slider {
+        height: 187px !important;
+    }
+    .msg_send_btn {
+        right: 9px !important;
+    }
+    .new_pic {
+        right: -10px !important;
+        padding: 5px 3px !important;
+        font-size: 12px;
+    }
+    .write_msg{
+        font-size:12px;
+    }
+    .customer-login-btn{
+        padding: 5px 10px !important;
+    }
+    .input-group .input-group-prepend .input-group-text{
+        padding: 13px !important;
+    }
+    .input-group input{
+        padding: 0px 18px !important;
+        font-size: 14px;
+    }
+    .mini-sidebar .top-navbar .navbar-header {
+        width: 24%;
+        text-align: center;
+    }
 .order-title{
     font-size: 22px;
 }
-    .get-sms-updates b{
+    .get-sms-updates {
         font-size: 12px;
     }
     .btn-chat-open{
@@ -8585,5 +8638,10 @@ form .input-group {
     .btn-rounded {
         border-radius: 60px;
         padding: 7px 11px !important;
+    }
+}
+@media only screen and (max-width: 320px) {
+    #back-slider {
+        height: 163px !important;
     }
 }

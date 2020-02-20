@@ -66,7 +66,7 @@ $(document).ready(function() {
                 target: 'Designer',
             },
             success:function (response) {
-                current.text('Chat With Your Designer');
+                current.find('b').text('Chat With Your Designer');
                 current.removeClass('btn-red text-white animated bounce slower');
                 current.addClass('btn-blue text-white');
             }
@@ -218,13 +218,13 @@ $(document).ready(function() {
                                 target.each(function( index ) {
                                     if(array_index === index){
                                         if(value > 0){
-                                            $(this).text('You Have New Messages');
+                                            $(this).find('b').text('You Have New Messages');
                                             $(this).addClass('btn-red text-white animated  bounce slower');
                                             $(this).removeClass('btn-blue');
                                             // alertify.error('You Have New Message');
                                         }
                                         else {
-                                            $(this).text('Chat With Your Designer');
+                                            $(this).find('b').text('Chat With Your Designer');
                                             $(this).removeClass('btn-red text-white animated bounce  slower');
                                             $(this).addClass('btn-blue text-white');
                                         }

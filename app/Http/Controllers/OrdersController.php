@@ -90,6 +90,7 @@ class OrdersController extends Controller
             $orders = Order::where('shop_id', $this->helper->getShop()->id)->orderBy('name', 'DESC')->paginate(30);
         }
 
+
         $products = DB::table('order_products')
             ->select('title')
             ->where('shop_id',$this->helper->getShop()->id)
@@ -104,13 +105,47 @@ class OrdersController extends Controller
         ]);
     }
     public function OrderDetails($id){
-        $order = Order::find($id);
+        $orders_count = count(Order::all());
         $categories = BackgroundCategory::where('shop_id', $this->helper->getShop()->id)->get();
+        if(!\request()->has('type')){
+            $order = Order::find($id);
+            return view('admin.order-details')->with([
+                'order' => $order,
+                'categories' => $categories
+            ]);
+        }
+        else{
+            if(\request()->input('type') == 'next'){
+                $count = $id+1;
+                if($count <= $orders_count){
+                    while($count <= $orders_count){
+                        if(Order::where('id',$count)->exists()){
+                            return redirect()->route('order.detail',$count);
+                        }
+                        else{
+                            $order = null;
+                        }
+                        $count++;
+                    }
+                }
 
-        return view('admin.order-details')->with([
-            'order' => $order,
-            'categories' => $categories
-        ]);
+            }
+            else{
+                $count = $id-1;
+                if($count != 0){
+                    while(true){
+                        if($count != 0){
+                            if(Order::where('id',$count)->exists()){
+                                return redirect()->route('order.detail',$count);
+                                break;
+                            }
+                            $count--;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     public function new_orders(Request $request){
@@ -633,10 +668,35 @@ class OrdersController extends Controller
 
     public function sendEmail(Request $request){
     $order = Order::find($request->input('order'));
-    if($order != null){
-        $orderQ = $order->has_design_details()->where('order_id',$order->id)->whereIN('status',['In-Processing'])->get();
-        if(count($orderQ) > 0){
-            try{
+//    if($order != null){
+//        $orderQ = $order->has_design_details()->where('order_id',$order->id)->whereIN('status',['In-Processing'])->get();
+//        if(count($orderQ) > 0){
+//            try{
+//                Mail::to($order->email)->send(new UpdateMail($order));
+//                $order->last_email_at = now()->format('Y-m-d');
+//                $order->save();
+//                return response()->json([
+//                    'status'=>'success',
+//                    'message' => 'Update Email Send Successfully!',
+//                ]);
+//            }
+//            catch (\Exception $e){
+//                return response()->json([
+//                    'status'=>'error',
+//                    'message' => 'Email Sending Failed. Server Issues!',
+//                ]);
+//            }
+//
+//        }
+//        else{
+//            return response()->json([
+//                'status'=>'error',
+//                'message' => 'Email Cannot Be Sent Because Order status is Approved | Update | No Design',
+//            ]);
+//        }
+//    }
+        if($order != null){
+            try {
                 Mail::to($order->email)->send(new UpdateMail($order));
                 $order->last_email_at = now()->format('Y-m-d');
                 $order->save();
@@ -644,26 +704,17 @@ class OrdersController extends Controller
                     'status'=>'success',
                     'message' => 'Update Email Send Successfully!',
                 ]);
-            }
-            catch (\Exception $e){
+            } catch (\Exception $e) {
                 return response()->json([
-                    'status'=>'error',
+                    'status' => 'error',
                     'message' => 'Email Sending Failed. Server Issues!',
                 ]);
             }
-
         }
-        else{
-            return response()->json([
-                'status'=>'error',
-                'message' => 'Email Cannot Be Sent Because Order status is Approved | Update | No Design',
-            ]);
-        }
-    }
     else{
         return response()->json([
             'status'=>'error',
-            'message' => 'Order Doesnot Exist',
+            'message' => 'Order Does Not Exist',
         ]);
     }
 

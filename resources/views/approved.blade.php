@@ -661,13 +661,11 @@
                                                                         <p style="margin:0;padding-bottom:1em;text-align: center;"></p>
                                                                         <p style="margin:0;padding-bottom:1em;text-align: center;">
                                                                             <span style="font-size:9px;"><span
-                                                                                    style="color:#808080;">No longer want to receive this email? {% unsubscribe %} </span></span>
+                                                                                    style="color:#808080;">No longer want to receive this email? <a
+                                                                                        href="unsubscribe"></a> </span></span>
                                                                         </p>
                                                                         <p style="margin:0;padding-bottom:1em;text-align: center;">
-                                                                            <span style="color:#f0f0f0;"><span
-                                                                                    style="font-size:9px;"></span><span
-                                                                                    style="font-size:9px;"></span><span
-                                                                                    style="font-size: 9px;">​</span></span>
+                                                                            11 W 34th St, New York, New York, United States, 10001
                                                                         </p>
                                                                         <div><span
                                                                                 style="color: rgb(34, 34, 34); font-family: Assitant, sans-serif; font-size: 16px; text-align: center;"></span>

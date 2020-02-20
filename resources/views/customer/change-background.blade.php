@@ -66,8 +66,7 @@
     </div>
 
     <div class="row justify-content-center mt-3">
-
-        <div class="col-md-6" align="center">
+        <div class="col-md-12">
             <div class="image-contain" style="@if($product->has_background != null)
                 background-image: url({{asset($product->has_background->image)}});
             @else
@@ -75,11 +74,12 @@
             @endif
                 background-repeat: no-repeat;
                 background-size: cover;
-                text-align: center
+                max-width: 945px;
+                margin: auto;
                 " >
                 @if($product->has_design != null)
                     @if($product->has_design->design != null)
-                        <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="80%">
+                        <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">
                     @endif
                 @endif
             </div>
