@@ -14,6 +14,7 @@ use App\OrderProduct;
 use App\OrderProductAdditionalDetails;
 use App\ProductDesign;
 use App\Status;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -74,11 +75,14 @@ class OrdersController extends Controller
     public function getDesigners(){
         return Designer::where('shop_id',$this->helper->getShop()->id)->get();
     }
+
     public function getStatuses($type){
         return Status::where('type',$type)->get();
     }
 
     public function Orders(Request $request){
+        $this->removeSessionFilters();
+
         if($request->has('type')){
             $query = Order::where('shop_id', $this->helper->getShop()->id)->newQuery();
             $query->whereHas('has_additional_details',function ($q) use ($request){
@@ -104,7 +108,9 @@ class OrdersController extends Controller
 
         ]);
     }
+
     public function OrderDetails($id){
+//        dd(session()->all());
         $orders_count = count(Order::all());
         $categories = BackgroundCategory::where('shop_id', $this->helper->getShop()->id)->get();
         if(!\request()->has('type')){
@@ -120,13 +126,35 @@ class OrdersController extends Controller
                 if($count <= $orders_count){
                     while($count <= $orders_count){
                         if(Order::where('id',$count)->exists()){
-                            return redirect()->route('order.detail',$count);
+                            if(session()->has('status') || session()->has('designer')){
+                                $new_order_query = Order::where('shop_id',$this->helper->getShop()->id)->where('id',$count)->newQuery();
+                                if(session()->has('status')){
+                                    $new_order_query->whereHas('has_design_details',function ($q){
+                                        $q->where('status',session()->get('status'));
+                                    });
+                                }
+                                if(session()->has('designer')){
+                                    $new_order_query->whereHas('has_designer',function ($q){
+                                        $q->where('name',session()->get('designer'));
+                                    });
+                                }
+                                $order = $new_order_query->get();
+
+                                if(count($order) > 0){
+                                    return redirect()->route('order.detail',$count);
+                                }
+
+                            }
+                            else{
+                                return redirect()->route('order.detail',$count);
+                            }
                         }
                         else{
                             $order = null;
                         }
                         $count++;
                     }
+                    return redirect()->route('order.detail',$id);
                 }
 
             }
@@ -136,10 +164,34 @@ class OrdersController extends Controller
                     while(true){
                         if($count != 0){
                             if(Order::where('id',$count)->exists()){
-                                return redirect()->route('order.detail',$count);
-                                break;
+                                if(session()->has('status') || session()->has('designer')){
+                                    $new_order_query = Order::where('shop_id',$this->helper->getShop()->id)->where('id',$count)->newQuery();
+                                    if(session()->has('status')){
+                                        $new_order_query->whereHas('has_design_details',function ($q){
+                                            $q->where('status',session()->get('status'));
+                                        });
+                                    }
+                                    if(session()->has('designer')){
+                                        $new_order_query->whereHas('has_designer',function ($q){
+                                            $q->where('name',session()->get('designer'));
+                                        });
+                                    }
+                                    $order = $new_order_query->get();
+
+                                    if(count($order) > 0){
+                                        return redirect()->route('order.detail',$count);
+                                    }
+
+                                }
+                                else{
+                                    return redirect()->route('order.detail',$count);
+                                }
                             }
                             $count--;
+                        }
+                        else{
+                            return redirect()->route('order.detail',$id);
+                            break;
                         }
                     }
                 }
@@ -149,6 +201,8 @@ class OrdersController extends Controller
     }
 
     public function new_orders(Request $request){
+        $this->removeSessionFilters();
+
         if(!$request->has('page')){
             $page = 1;
         }
@@ -625,7 +679,9 @@ class OrdersController extends Controller
 //        $this->DesignerPicker($this->helper->getShop()->shopify_domain);
         return redirect()->route('order.detail',$order->id);
     }
+
     public function new_order_detail(Request $request){
+
         $req = $this->helper->getShop()->api()->rest('GET', '/admin/orders/'.$request->id.'.json');
         $exist = false;
         if(Order::where('shopify_id',$request->id)->exists()){
@@ -648,7 +704,9 @@ class OrdersController extends Controller
         $extra_design->delete();
         return redirect()->back();
     }
+
     public function bulk_order_completed(Request $request){
+        $this->removeSessionFilters();
        $orders = explode(',',$request->input('orders'));
        if(count($orders) > 0){
            foreach ($orders as $order){
@@ -734,5 +792,18 @@ class OrdersController extends Controller
                 'status' => 'error'
             ]);
         }
+    }
+
+    public function set_session(Request $request){
+        if($request->input('type') == 'status'){
+            session(['status' => $request->input('value')]);
+        }
+        else{
+            session(['designer' => $request->input('value')]);
+        }
+    }
+    public function removeSessionFilters(){
+        session()->forget('designer');
+        session()->forget('status');
     }
 }

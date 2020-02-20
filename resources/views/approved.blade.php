@@ -664,7 +664,7 @@
                                                                                     style="color:#808080;">No longer want to receive this email? <a
                                                                                         href="unsubscribe"></a> </span></span>
                                                                         </p>
-                                                                        <p style="margin:0;padding-bottom:1em;text-align: center;">
+                                                                        <p style="margin:0;padding-bottom:1em;text-align: center;color: #ececec;"">
                                                                             11 W 34th St, New York, New York, United States, 10001
                                                                         </p>
                                                                         <div><span

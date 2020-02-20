@@ -18,17 +18,17 @@ $(document).ready(function(){
                 });
                 console.log(backgrounds);
                 $.ajax({
-                   url: $('.Selected').data('route'),
-                   method:'get',
+                    url: $('.Selected').data('route'),
+                    method:'get',
                     data:{
-                       backgrounds: backgrounds,
+                        backgrounds: backgrounds,
                         category: $('.select_ajax_reload').val(),
                     },
                     success:function () {
                         alertify.success('Background Position Changed Successfully!');
                     },
                     error:function(){
-                       alertify.error('Internal Servor Errror!');
+                        alertify.error('Internal Servor Errror!');
                     }
                 });
             }
@@ -223,7 +223,7 @@ $(document).ready(function(){
         }
         else {
             switchStatus = 0;
-             text = 'Disabled';
+            text = 'Disabled';
             $(this).parents('.col-md-3').next().find('.status').text(text);
             $(this).parents('.col-md-3').next().find('.status').removeClass('text_active');
             $(this).parents('.col-md-3').next().find('.status').addClass('text-danger');
@@ -233,8 +233,8 @@ $(document).ready(function(){
             url: $(this).data('route'),
             method: $(this).data('method'),
             data:{
-              designer: $(this).data('designer'),
-              status: switchStatus,
+                designer: $(this).data('designer'),
+                status: switchStatus,
             },
             success:function () {
                 alertify.success('Designer '+text+' Changed!')
@@ -244,46 +244,53 @@ $(document).ready(function(){
 
 
     ///////////////////filter order status///////////////
+    /*Set Filter for Arrows*/
+    function set_filter($type,$value){
+        $.ajax({
+            url:$('#filter-route').data('url'),
+            method: 'GET',
+            data:{
+                value: $value,
+                type: $type
+            }
+        });
+    }
+
 
     // $('.order_status').click(function () {
     $('body').on('click','.order_status',function () {
+        set_filter('status',$(this).text());
         $("#myTable tr").each(function() {
             $(this).show();
         });
         var value=$(this).text();
         console.log(value);
         $('.order_status_button').text(value);
-
-
-       if($(this).text() !== 'All Statuses'){
-           $("#myTable tr .design-status h6").filter(function() {
-               if($(this).data('text') !== value){
-                   $(this).parents('tr').hide();
-               }
-               else{
-                   $(this).parents('tr').show() ;
-               }
-
-               // var dropdown=$(this).parent();
-               // var td=$(dropdown).parent();
-               // $($(td).parent()).toggle($(this).text().toLowerCase().indexOf(value[0].toLowerCase()) > -1)
-           });
-       }
-       else{
-           $("#myTable tr").each(function() {
-               $(this).show();
-           });
-       }
+        if($(this).text() !== 'All Statuses'){
+            $("#myTable tr .design-status h6").filter(function() {
+                if($(this).data('text') !== value){
+                    $(this).parents('tr').hide();
+                }
+                else{
+                    $(this).parents('tr').show() ;
+                }
+            });
+        }
+        else{
+            $("#myTable tr").each(function() {
+                $(this).show();
+            });
+        }
 
 
     });
     /*Design Uplaod*/
 
     $('body').on('click','.upload-design-button',function () {
-       $(this).parent().next().find('.design-file').trigger('click');
+        $(this).parent().next().find('.design-file').trigger('click');
     });
     $('body').on('change','.design-file',function () {
-       $(this).closest('form').submit();
+        $(this).closest('form').submit();
     });
 
     $('body').on('click','.modal_button',function () {
@@ -354,7 +361,7 @@ $(document).ready(function(){
         var span =$(drop_menu)[0];
         if($(this).data('type') === 'order-inner'){
             if (text === "Not Completed") {
-               var h6 = current.parents('.dropdown').find('h5');
+                var h6 = current.parents('.dropdown').find('h5');
                 h6.text(text)
                 h6.append('<i class=" m-l-5 fa fa-chevron-down"></i>');
                 h6.css("background","#a53838");
@@ -408,6 +415,7 @@ $(document).ready(function(){
 
     // $(".change_designer").click(function () {
     $('body').on('click','.change_designer',function () {
+       set_filter('designer',$(this).text());
         var value=$(this).text();
         $('.designer-text').text(value);
         if(value !== 'All Designers'){
@@ -418,7 +426,7 @@ $(document).ready(function(){
         }
         else{
             $("#myTable tr").each(function() {
-               $(this).show();
+                $(this).show();
             });
 
         }
@@ -551,7 +559,7 @@ $(document).ready(function(){
     });
 
     $('body').on('click','.set-to-complete-orders',function () {
-       $(this).next().submit();
+        $(this).next().submit();
     });
 
     function selectedOrders(){
@@ -592,7 +600,7 @@ $(document).ready(function(){
                 $('#order_table').find('#myTable').empty();
                 $('#order_table').find('#myTable').html($(response).find('#myTable').html());
                 order_status();
-                },
+            },
         });
 
     });
@@ -614,6 +622,7 @@ $(document).ready(function(){
             success:function (response){
                 $('#order_table').find('#myTable').empty();
                 $('#order_table').find('#myTable').html($(response).find('#myTable').html());
+                order_status();
             },
         });
     });

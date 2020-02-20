@@ -9,6 +9,7 @@
         </div>
 
     </div>
+{{--    {{dd(session()->all())}}--}}
     <div class="row pl-5">
         <div class="col-sm-2 col-md-1">
             <h3 ><b>Order </b></h3>

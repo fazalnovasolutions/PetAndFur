@@ -278,6 +278,8 @@ $(document).ready(function() {
 
     $('body').on('click','.background-div',function () {
         var value =$(this).find('img').attr('src');
+        var name =$(this).find('img').data('name');
+        $('.background_title').text(name);
         value = 'url('+value+')';
         $('.image-contain').css('background-image',value);
         $('#background-category').val($(this).find('img').attr('data-id'));

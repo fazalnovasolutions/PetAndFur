@@ -40,6 +40,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="filter-route" data-url="{{route('set-filter-status')}}">
                         <div class=" dropdowns">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

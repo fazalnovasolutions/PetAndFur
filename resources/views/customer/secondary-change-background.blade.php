@@ -20,11 +20,12 @@
             <div class="custom-slider">
                 @foreach($category->has_backgrounds as $b)
                 <div style="margin: 0px 20px; width: 117px;cursor: pointer" class="background-div">
-                    <img data-id="{{$b->id}}" src="{{asset($b->image)}}"  alt="Babe Pink">
+                    <img data-id="{{$b->id}}" data-name="{{$b->name}}" src="{{asset($b->image)}}"  alt="Babe Pink">
                 </div>
                     @endforeach
             </div>
-            <div class="background_title">Colorful Dots</div>
+            <div class="background_title">@if($secondary_design->has_background != null) {{$secondary_design->has_background->name}} @else Colorful Dots @endif</div>
+
 
         </div>
 
@@ -73,10 +74,12 @@
             @else
                 background-image: url({{asset('material/background-images/Colorful.jpg')}});
             @endif
+
                 background-repeat: no-repeat;
                 background-size: cover;
-                max-width: 945px;
+                max-width: 400px;
                 margin: auto;
+                background-position: center center;
                 " >
                 @if($product->has_design != null)
                     @if($product->has_design->design != null)
