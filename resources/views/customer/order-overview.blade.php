@@ -108,7 +108,7 @@
 
                                         @if(count(json_decode($product->properties)) > 0)
                                             @foreach(json_decode($product->properties) as $property)
-                                                @if($property->name == '_io_uploads')
+                                                @if($property['name'] == '_io_uploads' || $property['name'] == '_Uploaded Image')
                                                     <img src="{{$property->value}}" height="auto" width="100%">
                                                 @endif
                                             @endforeach
