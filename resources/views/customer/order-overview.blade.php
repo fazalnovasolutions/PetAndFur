@@ -39,7 +39,7 @@
                                 </div>
                                 @if(count(json_decode($product->properties)) > 0)
                                     @foreach(json_decode($product->properties) as $property)
-                                        @if( !array_key_exists($property->name,['_io_uploads','_Uploaded Image']))
+                                        @if( $property->name !='_io_uploads' || $property->name != '_Uploaded Image'))
                                             @if($product->has_changed_style == null)
                                                 <div class="row p-1 ">
                                                     <h5 class="pt-1"> <b>{{$property->name}} :</b> </h5>
@@ -108,7 +108,7 @@
 
                                         @if(count(json_decode($product->properties)) > 0)
                                             @foreach(json_decode($product->properties) as $property)
-                                                @if( array_key_exists($property->name,['_io_uploads','_Uploaded Image']))
+                                                @if( $property->name =='_io_uploads' || $property->name == '_Uploaded Image'))
                                                     <img src="{{$property->value}}" height="auto" width="100%">
                                                 @endif
                                             @endforeach
@@ -316,8 +316,8 @@
                                         </div>
                                         @if(count(json_decode($product->properties)) > 0)
                                             @foreach(json_decode($product->properties) as $property)
-                                                @if( !array_key_exists($property->name,['_io_upload','_Uploaded Image']))
-                                                    @if($product->has_changed_style == null)
+                                                @if( $property->name !='_io_uploads' || $property->name != '_Uploaded Image'))
+                                            @if($product->has_changed_style == null)
                                                         <div class="row p-1 ">
                                                             <h5 class="pt-1"> <b>{{$property->name}} :</b> </h5>
                                                             <div class="pt-1 ml-2 btn-blue ">
