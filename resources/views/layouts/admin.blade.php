@@ -14,9 +14,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('material/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- chartist CSS -->
-    <link href="{{asset('material/assets/plugins/chartist-js/dist/chartist.min.css')}}" rel="stylesheet">
-    <link href="{{asset('material/assets/plugins/chartist-js/dist/chartist-init.css')}}" rel="stylesheet">
-    <link href="{{asset('material/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css')}}" rel="stylesheet">
+{{--    <link href="{{asset('material/assets/plugins/chartist-js/dist/chartist.min.css')}}" rel="stylesheet">--}}
+{{--    <link href="{{asset('material/assets/plugins/chartist-js/dist/chartist-init.css')}}" rel="stylesheet">--}}
+{{--    <link href="{{asset('material/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css')}}" rel="stylesheet">--}}
     <!-- toggle---->
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <!--This page css - Morris CSS -->
@@ -205,14 +205,14 @@
 <!-- This page plugins -->
 <!-- ============================================================== -->
 <!-- chartist chart -->
-<script src="{{asset('material/assets/plugins/chartist-js/dist/chartist.min.js')}}"></script>
-<script src="{{asset('material/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js')}}"></script>
+{{--<script src="{{asset('material/assets/plugins/chartist-js/dist/chartist.min.js')}}"></script>--}}
+{{--<script src="{{asset('material/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js')}}"></script>--}}
 <!--c3 JavaScript -->
-<script src="{{asset('material/assets/plugins/d3/d3.min.js')}}"></script>
-<script src="{{asset('material/assets/plugins/c3-master/c3.min.js')}}"></script>
+{{--<script src="{{asset('material/assets/plugins/d3/d3.min.js')}}"></script>--}}
+{{--<script src="{{asset('material/assets/plugins/c3-master/c3.min.js')}}"></script>--}}
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 <!-- Chart JS -->
-<script src="{{asset('material/js/dashboard1.js')}}"></script>
+{{--<script src="{{asset('material/js/dashboard1.js')}}"></script>--}}
 <script src="{{asset('js/script.js')}}"></script>
 
 

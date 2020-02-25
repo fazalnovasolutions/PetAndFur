@@ -217,16 +217,16 @@ $(document).ready(function(){
         if ($(this).is(':checked')) {
             switchStatus = 1;
             text = 'Active';
-            $(this).parents('.col-md-3').next().find('.status').text(text);
-            $(this).parents('.col-md-3').next().find('.status').removeClass('text-danger');
-            $(this).parents('.col-md-3').next().find('.status').addClass('text_active');
+            $(this).parents('.col-md-1').next().find('.status').text(text);
+            $(this).parents('.col-md-1').next().find('.status').removeClass('text-danger');
+            $(this).parents('.col-md-1').next().find('.status').addClass('text_active');
         }
         else {
             switchStatus = 0;
             text = 'Disabled';
-            $(this).parents('.col-md-3').next().find('.status').text(text);
-            $(this).parents('.col-md-3').next().find('.status').removeClass('text_active');
-            $(this).parents('.col-md-3').next().find('.status').addClass('text-danger');
+            $(this).parents('.col-md-1').next().find('.status').text(text);
+            $(this).parents('.col-md-1').next().find('.status').removeClass('text_active');
+            $(this).parents('.col-md-1').next().find('.status').addClass('text-danger');
         }
 
         $.ajax({

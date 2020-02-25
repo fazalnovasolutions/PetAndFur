@@ -48,6 +48,8 @@ Route::group(['middleware' => ['auth']], function(){
             Route::get('designer/dashboard','DesignerController@Dashboard')->name('admin.designer.dashboard');
             Route::post('/manaul-picker','DesignerController@ManualDesignPicker')->name('admin.manual-picker');
             Route::get('designer/status','DesignerController@SetStatus')->name('admin.designer.status');
+            Route::get('designer/delete/{id}','DesignerController@delete_designer')->name('admin.designer.delete');
+
 
 
 

@@ -96,5 +96,17 @@ class DesignerController extends Controller
         $designer->save();
         return redirect()->back()->with('success', 'Designer Status Changed Successfully');
     }
+    public function delete_designer(Request $request){
+        $designer = Designer::find($request->id);
+        if($designer != null){
+            if(count($designer->has_orders) > 0){
+                return redirect()->back()->with('success', 'Designer Cannot Be Deleted Because He/She Have Some Orders');
+            }
+            else{
+                $designer->delete();
+                return redirect()->back()->with('success', 'Designer Delete Successfully');
+            }
+        }
+    }
 
 }

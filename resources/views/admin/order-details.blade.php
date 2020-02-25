@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5 offset-6 text-center">
+                <div class="col-md-5 offset-6">
                     <div class="pb-2">
                         <button class="btn btn-rounded text-white btn-danger" type="button" data-toggle="modal" data-target="#send-mail"> Send Email Update</button>
 {{--                        <button class="btn btn-rounded @if($order->sms_feature == 1) btn-green @else btn-grey @endif">Send SMS</button>--}}
