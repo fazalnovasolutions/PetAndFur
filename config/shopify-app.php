@@ -142,7 +142,7 @@ return [
     |
     */
 
-    'api_scopes' => env('SHOPIFY_API_SCOPES', 'read_products,write_products,read_product_listings,read_orders,write_orders,read_customers,write_customers,read_script_tags,write_script_tags,read_draft_orders,write_draft_orders,read_shipping,write_shipping'),
+    'api_scopes' => env('SHOPIFY_API_SCOPES', 'read_products,write_products,read_product_listings,read_orders,write_orders,read_customers,write_customers,read_script_tags,write_script_tags,read_draft_orders,write_draft_orders,read_shipping,write_shipping,read_all_orders'),
 
     /*
     |--------------------------------------------------------------------------
@@ -283,7 +283,7 @@ return [
     'webhooks' => [
         [
             'topic' => 'orders/updated',
-            'address' => 'https://phpstack-176572-1152020.cloudwaysapps.com/webhook/orders-update'
+            'address' => 'https://info.boompup.com/webhook/orders-update'
         ]
     ],
 
