@@ -8563,7 +8563,7 @@ form .input-group {
         width:100%
     }
     .image-contain {
-        margin-top: 10px;
+        margin-top: 10px !important;
     }
     .topbar .top-navbar .navbar-collapse {
         padding-right: 0px !important;

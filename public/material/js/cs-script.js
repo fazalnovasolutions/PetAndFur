@@ -1,17 +1,41 @@
 
 
 $(document).ready(function() {
-    // if($('#slick-count').length > 0){
-    //     var slick_count = parseInt($('#slick-count').val()) ;
-    //     console.log(slick_count);
-    //     $(".custom-slider").slick({
-    //         infinite: true,
-    //         // centerMode: true,
-    //         slidesToShow: slick_count,
-    //         slidesToScroll: slick_count,
-    //         // arrows: true
-    //     });
-    // }
+    if($('#slick-count').length < 7){
+        var slick_count = parseInt($('#slick-count').val()) ;
+        console.log(slick_count);
+        $(".custom-slider").slick({
+            infinite: true,
+            // centerMode: true,
+            slidesToShow: slick_count,
+            slidesToScroll: 1,
+            // arrows: true
+        });
+    }
+    else{
+        $(".custom-slider").slick({
+            infinite: true,
+            slidesToShow: 7,
+            slidesToScroll: 1,
+            adaptiveHeight :true,
+            responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    infinite: true
+                }
+            }, {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true
+                }
+            }
+            ]
+        });
+    }
     $('img').each(function (index) {
         var src = $(this).attr('src');
         // console.log(src)
@@ -28,28 +52,7 @@ $(document).ready(function() {
 
         }
     });
-    $(".custom-slider").slick({
-        infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        adaptiveHeight :true,
-        responsive: [{
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 5,
-                slidesToScroll: 1,
-                infinite: true
-            }
-        }, {
-            breakpoint: 767,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true
-            }
-        }
-        ]
-    });
+
 
     $('body').on('click','.get-sms-updates',function () {
         $.ajax({
