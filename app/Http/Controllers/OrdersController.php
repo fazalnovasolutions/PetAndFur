@@ -685,6 +685,7 @@ class OrdersController extends Controller
     public function new_order_detail(Request $request){
 
         $req = $this->helper->getShop()->api()->rest('GET', '/admin/orders/'.$request->id.'.json');
+//        dd($req);
         $exist = false;
         if(Order::where('shopify_id',$request->id)->exists()){
             $exist = true;

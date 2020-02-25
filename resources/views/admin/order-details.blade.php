@@ -126,7 +126,7 @@
                                     ?>
                                     @if($properties)
                                         @foreach($properties as $property)
-                                            @if($property['name'] == 'Style')
+                                            @if($property['name'] == 'Style' || $property['name'] == 'Style2')
                                                 <div class="row m-3">
                                                     <h6 class="pt-1"> Style : </h6>
                                                     @if($product->has_changed_style != null)
@@ -153,7 +153,7 @@
                                     @endif
                                     @if($properties)
                                         @foreach($properties as $property)
-                                            @if($property['name'] == '_io_uploads')
+                                            @if($property['name'] == '_io_uploads' || $property['name'] == '_Uploaded Image')
                                                 <div class="row  m-3">
                                                     <div class="col-sm-12 col-sm-6 justify-content-center" >
                                                         <a class="btn btn-rounded btn-purple"  target="_blank" href="{{ $property['value'] }}">Download Pet Photo</a>
@@ -247,7 +247,7 @@
                                                             }
                                                             else{
                                                                foreach ($properties as $property){
-                                                            if($property['name'] == 'Style'){
+                                                            if($property['name'] == 'Style' || $property['name'] == 'Style2'){
                                                             $style = $property['value'];
                                                             }
                                                             }
@@ -381,7 +381,7 @@
                                                             }
                                                             else{
                                                                foreach ($properties as $property){
-                                                            if($property['name'] == 'Style'){
+                                                            if($property['name'] == 'Style' || $property['name'] == 'Style2'){
                                                             $style = $property['value'];
                                                             }
                                                             }

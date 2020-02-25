@@ -651,4 +651,21 @@ $(document).ready(function(){
         })
     });
 
+    $('img').each(function (index) {
+       var src = $(this).attr('src');
+       // console.log(src)
+        if (src.search("&uu=") !== -1) {
+            var url = new URL(src);
+            var id = url.searchParams.get("id");
+            var c = url.searchParams.get("uu");
+            // console.log(c);
+            if(c !== null){
+                var new_src = 'https://cdn.getuploadkit.com/'+c+'/';
+                console.log(new_src)
+                $(this).attr('src',new_src);
+            }
+
+        }
+    });
+
 });

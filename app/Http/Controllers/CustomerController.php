@@ -74,7 +74,7 @@ class CustomerController extends Controller
                         $properties = json_decode($product->properties);
                         $style = '';
                         foreach ($properties as $p){
-                            if($p->name == 'Style'){
+                            if($p->name == 'Style' ||$p->name == 'Style2'){
                                 $style = $p->value;
                                 $style_color = '#00ccff';
                             }
@@ -126,7 +126,7 @@ class CustomerController extends Controller
                         $properties = json_decode($product->properties);
                         $style = '';
                         foreach ($properties as $p){
-                            if($p->name == 'Style'){
+                            if($p->name == 'Style' || $p->name == 'Style2'){
                                 $style = $p->value;
                                 $style_color = '#00ccff';
                             }

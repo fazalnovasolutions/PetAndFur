@@ -64,7 +64,7 @@
                                     </div>
 
                                     @foreach($product->properties as $property)
-                                        @if($property->name == 'Style')
+                                        @if($property->name == 'Style' || $property->name == 'Style2')
                                             <div class="row m-3">
                                                 <h6 class="pt-1"> Style : </h6>
                                                 <div class="pt-1 ml-2 btn-blue ">
@@ -85,7 +85,7 @@
 
 
                                     @foreach($product->properties as $property)
-                                        @if($property->name == '_io_uploads')
+                                        @if($property->name == '_io_uploads' ||$property->name == '_Uploaded Image')
                                             <div class="row  m-3">
                                                 <div class="col-sm-12 col-sm-6 justify-content-center" >
                                                     <a class="btn btn-rounded btn-purple"  target="_blank" href="{{ $property->value }}">Download Pet Photo</a>
@@ -98,7 +98,7 @@
 
 
                                 @foreach($product->properties as $property)
-                                    @if($property->name == '_io_uploads')
+                                    @if($property->name == '_io_uploads' || $property->name == '_Uploaded Image')
                                         <div class=" col-sm-6 col-md-5" align="center">
                                             <div class="mt-4 pr-2">
                                                 <img src="{{ $property->value }}" width="100%" height="auto" style="margin-bottom: 15px">
