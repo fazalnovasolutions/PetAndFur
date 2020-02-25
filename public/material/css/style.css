@@ -8547,6 +8547,10 @@ form .input-group {
 }
 
 @media only screen and (max-width: 425px) {
+    .background_title {
+        font-size: 11px;
+        width: 30%;
+    }
     .msg_send_btn {
         right: 15px !important;
     }
