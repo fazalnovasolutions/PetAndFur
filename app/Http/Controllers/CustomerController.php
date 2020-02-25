@@ -64,7 +64,6 @@ class CustomerController extends Controller
     }
 
     public function ChangeBackground(Request $request){
-
         if(session('order_name') != null){
 //            dd($request->product);
             $product = OrderProduct::where('id',$request->product)->first();
@@ -74,7 +73,7 @@ class CustomerController extends Controller
                         $properties = json_decode($product->properties);
                         $style = '';
                         foreach ($properties as $p){
-                            if($p->name == 'Style' ||$p->name == 'Style2'){
+                            if($p->name == 'Style' || $p->name == 'Style2'){
                                 $style = $p->value;
                                 $style_color = '#00ccff';
                             }
@@ -84,6 +83,7 @@ class CustomerController extends Controller
                         $style =  $product->has_changed_style->style;
                         $style_color = $product->has_changed_style->color;
                     }
+
 
                     if($style != null){
                         $category =  BackgroundCategory::where('name',$style)->first();

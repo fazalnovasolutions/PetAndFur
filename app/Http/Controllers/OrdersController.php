@@ -695,6 +695,7 @@ class OrdersController extends Controller
         return view('admin.new-order-detail')->with([
             'order'=>$req->body->order,
             'designer' => $designer,
+            'categories' => BackgroundCategory::all(),
             'exist' => $exist
         ]);
     }

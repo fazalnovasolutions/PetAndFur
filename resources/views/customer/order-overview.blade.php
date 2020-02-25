@@ -43,9 +43,19 @@
                                             @if($product->has_changed_style == null)
                                                 <div class="row p-1 ">
                                                     <h5 class="pt-1"> <b>Style :</b> </h5>
-                                                    <div class="pt-1 ml-2 btn-blue ">
-                                                        <h6 class="pr-2 pl-2 pt-1"><b>{{$property->value}}</b> </h6>
-                                                    </div>
+                                                    @if(count($categories) > 0)
+                                                        @foreach($categories as $category)
+                                                            @if($category->name ==  $property->value)
+                                                                <div class="pt-1 ml-2 " style="background:{{$category->color}}">
+                                                                    <h6 class="pr-2 pl-2 text-white pt-1"><b>{{ $property->value}}</b> </h6>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    @else
+                                                        <div class="pt-1 ml-2 btn-blue">
+                                                            <h6 class="pr-2 pl-2 pt-1"><b>{{ $property->value}}</b> </h6>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             @else
                                                 <div class="row p-1 ">
