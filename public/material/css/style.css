@@ -8550,6 +8550,7 @@ form .input-group {
     .background_title {
         font-size: 11px;
         width: 30%;
+        bottom: 30px !important;
     }
     .msg_send_btn {
         right: 15px !important;
@@ -8592,7 +8593,7 @@ form .input-group {
         font-size: 22px;
     }
     .custom-slider {
-        width: 90%;
+        width: 100%;
          max-height: 150px;
          padding-left: 0;
     }
