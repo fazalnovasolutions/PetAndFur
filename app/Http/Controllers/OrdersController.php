@@ -209,7 +209,7 @@ class OrdersController extends Controller
         else{
             $page = $request->input('page');
         }
-        $req = $this->helper->getShop()->api()->rest('GET', '/admin/orders.json',['page'=>$page]);
+        $req = $this->helper->getShop()->api()->rest('GET', '/admin/orders.json',['page'=>$page,'since_id'=>'2044150906957']);
         $designers = Designer::where('shop_id',$this->helper->getShop()->id)
             ->where('status',1)->get();
         if(count($designers) > 0) {
