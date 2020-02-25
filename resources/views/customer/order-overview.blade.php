@@ -42,7 +42,7 @@
                                         @if( $property->name =='Style' || $property->name == 'Style2')
                                             @if($product->has_changed_style == null)
                                                 <div class="row p-1 ">
-                                                    <h5 class="pt-1"> <b>{{$property->name}} :</b> </h5>
+                                                    <h5 class="pt-1"> <b>Style :</b> </h5>
                                                     <div class="pt-1 ml-2 btn-blue ">
                                                         <h6 class="pr-2 pl-2 pt-1"><b>{{$property->value}}</b> </h6>
                                                     </div>
@@ -319,7 +319,7 @@
                                                 @if( $property->name =='Style' || $property->name == 'Style2')
                                             @if($product->has_changed_style == null)
                                                         <div class="row p-1 ">
-                                                            <h5 class="pt-1"> <b>{{$property->name}} :</b> </h5>
+                                                            <h5 class="pt-1"> <b>Style :</b> </h5>
                                                             <div class="pt-1 ml-2 btn-blue ">
                                                                 <h6 class="pr-2 pl-2 pt-1"><b>{{$property->value}}</b> </h6>
                                                             </div>
