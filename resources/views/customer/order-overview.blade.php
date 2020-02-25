@@ -19,7 +19,7 @@
             </div>
             <div class="row justify-content-center mt-3" >
                 <div class="">
-                    <button class="btn btn-rounded btn-green get-sms-updates text-white" data-url="{{route('sms.settings')}}" data-order="{{$order->id}}" @if($order->sms_feature == 0) data-setting="1" @else data-setting="0" @endif >@if($order->sms_feature == 0) Get updates by SMS @else SMS Service Enabled @endif</button>
+{{--                    <button class="btn btn-rounded btn-green get-sms-updates text-white" data-url="{{route('sms.settings')}}" data-order="{{$order->id}}" @if($order->sms_feature == 0) data-setting="1" @else data-setting="0" @endif >@if($order->sms_feature == 0) Get updates by SMS @else SMS Service Enabled @endif</button>--}}
                     <button class="btn btn-rounded btn-blue btn-chat-open" data-notification="{{route('chat.notifications')}}" data-route="{{route('chat.get')}}" data-order_id="{{$order->id}}" {{--data-product="{{$product->id}}"--}} data-target="#chat_modal"> <b class="text-white">Chat With Your Designer</b></button>
                 </div>
             </div>
@@ -130,11 +130,13 @@
                                                     @endif
                                                         background-repeat: no-repeat;
                                                         background-size: cover;
-                                                        text-align: center
+                                                        max-width: 400px;
+                                                        margin: auto;
+                                                        background-position: center center;
                                                         " >
                                                         @if($product->has_design != null)
                                                             @if($product->has_design->design != null)
-                                                                <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="80%">
+                                                                <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">
                                                             @endif
                                                         @endif
                                                     </div>
@@ -143,9 +145,14 @@
                                                     @if($properties)
                                                         @php
                                                             $style = '';
-                                                            foreach ($properties as $property){
+                                                            if($product->has_changed_style !=  null){
+                                                            $style = $product->has_changed_style->style;
+                                                            }
+                                                            else{
+                                                               foreach ($properties as $property){
                                                             if($property['name'] == 'Style'){
                                                             $style = $property['value'];
+                                                            }
                                                             }
                                                             }
                                                         @endphp
@@ -157,11 +164,13 @@
                                                                             background-image: url({{asset($b->image)}});
                                                                             background-repeat: no-repeat;
                                                                             background-size: cover;
-                                                                            text-align: center
+                                                                            max-width: 400px;
+                                                                            margin: auto;
+                                                                            background-position: center center;
                                                                             " >
                                                                             @if($product->has_design != null)
                                                                                 @if($product->has_design->design != null)
-                                                                                    <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="80%">
+                                                                                    <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">
                                                                                 @endif
                                                                             @endif
                                                                         </div>
@@ -349,17 +358,24 @@
                                                     @endif
                                                         background-repeat: no-repeat;
                                                         background-size: cover;
-                                                        text-align: center
+                                                        max-width: 400px;
+                                                        margin: auto;
+                                                        background-position: center center;
                                                         " >
-                                                        <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
+                                                        <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="100%">
                                                     </div>
                                                 @else
                                                     @if($properties)
                                                         @php
                                                             $style = '';
-                                                            foreach ($properties as $property){
+                                                            if($product->has_changed_style !=  null){
+                                                            $style = $product->has_changed_style->style;
+                                                            }
+                                                            else{
+                                                               foreach ($properties as $property){
                                                             if($property['name'] == 'Style'){
                                                             $style = $property['value'];
+                                                            }
                                                             }
                                                             }
                                                         @endphp
@@ -371,9 +387,11 @@
                                                                             background-image: url({{asset($b->image)}});
                                                                             background-repeat: no-repeat;
                                                                             background-size: cover;
-                                                                            text-align: center
+                                                                            max-width: 400px;
+                                                                            margin: auto;
+                                                                            background-position: center center;
                                                                             " >
-                                                                            <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
+                                                                            <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="100%">
                                                                         </div>
                                                                     @endif
                                                                 @endforeach

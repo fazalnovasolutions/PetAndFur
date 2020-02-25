@@ -221,6 +221,7 @@ class OrdersController extends Controller
                 }
                 return ($count_order_a < $count_order_b) ? -1 : 1;
             });
+//            dd($designers);
             /*Initializing a Designer Stack*/
             $designers_stack = new DesignerStack(count($designers));
             foreach ($designers as $designer) {
@@ -252,7 +253,8 @@ class OrdersController extends Controller
 
             else{
                 $order->sync = 'no';
-                if(!$designers_stack->isEmpty()){
+//                dd($designer);
+                if(!empty($designer)){
 
                     $order->designer_id = $designer["id"];
                     $exist = Designer::find($designer["id"]);

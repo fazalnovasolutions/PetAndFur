@@ -14,8 +14,9 @@ $(document).ready(function() {
     // }
     $(".custom-slider").slick({
         infinite: true,
-        slidesToShow: 6,
+        slidesToShow: 5,
         slidesToScroll: 1,
+        adaptiveHeight :true,
         responsive: [{
             breakpoint: 1024,
             settings: {

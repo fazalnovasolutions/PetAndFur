@@ -19,12 +19,18 @@
             <!-- The slideshow -->
             <div class="custom-slider">
                 @foreach($category->has_backgrounds as $b)
-                <div style="margin: 0px 20px; width: 117px;cursor: pointer" class="background-div">
+                <div style="margin: 0px 20px; width: 85% !important;cursor: pointer" class="background-div">
                     <img data-id="{{$b->id}}" data-name="{{$b->name}}" src="{{asset($b->image)}}"  alt="Babe Pink">
                 </div>
                     @endforeach
             </div>
-            <div class="background_title">@if($product->has_background != null) {{$product->has_background->name}} @else Colorful Dots @endif</div>
+            <div class="background_title">@if($product->has_background != null) {{$product->has_background->name}} @else
+                    @foreach($category->has_backgrounds as $index=> $b)
+                        @if($index == 0)
+                            {{$b->name}}
+                            @endif
+                    @endforeach
+                @endif</div>
 
         </div>
 
@@ -70,7 +76,11 @@
             <div class="image-contain" style="@if($product->has_background != null)
                 background-image: url({{asset($product->has_background->image)}});
             @else
-                background-image: url({{asset('material/background-images/Colorful.jpg')}});
+            @foreach($category->has_backgrounds as $index=> $b)
+                @if($index == 0)
+                background-image: url({{asset($b->image)}});
+                @endif
+                @endforeach
             @endif
 
                 background-repeat: no-repeat;

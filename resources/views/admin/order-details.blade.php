@@ -72,7 +72,7 @@
                 <div class="col-md-5 offset-6 text-center">
                     <div class="pb-2">
                         <button class="btn btn-rounded text-white btn-danger" type="button" data-toggle="modal" data-target="#send-mail"> Send Email Update</button>
-                        <button class="btn btn-rounded @if($order->sms_feature == 1) btn-green @else btn-grey @endif">Send SMS</button>
+{{--                        <button class="btn btn-rounded @if($order->sms_feature == 1) btn-green @else btn-grey @endif">Send SMS</button>--}}
                     </div>
                 </div>
             </div>
@@ -215,10 +215,10 @@
                             </div>
                             <div class="flexing">
                                 <div class="col-md-6">
-                                    <div class="mt-4 pb-3">
+                                    <div class="pb-3">
                                         @if($product->has_design != null)
                                             @if($product->has_design->design != null)
-                                                <i style="float: right;cursor: pointer;position: relative;z-index: 99;" onclick="window.location.href='{{route('admin.order.product.delete.design')}}?order={{$order->id}}&&product={{$product->id}}'" class=" delete-design mdi mdi-close-circle"></i>
+                                                <i style="top: 0;left: 94%;cursor: pointer;position: relative;z-index: 99;" onclick="window.location.href='{{route('admin.order.product.delete.design')}}?order={{$order->id}}&&product={{$product->id}}'" class=" delete-design mdi mdi-close-circle"></i>
                                                 @if($product->has_background != null)
                                                     <div class="image-contain" style="@if($product->has_background != null)
                                                         background-image: url({{asset($product->has_background->image)}});
@@ -227,11 +227,13 @@
                                                     @endif
                                                         background-repeat: no-repeat;
                                                         background-size: cover;
-                                                        text-align: center
+                                                        max-width: 400px;
+                                                        margin: auto;
+                                                        background-position: center center;
                                                         " >
                                                         @if($product->has_design != null)
                                                             @if($product->has_design->design != null)
-                                                                <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="80%">
+                                                                <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">
                                                             @endif
                                                         @endif
                                                     </div>
@@ -240,11 +242,17 @@
                                                     @if($properties)
                                                         @php
                                                             $style = '';
-                                                            foreach ($properties as $property){
+                                                            if($product->has_changed_style !=  null){
+                                                            $style = $product->has_changed_style->style;
+                                                            }
+                                                            else{
+                                                               foreach ($properties as $property){
                                                             if($property['name'] == 'Style'){
                                                             $style = $property['value'];
                                                             }
                                                             }
+                                                            }
+
                                                         @endphp
                                                         @foreach($categories as $cat)
                                                             @if($cat->name == $style)
@@ -254,11 +262,13 @@
                                                                             background-image: url({{asset($b->image)}});
                                                                             background-repeat: no-repeat;
                                                                             background-size: cover;
-                                                                            text-align: center
+                                                                            max-width: 400px;
+                                                                            margin: auto;
+                                                                            background-position: center center;
                                                                             " >
                                                                             @if($product->has_design != null)
                                                                                 @if($product->has_design->design != null)
-                                                                                    <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="80%">
+                                                                                    <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">
                                                                                 @endif
                                                                             @endif
                                                                         </div>
@@ -356,17 +366,24 @@
                                                     @endif
                                                         background-repeat: no-repeat;
                                                         background-size: cover;
-                                                        text-align: center
+                                                        max-width: 400px;
+                                                        margin: auto;
+                                                        background-position: center center;
                                                         " >
-                                                        <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
+                                                        <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="100%">
                                                     </div>
                                                 @else
                                                     @if($properties)
                                                         @php
                                                             $style = '';
-                                                            foreach ($properties as $property){
+                                                            if($product->has_changed_style !=  null){
+                                                            $style = $product->has_changed_style->style;
+                                                            }
+                                                            else{
+                                                               foreach ($properties as $property){
                                                             if($property['name'] == 'Style'){
                                                             $style = $property['value'];
+                                                            }
                                                             }
                                                             }
                                                         @endphp
@@ -378,9 +395,11 @@
                                                                             background-image: url({{asset($b->image)}});
                                                                             background-repeat: no-repeat;
                                                                             background-size: cover;
-                                                                            text-align: center
+                                                                            max-width: 400px;
+                                                                            margin: auto;
+                                                                            background-position: center center;
                                                                             " >
-                                                                            <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="80%">
+                                                                            <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="100%">
                                                                         </div>
                                                                     @endif
                                                                 @endforeach

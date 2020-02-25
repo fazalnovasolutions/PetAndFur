@@ -8513,6 +8513,11 @@ form .input-group {
 #how-its-work{
     max-width: 722px;
 }
+@media only screen and (max-width: 1440px) {
+    #back-slider {
+        height: 250px !important;
+    }
+}
 
 @media only screen and (max-width: 1024px) {
     .custom-slider {
@@ -8523,7 +8528,7 @@ form .input-group {
     #back-slider {
         position: relative;
         overflow: hidden;
-        height: 205px;
+        height: 240px;
         padding-left: 0 !important;
     }
     .slick-prev {
