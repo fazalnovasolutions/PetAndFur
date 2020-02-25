@@ -39,7 +39,7 @@
                                 </div>
                                 @if(count(json_decode($product->properties)) > 0)
                                     @foreach(json_decode($product->properties) as $property)
-                                        @if( $property->name !='_io_uploads' || $property->name != '_Uploaded Image'))
+                                        @if( $property->name =='Style' || $property->name != 'Styele2')
                                             @if($product->has_changed_style == null)
                                                 <div class="row p-1 ">
                                                     <h5 class="pt-1"> <b>{{$property->name}} :</b> </h5>
@@ -316,7 +316,7 @@
                                         </div>
                                         @if(count(json_decode($product->properties)) > 0)
                                             @foreach(json_decode($product->properties) as $property)
-                                                @if( $property->name !='_io_uploads' || $property->name != '_Uploaded Image'))
+                                                @if( $property->name =='Style' || $property->name != 'Styele2')
                                             @if($product->has_changed_style == null)
                                                         <div class="row p-1 ">
                                                             <h5 class="pt-1"> <b>{{$property->name}} :</b> </h5>
