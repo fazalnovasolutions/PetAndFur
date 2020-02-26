@@ -13,4 +13,7 @@ class Designer extends Model
    public function has_reviews(){
        return $this->hasMany('App\ReviewRating','designer_id');
    }
+   public function is_user(){
+       return $this->hasOne('App\User','designer_id');
+   }
 }

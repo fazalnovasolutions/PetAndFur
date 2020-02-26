@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Designer;
+use App\DesignerStack;
 use App\Order;
 use App\User;
 use Carbon\Carbon;
@@ -98,11 +99,38 @@ class DesignerController extends Controller
     }
     public function delete_designer(Request $request){
         $designer = Designer::find($request->id);
+
         if($designer != null){
             if(count($designer->has_orders) > 0){
-                return redirect()->back()->with('success', 'Designer Cannot Be Deleted Because He/She Have Some Orders');
+                $designers = Designer::where('shop_id',$this->helper->getShop()->id)->whereNotIn('id',[$designer->id])
+                    ->get();
+
+                $designers_stack = new DesignerStack(count($designers));
+                foreach ($designers as $d) {
+                    $designers_stack->push($d->id);
+                }
+                if(!$designers_stack->isEmpty()){
+                    foreach ($designer->has_orders as $order){
+                        $designer_id = $designers_stack->pop();
+                        $order->designer_id = $designer_id;
+                        $order->save();
+                        $order->has_additional_details->designer_id = $designer_id;
+                        $order->has_additional_details->save();
+                        $designers_stack->push($designer_id);
+                    }
+//                    dd($designer);
+                    $designer->is_user->delete();
+                    $designer->delete();
+                    return redirect()->back()->with('success', 'Designer Deleted And Its Orders Transferred to Other Designers Successfully!');
+                }
+                else{
+                    return redirect()->back()->with('success', 'Designer Cannot Be Deleted Because There Is No Other Designer Available In The System!');
+
+                }
+
             }
             else{
+                $designer->is_user->delete();
                 $designer->delete();
                 return redirect()->back()->with('success', 'Designer Delete Successfully');
             }

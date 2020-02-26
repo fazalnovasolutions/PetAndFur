@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="" />
+    <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Designer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Designer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DesignerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DesignerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/change-background.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/change-background.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/secondary-change-background.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/secondary-change-background.blade.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +261,8 @@
       <workItem from="1582204351598" duration="5883000" />
       <workItem from="1582521619713" duration="607000" />
       <workItem from="1582608244310" duration="13391000" />
-      <workItem from="1582637573178" duration="3259000" />
+      <workItem from="1582637573178" duration="3663000" />
+      <workItem from="1582695216526" duration="2752000" />
     </task>
     <task id="LOCAL-00001" summary="30012020Fazal">
       <created>1580395207355</created>

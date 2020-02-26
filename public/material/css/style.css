@@ -8550,7 +8550,11 @@ form .input-group {
     .background_title {
         font-size: 11px;
         width: 30%;
-        bottom: 30px !important;
+        bottom: 36px !important;
+        text-align: center
+    }
+    .slick-next {
+        right: 50px !important;
     }
     .msg_send_btn {
         right: 15px !important;

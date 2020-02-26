@@ -7,7 +7,7 @@
             <div class="row justify-content-center">
                 <h5 class="pt-1"> <b>Style :</b> </h5>
                 <div class="pt-1 ml-2" style="background: {{$style_color}}">
-                    <h6 class="pr-2 pl-2 pt-1 @if($product->has_changed_style != null) text-white @endif "><b>{{$style}}</b> </h6>
+                    <h6 class="pr-2 pl-2 pt-1 text-white"><b>{{$style}}</b> </h6>
                 </div>
             </div>
         </div>

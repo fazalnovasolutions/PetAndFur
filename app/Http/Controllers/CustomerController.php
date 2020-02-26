@@ -64,6 +64,7 @@ class CustomerController extends Controller
     }
 
     public function ChangeBackground(Request $request){
+        $categories =  BackgroundCategory::all();
         if(session('order_name') != null){
 //            dd($request->product);
             $product = OrderProduct::where('id',$request->product)->first();
@@ -74,8 +75,13 @@ class CustomerController extends Controller
                         $style = '';
                         foreach ($properties as $p){
                             if($p->name == 'Style' || $p->name == 'Style2'){
-                                $style = $p->value;
-                                $style_color = '#00ccff';
+                                foreach ($categories as $c){
+                                    if($p->value == $c->name){
+                                        $style = $c->name;
+                                        $style_color = $c->color;
+                                    }
+                                }
+
                             }
                         }
                     }
@@ -117,18 +123,23 @@ class CustomerController extends Controller
         }
     }
     public function SecondaryChangeBackground(Request $request){
-
+        $categories = BackgroundCategory::all();
         if(session('order_name') != null){
             $product = OrderProduct::where('id',$request->product)->first();
             if($product != null){
                 if($product->has_design->status_id != 6 && $product->has_design->status_id != 8){
-                    if($product->has_changed_style == null){
+                    if($product->has_changed_style == null) {
                         $properties = json_decode($product->properties);
                         $style = '';
-                        foreach ($properties as $p){
-                            if($p->name == 'Style' || $p->name == 'Style2'){
-                                $style = $p->value;
-                                $style_color = '#00ccff';
+                        foreach ($properties as $p) {
+                            if ($p->name == 'Style' || $p->name == 'Style2') {
+                                foreach ($categories as $c) {
+                                    if ($p->value == $c->name) {
+                                        $style = $c->name;
+                                        $style_color = $c->color;
+                                    }
+                                }
+
                             }
                         }
                     }
