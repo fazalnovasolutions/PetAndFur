@@ -724,6 +724,13 @@ class OrdersController extends Controller
                    $exist->has_additional_details->status = 'Completed';
                    $exist->has_additional_details->status_id = '2';
                    $exist->has_additional_details->save();
+                   try{
+                       Mail::to($exist->email)->send(new CompleteOrder($exist));
+                   }
+                   catch (\Exception $e){
+
+                   }
+
                }
            }
            return redirect()->back();

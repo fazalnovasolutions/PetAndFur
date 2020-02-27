@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="25022020FFINAKL">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/update.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,7 +256,7 @@
       <workItem from="1582608244310" duration="13391000" />
       <workItem from="1582637573178" duration="3663000" />
       <workItem from="1582695216526" duration="4079000" />
-      <workItem from="1582788284405" duration="552000" />
+      <workItem from="1582788284405" duration="1100000" />
     </task>
     <task id="LOCAL-00001" summary="30012020Fazal">
       <created>1580395207355</created>
@@ -416,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582640743029</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="27022020F">
+      <created>1582789040116</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1582789040116</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +454,8 @@
     <MESSAGE value="25022020F-Fixxx" />
     <MESSAGE value="25022020F" />
     <MESSAGE value="25022020FFINAKL" />
-    <option name="LAST_COMMIT_MESSAGE" value="25022020FFINAKL" />
+    <MESSAGE value="27022020F" />
+    <option name="LAST_COMMIT_MESSAGE" value="27022020F" />
   </component>
   <component name="WindowStateProjectService">
     <state x="413" y="127" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579589114403">
