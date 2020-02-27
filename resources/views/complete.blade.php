@@ -421,7 +421,7 @@
                                                                     <td class="kmTextContent" valign="top"
                                                                         style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;table-layout:fixed;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:1.1;letter-spacing:0;text-align:left;max-width:100%;word-wrap:break-word;padding-top:31px;padding-bottom:9px;padding-left:18px;padding-right:18px;'>
                                                                         <h1 style="color:#222;display:block;font-family:Times New Roman;font-size:40px;font-style:normal;font-weight:normal;line-height:1;letter-spacing:0;margin:0;margin-bottom:20px;text-align:left;color: rgb(34, 34, 34); letter-spacing: 0px; font-family: Asap, sans-serif; font-size: 40px; line-height: 1.1; margin: 0px 0px 6px; text-align: center;">
-                                                                            <span style="font-size:28px;"> Your design has been updated!</span><br/>
+                                                                            <span style="font-size:28px;"> Your Order {{$order->name }} has been completed!</span><br/>
                                                                         </h1></td>
                                                                 </tr>
                                                                 </tbody>
@@ -535,7 +535,7 @@
                                                                         class="kmButtonContent"
                                                                         style="padding:15px; padding-top:15px;padding-bottom:15px;font-size:16px;color:#FFFFFF;letter-spacing:0px;font-weight:bold;padding-left:15px;padding-right:15px;font-family:Helvetica, Arial;">
                                                                         <a class="kmButton" title=""
-                                                                           href={{route('customer.login')}}"
+                                                                           href="{{route('customer.login')}}"
                                                                            target="_self"
                                                                            style="text-decoration:none;padding-top:15px;padding-bottom:15px;font-size:16px;color:#FFFFFF;letter-spacing:0px;font-weight:bold;padding-left:15px;padding-right:15px;font-family:Helvetica, Arial;; margin-top:-15px;margin-bottom:-15px;margin-left:-15px;margin-right:-15px;">VIEW
                                                                             CUSTOMER CENTER</a></td> <![endif]--> </tr>

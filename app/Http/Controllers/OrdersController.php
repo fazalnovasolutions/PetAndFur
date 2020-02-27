@@ -7,6 +7,7 @@ use App\Customer;
 use App\Designer;
 use App\DesignerStack;
 use App\DesignStyle;
+use App\Mail\CompleteOrder;
 use App\Mail\UpdateMail;
 use App\Order;
 use App\OrderAdditionalDetails;
@@ -553,6 +554,10 @@ class OrdersController extends Controller
             $order->has_additional_details->status = $status->name;
             $order->has_additional_details->status_id = $status->id;
             $order->has_additional_details->save();
+            if($status->name == 'Completed'){
+                Mail::to($order->email)->send(new CompleteOrder($order));
+            }
+
             return http_response_code(200);
         }
         else{
