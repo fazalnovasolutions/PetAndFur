@@ -12,7 +12,7 @@
 */
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::group(['prefix' => 'admin', 'middleware' => ['auth.shop']], function(){
+    Route::group(['prefix' => 'admin'/*, 'middleware' => ['auth.shop']*/], function(){
         /*ADMIN AND DESIGNER*/
         Route::get('/', 'OrderController@getHome')->name('home');
         Route::get('orders', 'OrdersController@Orders')->name('admin.orders');
@@ -43,22 +43,17 @@ Route::group(['middleware' => ['auth']], function(){
             Route::get('background/positions','BackgroundController@BackgroundPositionUpdate')->name('admin.background.postion.update');
             Route::get('backgrounds/{id}/delete','BackgroundController@Background_Delete')->name('admin.background.delete');
             Route::get('category/delete','BackgroundController@Background_Category_Delete')->name('admin.category.delete');
-
             Route::post('designer/save','DesignerController@Designer_Save')->name('admin.designer.save');
             Route::get('designer/dashboard','DesignerController@Dashboard')->name('admin.designer.dashboard');
             Route::post('/manaul-picker','DesignerController@ManualDesignPicker')->name('admin.manual-picker');
             Route::get('designer/status','DesignerController@SetStatus')->name('admin.designer.status');
             Route::get('designer/delete/{id}','DesignerController@delete_designer')->name('admin.designer.delete');
 
-
-
-
         });
         /*Set Arrows Filter*/
         Route::get('/set/filter/session','OrdersController@set_session')->name('set-filter-status');
     });
 });
-
 Route::get('/email','OrdersController@sendEmail')->name('email.send');
 
 
