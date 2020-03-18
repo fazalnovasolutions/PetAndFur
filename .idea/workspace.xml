@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/asana_template.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/asana_template.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,10 +145,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -166,18 +166,6 @@
       <recent name="C:\xampp\htdocs\BoomPupVersion2\app\Http\Controllers" />
       <recent name="C:\xampp\htdocs\BoomPupVersion2\public" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Node.js.cs-script.js">
     <configuration name="cs-script.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/public/material/js/cs-script.js" working-dir="$PROJECT_DIR$/public/material/js">
@@ -268,7 +256,10 @@
       <workItem from="1583234531888" duration="32000" />
       <workItem from="1583480829033" duration="150000" />
       <workItem from="1583820414932" duration="515000" />
-      <workItem from="1583991917941" duration="2040000" />
+      <workItem from="1583991917941" duration="2357000" />
+      <workItem from="1584340449829" duration="41000" />
+      <workItem from="1584446938638" duration="6000" />
+      <workItem from="1584535199708" duration="1316000" />
     </task>
     <task id="LOCAL-00001" summary="30012020Fazal">
       <created>1580395207355</created>
@@ -438,7 +429,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582789557460</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="18032020F">
+      <created>1584535247683</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1584535247683</updated>
+    </task>
+    <task id="LOCAL-00026" summary="18032020F">
+      <created>1584535615234</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1584535615234</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,12 +479,30 @@
     <MESSAGE value="25022020F" />
     <MESSAGE value="25022020FFINAKL" />
     <MESSAGE value="27022020F" />
-    <option name="LAST_COMMIT_MESSAGE" value="27022020F" />
+    <MESSAGE value="18032020F" />
+    <option name="LAST_COMMIT_MESSAGE" value="18032020F" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="413" y="127" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579589114403">
-      <screen x="0" y="0" width="1366" height="736" />
+    <state x="413" y="126" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1584537147276">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="413" y="126" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1584537147276" />
     <state x="413" y="127" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.736@0.0.1366.736" timestamp="1579589114403" />
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1584535614334">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1584535614334" />
+    <state x="129" y="55" key="DiffContextDialog" timestamp="1584535624459">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="129" y="55" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1584535624459" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1584535673424">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1584535673424" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1584537163250">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1584537163250" />
   </component>
 </project>
