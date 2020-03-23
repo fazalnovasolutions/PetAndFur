@@ -44,12 +44,14 @@ class SendEmailThreeDays extends Command
     public function handle()
     {
         $date = \Carbon\Carbon::today()->subDays(3)->format('Y-m-d');
-        $orders = Order::where('last_email_at', '>=', $date)->orWhereNull('last_email_at')->get();
+//        dd($date);
+        $orders = Order::whereDate('last_email_at', '<=', $date)->orWhereNull('last_email_at')->get();
+//       dd(count($orders));
         foreach ($orders as $order){
             if($order->has_additional_details != null){
                 if($order->has_additional_details->status_id == 1){
                     try {
-                        Mail::to($order->email)->send(new UpdateMail($order));
+//                        Mail::to($order->email)->send(new UpdateMail($order));
                         $order->last_email_at = now()->format('Y-m-d');
                         $order->save();
                     } catch (\Exception $e) {
