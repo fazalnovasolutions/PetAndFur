@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/asana_template.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/asana_template.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Commands/SendEmailThreeDays.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/SendEmailThreeDays.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/SameSiteNone.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/SameSiteNone.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +151,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SprucedLIve" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -260,6 +262,12 @@
       <workItem from="1584340449829" duration="41000" />
       <workItem from="1584446938638" duration="6000" />
       <workItem from="1584535199708" duration="1316000" />
+      <workItem from="1584537097698" duration="1855000" />
+      <workItem from="1584697465519" duration="93000" />
+      <workItem from="1584698482695" duration="871000" />
+      <workItem from="1584711612711" duration="33000" />
+      <workItem from="1584963902274" duration="3048000" />
+      <workItem from="1584969574294" duration="470000" />
     </task>
     <task id="LOCAL-00001" summary="30012020Fazal">
       <created>1580395207355</created>
@@ -443,7 +451,21 @@
       <option name="project" value="LOCAL" />
       <updated>1584535615234</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="18032020F">
+      <created>1584537193790</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1584537193790</updated>
+    </task>
+    <task id="LOCAL-00028" summary="23032020F&#10;email and new orders fix">
+      <created>1584966461624</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1584966461625</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -480,7 +502,8 @@
     <MESSAGE value="25022020FFINAKL" />
     <MESSAGE value="27022020F" />
     <MESSAGE value="18032020F" />
-    <option name="LAST_COMMIT_MESSAGE" value="18032020F" />
+    <MESSAGE value="23032020F&#10;email and new orders fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="23032020F&#10;email and new orders fix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="413" y="126" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1584537147276">
@@ -488,21 +511,25 @@
     </state>
     <state x="413" y="126" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1584537147276" />
     <state x="413" y="127" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.736@0.0.1366.736" timestamp="1579589114403" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1584535614334">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1584966460590">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1584535614334" />
-    <state x="129" y="55" key="DiffContextDialog" timestamp="1584535624459">
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1584966460590" />
+    <state x="129" y="55" key="DiffContextDialog" timestamp="1584966433573">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="129" y="55" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1584535624459" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1584535673424">
+    <state x="129" y="55" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1584966433573" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1584538063069">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1584535673424" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1584537163250">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1584538063069" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1584966465081">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1584537163250" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1584966465081" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1584970083629">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1584970083629" />
   </component>
 </project>

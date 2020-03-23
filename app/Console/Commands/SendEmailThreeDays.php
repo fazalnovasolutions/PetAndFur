@@ -51,7 +51,7 @@ class SendEmailThreeDays extends Command
             if($order->has_additional_details != null){
                 if($order->has_additional_details->status_id == 1){
                     try {
-//                        Mail::to($order->email)->send(new UpdateMail($order));
+                        Mail::to($order->email)->send(new UpdateMail($order));
                         $order->last_email_at = now()->format('Y-m-d');
                         $order->save();
                     } catch (\Exception $e) {

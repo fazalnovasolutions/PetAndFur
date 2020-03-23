@@ -664,8 +664,8 @@
                                                                                     style="color:#808080;">No longer want to receive this email? <a
                                                                                         href="https://manage.kmail-lists.com/subscriptions/placeholder">unsubscribe</a> </span></span>
                                                                         </p>
-                                                                        <p style="margin:0;padding-bottom:1em;text-align: center;color: #ececec;"">
-                                                                        Hamatmid 34 Ramat Gan, Tel Aviv 10028
+                                                                        <p style="margin:0;padding-bottom:1em;text-align: center;color: #ececec;">
+                                                                            Hamatmid 34 Ramat Gan, Tel Aviv 10028
                                                                         </p>
                                                                         <div><span
                                                                                 style="color: rgb(34, 34, 34); font-family: Assitant, sans-serif; font-size: 16px; text-align: center;"></span>
