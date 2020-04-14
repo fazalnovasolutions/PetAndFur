@@ -74,6 +74,7 @@ class ChatController extends Controller
                     if($request->input('name') == 'Customer'){
                         $target->status ='Update';
                         $target->status_id = 7;
+                        $target->status_text = 'Customer Send A Message!';
                         $target->save();
                     }
                     else{

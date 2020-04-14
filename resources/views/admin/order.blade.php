@@ -176,10 +176,10 @@
                                                         </div>
                                                         <h6 class="not_completed" data-text="{{$product->has_design->status}}"><b>{{$product->has_design->status}}</b></h6>
                                                     @elseif($product->has_design->status_id == 7)
-                                                        <div class="update_div">
+                                                        <div class="update_div" data-toggle="tooltip" title="{{$product->has_design->status_text}}">
                                                             <span class="update_icon">!</span>
                                                         </div>
-                                                        <h6 class="updating" data-text="{{$product->has_design->status}}"><b>{{$product->has_design->status}}</b></h6>
+                                                        <h6 class="updating"  data-toggle="tooltip" title="{{$product->has_design->status_text}}" data-text="{{$product->has_design->status}}"><b>{{$product->has_design->status}}</b></h6>
                                                     @endif
                                                 @endif
 

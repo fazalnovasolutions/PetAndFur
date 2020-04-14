@@ -191,6 +191,7 @@ class CustomerController extends Controller
                 $target = $product->has_design;
                 $target->status = 'Update';
                 $target->status_id = '7';
+                $target->status_text = 'Customer Changed Background of this design!';
                 $target->save();
             }
             $product->save();
@@ -237,6 +238,7 @@ class CustomerController extends Controller
                 if($target->design != null){
                     $target->status = 'Update';
                     $target->status_id = '7';
+                    $target->status_text = 'Customer Added A New Photo!';
                     $target->save();
                 }
                 $photo =  new NewPhoto();
@@ -266,6 +268,7 @@ class CustomerController extends Controller
             if($target->design != null){
                 $target->status = 'Update';
                 $target->status_id = '7';
+                $target->status_text = 'Customer Requested A Fix!';
                 $target->save();
             }
             $r =  new RequestFix();
