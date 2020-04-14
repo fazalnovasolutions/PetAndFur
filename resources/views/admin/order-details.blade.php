@@ -312,10 +312,10 @@
                                                 </div>
                                                 <h6 class="not_completed"><b>{{$product->has_design->status}}</b></h6>
                                             @elseif($product->has_design->status_id == 7)
-                                                <div class="update_div" data-toggle="tooltip" title="{{$product->has_design->status_text}}">
+                                                <div class="update_div"  title="{{$product->has_design->status_text}}">
                                                     <span class="update_icon">!</span>
                                                 </div>
-                                                <h6 class="updating" data-toggle="tooltip" title="{{$product->has_design->status_text}}"><b>{{$product->has_design->status}}</b></h6>
+                                                <h6 class="updating"  title="{{$product->has_design->status_text}}"><b>{{$product->has_design->status}}</b></h6>
                                             @endif
 
                                         @else
