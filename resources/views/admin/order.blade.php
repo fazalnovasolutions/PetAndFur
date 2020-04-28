@@ -234,7 +234,7 @@
                     </div>
 
                     <div class="text-center" style="display: flex;justify-content: center;align-items: center;margin: 10px;">
-                        {{ $orders->links() }}
+                        {{ $orders->appends(['type' => $type])->render() }}
                     </div>
                 </div>
 

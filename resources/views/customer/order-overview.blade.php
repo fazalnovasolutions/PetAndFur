@@ -212,7 +212,8 @@
                                 @endif
                                 @if($product->has_design->status != 'Approved' && $product->has_design->status != 'No Design')
                                     <div class=" row p-1 justify-content-center">
-                                        <button class="btn @if($product->background_id != null) btn-green set-approved @endif text-white" @if($product->background_id == null) style="background: #777777" disabled @else data-id="{{$product->id}}"  data-target="#review-background{{$index}}" @endif>Approved Your Design </button>
+                                        <button class="btn @if($product->background_id != null) btn-green set-approved @endif text-white" @if($product->background_id == null) style="background: #777777" disabled @else data-id="{{$product->id}}"  data-target="#review-background{{$index}}" @endif>Approve Your Design </button>
+                                        <span class="text-center font-weight-bold"> * Please select a background to approve your design </span>
                                     </div>
                                     <div class="modal fade" id="review-background{{$index}}" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
                                         <div class="modal-dialog " role="document">

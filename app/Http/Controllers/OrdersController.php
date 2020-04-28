@@ -104,6 +104,7 @@ class OrdersController extends Controller
         return view('admin.order')->with([
             'orders' => $orders,
             'products' => $products,
+            'type' =>$request->input('type'),
             'designers' => $this->getDesigners(),
             'statuses' => $this->getStatuses('order')
 
