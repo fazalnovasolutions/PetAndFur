@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BackgroundCategory;
+use App\ChatNotification;
 use App\Customer;
 use App\Designer;
 use App\DesignerStack;
@@ -602,6 +603,13 @@ class OrdersController extends Controller
             /*Check Designer*/
             $user = \App\User::find(Auth::id());
             $this->helper->CheckDesigner($order,$user);
+            /*Seen Customer Messages*/
+            $new_msgs = ChatNotification::where('order_id', $request->input('order_id'))->where('name', 'Customer')->where('status','unseen')->get();
+            foreach ($new_msgs as $new_msg){
+                $new_msg->status = 'seen';
+                $new_msg->save();
+            }
+
             return redirect()->back();
         }
         else{

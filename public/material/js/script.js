@@ -36,25 +36,8 @@ $(document).ready(function(){
     }
 
 
-
-
     /*Chat JS*/
     $('body').on('click','.btn-chat-open',function () {
-        var current = $(this);
-        /*Set Notifications to seen*/
-        $.ajax({
-            url:'/seenNotifications',
-            method: 'get',
-            data:{
-                order_id:$(this).data('order_id'),
-                target: 'Customer',
-            },
-            success:function (response) {
-                current.text('Chat');
-                current.removeClass('btn-red text-white animated bounce slower');
-                current.addClass('btn-blue text-white');
-            }
-        });
         $.ajax({
             url:$(this).data('route'),
             method: 'get',
@@ -101,6 +84,7 @@ $(document).ready(function(){
             },
             success:function (response) {
                 console.log('sent');
+                setSeen();
             }
         });
     });
@@ -140,13 +124,34 @@ $(document).ready(function(){
             contentType: false,
             processData: false,
             success: function(data) {
-                console.log('send');
+                setSeen();
             },
             error: function(data) {
                 console.log('error');
             }
         });
     });
+
+    function setSeen(){
+        console.log('send');
+        /*Set Notifications to seen*/
+        var current = $('.btn-chat-open');
+        $.ajax({
+            url:'/seenNotifications',
+            method: 'get',
+            data:{
+                order_id:current.data('order_id'),
+                target: 'Customer',
+            },
+            success:function (response) {
+                current.text('Chat');
+                current.removeClass('btn-red text-white animated bounce slower');
+                current.addClass('btn-blue text-white');
+            }
+        });
+    }
+
+
     $('body').on('click','.delete-msg',function () {
         var current = $(this);
         $.ajax({
