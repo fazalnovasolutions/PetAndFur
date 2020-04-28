@@ -38,7 +38,7 @@ $(document).ready(function(){
 
     /*Chat JS*/
     $('body').on('click','.btn-chat-open',function () {
-        current = $(this);
+       var current = $(this);
         $.ajax({
             url:$(this).data('route'),
             method: 'get',
