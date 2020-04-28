@@ -34,7 +34,8 @@ class SameSiteNone
         if ($browserIsCompatible) {
             config(['session.secure' => true]);
             config(['session.same_site' => 'none']);
-        } else {
+        }
+        else {
             config(['session.secure' => false]);
             config(['session.same_site' => null]);
         }
