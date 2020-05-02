@@ -19,7 +19,7 @@
                             <i class="ti-search "></i>
                         </div>
                         <div class="col-md-11 col-sm-9 pl-0">
-                            <input type="text" class="border-0 form-control filter-search" data-route="{{route('admin.orders.filter')}}" autocomplete="false"  name="search" placeholder="Filter Orders By ID, Name, Email" required>
+                            <input type="text" class="border-0 form-control filter-search" data-route="{{route('admin.orders.filter')}}?type={{$type}}" autocomplete="false"  name="search" placeholder="Filter Orders By ID, Name, Email" required>
 
                         </div>
                     </div>
@@ -60,9 +60,9 @@
                                     <span class="pr-5 product-filter-button">Product</span>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item change_product" data-route="{{route('admin.orders.filter')}}">All Products</a>
+                                    <a class="dropdown-item change_product" data-route="{{route('admin.orders.filter')}}?type={{$type}}">All Products</a>
                                     @foreach($products as $product)
-                                        <a class="dropdown-item change_product" data-route="{{route('admin.orders.filter')}}">{{$product->title}}</a>
+                                        <a class="dropdown-item change_product" data-route="{{route('admin.orders.filter')}}?type={{$type}}">{{$product->title}}</a>
                                     @endforeach
                                 </div>
                             </div>

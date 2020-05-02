@@ -58,6 +58,12 @@ class OrdersController extends Controller
                 $product_query->where('title',$request->input('product'));
             });
         }
+        if($request->has('type')){
+            $query->whereHas('has_additional_details',function ($q) use ($request){
+                $q->where('status_id','=',$request->input('type'));
+            });
+        }
+
         $orders = $query->orderBy('name', 'DESC')->paginate(30);
         $products = DB::table('order_products')
             ->select('title')
@@ -67,6 +73,7 @@ class OrdersController extends Controller
         return  view('admin.order')->with([
             'orders' => $orders,
             'products' => $products,
+            'type' =>$request->input('type'),
             'designers' => $this->getDesigners(),
             'statuses' => $this->getStatuses('order')
         ])->render();
@@ -88,7 +95,7 @@ class OrdersController extends Controller
         if($request->has('type')){
             $query = Order::where('shop_id', $this->helper->getShop()->id)->newQuery();
             $query->whereHas('has_additional_details',function ($q) use ($request){
-                $q->where('status_id',$request->input('type'));
+                $q->where('status_id','=',$request->input('type'));
             });
             $orders = $query->orderBy('name', 'DESC')->paginate(30);
         }

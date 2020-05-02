@@ -187,13 +187,13 @@ class CustomerController extends Controller
         $product = OrderProduct::find($request->input('product'));
         if($product != null){
             $product->background_id = $request->input('category');
-            if($product->has_design != null){
-                $target = $product->has_design;
-                $target->status = 'Update';
-                $target->status_id = '7';
-                $target->status_text = 'Customer Changed Background of this design!';
-                $target->save();
-            }
+//            if($product->has_design != null){
+//                $target = $product->has_design;
+//                $target->status = 'Update';
+//                $target->status_id = '7';
+//                $target->status_text = 'Customer Changed Background of this design!';
+//                $target->save();
+//            }
             $product->save();
             if(!$request->ajax()){
                 return redirect()->route('customer.check');
