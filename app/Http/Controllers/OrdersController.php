@@ -748,13 +748,25 @@ class OrdersController extends Controller
         $target =  OrderProductAdditionalDetails::where('order_id',$request->input('order'))
             ->where('order_product_id',$request->input('product'))->first();
         if($target != null){
-            $target->design = null;
-            $target->status ='No Design';
-            $target->status_id = 8;
-            $target->save();
             $product =OrderProduct::find($target->order_product_id);
             $product->design_count = $product->design_count-1;
             $product->save();
+
+            $related_design = ProductDesign::where('design',$target->design)->first();
+            $related_design->delete();
+
+            if(count($product->has_many_designs) > 0){
+                $target->design = $product->has_many_designs[0]->design;
+                $target->save();
+            }
+            else{
+                $target->design = null;
+                $target->status ='No Design';
+                $target->status_id = 8;
+                $target->save();
+            }
+
+
 
             $order = Order::find($request->input('order'));
             $user = \App\User::find(Auth::id());
