@@ -10,6 +10,7 @@ use App\DesignerStack;
 use App\DesignStyle;
 use App\Mail\CompleteOrder;
 use App\Mail\UpdateMail;
+use App\NewOrderDesigner;
 use App\Order;
 use App\OrderAdditionalDetails;
 use App\OrderProduct;
@@ -266,12 +267,44 @@ class OrdersController extends Controller
                 $order->sync = 'no';
 //                dd($designer);
                 if(!empty($designer)){
+                    if(NewOrderDesigner::where('shopify_id',$order->id)->exists()){
+                        $exiting_assign = NewOrderDesigner::where('shopify_id',$order->id)->first();
+                        $order->designer_id = $exiting_assign->designer_id;
+                        $exist = Designer::find($exiting_assign->designer_id);
+                        if($exist != null){
+                            $order->designer = $exist->name;
+                            $order->designer_color = $exist->color;
+                            $order->designer_background = $exist->background_color;
+                        }
+                        else{
+                            $order->designer_id = $designer["id"];
+                            $exist = Designer::find($designer["id"]);
+                            $order->designer = $exist->name;
+                            $order->designer_color = $exist->color;
+                            $order->designer_background = $exist->background_color;
+                            /*Update Order with New Designer if old is deleted*/
+                            $new =  NewOrderDesigner::where('shopify_id',$order->id)->first();
+                            $new->shopify_id = $order->id;
+                            $new->designer_id = $designer["id"];
+                            $new->save();
+                        }
 
-                    $order->designer_id = $designer["id"];
-                    $exist = Designer::find($designer["id"]);
-                    $order->designer = $exist->name;
-                    $order->designer_color = $exist->color;
-                    $order->designer_background = $exist->background_color;
+                    }
+                    else{
+                        $order->designer_id = $designer["id"];
+                        $exist = Designer::find($designer["id"]);
+                        $order->designer = $exist->name;
+                        $order->designer_color = $exist->color;
+                        $order->designer_background = $exist->background_color;
+                        /*Update Order with New Designer*/
+
+                        $new = new NewOrderDesigner();
+                        $new->shopify_id = $order->id;
+                        $new->designer_id = $designer["id"];
+                        $new->save();
+                    }
+
+
 
                     if($count == $designer["assign"]){
                         $designer["count"] = $designer["assign"] + $designer["count"];
@@ -624,27 +657,7 @@ class OrdersController extends Controller
         }
     }
 
-    public function design_delete(Request $request){
-        $target =  OrderProductAdditionalDetails::where('order_id',$request->input('order'))
-            ->where('order_product_id',$request->input('product'))->first();
-        if($target != null){
-            $target->design = null;
-            $target->status ='No Design';
-            $target->status_id = 8;
-            $target->save();
-            $product =OrderProduct::find($target->order_product_id);
-            $product->design_count = $product->design_count-1;
-            $product->save();
 
-            $order = Order::find($request->input('order'));
-            $user = \App\User::find(Auth::id());
-            $this->helper->CheckDesigner($order,$user);
-            return redirect()->back();
-        }
-        else{
-            return redirect()->back();
-        }
-    }
 
     public function change_style(Request $request){
 //        dd($request);
@@ -729,6 +742,28 @@ class OrdersController extends Controller
         $product->save();
         $extra_design->delete();
         return redirect()->back();
+    }
+
+    public function design_delete(Request $request){
+        $target =  OrderProductAdditionalDetails::where('order_id',$request->input('order'))
+            ->where('order_product_id',$request->input('product'))->first();
+        if($target != null){
+            $target->design = null;
+            $target->status ='No Design';
+            $target->status_id = 8;
+            $target->save();
+            $product =OrderProduct::find($target->order_product_id);
+            $product->design_count = $product->design_count-1;
+            $product->save();
+
+            $order = Order::find($request->input('order'));
+            $user = \App\User::find(Auth::id());
+            $this->helper->CheckDesigner($order,$user);
+            return redirect()->back();
+        }
+        else{
+            return redirect()->back();
+        }
     }
 
     public function bulk_order_completed(Request $request){
