@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/material/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/material/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -279,7 +280,7 @@
       <workItem from="1588084475682" duration="50000" />
       <workItem from="1588405961383" duration="3930000" />
       <workItem from="1589633908604" duration="3183000" />
-      <workItem from="1591877218320" duration="7696000" />
+      <workItem from="1591877218320" duration="8961000" />
     </task>
     <task id="LOCAL-00001" summary="30012020Fazal">
       <created>1580395207355</created>
@@ -554,7 +555,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591884442735</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="petfur-fazal-11062020F">
+      <created>1591885116873</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1591885116874</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,17 +604,18 @@
     <MESSAGE value="28042020F" />
     <MESSAGE value="02052020F" />
     <MESSAGE value="initial-commit-petfur-fazal-11062020F" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial-commit-petfur-fazal-11062020F" />
+    <MESSAGE value="petfur-fazal-11062020F" />
+    <option name="LAST_COMMIT_MESSAGE" value="petfur-fazal-11062020F" />
   </component>
   <component name="WindowStateProjectService">
     <state x="413" y="126" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1588070457235">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="126" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1588070457235" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1591884441380">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1591885115996">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1591884441380" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1591885115996" />
     <state x="129" y="55" key="DiffContextDialog" timestamp="1588408104065">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -615,13 +624,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1584538063069" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1591884451197">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1591885119427">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591884451197" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1591884371719">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591885119427" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1591886264455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1591884371719" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1591886264455" />
   </component>
 </project>
