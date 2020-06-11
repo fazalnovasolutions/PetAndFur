@@ -40,7 +40,7 @@ class HelperController extends Controller
 
     public function getShop(){
 //        return  ShopifyApp::shop();
-        $shop = Shop::where('shopify_domain','egoodbuy.myshopify.com')->first();
+        $shop = Shop::where('shopify_domain','classycollections55.myshopify.com')->first();
         return $shop;
 
     }

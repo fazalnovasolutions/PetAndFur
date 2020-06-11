@@ -163,7 +163,7 @@
                                     @endif
                                     @if($properties)
                                         @foreach($properties as $property)
-                                            @if($property['name'] == '_io_uploads' || $property['name'] == '_Uploaded Image')
+                                            @if($property['name'] == 'Upload Image' || $property['name'] == '_Uploaded Image')
                                                 <div class="row  m-3">
                                                     <div class="col-sm-12 col-sm-6 justify-content-center" >
                                                         <a class="btn btn-rounded btn-purple"  target="_blank" href="{{ $property['value'] }}">Download Pet Photo</a>
@@ -176,7 +176,7 @@
                                 </div>
                                 @if($properties)
                                     @foreach($properties as $property)
-                                        @if($property['name'] == '_io_uploads' || $property['name'] == '_Uploaded Image')
+                                        @if($property['name'] == 'Upload Image' || $property['name'] == '_Uploaded Image')
                                             <div class=" col-sm-6 col-md-5" align="center">
                                                 <div class="mt-4 pr-2">
                                                     <img src="{{ $property['value'] }}" width="100%" height="auto" style="margin-bottom: 15px">

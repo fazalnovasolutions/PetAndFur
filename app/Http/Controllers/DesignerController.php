@@ -84,7 +84,7 @@ class DesignerController extends Controller
         $designer->save();
         $user =  User::create([
             'name' => $designer->name,
-            'email' => str_replace(' ', '', $designer->name).'@boompup.com',
+            'email' => str_replace(' ', '', $designer->name).'@petandfur.com',
             'password' => Hash::make(str_replace(' ', '', $designer->name).'@1234'),
             'designer_id' => $designer->id,
         ]);

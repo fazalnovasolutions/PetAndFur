@@ -9,8 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('c.png')}}">
-    <title>Dashboard</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.shopify.com/s/files/1/0045/3902/3489/files/favicon.png?v=1590076646">
+
+    <title>Pet&Fur</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('material/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- chartist CSS -->
@@ -53,7 +54,7 @@
     <!-- ============================================================== -->
     <!-- Topbar header - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <header class="topbar bg-pink">
+    <header class="topbar">
         <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
             <!-- ============================================================== -->
             <!-- Logo -->
@@ -65,7 +66,7 @@
 
                         <!-- Light Logo icon -->
                         <a href="{{route('customer.check')}}">
-                            <img src="{{asset('c.png')}}" alt="homepage" height="50px" width="50px" class="light-logo" />
+                            <img src="https://cdn.shopify.com/s/files/1/0045/3902/3489/files/LOGOS_FOR_DEBUT.png?v=1590070144" alt="homepage" height="80px" width="90px" class="light-logo" />
                         </a>
                     </b>
                     <!--End Logo icon -->
@@ -102,13 +103,13 @@
                         <div class="dropdown-menu dropdown-menu-right user-dd flipInY">
                             <a class="dropdown-item" href="">
                                 <i class="ti-user m-r-5 m-l-5"></i> My Info</a>
-                            <a class="dropdown-item" href="https://www.boompup.com/pages/photo-guide " target="_blank">
+                            <a class="dropdown-item" href="https://petandfur.com/pages/photo-guidelines" target="_blank">
                                 <i class="ti-camera m-r-5 m-l-5"></i>Photo Guides</a>
-                            <a class="dropdown-item" href="https://boompup.aftership.com/" target="_blank">
+                            <a class="dropdown-item" href="https://petandfur.com/pages/shipping-delivery" target="_blank">
                                 <i class="ti-settings m-r-5 m-l-5"></i>Track Order
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="https://www.boompup.com/" target="_blank">
+                            <a class="dropdown-item" href="https://petandfur.com/" target="_blank">
                                 <i class="fa fa-home m-r-5 m-l-5"></i>Store
                             </a>
                             <div class="dropdown-divider"></div>

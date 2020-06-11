@@ -9,8 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('c.png')}}">
-    <title>Dashboard</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.shopify.com/s/files/1/0045/3902/3489/files/favicon.png?v=1590076646">
+
+    <title>Pet&Fur</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('material/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- chartist CSS -->
@@ -63,7 +64,7 @@
 
                         <!-- Light Logo icon -->
                         <a href="{{route('admin.orders')}}">
-                            <img src="{{asset('c.png')}}" alt="homepage" height="50px" width="50px" class="light-logo"  />
+                            <img src="https://cdn.shopify.com/s/files/1/0045/3902/3489/files/logo-transparent.png?v=1590069981" alt="homepage" height="80px" width="90px" class="light-logo"  />
                         </a>
                     </b>
                     <!--End Logo icon -->

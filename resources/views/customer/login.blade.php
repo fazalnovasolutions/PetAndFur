@@ -9,8 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('c.png')}}">
-    <title>Dashboard</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.shopify.com/s/files/1/0045/3902/3489/files/favicon.png?v=1590076646">
+
+    <title>Pet&Fur</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('material/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
@@ -48,7 +49,7 @@
             <div id="loginform">
                 <div class="logo">
                     <span class="db">
-                        <img src="{{asset('customer-center-ogo.png')}}" alt="logo" style="max-width: 400px;">
+                        <img src="https://cdn.shopify.com/s/files/1/0045/3902/3489/files/LOGOS_FOR_DEBUT.png?v=1590070144" alt="logo">
                     </span>
 
                 </div>
@@ -78,7 +79,7 @@
 
                             <div class="form-group text-center">
                                 <div class="col-xs-12 p-b-20">
-                                    <button style="background: #ff438d;border-radius: 41px;" class="btn customer-login-btn btn-block btn-lg btn-danger" type="submit">Submit</button>
+                                    <button style="background: #448aff;border-radius: 41px;" class="btn btn-block btn-lg text-white" type="submit">Login</button>
                                 </div>
                             </div>
                         </form>

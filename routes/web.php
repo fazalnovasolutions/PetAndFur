@@ -90,5 +90,5 @@ Route::any('/set/sms-service','OrdersController@set_sms_service')->name('sms.set
 
 Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@Index');
-//Route::get('/super-admin-create', 'HomeController@SuperAdminCreate');
+Route::get('/super-admin-create', 'HomeController@SuperAdminCreate');
 Route::get('/reset', 'HomeController@delete_all');

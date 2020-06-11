@@ -294,7 +294,7 @@
                                                                                                             <a href=""
                                                                                                                style="word-wrap:break-word;max-width:100%;color:#000;font-weight:normal;text-decoration:underline">
                                                                                                                 <img
-                                                                                                                    src="https://d3k81ch9hvuctc.cloudfront.net/company/KuTvsN/images/f5ad8a8f-936b-4a95-8553-2152d38f1c04.png"
+                                                                                                                    src="https://cdn.shopify.com/s/files/1/0045/3902/3489/files/logo-transparent.png?v=1590069981"
                                                                                                                     alt=""
                                                                                                                     width="150"
                                                                                                                     style="border:0;height:auto;line-height:100%;outline:none;text-decoration:none;max-width:100%"/>
@@ -320,7 +320,7 @@
                                                                                                             <a href=""
                                                                                                                style="word-wrap:break-word;max-width:100%;color:#000;font-weight:normal;text-decoration:underline">
                                                                                                                 <img
-                                                                                                                    src="https://d3k81ch9hvuctc.cloudfront.net/company/KuTvsN/images/f5ad8a8f-936b-4a95-8553-2152d38f1c04.png"
+                                                                                                                    src="https://cdn.shopify.com/s/files/1/0045/3902/3489/files/logo-transparent.png?v=1590069981"
                                                                                                                     alt=""
                                                                                                                     width="150"
                                                                                                                     style="border:0;height:auto;line-height:100%;outline:none;text-decoration:none;max-width:100%"/>
@@ -466,7 +466,7 @@
                                                                         <p style="margin:0;padding-bottom:1em;text-align: left;"></p>
                                                                         <p style="margin:0;padding-bottom:1em;text-align: left;">
                                                                             <span style="font-size:16px;"><span
-                                                                                    style="font-family:century gothic,sans-serif;">By then, you can follow us and share your BoomPup design with others ;)</span></span>
+                                                                                    style="font-family:century gothic,sans-serif;">By then, you can follow us and share your Pet&Fur design with others ;)</span></span>
                                                                         </p>
                                                                         <p style="margin:0;padding-bottom:1em;text-align: left;">
                                                                             <span
@@ -649,13 +649,13 @@
                                                                             <span style="font-size:14px;"><span
                                                                                     style="font-family: Assitant, sans-serif; text-align: center;"><span
                                                                                         style="color:#696969;"> Needs help? Contact us: </span><a
-                                                                                        href="http://support@boompup.com"
+                                                                                        href="http://support@petandfur.com"
                                                                                         style="word-wrap:break-word;max-width:100%;color:#000;font-weight:normal;text-decoration:underline"><span
-                                                                                            style="color:#696969;">support@boompup.com</span></a></span></span>
+                                                                                            style="color:#696969;">support@petandfur.com</span></a></span></span>
                                                                         </p>
                                                                         <p style="margin:0;padding-bottom:1em;text-align: center;">
                                                                             <span style="font-size:11px;"><span
-                                                                                    style="color:#808080;">Thank you for choosing BoomPup! We're on a mission to make a difference. </span></span><span
+                                                                                    style="color:#808080;">Thank you for choosing Pet&Fur! We're on a mission to make a difference. </span></span><span
                                                                                 style="color: rgb(128, 128, 128); font-size: 11px;">Your support is what fuels the change that this world needs.</span>
                                                                         </p>
                                                                         <p style="margin:0;padding-bottom:1em;text-align: center;"></p>

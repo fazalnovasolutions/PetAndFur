@@ -45,8 +45,8 @@ class HomeController extends Controller
     {
         $user =  User::create([
             'name' => 'Super Admin',
-            'email' => 'admin@boompup.com',
-            'password' => Hash::make('boompup@8'),
+            'email' => 'admin@petandfur.com',
+            'password' => Hash::make('petandfur@admin'),
         ]);
         $user->assignRole('super-admin');
 
