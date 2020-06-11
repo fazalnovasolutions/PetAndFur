@@ -19,7 +19,7 @@ class CompleteOrder extends Mailable
      */
     private $order;
 
-    private $sender = 'support@boompup.com';
+    private $sender = 'support@petandfur.com';
     public function __construct(Order $order)
     {
         $this->order = $order;
@@ -33,7 +33,7 @@ class CompleteOrder extends Mailable
      */
     public function build()
     {
-        return $this->from($this->sender, 'BoomPup')->subject('Order Complete - BoomPup')->view('complete')->with([
+        return $this->from($this->sender, 'BoomPup')->subject('Order Complete - Pet&Fur')->view('complete')->with([
             "order" => $this->order,
         ]);
     }

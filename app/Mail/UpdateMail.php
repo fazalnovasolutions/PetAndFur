@@ -18,7 +18,7 @@ class UpdateMail extends Mailable
      * @return void
      */
     private $order;
-    private $sender = 'support@boompup.com';
+    private $sender = 'support@petandfur.com';
     public function __construct(Order $order)
     {
         $this->order = $order;
@@ -31,7 +31,7 @@ class UpdateMail extends Mailable
      */
     public function build()
     {
-        return $this->from($this->sender,'BoomPup')->subject('Design Updated - BoomPup')->view('update')->with([
+        return $this->from($this->sender,'BoomPup')->subject('Design Updated - Pet&Fur')->view('update')->with([
             "order" =>$this->order
         ]);
     }
