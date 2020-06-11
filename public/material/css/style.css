@@ -5389,7 +5389,7 @@ Main sidebar
   position: absolute;
   width: 240px;
   height: 100%;
-  top: 0px;
+  top: 10px;
   z-index: 20;
   padding-top: 70px;
   /*background: #fff;*/
