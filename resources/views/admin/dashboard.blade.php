@@ -153,7 +153,7 @@
                                         <div class="col-md-12 ">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input class="form-control" value="{{$designer->name}}@boompup.com" type="text" readonly>
+                                                <input class="form-control" value="{{$designer->name}}@petandfur.com" type="text" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-12 ">
