@@ -281,6 +281,9 @@
       <workItem from="1589633908604" duration="3183000" />
       <workItem from="1591877218320" duration="9463000" />
       <workItem from="1591939783228" duration="181000" />
+      <workItem from="1591969013917" duration="720000" />
+      <workItem from="1592199069276" duration="1916000" />
+      <workItem from="1592553619786" duration="402000" />
     </task>
     <task id="LOCAL-00001" summary="30012020Fazal">
       <created>1580395207355</created>
@@ -576,7 +579,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591886441601</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="petfur-fazal-12062020F">
+      <created>1591969132967</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1591969132967</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,17 +629,18 @@
     <MESSAGE value="02052020F" />
     <MESSAGE value="initial-commit-petfur-fazal-11062020F" />
     <MESSAGE value="petfur-fazal-11062020F" />
-    <option name="LAST_COMMIT_MESSAGE" value="petfur-fazal-11062020F" />
+    <MESSAGE value="petfur-fazal-12062020F" />
+    <option name="LAST_COMMIT_MESSAGE" value="petfur-fazal-12062020F" />
   </component>
   <component name="WindowStateProjectService">
     <state x="413" y="126" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1588070457235">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="126" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1588070457235" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1591886438082">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1591969131458">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1591886438082" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1591969131458" />
     <state x="129" y="55" key="DiffContextDialog" timestamp="1588408104065">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -638,13 +649,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1584538063069" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1591886446381">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1591969135250">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591886446381" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1591969072986">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591969135250" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1592554203094">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1591969072986" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1592554203094" />
   </component>
 </project>
