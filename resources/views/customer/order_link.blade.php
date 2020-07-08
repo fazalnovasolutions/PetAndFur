@@ -94,7 +94,7 @@
 {{--                            <p>Your order details and photos are being reviewed before being sent to our artists. This usually takes less than 2 days. If there's an issue with your photo, we'll email you as soon as possible.</p>--}}
 {{--                        </div>--}}
 
-                 @if($key->has_design->status == 'In-Processing')
+                 @if($key->has_design->status == 'In-Processing' || $key->has_design->status == 'Approved' )
 
                      <li class="step-order-chk" style="background-color: #00cc00;""><a href="javascript:void(0);">artwork creation</a></li>
                  @else
@@ -104,7 +104,7 @@
 {{--                            <p>Your masterpiece is in progress! Our talented team of artists are turning your pet photo in to an amazing one of a kind pet portrait. This is usually the longest part of the production process... It's definitely worth the wait!</p>--}}
 {{--                        </div>--}}
 
-                 @if(  $key->has_design->status == 'Update')
+                 @if(  $key->has_design->status == 'Update'  || $key->has_design->status == 'Approved')
 
                      <li class="step-order-chk" style="background-color: #00cc00;""><a href="javascript:void(0);">artwork review/revision</a></li>
                  @else

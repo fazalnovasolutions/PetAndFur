@@ -212,7 +212,7 @@
 
                                 </div>
                             </div>
-                            <br>
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <center>
@@ -224,8 +224,11 @@
                                         @if(($product->has_design->status == 'In-Processing'|| $product->has_design->status == 'Update')  && $product->has_design->status != 'Approved')
                                             <span class="badge badge-pill" style="background-color: #00cc00;">Proof ready</span>
                                             @else
+                                                @if($product->has_design->status != 'Approved')
 
+                                                @else
                                                 <span class="badge badge-pill badge-danger" >no design</span>
+                                                    @endif
                                             @endif
 
                                     </center>
