@@ -36,6 +36,13 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+<style>.col-centered{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}</style>
     <![endif]-->
 </head>
 
@@ -66,7 +73,7 @@
 
                         <!-- Light Logo icon -->
                         <a href="{{route('customer.check')}}">
-                            <img src="https://cdn.shopify.com/s/files/1/0045/3902/3489/files/LOGOS_FOR_DEBUT.png?v=1590070144" alt="homepage" height="80px" width="90px" class="light-logo" />
+                            <img src="//cdn.shopify.com/s/files/1/0045/3902/3489/files/LOGOS_FOR_DEBUT_410x.png?v=1590070144" alt="homepage" height="80px" width="130px" class="light-logo" />
                         </a>
                     </b>
                     <!--End Logo icon -->
@@ -101,13 +108,13 @@
                             <i class="fa fa-bars font-20" style="color: white;"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right user-dd flipInY">
-                            <a class="dropdown-item" href="">
-                                <i class="ti-user m-r-5 m-l-5"></i> My Info</a>
-                            <a class="dropdown-item" href="https://petandfur.com/pages/photo-guidelines" target="_blank">
-                                <i class="ti-camera m-r-5 m-l-5"></i>Photo Guides</a>
-                            <a class="dropdown-item" href="https://petandfur.com/pages/shipping-delivery" target="_blank">
-                                <i class="ti-settings m-r-5 m-l-5"></i>Track Order
-                            </a>
+{{--                            <a class="dropdown-item" href="">--}}
+{{--                                <i class="ti-user m-r-5 m-l-5"></i> My Info</a>--}}
+{{--                            <a class="dropdown-item" href="https://petandfur.com/pages/photo-guidelines" target="_blank">--}}
+{{--                                <i class="ti-camera m-r-5 m-l-5"></i>Photo Guides</a>--}}
+{{--                            <a class="dropdown-item" href="https://petandfur.com/pages/shipping-delivery" target="_blank">--}}
+{{--                                <i class="ti-settings m-r-5 m-l-5"></i>Track Order--}}
+{{--                            </a>--}}
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="https://petandfur.com/" target="_blank">
                                 <i class="fa fa-home m-r-5 m-l-5"></i>Store

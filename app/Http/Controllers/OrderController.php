@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -78,6 +79,37 @@ class OrderController extends Controller
     public function getOrderDetails($id){
 
         return view('admin.order-details');
+    }
+
+    public function view_actvity_page()
+    {
+        return view('customer.order_link');
+    }
+
+    public function verify_order_no(Request $request)
+    {
+
+        $id=$request->ordernumber;
+
+
+      $order=DB::table('orders')->where('name','=',$id)->first();
+
+      if(isset($order->id))
+      {
+          $order = Order::where('name',$id)->first();
+
+         //dd($order->has_products->has_design);
+
+          return view('customer.order_link', ['order'=>$order]);
+
+      }
+      else
+          {
+              return redirect()
+                  ->back()
+                  ->with('error', 'order number not match');
+      }
+
     }
 
 

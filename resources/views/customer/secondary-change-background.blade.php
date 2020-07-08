@@ -34,7 +34,7 @@
        <div class="col-md-10  border-bottom-b-1 b-t-1">
            <div class=" p-3" align="center">
                <button class="btn btn-rounded btn-success p-3" onclick="window.location.href='{{route('customer.check')}}'"> Go Back</button>
-               <button class="btn btn-rounded btn-danger p-3 "  data-toggle="modal" data-target="#confirm-background"> Save Background</button>
+               <button class="btn btn-rounded btn-green text-white p-3 "  data-toggle="modal" data-target="#confirm-background"> Approve artwork</button>
            </div>
        </div>
     </div>

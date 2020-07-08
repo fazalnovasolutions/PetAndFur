@@ -30,7 +30,7 @@ $(document).ready(function() {
     // else{
         $(".custom-slider").slick({
             infinite: true,
-            slidesToShow: 4,
+            slidesToShow: 2,
             slidesToScroll: 1,
             adaptiveHeight :true,
             responsive: [{

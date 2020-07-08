@@ -92,3 +92,10 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@Index');
 Route::get('/super-admin-create', 'HomeController@SuperAdminCreate');
 Route::get('/reset', 'HomeController@delete_all');
+
+
+Route::get('/order-activities-details','OrderController@view_actvity_page')->name('activities');
+
+Route::get('/order-no-verify/','OrderController@verify_order_no')->name('verify_order_no');
+//
+//Route::get('/order-activities-details/{id}','OrderController@view_actvity_show')->name('activities_show');

@@ -1,4 +1,21 @@
+<style>
+    .button {
+        background-color: #00cc00;
+        border: none;
+        color: white;
+        padding: 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        margin: 2px 2px;
+    }
+
+    .button1 {border-radius: 8px;}
+
+</style>
 @extends('layouts.customer')
+
 @section('content')
 <p class="h3 text-center order-title" style="margin-top: 30px;">Order <u>{{$order->name}}</u> Overview</p>
 <button id="chat-notify" style="display: none" data-notification="{{route('chat.notifications')}}" data-order_id="{{$order->id}}"></button>
@@ -195,84 +212,109 @@
 
                                 </div>
                             </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <center>
+                                        @if($product->has_design->status != 'Approved')
+                                            <button class="btn btn-link new_photo_modal_button"  data-product="{{$product->id}}" data-target="#new_photo_upload">Photo upload</button>
+                                        @endif
 
-                            <div class="row p-1 justify-content-center">
-                                @if($product->has_design->status != 'Approved')
-                                    <button class="btn btn-danger m-2 new_photo_modal_button"  data-product="{{$product->id}}" data-target="#new_photo_upload">New Photo</button>
-                                @endif
-                                @if($product->has_design->status != 'Approved')
-                                    <button class="btn btn-warning m-2 new_photo_modal_button" data-product="{{$product->id}}"  data-target="#fix_request_modal{{$index}}"> Request Fix</button>
-                                @endif
+
+                                        @if(($product->has_design->status == 'In-Processing'|| $product->has_design->status == 'Update')  && $product->has_design->status != 'Approved')
+                                            <span class="badge badge-pill" style="background-color: #00cc00;">Proof ready</span>
+                                            @else
+
+                                                <span class="badge badge-pill badge-danger" >no design</span>
+                                            @endif
+
+                                    </center>
                             </div>
-
-                            @if(($product->has_design->status == 'In-Processing'|| $product->has_design->status == 'Update')  && $product->has_design->status != 'Approved')
-                                <div class=" row p-1 justify-content-center">
-                                    <a href="{{route('choose.background',$product->id)}}" class="btn btn-success"> Choose Background</a>
-                                </div>
-                            @endif
-                            @if($product->has_design->status != 'Approved' && $product->has_design->status != 'No Design')
-                                <div class=" row p-1 justify-content-center">
-                                    <button class="btn @if($product->background_id != null) btn-green set-approved @endif text-white" @if($product->background_id == null) style="background: #777777" disabled @else data-id="{{$product->id}}"  data-target="#review-background{{$index}}" @endif>Approve Your Design </button>
-                                </div>
-                            <div class="row p-1 justify-content-center">
-                                <span class="text-center font-weight-bold"> * Please select a background to approve your design </span>
                             </div>
-                                <div class="modal fade" id="review-background{{$index}}" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">
-                                    <div class="modal-dialog " role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-
-                                                <div align="center">
-                                                    <div class="approved_div" >
-                                                        <span class="mdi mdi-check-circle-outline check_mark"></span>
-                                                    </div>
-                                                    <h6 class="text_active"><b>Approved!</b></h6>
-
-                                                </div>
-                                                <div class="mt-2" align="center">
-                                                    <h6><b>Rate Your Designer: </b></h6>
-                                                </div>
-                                                <div class="row justify-content-center">
-                                                    <div class='rating-stars '>
-                                                        <ul id='stars' style="margin-bottom: 5px">
-                                                            <li class='star' title='Poor' data-value='1'>
-                                                                <i class='fa fa-star fa-fw'></i>
-                                                            </li>
-                                                            <li class='star' title='Fair' data-value='2'>
-                                                                <i class='fa fa-star fa-fw '></i>
-                                                            </li>
-                                                            <li class='star' title='Good' data-value='3'>
-                                                                <i class='fa fa-star fa-fw '></i>
-                                                            </li>
-                                                            <li class='star' title='Excellent' data-value='4'>
-                                                                <i class='fa fa-star fa-fw '></i>
-                                                            </li>
-                                                            <li class='star' title='WOW!!!' data-value='5'>
-                                                                <i class='fa fa-star fa-fw '></i>
-                                                            </li>
-                                                        </ul>
-
-                                                    </div>
-                                                </div>
-                                                <form id="review_form" action="{{route('order.save.review')}}" method="post">
-                                                    @csrf
-                                                    <input type="hidden" name="product" value="{{$product->id}}">
-                                                    <input type="hidden" name="rating" id="rating_input" value="">
-                                                    <div class=" p-3" align="center">
-                                                        <textarea class="form-control" name="review" rows="5"> </textarea>
-                                                    </div>
-                                                </form>
-                                                <div class="row justify-content-center">
-                                                    <button  class="btn btn-light close m-2" data-dismiss="modal" aria-label="Close"> No Thanks</button>
-                                                    <button  class="btn btn-primary review-submit m-2"> Submit Review</button>
-                                                </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <center>
+                                    @if($product->has_design->status != 'Approved')
+                                        <button class="btn btn-danger m-2 new_photo_modal_button" data-product="{{$product->id}}"  data-target="#fix_request_modal{{$index}}"> Request Revision</button>
+                                    @endif
+                                        @if(($product->has_design->status == 'In-Processing'|| $product->has_design->status == 'Update')  && $product->has_design->status != 'Approved')
+                                            <button onclick="window.location.href='{{route('choose.background',$product->id)}}'" class="btn btn-green text-white "> Select Background</button>
+                                        @endif
+                                        </center>
+                                </div></div>
+{{--                            <div class="row p-1 justify-content-center">--}}
+{{--                                @if($product->has_design->status != 'Approved')--}}
+{{--                                    <a class="new_photo_modal_button"  data-product="{{$product->id}}" data-target="#new_photo_upload">New Photo</a>--}}
+{{--                                @endif--}}
+{{--                                @if($product->has_design->status != 'Approved')--}}
+{{--                                    <button class="btn btn-warning m-2 new_photo_modal_button" data-product="{{$product->id}}"  data-target="#fix_request_modal{{$index}}"> Request Fix</button>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
 
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
+{{--                            @if($product->has_design->status != 'Approved' && $product->has_design->status != 'No Design')--}}
+{{--                                <div class=" row p-1 justify-content-center">--}}
+{{--                                    <button class="btn @if($product->background_id != null) btn-green set-approved @endif text-white" @if($product->background_id == null) style="background: #777777" disabled @else data-id="{{$product->id}}"  data-target="#review-background{{$index}}" @endif>Approve Your Design </button>--}}
+{{--                                </div>--}}
+{{--                            <div class="row p-1 justify-content-center">--}}
+{{--                                <span class="text-center font-weight-bold"> * Please select a background to approve your design </span>--}}
+{{--                            </div>--}}
+{{--                                <div class="modal fade" id="review-background{{$index}}" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">--}}
+{{--                                    <div class="modal-dialog " role="document">--}}
+{{--                                        <div class="modal-content">--}}
+{{--                                            <div class="modal-body">--}}
+
+{{--                                                <div align="center">--}}
+{{--                                                    <div class="approved_div" >--}}
+{{--                                                        <span class="mdi mdi-check-circle-outline check_mark"></span>--}}
+{{--                                                    </div>--}}
+{{--                                                    <h6 class="text_active"><b>Approved!</b></h6>--}}
+
+{{--                                                </div>--}}
+{{--                                                <div class="mt-2" align="center">--}}
+{{--                                                    <h6><b>Rate Your Designer: </b></h6>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="row justify-content-center">--}}
+{{--                                                    <div class='rating-stars '>--}}
+{{--                                                        <ul id='stars' style="margin-bottom: 5px">--}}
+{{--                                                            <li class='star' title='Poor' data-value='1'>--}}
+{{--                                                                <i class='fa fa-star fa-fw'></i>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class='star' title='Fair' data-value='2'>--}}
+{{--                                                                <i class='fa fa-star fa-fw '></i>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class='star' title='Good' data-value='3'>--}}
+{{--                                                                <i class='fa fa-star fa-fw '></i>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class='star' title='Excellent' data-value='4'>--}}
+{{--                                                                <i class='fa fa-star fa-fw '></i>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class='star' title='WOW!!!' data-value='5'>--}}
+{{--                                                                <i class='fa fa-star fa-fw '></i>--}}
+{{--                                                            </li>--}}
+{{--                                                        </ul>--}}
+
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <form id="review_form" action="{{route('order.save.review')}}" method="post">--}}
+{{--                                                    @csrf--}}
+{{--                                                    <input type="hidden" name="product" value="{{$product->id}}">--}}
+{{--                                                    <input type="hidden" name="rating" id="rating_input" value="">--}}
+{{--                                                    <div class=" p-3" align="center">--}}
+{{--                                                        <textarea class="form-control" name="review" rows="5"> </textarea>--}}
+{{--                                                    </div>--}}
+{{--                                                </form>--}}
+{{--                                                <div class="row justify-content-center">--}}
+{{--                                                    <button  class="btn btn-light close m-2" data-dismiss="modal" aria-label="Close"> No Thanks</button>--}}
+{{--                                                    <button  class="btn btn-primary review-submit m-2"> Submit Review</button>--}}
+{{--                                                </div>--}}
+
+
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            @endif--}}
 
                         </div>
                     </div>
@@ -534,7 +576,7 @@
                     <div class="modal-title" style="font-size: 13px">
                         Please let us know about any requests or questions you might have. Your designer will get back to you as soon as possible with an answer and/or update regarding your requests.
                         For a general question that is not about your personal design process, please contact our <a
-                          target="_blank"  href="https://www.boompup.com/pages/contact-us" style="color: red">support team.</a>
+                          target="_blank"  href="https://petandfur.com/pages/contact-us" style="color: red">support team.</a>
                     </div>
                 </div>
                 <div class="modal-body">

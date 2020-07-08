@@ -118,21 +118,21 @@
     .msg_send_btn {
         background: #01c0c8 none repeat scroll 0 0;
         border: none;
-        border-radius: 50%;
+        border-radius: 5px;
         color: #fff;
         cursor: pointer;
         font-size: 15px;
         height: 33px;
         position: absolute;
-        right: 36px;
-        top: 9px;
-        width: 33px;
+        right: 0px;
+        top: 50px;
+        width: 95px;
     }
 
     .new_pic{
         position: absolute;
         right: 1px;
-        top: 54px;
+        top: 10px;
     }
 
     .messaging {
@@ -244,22 +244,22 @@
                 <input type="hidden" name="type" value="image">
                 <input type="hidden" name="order_id" value="{{$order}}">
             </form>
-
-            <button class="msg_send_btn send_btn" data-route="{{route('chat.save')}}" data-name="{{$apply}}" data-type="text" data-order="{{$order}}" ><i class="fa fa-paper-plane"></i></button>
             <button class="btn btn-danger new_pic send_btn_image" data-route="{{route('chat.save')}}" data-name="{{$apply}}" data-type="image" data-order="{{$order}}">New Photo</button>
+            <button class="msg_send_btn send_btn" data-route="{{route('chat.save')}}" data-name="{{$apply}}" data-type="text" data-order="{{$order}}" >Send</button>
+         {{-- <i class="fa fa-paper-plane"></i>--}}
         </div>
         @if($apply == 'Customer')
-        <div class="freq">
-            <div class="freq-title"><h4>some common questions:</h4></div>
-            <div class="frequent_question btn btn-sm" data-answer="You can upload some other photos for us to take a look at!
-                        Just click the 'New Photo' button and upload your photos.
-                        We'll email you once your new design is ready for your review😉
-                    ">How can I change my photo?</div>
-            <div class="frequent_question btn btn-sm" data-answer="That is the fun part😉 Just click the 'Choose Colors/Choos Background' button. Once you've found your favorite, select it and click to confirm. Then, all you need to do is approve your artwork and that's it!">
-                How can I choose the colors/background?
-            </div>
-            <div class="frequent_question btn btn-sm" data-answer="You can definitely change the style of your design! Just let us know the one you want. We'll email you once your new design is ready for your review😉">How can I change the style?</div>
-        </div>
+{{--        <div class="freq">--}}
+{{--            <div class="freq-title"><h4>some common questions:</h4></div>--}}
+{{--            <div class="frequent_question btn btn-sm" data-answer="You can upload some other photos for us to take a look at!--}}
+{{--                        Just click the 'New Photo' button and upload your photos.--}}
+{{--                        We'll email you once your new design is ready for your review😉--}}
+{{--                    ">How can I change my photo?</div>--}}
+{{--            <div class="frequent_question btn btn-sm" data-answer="That is the fun part😉 Just click the 'Choose Colors/Choos Background' button. Once you've found your favorite, select it and click to confirm. Then, all you need to do is approve your artwork and that's it!">--}}
+{{--                How can I choose the colors/background?--}}
+{{--            </div>--}}
+{{--            <div class="frequent_question btn btn-sm" data-answer="You can definitely change the style of your design! Just let us know the one you want. We'll email you once your new design is ready for your review😉">How can I change the style?</div>--}}
+{{--        </div>--}}
             @endif
     </div>
 </div>

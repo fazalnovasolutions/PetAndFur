@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'app_name' => env('SHOPIFY_APP_NAME', 'Boompup'),
+    'app_name' => env('SHOPIFY_APP_NAME', 'PET&FUR'),
 
     /*
     |--------------------------------------------------------------------------

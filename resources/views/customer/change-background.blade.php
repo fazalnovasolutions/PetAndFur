@@ -39,7 +39,7 @@
        <div class="col-md-10  border-bottom-b-1 b-t-1">
            <div class=" p-3" align="center">
                <button class="btn btn-rounded btn-success p-3" onclick="window.location.href='{{route('customer.check')}}'"> Go Back</button>
-               <button class="btn btn-rounded btn-danger p-3 "  data-toggle="modal" data-target="#confirm-background"> Save Background</button>
+               <button class="btn btn-rounded btn-green  text-white p-3 "  data-toggle="modal" data-target="#confirm-background">Save Approve artwork</button>
            </div>
        </div>
     </div>
@@ -62,7 +62,7 @@
                             <button class="btn btn-success m-3" data-dismiss="modal" aria-label="Close"> <i class="mdi mdi-check"></i>  No </button>
 
 {{--                            <button class="btn btn-success m-3 set-approved" data-id="{{$product->id}}"  data-target="#review-background" data-dismiss="modal" aria-label="Close"><i class="mdi mdi-check-circle font-bold" ></i> Confirm </button>--}}
-                            <button class="btn btn-warning background_save_button m-3" ><i class="mdi mdi-check-circle font-bold" ></i> Confirm</button>
+                            <button class="btn btn-green text-white background_save_button m-3" ><i class="mdi mdi-check-circle font-bold" ></i> Confirm</button>
 
                         </div>
                     </div>
