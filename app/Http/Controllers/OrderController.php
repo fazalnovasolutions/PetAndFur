@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BackgroundCategory;
 use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -92,21 +93,21 @@ class OrderController extends Controller
         $id=$request->ordernumber;
 
 
-      $order=DB::table('orders')->where('name','=',$id)->first();
+      $order=DB::table('orders')->where('name', 'LIKE', '%' . $id . '%')->first();
 
-      if(isset($order->id))
+      if(isset($order->name))
       {
-          $order = Order::where('name',$id)->first();
-
+          $order = Order::where('name', 'LIKE', '%' . $id . '%')->first();
+          $categories = BackgroundCategory::where('shop_id', $this->helper->getShop()->id)->get();
          //dd($order->has_products->has_design);
 
-          return view('customer.order_link', ['order'=>$order]);
+          return view('customer.order_link', ['order'=>$order,'categories'=>$categories]);
 
       }
       else
           {
               return redirect()
-                  ->back()
+                  ->route('activities')
                   ->with('error', 'order number not match');
       }
 

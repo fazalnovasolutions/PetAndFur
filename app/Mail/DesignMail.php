@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateMail extends Mailable
+class DesignMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,10 +18,14 @@ class UpdateMail extends Mailable
      * @return void
      */
     private $order;
+    private $product;
     private $sender = 'support@petandfur.com';
-    public function __construct(Order $order)
+
+
+    public function __construct(Order $order,$title)
     {
         $this->order = $order;
+        $this->product = $title;
     }
 
     /**
@@ -31,8 +35,9 @@ class UpdateMail extends Mailable
      */
     public function build()
     {
-        return $this->from($this->sender,'PET&FUR')->subject('Design Updated - Pet&Fur')->view('update')->with([
-            "order" =>$this->order
+        return $this->from($this->sender, 'PET&FUR')->subject('Design Uploaded - Pet&Fur')->view('design')->with([
+            "order" => $this->order,
+            "product" => $this->product,
         ]);
     }
 }

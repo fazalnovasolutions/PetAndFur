@@ -8,7 +8,9 @@ use App\Customer;
 use App\Designer;
 use App\DesignerStack;
 use App\DesignStyle;
+use App\Mail\ApprovedMail;
 use App\Mail\CompleteOrder;
+use App\Mail\DesignMail;
 use App\Mail\UpdateMail;
 use App\NewOrderDesigner;
 use App\Order;
@@ -649,6 +651,16 @@ class OrdersController extends Controller
                 $new_msg->status = 'seen';
                 $new_msg->save();
             }
+
+            try{
+                Mail::to($order->email)->send(new DesignMail($order,$product->title));
+                $order->last_email_at = now()->format('Y-m-d');
+                $order->save();
+            }
+            catch (\Exception $e){
+            }
+
+
 
             return redirect()->back();
         }

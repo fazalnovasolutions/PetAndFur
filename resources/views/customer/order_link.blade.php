@@ -72,7 +72,7 @@
                 <?php $count=0; ?>
                 @foreach ($order->has_products as $index => $key)
                         <?php $count++;
-                        if($count == 2)
+                        if($count >= 2)
                             {
                         ?>
 
@@ -81,7 +81,8 @@
                         <?php
                             }?>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <br>
+
+                <div class="form-group">
               <center>  <h4>{{$key->title.'-'.$key->variant_title}}</h4></center>
                 <div class="order-inner order-steps-lists">
                     <ul>
@@ -129,9 +130,12 @@
 {{--                        </div>--}}
                     </ul>
                 </div>
+
+            </div>
             </div>
 
             <div class="col-md-4 col-sm-4 col-xs-12 p0">
+                <div class="form-group">
 {{--                        <div class="order-img" style="  position: absolute;--}}
 {{--                        left: 0;--}}
 {{--                        right: 0;--}}
@@ -143,7 +147,42 @@
 {{--      "></div>--}}
                 @if( $key->has_design->status !='No Design')
 
-                    <img  src="{{asset('designs/'.$key->has_design->design)}}" height="500px" width="100%">
+                        @php
+                            $style = '';
+                            if($key->has_changed_style !=  null){
+                            $style = $key->has_changed_style->style;
+                            }
+                            else{
+                               foreach ($properties as $property){
+                            if($property['name'] == 'Style' || $property['name'] == 'Style2'){
+                            $style = $property['value'];
+                            }
+                            }
+                            }
+
+                        @endphp
+                        @foreach($categories as $cat)
+                            @if($cat->name == $style)
+                                @foreach($cat->has_backgrounds as $index => $b)
+                                    @if($index == 0)
+                                        <div class="image-contain" style="
+                                            background-image: url({{asset($b->image)}});
+                                            background-repeat: no-repeat;
+                                            background-size: cover;
+                                            max-width: 400px;
+                                            margin: auto;
+                                            background-position: center center;
+                                            " >
+                                            @if($key->has_design != null)
+                                                @if($key->has_design->design != null)
+                                                    <img  src="{{asset('designs/'.$key->has_design->design)}}" height="auto" width="100%">
+                                                @endif
+                                            @endif
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
 
                 @else
                     <?php
@@ -159,7 +198,7 @@
                         @endif
 
                 @endif
-
+                </div>
                 </div>
 
                     @endforeach

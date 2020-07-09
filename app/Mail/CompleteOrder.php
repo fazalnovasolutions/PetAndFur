@@ -33,7 +33,7 @@ class CompleteOrder extends Mailable
      */
     public function build()
     {
-        return $this->from($this->sender, 'BoomPup')->subject('Order Complete - Pet&Fur')->view('complete')->with([
+        return $this->from($this->sender, 'PET&FUR')->subject('Order Complete - Pet&Fur')->view('complete')->with([
             "order" => $this->order,
         ]);
     }

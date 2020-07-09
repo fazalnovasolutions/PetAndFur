@@ -34,7 +34,7 @@ class ApprovedMail extends Mailable
      */
     public function build()
     {
-        return $this->from($this->sender,'BoomPup')->subject('Design Approved - Pet&Fur')->view('approved')->with([
+        return $this->from($this->sender,'PET&FUR')->subject('Design Approved - Pet&Fur')->view('approved')->with([
             "order" =>$this->order,
             "line_item" => $this->line_item,
         ]);
