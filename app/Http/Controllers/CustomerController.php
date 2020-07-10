@@ -91,12 +91,18 @@ class CustomerController extends Controller
                     }
 
 
-                    if($style != null){
-                        $category =  BackgroundCategory::where('name',$style)->first();
+                        $category =  BackgroundCategory::first();
+
+
+                    $categories =  BackgroundCategory::get();
+
+
+
                         if($category != null){
                             return view('customer.change-background')->with([
                                 'product' => $product,
                                 'category' => $category,
+                                'categories'=>$categories,
                                 'style' => $style,
                                 'style_color' => $style_color
                             ]);
@@ -104,10 +110,7 @@ class CustomerController extends Controller
                         else{
                             return redirect()->back();
                         }
-                    }
-                    else{
-                        return redirect()->back();
-                    }
+
                 }
                 else{
                     return redirect()->route('customer.check');
@@ -385,5 +388,22 @@ class CustomerController extends Controller
         else{
             return redirect()->back();
         }
+    }
+    function background(Request $request)
+    {
+        $category =  BackgroundCategory::where('id',$request->order)->first();
+
+        $output='';
+
+        foreach($category->has_backgrounds  as $b)
+        {
+            $url = asset($b->image);
+            $output.='<div style = "margin: 0px 20px; width: 85% !important;cursor: pointer" class="background-div" >
+                    <img data-id = "'.$b->id.'" data-name = "'.$b->name.'" src = "'.$url.'"  alt = "Babe Pink" >
+                </div >';
+
+                }
+        echo $output;
+
     }
 }

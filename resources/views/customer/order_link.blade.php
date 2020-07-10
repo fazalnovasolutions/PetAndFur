@@ -147,42 +147,42 @@
 {{--      "></div>--}}
                 @if( $key->has_design->status !='No Design')
 
-                        @php
-                            $style = '';
-                            if($key->has_changed_style !=  null){
-                            $style = $key->has_changed_style->style;
-                            }
-                            else{
-                               foreach ($properties as $property){
-                            if($property['name'] == 'Style' || $property['name'] == 'Style2'){
-                            $style = $property['value'];
-                            }
-                            }
-                            }
+{{--                        @php--}}
+{{--                            $style = '';--}}
+{{--                            if($key->has_changed_style !=  null){--}}
+{{--                            $style = $key->has_changed_style->style;--}}
+{{--                            }--}}
+{{--                            else{--}}
+{{--                               foreach ($properties as $property){--}}
+{{--                            if($property['name'] == 'Style' || $property['name'] == 'Style2'){--}}
+{{--                            $style = $property['value'];--}}
+{{--                            }--}}
+{{--                            }--}}
+{{--                            }--}}
 
-                        @endphp
-                        @foreach($categories as $cat)
-                            @if($cat->name == $style)
-                                @foreach($cat->has_backgrounds as $index => $b)
-                                    @if($index == 0)
+{{--                        @endphp--}}
+{{--                        @foreach($categories as $cat)--}}
+{{--                            @if($cat->name == $style)--}}
+{{--                                @foreach($cat->has_backgrounds as $index => $b)--}}
+{{--                                    @if($index == 0)--}}
                                         <div class="image-contain" style="
-                                            background-image: url({{asset($b->image)}});
-                                            background-repeat: no-repeat;
+                                            {{--background-image: url({{asset($b->image)}});--}}
+                                            {{--background-repeat: no-repeat;--}}
                                             background-size: cover;
                                             max-width: 400px;
                                             margin: auto;
                                             background-position: center center;
                                             " >
-                                            @if($key->has_design != null)
-                                                @if($key->has_design->design != null)
+{{--                                            @if($key->has_design != null)--}}
+{{--                                                @if($key->has_design->design != null)--}}
                                                     <img  src="{{asset('designs/'.$key->has_design->design)}}" height="auto" width="100%">
-                                                @endif
-                                            @endif
+{{--                                                @endif--}}
+{{--                                            @endif--}}
                                         </div>
-                                    @endif
-                                @endforeach
-                            @endif
-                        @endforeach
+{{--                                    @endif--}}
+{{--                                @endforeach--}}
+{{--                            @endif--}}
+{{--                        @endforeach--}}
 
                 @else
                     <?php
@@ -191,7 +191,7 @@
 
                         @if($properties)
                             @foreach($properties as $property)
-                                @if($property['name'] == 'Upload Image' || $property['name'] == '_Uploaded Image')
+                                @if($property['name'] == 'Upload Image' || $property['name'] == '_Uploaded Image' || $property['name'] == 'Uploaded Image')
                                     <img src="{{$property['value']}}" height="500px" width="100%" />
                                 @endif
                             @endforeach

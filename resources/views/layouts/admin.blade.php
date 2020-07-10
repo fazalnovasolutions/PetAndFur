@@ -64,7 +64,7 @@
 
                         <!-- Light Logo icon -->
                         <a href="{{route('admin.orders')}}">
-                            <img src="https://cdn.shopify.com/s/files/1/0045/3902/3489/files/logo-transparent.png?v=1590069981" alt="homepage" height="80px" width="90px" class="light-logo"  />
+                            <img src="{{asset('logo.png')}}" alt="homepage" height="80px" width="100px" class="light-logo"  />
                         </a>
                     </b>
                     <!--End Logo icon -->

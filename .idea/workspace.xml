@@ -20,15 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Mail/DesignMail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/design.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/ApprovedMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/ApprovedMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/CompleteOrder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/CompleteOrder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/UpdateMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/UpdateMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/material/js/cs-script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/material/js/cs-script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/new-order-detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/new-order-detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/order-details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/order-details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/change-background.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/change-background.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/order-overview.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/order-overview.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/customer/order_link.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/order_link.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/customer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/customer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +303,8 @@
       <workItem from="1592199069276" duration="1916000" />
       <workItem from="1592553619786" duration="402000" />
       <workItem from="1594190022791" duration="28063000" />
-      <workItem from="1594271537975" duration="5873000" />
+      <workItem from="1594271537975" duration="6483000" />
+      <workItem from="1594360793990" duration="14781000" />
     </task>
     <task id="LOCAL-00001" summary="30012020Fazal">
       <created>1580395207355</created>
@@ -625,7 +628,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594218417548</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="azan">
+      <created>1594284594717</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1594284594717</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -677,32 +687,36 @@
     </state>
     <state x="413" y="126" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1588070457235" />
     <state x="464" y="143" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1594274421333" />
-    <state x="346" y="0" key="CommitChangelistDialog2" timestamp="1594218416929">
+    <state x="346" y="0" key="CommitChangelistDialog2" timestamp="1594284593964">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1591969131458" />
-    <state x="346" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1594218416929" />
+    <state x="346" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1594284593964" />
     <state x="129" y="55" key="DiffContextDialog" timestamp="1588408104065">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="129" y="55" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1588408104065" />
-    <state x="309" y="110" key="Vcs.Push.Dialog.v2" timestamp="1594218425406">
+    <state x="309" y="110" key="Vcs.Push.Dialog.v2" timestamp="1594284601311">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591969135250" />
-    <state x="309" y="110" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1594218425406" />
-    <state x="478" y="145" width="579" height="534" key="find.popup" timestamp="1594214421823">
+    <state x="309" y="110" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1594284601311" />
+    <state x="478" y="145" width="579" height="534" key="find.popup" timestamp="1594379527310">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="478" y="145" width="579" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1594214421823" />
+    <state x="478" y="145" width="579" height="534" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1594379527310" />
     <state x="611" y="173" key="refactoring.ChangeSignatureDialog" timestamp="1594275562010">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="611" y="173" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1594275562010" />
-    <state x="389" y="55" width="756" height="768" key="search.everywhere.popup" timestamp="1594274359193">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1594378982090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1594378982090" />
+    <state x="389" y="55" width="756" height="768" key="search.everywhere.popup" timestamp="1594374246551">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1592554203094" />
-    <state x="389" y="55" width="756" height="768" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1594274359193" />
+    <state x="389" y="55" width="756" height="768" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1594374246551" />
   </component>
 </project>

@@ -108,7 +108,7 @@
 
 
                                 @foreach($product->properties as $property)
-                                    @if($property->name == 'Upload Image' || $property->name == '_Uploaded Image')
+                                    @if($property->name == 'Upload Image' || $property->name == '_Uploaded Image' ||$property->name == 'Uploaded Image')
                                         <div class=" col-sm-6 col-md-5" align="center">
                                             <div class="mt-4 pr-2">
                                                 <img src="{{ $property->value }}" width="100%" height="auto" style="margin-bottom: 15px">

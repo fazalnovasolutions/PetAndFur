@@ -163,7 +163,7 @@
                                     @endif
                                     @if($properties)
                                         @foreach($properties as $property)
-                                            @if($property['name'] == 'Upload Image' || $property['name'] == '_Uploaded Image')
+                                            @if($property['name'] == 'Upload Image' || $property['name'] == '_Uploaded Image' || $property['name'] == 'Uploaded Image' )
                                                 <div class="row  m-3">
                                                     <div class="col-sm-12 col-sm-6 justify-content-center" >
                                                         <a class="btn btn-rounded btn-purple"  target="_blank" href="{{ $property['value'] }}">Download Pet Photo</a>
@@ -176,7 +176,7 @@
                                 </div>
                                 @if($properties)
                                     @foreach($properties as $property)
-                                        @if($property['name'] == 'Upload Image' || $property['name'] == '_Uploaded Image')
+                                        @if($property['name'] == 'Upload Image' || $property['name'] == '_Uploaded Image' || $property['name'] == 'Uploaded Image')
                                             <div class=" col-sm-6 col-md-5" align="center">
                                                 <div class="mt-4 pr-2">
                                                     <img src="{{ $property['value'] }}" width="100%" height="auto" style="margin-bottom: 15px">
@@ -204,19 +204,19 @@
 
                                     <div class="col-sm-6 col-md-6" align="right">
                                         <div class="">
-                                            <div class="form-group" style="margin: 0">
-                                                <select class="form-control style-change" name="style" style="margin: 0">
-                                                    <option value="">--Change Style--</option>
-                                                    @foreach($categories as $category)
-                                                        <option @if($product->has_changed_style !=  null) @if($product->has_changed_style->category_id == $category->id) selected @endif @endif value="{{ $category->id }}">{{ $category->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <form style="display: none" class="change_style_form" action="{{route('admin.order.line-item.change.style')}}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="category" class="category_input">
-                                                <input type="hidden" name="order_id" value="{{$order->id}}">
-                                                <input type="hidden" name="product_id" value="{{$product->id}}">
+{{--                                            <div class="form-group" style="margin: 0">--}}
+{{--                                                <select class="form-control style-change" name="style" style="margin: 0">--}}
+{{--                                                    <option value="">--Change Style--</option>--}}
+{{--                                                    @foreach($categories as $category)--}}
+{{--                                                        <option @if($product->has_changed_style !=  null) @if($product->has_changed_style->category_id == $category->id) selected @endif @endif value="{{ $category->id }}">{{ $category->name }}</option>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                            <form style="display: none" class="change_style_form" action="{{route('admin.order.line-item.change.style')}}" method="POST">--}}
+{{--                                                @csrf--}}
+{{--                                                <input type="hidden" name="category" class="category_input">--}}
+{{--                                                <input type="hidden" name="order_id" value="{{$order->id}}">--}}
+{{--                                                <input type="hidden" name="product_id" value="{{$product->id}}">--}}
                                             </form>
                                         </div>
                                     </div>
@@ -249,44 +249,18 @@
                                                     </div>
 
                                                 @else
-                                                    @if($properties)
-                                                        @php
-                                                            $style = '';
-                                                            if($product->has_changed_style !=  null){
-                                                            $style = $product->has_changed_style->style;
-                                                            }
-                                                            else{
-                                                               foreach ($properties as $property){
-                                                            if($property['name'] == 'Style' || $property['name'] == 'Style2'){
-                                                            $style = $property['value'];
-                                                            }
-                                                            }
-                                                            }
-
-                                                        @endphp
-                                                        @foreach($categories as $cat)
-                                                            @if($cat->name == $style)
-                                                                @foreach($cat->has_backgrounds as $index => $b)
-                                                                    @if($index == 0)
-                                                                        <div class="image-contain" style="
-                                                                            background-image: url({{asset($b->image)}});
-                                                                            background-repeat: no-repeat;
-                                                                            background-size: cover;
-                                                                            max-width: 400px;
-                                                                            margin: auto;
-                                                                            background-position: center center;
-                                                                            " >
-                                                                            @if($product->has_design != null)
-                                                                                @if($product->has_design->design != null)
-                                                                                    <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">
-                                                                                @endif
-                                                                            @endif
-                                                                        </div>
-                                                                    @endif
-                                                                @endforeach
+                                                    <div class="image-contain" style="
+                                                        background-size: cover;
+                                                        max-width: 400px;
+                                                        margin: auto;
+                                                        background-position: center center;
+                                                        " >
+                                                        @if($product->has_design != null)
+                                                            @if($product->has_design->design != null)
+                                                                <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">
                                                             @endif
-                                                        @endforeach
-                                                    @endif
+                                                        @endif
+                                                    </div>
                                                 @endif
                                             @endif
                                         @endif

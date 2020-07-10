@@ -1,12 +1,102 @@
 
 
+
 $(document).ready(function() {
-    // if($('#slick-count').length < 7){
-    //     var slick_count = parseInt($('#slick-count').val()) ;
-    //     console.log(slick_count);
-    //     $(".custom-slider").slick({
+    function slickk()
+    {
+        var count = $(".custom-slider").find('img').length;
+
+        if(count <= 2)
+        {
+            $(".custom-slider").slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                adaptiveHeight :true,
+                responsive: [{
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 1,
+                        infinite: true
+                    }
+                }, {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true
+                    }
+                }
+                ]
+            });
+        }
+        else{
+
+            $(".custom-slider").slick({
+                infinite: true,
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                adaptiveHeight :true,
+                responsive: [{
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 1,
+                        infinite: true
+                    }
+                }, {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true
+                    }
+                }
+                ]
+            });
+        }
+
+    }
+
+
+    var value=$( ".select" ).val();
+
+    $.ajax({
+        url: "/customer/background/change",
+        method: 'get',
+        data:{
+            order:value,
+        },
+        success:function (response) {
+            $('#slider-custom').empty();
+            $('#slider-custom').append(response);
+            slickk();
+        },
+    });
+
+    $(".select").change(function(){
+        var value = $(this).children("option:selected").val();
+        $.ajax({
+            url: "/customer/background/change",
+            method: 'get',
+            data:{
+                order:value,
+            },
+            success:function (response) {
+
+                $(".custom-slider").slick('unslick');
+                $('#slider-custom').empty();
+                $('#slider-custom').append(response);
+                slickk();
+            },
+        });
+
+    });
+
+    // $(".custom-slider").slick({
     //         infinite: true,
-    //         slidesToShow: slick_count,
+    //         slidesToShow: 2,
     //         slidesToScroll: 1,
     //         adaptiveHeight :true,
     //         responsive: [{
@@ -26,31 +116,8 @@ $(document).ready(function() {
     //         }
     //         ]
     //     });
-    // }
-    // else{
-        $(".custom-slider").slick({
-            infinite: true,
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            adaptiveHeight :true,
-            responsive: [{
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                    infinite: true
-                }
-            }, {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true
-                }
-            }
-            ]
-        });
-    // }
+    // slickk();
+
     $('img').each(function (index) {
         var src = $(this).attr('src');
         // console.log(src)

@@ -73,7 +73,7 @@
 
                         <!-- Light Logo icon -->
                         <a href="{{route('customer.check')}}">
-                            <img src="//cdn.shopify.com/s/files/1/0045/3902/3489/files/LOGOS_FOR_DEBUT_410x.png?v=1590070144" alt="homepage" height="80px" width="130px" class="light-logo" />
+                            <img src="{{asset('logo.png')}}" alt="homepage" height="80px" width="130px" class="light-logo" />
                         </a>
                     </b>
                     <!--End Logo icon -->

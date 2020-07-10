@@ -6,8 +6,17 @@
         <div class="col-md-4 ml-5">
             <div class="row justify-content-center">
                 <h5 class="pt-1"> <b>Style :</b> </h5>
-                <div class="pt-1 ml-2" style="background: {{$style_color}}">
-                    <h6 class="pr-2 pl-2 pt-1 text-white"><b>{{$style}}</b> </h6>
+                <div class="pt-1 ml-2" >
+{{--                    <h6 class="pr-2 pl-2 pt-1 text-white"><b>{{$style}}</b> </h6>--}}
+
+                    <select class="select">
+                        @foreach($categories as $cat)
+                            @if($cat->has_backgrounds)
+                        <option value="{{$cat->id}}" >{{$cat->name}}</option>
+                        @endif
+                                @endforeach
+                    </select>
+
                 </div>
             </div>
         </div>
@@ -17,20 +26,20 @@
         <input type="hidden" id="slick-count" value="{{count($category->has_backgrounds)-1}}">
         <div id="back-slider" class="pl-5 ">
             <!-- The slideshow -->
-            <div class="custom-slider">
-                @foreach($category->has_backgrounds as $b)
-                <div style="margin: 0px 20px; width: 85% !important;cursor: pointer" class="background-div">
-                    <img data-id="{{$b->id}}" data-name="{{$b->name}}" src="{{asset($b->image)}}"  alt="Babe Pink">
-                </div>
-                    @endforeach
+            <div class="custom-slider" id="slider-custom">
+{{--                @foreach($category->has_backgrounds as $b)--}}
+{{--                <div style="margin: 0px 20px; width: 85% !important;cursor: pointer" class="background-div">--}}
+{{--                    <img data-id="{{$b->id}}" data-name="{{$b->name}}" src="{{asset($b->image)}}"  alt="Babe Pink">--}}
+{{--                </div>--}}
+{{--                    @endforeach--}}
             </div>
-            <div class="background_title">@if($product->has_background != null) {{$product->has_background->name}} @else
-                    @foreach($category->has_backgrounds as $index=> $b)
-                        @if($index == 0)
-                            {{$b->name}}
-                            @endif
-                    @endforeach
-                @endif</div>
+{{--            <div class="background_title">@if($product->has_background != null) {{$product->has_background->name}} @else--}}
+{{--                    @foreach($category->has_backgrounds as $index=> $b)--}}
+{{--                        @if($index == 0)--}}
+{{--                            {{$b->name}}--}}
+{{--                            @endif--}}
+{{--                    @endforeach--}}
+{{--                @endif</div>--}}
 
         </div>
 
@@ -89,11 +98,9 @@
                 margin: auto;
                 background-position: center center;
                 " >
-                @if($product->has_design != null)
-                    @if($product->has_design->design != null)
+
                         <img  src="{{asset('designs/'.$product->has_design->design)}}" height="auto" width="100%">
-                    @endif
-                @endif
+
             </div>
 {{--            @if($product->has_background != null)--}}
 {{--                <img id="design_background" src="{{asset($product->has_background->image)}}" width="945px">--}}
@@ -117,5 +124,6 @@
         </div>
 
     </div>
+
 
     @endsection

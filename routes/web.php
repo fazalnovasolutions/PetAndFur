@@ -75,6 +75,7 @@ Route::post('/customer/order/secondary-background-save','CustomerController@Save
 
 Route::get('/customer/order/save','CustomerController@SaveApproved')->name('order.save.status');
 Route::get('/customer/order/secondary-save','CustomerController@SaveSecondaryApproved')->name('order.save.secondary.status');
+Route::get('/customer/background/change','CustomerController@background');
 
 Route::post('/customer/order/review','CustomerController@SaveReview')->name('order.save.review');
 
