@@ -64,7 +64,7 @@
 
                         <!-- Light Logo icon -->
                         <a href="{{route('admin.orders')}}">
-                            <img src="{{asset('logo.png')}}" alt="homepage" height="80px" width="100px" class="light-logo"  />
+                            <img src="{{asset('public/logo.png')}}" alt="homepage" height="80px" width="100px" class="light-logo"  />
                         </a>
                     </b>
                     <!--End Logo icon -->

@@ -27,6 +27,8 @@ class CustomerController extends Controller
     }
     public function checkOrder(Request $request){
 //        dd($request);
+
+
         if($request->input('order_name') != null){
             if($this->startsWith($request->input('order_name'),'#')){
                 $order =$request->input('order_name');
@@ -53,7 +55,7 @@ class CustomerController extends Controller
             ]);
         }
         else{
-            return redirect()->back()->with('msg','No Order Found!');
+            return redirect()->back()->with('msg','No Order Found or login again!');
         }
 
     }
@@ -103,8 +105,8 @@ class CustomerController extends Controller
                                 'product' => $product,
                                 'category' => $category,
                                 'categories'=>$categories,
-                                'style' => $style,
-                                'style_color' => $style_color
+//                                'style' => $style,
+//                                'style_color' => $style_color
                             ]);
                         }
                         else{
@@ -199,7 +201,8 @@ class CustomerController extends Controller
 //            }
             $product->save();
             if(!$request->ajax()){
-                return redirect()->route('customer.check');
+//                return redirect()->back('customer.check');
+                return redirect()->back();
             }
 
         }
@@ -214,7 +217,7 @@ class CustomerController extends Controller
             $productDesign->background_id = $request->input('category');
             $productDesign->save();
             if(!$request->ajax()){
-                return redirect()->route('customer.check');
+                return redirect()->back();
             }
         }
         else{
@@ -398,7 +401,7 @@ class CustomerController extends Controller
         foreach($category->has_backgrounds  as $b)
         {
             $url = asset($b->image);
-            $output.='<div style = "margin: 0px 20px; width: 85% !important;cursor: pointer" class="background-div" >
+            $output.='<div style = "cursor: pointer" class="background-div" >
                     <img data-id = "'.$b->id.'" data-name = "'.$b->name.'" src = "'.$url.'"  alt = "Babe Pink" >
                 </div >';
 

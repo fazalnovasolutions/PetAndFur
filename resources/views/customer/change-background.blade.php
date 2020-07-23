@@ -5,7 +5,7 @@
     <div class="row ">
         <div class="col-md-4 ml-5">
             <div class="row justify-content-center">
-                <h5 class="pt-1"> <b>Style :</b> </h5>
+                <h5 class="pt-1"> <b>Background style :</b> </h5>
                 <div class="pt-1 ml-2" >
 {{--                    <h6 class="pr-2 pl-2 pt-1 text-white"><b>{{$style}}</b> </h6>--}}
 
@@ -45,11 +45,12 @@
 
     </div>
     <div class="row justify-content-center " >
-       <div class="col-md-10  border-bottom-b-1 b-t-1">
-           <div class=" p-3" align="center">
-               <button class="btn btn-rounded btn-success p-3" onclick="window.location.href='{{route('customer.check')}}'"> Go Back</button>
-               <button class="btn btn-rounded btn-green  text-white p-3 "  data-toggle="modal" data-target="#confirm-background">Save Approve artwork</button>
-           </div>
+       <div class="col-md-12 col-xs-12 col-sm-12  border-bottom-b-1 b-t-1">
+           <div class="p-3" align="center">
+               <button class="btn btn-rounded btn-success p-3 " style="margin:5px;" onclick="window.location.href='{{route('customer.check')}}'"> Go Back</button>
+               <button class="btn btn-rounded btn-green  text-white p-3 "  style="margin:5px;" data-toggle="modal" data-target="#confirm-background">Approve artwork</button>
+               </div>
+
        </div>
     </div>
     <div class="modal fade" id="confirm-background" tabindex="-1" role="dialog" aria-labelledby="add_background" aria-hidden="true">

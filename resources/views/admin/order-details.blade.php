@@ -357,26 +357,26 @@
                                                         <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="100%">
                                                     </div>
                                                 @else
-                                                    @if($properties)
-                                                        @php
-                                                            $style = '';
-                                                            if($product->has_changed_style !=  null){
-                                                            $style = $product->has_changed_style->style;
-                                                            }
-                                                            else{
-                                                               foreach ($properties as $property){
-                                                            if($property['name'] == 'Style' || $property['name'] == 'Style2'){
-                                                            $style = $property['value'];
-                                                            }
-                                                            }
-                                                            }
-                                                        @endphp
-                                                        @foreach($categories as $cat)
-                                                            @if($cat->name == $style)
-                                                                @foreach($cat->has_backgrounds as $index => $b)
-                                                                    @if($index == 0)
+{{--                                                    @if($properties)--}}
+{{--                                                        @php--}}
+{{--                                                            $style = '';--}}
+{{--                                                            if($product->has_changed_style !=  null){--}}
+{{--                                                            $style = $product->has_changed_style->style;--}}
+{{--                                                            }--}}
+{{--                                                            else{--}}
+{{--                                                               foreach ($properties as $property){--}}
+{{--                                                            if($property['name'] == 'Style' || $property['name'] == 'Style2'){--}}
+{{--                                                            $style = $property['value'];--}}
+{{--                                                            }--}}
+{{--                                                            }--}}
+{{--                                                            }--}}
+{{--                                                        @endphp--}}
+{{--                                                        @foreach($categories as $cat)--}}
+{{--                                                            @if($cat->name == $style)--}}
+{{--                                                                @foreach($cat->has_backgrounds as $index => $b)--}}
+{{--                                                                    @if($index == 0)--}}
                                                                         <div class="image-contain" style="
-                                                                            background-image: url({{asset($b->image)}});
+                                                                            {{--background-image: url({{asset($b->image)}});--}}
                                                                             background-repeat: no-repeat;
                                                                             background-size: cover;
                                                                             max-width: 400px;
@@ -385,11 +385,11 @@
                                                                             " >
                                                                             <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="100%">
                                                                         </div>
-                                                                    @endif
-                                                                @endforeach
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
+{{--                                                                    @endif--}}
+{{--                                                                @endforeach--}}
+{{--                                                            @endif--}}
+{{--                                                        @endforeach--}}
+{{--                                                    @endif--}}
                                                 @endif
                                             </div>
                                         </div>

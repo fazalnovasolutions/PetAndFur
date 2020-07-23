@@ -421,7 +421,7 @@
                                                                     <td class="kmTextContent" valign="top"
                                                                         style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;table-layout:fixed;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:1.1;letter-spacing:0;text-align:left;max-width:100%;word-wrap:break-word;padding-top:31px;padding-bottom:9px;padding-left:18px;padding-right:18px;'>
                                                                         <h1 style="color:#222;display:block;font-family:Times New Roman;font-size:40px;font-style:normal;font-weight:normal;line-height:1;letter-spacing:0;margin:0;margin-bottom:20px;text-align:left;color: rgb(34, 34, 34); letter-spacing: 0px; font-family: Asap, sans-serif; font-size: 40px; line-height: 1.1; margin: 0px 0px 6px; text-align: center;">
-                                                                            <span style="font-size:28px;"> Your design has been ready!</span><br/>
+{{--                                                                            <span style="font-size:28px;"> Your design has been ready!</span><br/>--}}
                                                                         </h1></td>
                                                                 </tr>
                                                                 </tbody>
@@ -447,14 +447,29 @@
                                                                         style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;table-layout:fixed;color:#222;font-family:"Helvetica Neue", Arial;font-size:14px;line-height:1.1;letter-spacing:0;text-align:left;max-width:100%;word-wrap:break-word;padding-top:9px;padding-bottom:9px;font-size:13px;padding-left:40px;padding-right:40px;'>
                                                                         <p style="margin:0;padding-bottom:1em;text-align: left;">
                                                                             <span style="font-size:16px;"><span
-                                                                                    style="font-family:century gothic,sans-serif;">Hi {{$order->bill_first_name }},</span></span>
+                                                                                    style="font-family:century gothic,sans-serif;">Hi
+                                                                            @if($order->bill_first_name=='')
+                                                                                        {{$order->bill_last_name }}
+                                                                                    @else
+                                                                                        {{$order->bill_first_name }}
+                                                                                    @endif
+                                                                                    @if($order->bill_first_name =='' && $order->bill_last_name=='')
+
+                                                                                    @else
+                                                                                        ,
+                                                                                    @endif
+
+                                                                                </span></span>
+
+
                                                                         </p>
                                                                         <p style="margin:0;padding-bottom:1em;text-align: left;">
                                                                             <span
                                                                                 style="font-family:century gothic,sans-serif;"><span
-                                                                                    style="font-size:16px;">To access your artwork or speak with your designer, please log in to our <a
-                                                                                        href="{{route('customer.login')}}"
-                                                                                        style="word-wrap:break-word;max-width:100%;color:#000;font-weight:normal;text-decoration:underline">Customer Center</a>:</span></span>
+                                                                                    style="font-size:16px;">Great news! Your artwok has been completed and is ready for your approval
+                                                                                    <a
+                                                                                        href="http://support.petandfur.com/customer/order/overview?order_name={{$order->name}}email={{$order->email}}"
+                                                                                        style="word-wrap:break-word;max-width:100%;color:#000;font-weight:normal;text-decoration:underline">click here</a> to approve your artwork.</span></span>
                                                                         </p>
                                                                         <p style="margin:0;padding-bottom:0;text-align: left;">
                                                                             <span style="font-size:16px;"><span
@@ -490,9 +505,9 @@
                                                                         <h3 style="color:#222;display:block;font-family:Times New Roman;font-size:34px;font-style:normal;font-weight:bold;line-height:1.1;letter-spacing:0;margin:0;margin-bottom:12px;text-align:left;line-height: 1.1; color: rgb(34, 34, 34); letter-spacing: 0px; font-family: Asap, sans-serif; font-size: 24px; margin: 0px 0px 3px; text-align: center;">
                                                                             <strong></strong></h3>
                                                                         <p style="margin:0;padding-bottom:1em;color: rgb(255, 255, 255); font-family: Helvetica, Arial, sans-serif; font-size: 14px; margin: 0px; padding: 0px; text-align: left;">
-                                                                            <span style="font-size:16px;"><strong><span
+                                                                            <span style="font-size:16px;"><span
                                                                                         style="font-family:century gothic,sans-serif;"><span
-                                                                                            style="color:#000000;">Order Number: {{$order->name}} <br/>Product Title: {{$product}} <br/> Email Address: {{$order->email}} </span></span></strong></span>
+                                                                                            style="color:#000000;">Order : <strong>{{$order->name}}</strong> {{--Product Title: {{$product}}*/ <br/> --}}<br/><br/> Email ID: {{$order->email}} <br><br/>If something doesn't look right, you can request a revision inside your dashboard. </span></span></span>
                                                                         </p>
                                                                         <p style="margin:0;padding-bottom:1em;text-align: left;">
                                                                             <span
@@ -526,16 +541,15 @@
                                                                         class="kmButtonContent"
                                                                         style='border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;table-layout:fixed;color:white;font-family:"Helvetica Neue", Arial;font-size:16px;color:#FFFFFF;letter-spacing:0px;font-size:16px;font-family:Helvetica, Arial;font-weight:bold;'>
                                                                         <a class="kmButton" title=""
-                                                                           href="{{route('customer.login')}}"
+                                                                           href="http://support.petandfur.com/customer"
                                                                            target="_self"
-                                                                           style='word-wrap:break-word;max-width:100%;font-weight:normal;line-height:100%;text-align:center;text-decoration:underline;color:#000;font-family:"Helvetica Neue", Arial;font-size:16px;text-decoration:none; display: inline-block; padding-top:15px;padding-bottom:15px;font-size:16px;color:#FFFFFF;letter-spacing:0px;font-weight:bold;padding-left:15px;padding-right:15px;font-family:Helvetica, Arial; ;'>VIEW
-                                                                            CUSTOMER CENTER</a></td> <!--<![endif]-->
+                                                                           style='word-wrap:break-word;max-width:100%;font-weight:normal;line-height:100%;text-align:center;text-decoration:underline;color:#000;font-family:"Helvetica Neue", Arial;font-size:16px;text-decoration:none; display: inline-block; padding-top:15px;padding-bottom:15px;font-size:16px;color:#FFFFFF;letter-spacing:0px;font-weight:bold;padding-left:15px;padding-right:15px;font-family:Helvetica, Arial; ;'>Login to Dashboard</a></td> <!--<![endif]-->
                                                                 <!--[if mso]>
                                                                     <td align="center" valign="middle"
                                                                         class="kmButtonContent"
                                                                         style="padding:15px; padding-top:15px;padding-bottom:15px;font-size:16px;color:#FFFFFF;letter-spacing:0px;font-weight:bold;padding-left:15px;padding-right:15px;font-family:Helvetica, Arial;">
                                                                         <a class="kmButton" title=""
-                                                                           href={{route('customer.login')}}"
+                                                                           href=http://support.petandfur.com/customer"
                                                                            target="_self"
                                                                            style="text-decoration:none;padding-top:15px;padding-bottom:15px;font-size:16px;color:#FFFFFF;letter-spacing:0px;font-weight:bold;padding-left:15px;padding-right:15px;font-family:Helvetica, Arial;; margin-top:-15px;margin-bottom:-15px;margin-left:-15px;margin-right:-15px;">VIEW
                                                                             CUSTOMER CENTER</a></td> <![endif]--> </tr>
@@ -566,14 +580,14 @@
                                                                         </p>
                                                                         <p style="margin:0;padding-bottom:1em;text-align: left;">
                                                                             <span
-                                                                                style="color: rgb(34, 34, 34); font-family: Assitant, sans-serif; font-size: 16px; text-align: center;">We’re here for you! Simply </span><a
+                                                                                style="color: rgb(34, 34, 34); font-family: Assitant, sans-serif; font-size: 16px; text-align: center;">Need help? Contact us at </span><a
                                                                                 data-saferedirecturl="https://www.google.com/url?q=http://trk.klclick3.com/wf/click?upn%3DBGI86Eg8w4Z67-2BMOPgk7pYbxAZHzWTF7SSJiW4osw7k-2BV5NtMCBUx-2BIy-2BkyExI066wkOA8O8rtHzWHwlY1CLbsfypb5K0DAM6N810DuTvf5gSQcRWL2IGZI8Mzwg9Oealzlq2WrOdUP0-2Bn4TKl2E9Ts2R-2B1VxmYzuunue8S-2BQlnLKbVHelTBVOnkU7b11uQN_hEGqOZ-2FDyjRElFSKNjDrOpb-2Fx909-2BMamTv8YzrkvxmI3-2FrMvH-2F2l5ux6FZLIGJobunGR0P5HZc9V95L3BPPIajC3AqFSxSnhlMg-2FozckMTv1-2FBNVqiieKUTTlox-2BxqaAhXihR7u7cIZG4EHMffmYKBt-2B0n90ckNEr-2B29Je9XawG9LNnpdcGDVRhavX3s3A50Ltt5REtr-2BGF91O3VEqFCjrmnIyIPdddAf8hsboEnaAkte3tlAcBM8-2Bm2YqAqBGi7xXwQUYYu2rhMW6yF3fsP8q2Tayv2uJ6Eg7qMcQGohxYNzclgZeu5woQLeWEicFTVtl-2BkpPoea5424wrzTCuWNooXHb8W2Xmx5D6zVFjH-2Fu-2FJvp5XuZuC1ZUivuxh4Gbs&amp;source=gmail&amp;ust=1577782369397000&amp;usg=AFQjCNG0Nr1eU3h1qyVD9OI-S1QgeoFj-w"
-                                                                                href="https://www.boompup.com/pages/contact-us"
+                                                                                href="https://petandfur.com/pages/contact-us"
                                                                                 style="word-wrap:break-word;max-width:100%;color:#000;font-weight:normal;text-decoration:underline;color: rgb(52, 165, 250); font-family: Assitant, sans-serif; font-size: 16px; text-align: center; overflow-wrap: break-word; max-width: 100%; text-underline-position: under;"
-                                                                                target="_blank">send us a note</a><span
+                                                                                target="_blank">support@petandfur.com</a><span
                                                                                 style="color: rgb(34, 34, 34); font-family: Assitant, sans-serif; font-size: 16px; text-align: center;">, or check out our FAQs </span><a
                                                                                 data-saferedirecturl="https://www.google.com/url?q=http://trk.klclick3.com/wf/click?upn%3DBGI86Eg8w4Z67-2BMOPgk7pYbxAZHzWTF7SSJiW4osw7mEwxRFrIN-2FqDgDqvO8LYqbyPH8k6bdfZLWkwcS-2FoXWphVRtyWhP4n85b1Atj1UWqbhqVPdRfeX6qzFZn19l73ZXIOj6HkHWVuZ0L-2F3pPvfW1RfBI1U1LBM5rf65e5wQ1rDMfXtkeHBUTn8veNOXfOS_hEGqOZ-2FDyjRElFSKNjDrOpb-2Fx909-2BMamTv8YzrkvxmI3-2FrMvH-2F2l5ux6FZLIGJobunGR0P5HZc9V95L3BPPIajC3AqFSxSnhlMg-2FozckMTv1-2FBNVqiieKUTTlox-2BxqaAhXihR7u7cIZG4EHMffmYKBt-2B0n90ckNEr-2B29Je9XawG9LNnpdcGDVRhavX3s3A50Ltt5REtr-2BGF91O3VEqFCjuCyww3UpoiQ-2Fb9oWGklO1RbsiDCb-2BtpbCcS-2BzKhFXgz2FSUCfLuCTBGzAtwpdU1xEEOH6-2FYx0EJKNHB51SA8WH4tN9bQ0QwzoJYl7MQE4TFzJ4Rvurfdqherwpx0hXYya-2BE8WdH1MuruFfDl9hds7jeI2xi3-2FV3I1bT1U4Z1jxX&amp;source=gmail&amp;ust=1577782369397000&amp;usg=AFQjCNExCMlwTJZiDZN7Z3kuFDeHVB4a0w"
-                                                                                href="https://www.boompup.com/pages/faqs"
+                                                                                href="https://petandfur.com/pages/faq"
                                                                                 style="word-wrap:break-word;max-width:100%;color:#000;font-weight:normal;text-decoration:underline;color: rgb(52, 165, 250); font-family: Assitant, sans-serif; font-size: 16px; text-align: center; overflow-wrap: break-word; max-width: 100%; text-underline-position: under;"
                                                                                 target="_blank">here</a><span
                                                                                 style="color: rgb(34, 34, 34); font-family: Assitant, sans-serif; font-size: 16px; text-align: center;"> to see what Pet Parents ask us the most.</span>
@@ -629,7 +643,7 @@
                                                                                                         <td align="center"
                                                                                                             valign="top"
                                                                                                             style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;table-layout:fixed;padding-right:10px;">
-                                                                                                            <a href="https://www.facebook.com/MyBoomPup/"
+                                                                                                            <a href="https://petandfur.com/pages/contact-us"
                                                                                                                target="_blank"
                                                                                                                style="word-wrap:break-word;max-width:100%;color:#000;font-weight:normal;text-decoration:underline"><img
                                                                                                                     src="https://d3k81ch9hvuctc.cloudfront.net/assets/email/buttons/subtle/facebook_96.png"
@@ -656,7 +670,7 @@
                                                                                                         <td align="center"
                                                                                                             valign="top"
                                                                                                             style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;table-layout:fixed;">
-                                                                                                            <a href="https://www.instagram.com/myboompup/"
+                                                                                                            <a href="https://petandfur.com/pages/contact-us"
                                                                                                                target="_blank"
                                                                                                                style="word-wrap:break-word;max-width:100%;color:#000;font-weight:normal;text-decoration:underline"><img
                                                                                                                     src="https://d3k81ch9hvuctc.cloudfront.net/assets/email/buttons/subtle/instagram_96.png"
@@ -710,7 +724,7 @@
                                                                             <span style="font-size:14px;"><span
                                                                                     style="font-family: Assitant, sans-serif; text-align: center;"><span
                                                                                         style="color:#696969;"> Needs help? Contact us: </span><a
-                                                                                        href="http://support@boompup.com"
+                                                                                        href="https://petandfur.com/pages/contact-us"
                                                                                         style="word-wrap:break-word;max-width:100%;color:#000;font-weight:normal;text-decoration:underline"><span
                                                                                             style="color:#696969;">support@petandfur.com</span></a></span></span>
                                                                         </p>

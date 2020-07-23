@@ -204,7 +204,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <center>
-                                            @if($product->has_design->status != 'Approved')
+                                            @if($product->has_design->status != 'Approved' || $product->has_design->status == 'In-Processing')
                                                 <button class="btn btn-danger m-2 new_photo_modal_button" data-product="{{$product->id}}"  data-target="#fix_request_modal{{$index}}"> Request Revision</button>
                                             @endif
                                             @if(($product->has_design->status == 'In-Processing'|| $product->has_design->status == 'Update')  && $product->has_design->status != 'Approved')
@@ -390,26 +390,26 @@
                                                         <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="100%">
                                                     </div>
                                                 @else
-                                                    @if($properties)
-                                                        @php
-                                                            $style = '';
-                                                            if($product->has_changed_style !=  null){
-                                                            $style = $product->has_changed_style->style;
-                                                            }
-                                                            else{
-                                                               foreach ($properties as $property){
-                                                            if($property['name'] == 'Style' || $property['name'] == 'Style2'){
-                                                            $style = $property['value'];
-                                                            }
-                                                            }
-                                                            }
-                                                        @endphp
-                                                        @foreach($categories as $cat)
-                                                            @if($cat->name == $style)
-                                                                @foreach($cat->has_backgrounds as $index => $b)
-                                                                    @if($index == 0)
+{{--                                                    @if($properties)--}}
+{{--                                                        @php--}}
+{{--                                                            $style = '';--}}
+{{--                                                            if($product->has_changed_style !=  null){--}}
+{{--                                                            $style = $product->has_changed_style->style;--}}
+{{--                                                            }--}}
+{{--                                                            else{--}}
+{{--                                                               foreach ($properties as $property){--}}
+{{--                                                            if($property['name'] == 'Style' || $property['name'] == 'Style2'){--}}
+{{--                                                            $style = $property['value'];--}}
+{{--                                                            }--}}
+{{--                                                            }--}}
+{{--                                                            }--}}
+{{--                                                        @endphp--}}
+{{--                                                        @foreach($categories as $cat)--}}
+{{--                                                            @if($cat->name == $style)--}}
+{{--                                                                @foreach($cat->has_backgrounds as $index => $b)--}}
+{{--                                                                    @if($index == 0)--}}
                                                                         <div class="image-contain" style="
-                                                                            background-image: url({{asset($b->image)}});
+                                                                            {{--background-image: url({{asset($b->image)}});--}}
                                                                             background-repeat: no-repeat;
                                                                             background-size: cover;
                                                                             max-width: 400px;
@@ -418,11 +418,11 @@
                                                                             " >
                                                                             <img  src="{{asset('designs/'.$design->design)}}" height="auto" width="100%">
                                                                         </div>
-                                                                    @endif
-                                                                @endforeach
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
+{{--                                                                    @endif--}}
+{{--                                                                @endforeach--}}
+{{--                                                            @endif--}}
+{{--                                                        @endforeach--}}
+{{--                                                    @endif--}}
                                                 @endif
                                             </div>
                                         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\SendEmailApproveThreeDays;
 use App\Console\Commands\SendEmailThreeDays;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -15,7 +16,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-       SendEmailThreeDays::class
+       SendEmailThreeDays::class,
+        SendEmailApproveThreeDays::class
     ];
 
     /**
@@ -28,6 +30,11 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('email:cron')
             ->daily();
+
+        $schedule->command('approve:cron')
+            ->daily();
+//        $schedule->approve('email:cron')
+//            ->daily();
     }
 
     /**
@@ -41,4 +48,5 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
 }

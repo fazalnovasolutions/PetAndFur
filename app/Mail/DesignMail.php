@@ -18,14 +18,14 @@ class DesignMail extends Mailable
      * @return void
      */
     private $order;
-    private $product;
+//    private $product;
     private $sender = 'support@petandfur.com';
 
 
-    public function __construct(Order $order,$title)
+    public function __construct(Order $order)
     {
         $this->order = $order;
-        $this->product = $title;
+//        $this->product = $title;
     }
 
     /**
@@ -35,9 +35,8 @@ class DesignMail extends Mailable
      */
     public function build()
     {
-        return $this->from($this->sender, 'PET&FUR')->subject('Design Uploaded - Pet&Fur')->view('design')->with([
+        return $this->from($this->sender, 'PET&FUR')->subject('Your artwork is ready for approval')->view('design')->with([
             "order" => $this->order,
-            "product" => $this->product,
         ]);
     }
 }

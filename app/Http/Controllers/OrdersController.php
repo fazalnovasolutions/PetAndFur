@@ -653,7 +653,7 @@ class OrdersController extends Controller
             }
 
             try{
-                Mail::to($order->email)->send(new DesignMail($order,$product->title));
+                Mail::to($order->email)->send(new DesignMail($order));
                 $order->last_email_at = now()->format('Y-m-d');
                 $order->save();
             }
