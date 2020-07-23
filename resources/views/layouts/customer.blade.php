@@ -73,7 +73,7 @@
 
                         <!-- Light Logo icon -->
                         <a href="{{route('customer.check')}}">
-                            <img src="{{asset('logo.png')}}" alt="homepage" height="80px" width="130px" class="light-logo" />
+                            <img src="{{asset('material/assets/images/logo.png')}}" alt="homepage" height="80px" width="130px" class="light-logo" />
                         </a>
                     </b>
                     <!--End Logo icon -->
