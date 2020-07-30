@@ -45,7 +45,17 @@
 
     </div>
     <div class="row justify-content-center " >
+
+
        <div class="col-md-12 col-xs-12 col-sm-12  border-bottom-b-1 b-t-1">
+           @if(session('success'))
+               <div class="alert alert-success alert-dismissable" role="alert">
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+                   <p class="mb-0">{{session('success')}}</p>
+               </div>
+           @endif
            <div class="p-3" align="center">
                <button class="btn btn-rounded btn-success p-3 " style="margin:5px;" onclick="window.location.href='{{route('customer.check')}}'"> Go Back</button>
                <button class="btn btn-rounded btn-green  text-white p-3 "  style="margin:5px;" data-toggle="modal" data-target="#confirm-background">Approve artwork</button>

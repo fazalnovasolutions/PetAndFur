@@ -65,7 +65,11 @@
                                        value="{{old('email')}}"
                                        required="required">
                             <button type="submit" class="btn btn-primary find-order-btn">Find Order</button>
+                                <p>Order Shipped ?</p>
+                                <a href="https://paf101.aftership.com/?page-name=tracking-page">Track your parcel here</a>
+
                         </div>
+
                     </form>
 
                 </div>

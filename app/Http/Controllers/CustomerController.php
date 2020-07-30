@@ -202,7 +202,7 @@ class CustomerController extends Controller
             $product->save();
             if(!$request->ajax()){
 //                return redirect()->back('customer.check');
-                return redirect()->back();
+     return redirect()->back()->with('success', 'Your Artwork is approved!');
             }
 
         }
