@@ -207,7 +207,7 @@
                                             @if($product->has_design->status != 'Approved' || $product->has_design->status == 'In-Processing')
                                                 <button class="btn btn-danger m-2 new_photo_modal_button" data-product="{{$product->id}}"  data-target="#fix_request_modal{{$index}}"> Request Revision</button>
                                             @endif
-                                            @if(($product->has_design->status == 'In-Processing'|| $product->has_design->status == 'Update')  && $product->has_design->status != 'Approved')
+                                            @if(($product->has_design->status == 'In-Processing' || $product->has_design->status == 'Update')  && $product->has_design->status != 'Approved')
                                                 <button onclick="window.location.href='{{route('choose.background',$product->id)}}'" class="btn btn-green text-white "> Select Background</button>
                                             @endif
                                         </center>
