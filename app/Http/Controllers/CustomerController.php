@@ -201,8 +201,35 @@ class CustomerController extends Controller
 //            }
             $product->save();
             if(!$request->ajax()){
+
+                $product = OrderProduct::find($request->input('product'));
+
+                if($product != null){
+                    $product->has_design->status ='Approved';
+                    $product->has_design->status_id = 6;
+                    $product->has_design->save();
+                    $product->approved_date = now();
+                    $product->save();
+                    $order = Order::find($product->order_id);
+                    try{
+                        Mail::to($order->email)->send(new ApprovedMail($order,$product->id));
+                        $order->last_email_at = now()->format('Y-m-d');
+                        $order->save();
+                    }
+                    catch (\Exception $e){
+                    }
+
+                    return redirect()->back()->with('success', 'Your Artwork is approved!');
+
+                }
+                else{
+                    return redirect()->back()->with('error', 'Your Artwork is not approved!');
+
+                }
+
+
+
 //                return redirect()->back('customer.check');
-     return redirect()->back()->with('success', 'Your Artwork is approved!');
             }
 
         }
