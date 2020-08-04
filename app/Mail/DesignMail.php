@@ -36,7 +36,7 @@ class DesignMail extends Mailable
     public function build()
     {
         return $this->from($this->sender, 'PET&FUR')->subject('Your artwork is ready for approval')->view('design')->with([
-            "order" => $this->order,
+            "order" => $this->order
         ]);
     }
 }
