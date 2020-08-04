@@ -466,7 +466,8 @@
                                                                         <p style="margin:0;padding-bottom:1em;text-align: left;">
                                                                             <span
                                                                                 style="font-family:century gothic,sans-serif;"><span
-                                                                                    style="font-size:16px;">Great news! Your artwok has been completed and is ready for your approval
+                                                                                    style="font-size:16px;">Great news! Your artwok has been completed and is ready for your approval.
+                                                                                    <br>
                                                                                     <a
                                                                                         href="http://support.petandfur.com/customer/order/overview?order_name={{$order->name}}email={{$order->email}}"
                                                                                         style="word-wrap:break-word;max-width:100%;color:#000;font-weight:normal;text-decoration:underline">click here</a> to approve your artwork.</span></span>
