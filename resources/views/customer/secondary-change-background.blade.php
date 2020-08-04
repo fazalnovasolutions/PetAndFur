@@ -5,9 +5,18 @@
     <div class="row ">
         <div class="col-md-4 ml-5">
             <div class="row justify-content-center">
-                <h5 class="pt-1"> <b>Style :</b> </h5>
-                <div class="pt-1 ml-2" style="background: {{$style_color}}">
-                    <h6 class="pr-2 pl-2 pt-1 text-white"><b>{{$style}}</b> </h6>
+                <h5 class="pt-1"> <b>Background style :</b> </h5>
+                <div class="pt-1 ml-2" >
+                    {{--                    <h6 class="pr-2 pl-2 pt-1 text-white"><b>{{$style}}</b> </h6>--}}
+
+                    <select class="select">
+                        @foreach($categories as $cat)
+                            @if($cat->has_backgrounds)
+                                <option value="{{$cat->id}}" >{{$cat->name}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+
                 </div>
             </div>
         </div>
@@ -17,15 +26,20 @@
         <input type="hidden" id="slick-count" value="{{count($category->has_backgrounds)-1}}">
         <div id="back-slider" class="pl-5 ">
             <!-- The slideshow -->
-            <div class="custom-slider">
-                @foreach($category->has_backgrounds as $b)
-                <div style="margin: 0px 20px; width: 117px;cursor: pointer" class="background-div">
-                    <img data-id="{{$b->id}}" data-name="{{$b->name}}" src="{{asset($b->image)}}"  alt="Babe Pink">
-                </div>
-                    @endforeach
+            <div class="custom-slider" id="slider-custom">
+                {{--                @foreach($category->has_backgrounds as $b)--}}
+                {{--                <div style="margin: 0px 20px; width: 85% !important;cursor: pointer" class="background-div">--}}
+                {{--                    <img data-id="{{$b->id}}" data-name="{{$b->name}}" src="{{asset($b->image)}}"  alt="Babe Pink">--}}
+                {{--                </div>--}}
+                {{--                    @endforeach--}}
             </div>
-            <div class="background_title">@if($secondary_design->has_background != null) {{$secondary_design->has_background->name}} @else Colorful Dots @endif</div>
-
+            {{--            <div class="background_title">@if($product->has_background != null) {{$product->has_background->name}} @else--}}
+            {{--                    @foreach($category->has_backgrounds as $index=> $b)--}}
+            {{--                        @if($index == 0)--}}
+            {{--                            {{$b->name}}--}}
+            {{--                            @endif--}}
+            {{--                    @endforeach--}}
+            {{--                @endif</div>--}}
 
         </div>
 
@@ -34,7 +48,7 @@
        <div class="col-md-10  border-bottom-b-1 b-t-1">
            <div class=" p-3" align="center">
                <button class="btn btn-rounded btn-success p-3" onclick="window.location.href='{{route('customer.check')}}'"> Go Back</button>
-               <button class="btn btn-rounded btn-green text-white p-3 "  data-toggle="modal" data-target="#confirm-background"> Approve artwork</button>
+               <button class="btn btn-rounded btn-green text-white p-3 "  data-toggle="modal" data-target="#confirm-background">Approve artwork</button>
            </div>
        </div>
     </div>

@@ -157,9 +157,14 @@ class CustomerController extends Controller
                         $category =  BackgroundCategory::where('name',$style)->first();
                         $secondary_design = ProductDesign::find($request->input('secondary_design'));
                         if($category != null && $secondary_design != null){
+
+                            $categories =  BackgroundCategory::get();
+
+
                             return view('customer.secondary-change-background')->with([
                                 'product' => $product,
                                 'category' => $category,
+                                'categories'=>$categories,
                                 'style' => $style,
                                 'style_color' => $style_color,
                                 'secondary_design' =>$secondary_design
