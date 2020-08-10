@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,15 +168,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\PetAndFur" />
-      <recent name="C:\xampp\htdocs\BoomPupVersion2\resources\views" />
-      <recent name="C:\xampp\htdocs\BoomPupVersion2\resources\views\customer" />
-      <recent name="C:\xampp\htdocs\BoomPupVersion2\public\material\js" />
-      <recent name="C:\xampp\htdocs\BoomPupVersion2\app\Http\Controllers" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\asana_template\resources\views\admin" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\PetAndFur\public\material\login-images" />
+      <recent name="C:\xampp\htdocs\PetAndFur\public" />
+      <recent name="C:\xampp\htdocs\PetAndFur\public\material\assets\images" />
+      <recent name="C:\xampp\htdocs\PetAndFur" />
+      <recent name="C:\xampp\htdocs\BoomPupVersion2\resources\views" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.cs-script.js">
@@ -318,7 +316,7 @@
       <workItem from="1595482229435" duration="19436000" />
       <workItem from="1596099633646" duration="3759000" />
       <workItem from="1596520861478" duration="4977000" />
-      <workItem from="1597047497370" duration="1159000" />
+      <workItem from="1597047497370" duration="1777000" />
     </task>
     <task id="LOCAL-00011" summary="17022020F">
       <created>1581940004923</created>
