@@ -18,7 +18,7 @@ class UpdateMail extends Mailable
      * @return void
      */
     private $order;
-    private $sender = 'support@petandfur.com';
+    private $sender = 'info@tetralogicx.com';
     public function __construct(Order $order)
     {
         $this->order = $order;

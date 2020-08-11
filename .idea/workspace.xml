@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/customer/change-background.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/change-background.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/UpdateMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/UpdateMail.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +321,7 @@
       <workItem from="1596520861478" duration="4977000" />
       <workItem from="1597047497370" duration="5796000" />
       <workItem from="1597129199514" duration="6000" />
-      <workItem from="1597129208871" duration="578000" />
+      <workItem from="1597129208871" duration="1178000" />
     </task>
     <task id="LOCAL-00011" summary="17022020F">
       <created>1581940004923</created>
