@@ -95,7 +95,7 @@
     <div class="row justify-content-center mt-3">
         <div class="col-md-12">
                 <div class="" style="max-width: 767px;margin:auto;">
-                    <div class="alert alert-warning">
+                    <div class="alert alert-warning text-center">
                         Not an exact art placement replica. We will make it look good when printing!
                     </div>
                 </div>
