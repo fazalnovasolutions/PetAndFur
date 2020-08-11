@@ -1,7 +1,7 @@
 @extends('layouts.customer')
 
 @section('content')
-    <h4 class=" text-center" style="margin-top: 30px;"><b> Choose Your Background</b></h4>
+    <h4 class=" text-center" style="margin-top: 30px;"><b>Choose Your Background</b></h4>
     <div class="row ">
         <div class="col-md-4 ml-5">
             <div class="row justify-content-center">
@@ -93,6 +93,13 @@
     </div>
 
     <div class="row justify-content-center mt-3">
+        <div class="col-md-12">
+                <div class="" style="max-width: 767px;margin:auto;">
+                    <div class="alert alert-warning">
+                        Not an exact art placement replica. We will make it look good when printing!
+                    </div>
+                </div>
+        </div>
         <div class="col-md-12">
             <div class="image-contain" style="@if($product->has_background != null)
                 background-image: url({{asset($product->has_background->image)}});
