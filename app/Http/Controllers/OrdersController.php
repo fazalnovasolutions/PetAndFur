@@ -846,7 +846,8 @@ class OrdersController extends Controller
 //    }
         if($order != null){
             try {
-                Mail::to($order->email)->send(new UpdateMail($order));
+                Mail::to('cp.chahmad@gmail.com')->send(new UpdateMail($order));
+//                Mail::to($order->email)->send(new UpdateMail($order));
                 $order->last_email_at = now()->format('Y-m-d');
                 $order->save();
                 return response()->json([
