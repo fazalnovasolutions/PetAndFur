@@ -836,7 +836,6 @@ class OrdersController extends Controller
 //                    'message' => 'Email Sending Failed. Server Issues!',
 //                ]);
 //            }
-//
 //        }
 //        else{
 //            return response()->json([
