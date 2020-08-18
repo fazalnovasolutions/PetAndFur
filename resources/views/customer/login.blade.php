@@ -43,7 +43,7 @@
 <section class="order-sec">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12 order-inner-f">
+            <div class="col-md-5 col-sm-5 col-xs-12 order-inner-f">
                 <div class="order-inner">
                     <h3>Login</h3>
 {{--                    <span class="order-num">Order Number</span>--}}
@@ -114,7 +114,7 @@
 {{--                            </div>--}}
 {{--                        </div>--}}
 
-                        <div class="col-md-6 col-sm-6 col-xs-12 p0">
+                        <div class="col-md-7 col-sm-7 col-xs-12 p0">
                             <div class="form-group">
                                     <div class="image-contain" style="
                                     {{--background-image: url({{asset($b->image)}});--}}
