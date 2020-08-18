@@ -43,7 +43,7 @@
 <section class="order-sec">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-12 order-inner-f">
+            <div class="col-md-6 col-sm-6 col-xs-12 order-inner-f">
                 <div class="order-inner">
                     <h3>Login</h3>
 {{--                    <span class="order-num">Order Number</span>--}}
@@ -74,49 +74,48 @@
 
                 </div>
             </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
+{{--                        <div class="col-md-4 col-sm-4 col-xs-12">--}}
 
+{{--                            <div class="form-group">--}}
+
+{{--                                <div class="order-inner order-steps-lists">--}}
+{{--                                    <ul>--}}
+{{--                                            <li class="step-order-chk"><a href="javascript:void(0);">photo/order check</a></li>--}}
+
+{{--                                        --}}{{--                        <div class="step-inner-cont">--}}
+{{--                                        --}}{{--                            <p>Your order details and photos are being reviewed before being sent to our artists. This usually takes less than 2 days. If there's an issue with your photo, we'll email you as soon as possible.</p>--}}
+{{--                                        --}}{{--                        </div>--}}
+
+{{--                                            <li class="step-artwork-create"><a href="javascript:void(0);">artwork creation</a></li>--}}
+
+{{--                                        --}}{{--                        <div class="step-inner-cont">--}}
+{{--                                        --}}{{--                            <p>Your masterpiece is in progress! Our talented team of artists are turning your pet photo in to an amazing one of a kind pet portrait. This is usually the longest part of the production process... It's definitely worth the wait!</p>--}}
+{{--                                        --}}{{--                        </div>--}}
+
+
+{{--                                            <li class="step-artwork-revise"><a href="javascript:void(0);">artwork review/revision</a></li>--}}
+
+{{--                                        --}}{{--                        <div class="step-inner-cont">--}}
+{{--                                        --}}{{--                            <p>This part of the process covers our in-house art review as well as customer-purchased artwork reviews. If any changes/edits are needed, your artists will revise your artwork.</p>--}}
+{{--                                        --}}{{--                        </div>--}}
+
+{{--                                            <li class="step-print-prepare"><a href="javascript:void(0);">Approved</a></li>--}}
+
+{{--                                        --}}{{--                        <div class="step-inner-cont">--}}
+{{--                                        --}}{{--                            <p>Not too long now! We're finalizing everything in your order before sending it to print. This takes 1-2 days on average.</p>--}}
+{{--                                        --}}{{--                        </div>--}}
+{{--                                        --}}{{--                        <li class="step-print-shop"><a href="javascript:void(0);">print and ship</a></li>--}}
+{{--                                        --}}{{--                        <div class="step-inner-cont">--}}
+{{--                                        --}}{{--                            <p>Your order is being printed and shipped! Either your order is currently in print right now, or it has already printed and shipped out to your address. You'll be emailed a tracking number quite soon. To track shipped orders, use our parcel tracking <a href="http://printypets.aftership.com/" target="_blank">page</a>.</p>--}}
+{{--                                        --}}{{--                        </div>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 p0">
                             <div class="form-group">
-
-                                <div class="order-inner order-steps-lists">
-                                    <ul>
-                                            <li class="step-order-chk"><a href="javascript:void(0);">photo/order check</a></li>
-
-                                        {{--                        <div class="step-inner-cont">--}}
-                                        {{--                            <p>Your order details and photos are being reviewed before being sent to our artists. This usually takes less than 2 days. If there's an issue with your photo, we'll email you as soon as possible.</p>--}}
-                                        {{--                        </div>--}}
-
-                                            <li class="step-artwork-create"><a href="javascript:void(0);">artwork creation</a></li>
-
-                                        {{--                        <div class="step-inner-cont">--}}
-                                        {{--                            <p>Your masterpiece is in progress! Our talented team of artists are turning your pet photo in to an amazing one of a kind pet portrait. This is usually the longest part of the production process... It's definitely worth the wait!</p>--}}
-                                        {{--                        </div>--}}
-
-
-                                            <li class="step-artwork-revise"><a href="javascript:void(0);">artwork review/revision</a></li>
-
-                                        {{--                        <div class="step-inner-cont">--}}
-                                        {{--                            <p>This part of the process covers our in-house art review as well as customer-purchased artwork reviews. If any changes/edits are needed, your artists will revise your artwork.</p>--}}
-                                        {{--                        </div>--}}
-
-                                            <li class="step-print-prepare"><a href="javascript:void(0);">Approved</a></li>
-
-                                        {{--                        <div class="step-inner-cont">--}}
-                                        {{--                            <p>Not too long now! We're finalizing everything in your order before sending it to print. This takes 1-2 days on average.</p>--}}
-                                        {{--                        </div>--}}
-                                        {{--                        <li class="step-print-shop"><a href="javascript:void(0);">print and ship</a></li>--}}
-                                        {{--                        <div class="step-inner-cont">--}}
-                                        {{--                            <p>Your order is being printed and shipped! Either your order is currently in print right now, or it has already printed and shipped out to your address. You'll be emailed a tracking number quite soon. To track shipped orders, use our parcel tracking <a href="http://printypets.aftership.com/" target="_blank">page</a>.</p>--}}
-                                        {{--                        </div>--}}
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4 col-xs-12 p0">
-                            <div class="form-group">
-
                                     <div class="image-contain" style="
                                     {{--background-image: url({{asset($b->image)}});--}}
                                     {{--background-repeat: no-repeat;--}}
@@ -125,12 +124,8 @@
                                         margin: auto;
                                         background-position: center center;
                                         " >
-
-                                        <img  src="//cdn.shopify.com/s/files/1/0040/5317/2339/t/36/assets/promotion_banner.jpg?v=4993193380752143210" height="auto" width="100%">
-
+                                        <img  src="{{ asset('home-banner.jpg') }}" height="auto" width="100%">
                                     </div>
-
-
                             </div>
                         </div>
 

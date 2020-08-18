@@ -20,7 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="272f7a18-4dd6-4535-bc28-afea2347cf05" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/home-banner.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/customer/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/customer/login.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +159,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/material/login-images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -170,15 +172,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\asana_template\resources\views\admin" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\PetAndFur\public\material\login-images" />
       <recent name="C:\xampp\htdocs\PetAndFur\public" />
+      <recent name="C:\xampp\htdocs\PetAndFur\public\material\login-images" />
       <recent name="C:\xampp\htdocs\PetAndFur\public\material\assets\images" />
       <recent name="C:\xampp\htdocs\PetAndFur" />
       <recent name="C:\xampp\htdocs\BoomPupVersion2\resources\views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\asana_template\resources\views\admin" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.cs-script.js">
@@ -322,7 +324,8 @@
       <workItem from="1597129199514" duration="6000" />
       <workItem from="1597129208871" duration="1788000" />
       <workItem from="1597222428218" duration="3522000" />
-      <workItem from="1597647590751" duration="3405000" />
+      <workItem from="1597647590751" duration="7707000" />
+      <workItem from="1597733452635" duration="250000" />
     </task>
     <task id="LOCAL-00011" summary="17022020F">
       <created>1581940004923</created>
