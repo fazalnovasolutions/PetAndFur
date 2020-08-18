@@ -15,7 +15,7 @@
         <nav class="navbar navbar-default">
             <div>
                 <div class="navbar-header">
-                    <a class="navbar-brand"><img src="//cdn.shopify.com/s/files/1/0045/3902/3489/files/LOGOS_FOR_DEBUT_410x.png?v=1590070144" alt="logo-img"></a>
+                    <a class="navbar-brand" href="https://petandfur.com/"><img src="//cdn.shopify.com/s/files/1/0045/3902/3489/files/LOGOS_FOR_DEBUT_410x.png?v=1590070144" alt="logo-img"></a>
                 </div>
             </div>
         </nav>
